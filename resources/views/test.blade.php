@@ -16,6 +16,7 @@
     <div data-theme="light" class="mt-5 p-2">
         LIGHT THEME
         <button class="btn btn-primary">Daisy Primary in Light Theme</button>
+        <p class="text-red-400">APAKAH IYA</p>
     </div>
 </body>
 </html>
