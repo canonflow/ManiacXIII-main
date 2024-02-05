@@ -5,7 +5,7 @@
     @php($pageActive = 'dashboard')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="description" content="Start your development with a Dashboard for Tailwind">
     <meta name="author" content="SI Maniac Development">
     <title>{{ $title ?? "Admin Dashboard" }} </title>
     <!-- Favicon -->
@@ -18,7 +18,7 @@
     <script src="{{ asset('js') }}/flowbite.min.js"></script>
 
     {{-- Tailwind --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
     
     <!-- Custom CSS -->
     @yield('styles')
@@ -243,5 +243,10 @@
     </div>
 
     @yield('scripts')
+    {{-- PUSHER SETUP --}}
+    @vite('resources/js/app.js')
+    <script type="module">
+        console.log(window.Echo);
+    </script>
 </body>
 </html>
