@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="SI Maniac Development">
-    <title>MANIAC XIII ADMIN | @yield('title') </title>
+    <title>{{ $title ?? "Admin Dashboard" }} </title>
     <!-- Favicon -->
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
     <!-- Page plugins -->
-    <!-- Argon CSS -->
-    {{-- Tailwind --}}
-    @vite(['resources/css/app.css'])
 
-    {{-- Flowbite --}}
+    {{-- Flowbite JS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+    {{-- Tailwind --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- Custom CSS -->
-    @yield('customcss')
+    @yield('styles')
 </head>
-<body>
-    {{-- Navbar --}}
-    
+<body>    
     {{-- Layout --}}
     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span class="sr-only">Open sidebar</span>
@@ -108,6 +107,37 @@
     
     {{-- Content --}}
     <div class="p-4 sm:ml-64">
+        {{-- Navbar --}}
+        <div class="navbar bg-base-100">
+            {{-- Page --}}
+            <div class="flex-1 text-2xl">
+                {{ $activePage ?? "Dashboard" }}
+            </div>
+
+            {{-- Profile --}}
+            <div class="flex-none">
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        </div>
+                    </div>
+                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <a class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li><a>Settings</a></li>
+                        <li><a>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {{-- Yield Content Here --}}
+        @yield('content')
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
             <div class="grid grid-cols-3 gap-4 mb-4">
                 <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
@@ -208,5 +238,7 @@
             </div>
         </div>
     </div>
+
+    @yield('scripts')
 </body>
 </html>
