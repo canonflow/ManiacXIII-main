@@ -23,11 +23,11 @@ Route::get('/test', function () {
 });
 
 Route::group(
-    ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin'], 
+    ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'], 
     function () {
         Route::get('/', function () {
             return view('admin.index');
-        });
+        })->name('dashboard');
     }
 );
 
