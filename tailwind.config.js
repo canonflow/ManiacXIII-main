@@ -37,12 +37,12 @@ export default {
                     ...customPalette,
                 }
             },
-            {
-                light: {
-                    ...require("daisyui/src/theming/themes")["light"],
-                    ...customPalette
-                }
-            }
+            // {
+            //     light: {
+            //         ...require("daisyui/src/theming/themes")["light"],
+            //         ...customPalette
+            //     }
+            // }
         ]
     }
 };
