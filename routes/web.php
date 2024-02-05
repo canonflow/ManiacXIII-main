@@ -22,6 +22,15 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::group(
+    ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin'], 
+    function () {
+        Route::get('/', function () {
+            return view('admin.index');
+        });
+    }
+);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
