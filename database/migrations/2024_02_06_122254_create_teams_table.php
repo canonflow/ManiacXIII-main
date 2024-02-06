@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->enum('role', ['admin', 'participant', 'penpos', 'si', 'supersi']);
-            //$table->rememberToken();
+            $table->string('name');
+            $table->string('school_name');
+            $table->string('school_address');
+            $table->string('school_number');
+            $table->enum('status', ['waiting', 'verified', 'unverified', 'deactivated']);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('teams');
     }
 };
