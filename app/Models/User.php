@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Participant;
+use App\Models\Admin;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,9 @@ class User extends Authenticatable
 
     public function participants() : HasMany {
         return $this->hasMany(Participant::class, 'user_id');
+    }
+
+    public function admins() : HasMany {
+        return $this->hasMany(Admin::class, 'user_id');
     }
 }
