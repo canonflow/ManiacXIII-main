@@ -34,7 +34,7 @@
                 {{-- Messages --}}
                 <div class="flex flex-col gap-4 max-h-96 overflow-y-scroll select-none">
                     {{-- List of Messages Here --}}
-                    <div class="message flex p-2 gap-x-3 rounded-md hover:bg-slate-800 hover:bg-opacity-25 hover:cursor-pointer">
+                    <a href="#" class="message flex p-2 gap-x-3 rounded-md hover:bg-slate-800 hover:bg-opacity-25 hover:cursor-pointer">
                         {{-- Avatar --}}
                         <div class="avatar">
                             <div class="rounded-full w-14">
@@ -46,7 +46,7 @@
                             <p class="text-white font-medium text-md">Tim Nathan</p>
                             <p id="previewChat">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, obcaecati. Vel neque delectus non nam eum iusto alias nisi eius similique labore, perspiciatis nostrum deleniti animi sapiente, exercitationem odio veniam.</p>
                         </div>
-                    </div>
+                    </a>
 
                     <div class="message flex p-2 gap-x-3 rounded-md hover:bg-slate-800 hover:bg-opacity-25 hover:cursor-pointer">
                         {{-- Avatar --}}
