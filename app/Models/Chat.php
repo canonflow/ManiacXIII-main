@@ -16,16 +16,16 @@ class Chat extends Model
     protected $fillable = [
         'admin_id',
         'message',
-        'is_from_admin'
+        'is_from_admin',
+        'message_id',
+        'status'
     ];
 
     public function admin() : BelongsTo {
         return $this->belongsTo(Admin::class, 'admin_id');
     }
 
-    public function reads() : BelongsToMany {
-        return $this->belongsToMany(Message::class, 'reads', 'chat_id', 'message_id')
-            ->withPivot(['status'])
-            ->withTimestamps();
+    public function message() : BelongsTo {
+        return $this->belongsTo(Message::class, 'message_id');
     }
 }

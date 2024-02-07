@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Team;
 use App\Models\Chat;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Message extends Model
 {
@@ -21,9 +22,7 @@ class Message extends Model
         return $this->belongsTo(Team::class, 'team_id');
     }
 
-    public function reads() : BelongsToMany {
-        return $this->belongsToMany(Chat::class, 'reads', 'message_id', 'chat_id')
-            ->withPivot(['status'])
-            ->withTimestamps();
+    public function chats() : HasMany {
+        return $this->hasMany(Chat::class, 'message_id');
     }
 }

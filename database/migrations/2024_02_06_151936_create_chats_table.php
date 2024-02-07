@@ -1,10 +1,10 @@
 <?php
 
+use App\Models\Message;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Chat;
-use App\Models\Message;
+use App\Models\Admin;
 
 return new class extends Migration
 {
@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reads', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Admin::class)->nullable();
             $table->foreignIdFor(Message::class);
-            $table->foreignIdFor(Chat::class);
+            $table->text('message');
+            $table->tinyInteger('is_from_admin');
             $table->tinyInteger('status');
             $table->timestamps();
         });
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reads');
+        Schema::dropIfExists('chats');
     }
 };
