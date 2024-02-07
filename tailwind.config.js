@@ -5,7 +5,7 @@ const customPalette = {
     primary: "#474F7A",
     secondary: "#FC6736",
     "primary-content": "#ffffff",
-    "secondary-content": "#ffffff"
+    "secondary-content": "#ffffff",
 };
 
 /** @type {import('tailwindcss').Config} */

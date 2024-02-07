@@ -26,8 +26,12 @@ Route::group(
     ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'], 
     function () {
         Route::get('/', function () {
-            return view('admin.index');
+            return view('admin.dashboard.index');
         })->name('dashboard');
+
+        Route::get('/messages', function() {
+            return view('admin.messages.index');
+        })->name('messages');
     }
 );
 
