@@ -1,13 +1,13 @@
-@extends('admin.layout.index', ['pageActive' => 'admin.messages', 'pageTitle' => 'Messages']);
+@extends('admin.layout.index', ['pageActive' => 'admin.messages', 'pageTitle' => 'Messages'])
 
 @section('styles')
 <style>
-#previewChat {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 14rem;
-}
+    #previewChat {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 14rem;
+    }
 </style>
 @endsection
 

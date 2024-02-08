@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,15 +24,11 @@ Route::get('/test', function () {
 });
 
 Route::group(
-    ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'], 
+    ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'],
     function () {
-        Route::get('/', function () {
-            return view('admin.dashboard.index');
-        })->name('dashboard');
-
-        Route::get('/messages', function() {
-            return view('admin.messages.index');
-        })->name('messages');
+        // Dashboard
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     }
 );
 
