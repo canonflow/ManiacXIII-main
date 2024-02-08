@@ -16,7 +16,7 @@ class TeamSeader extends Seeder
     {
         for ($i = 1; $i <= 2; $i++) {
             Team::create([
-                'name' => "Tim $i",
+                'name' => "Tim$i",
                 'school_name' => "SMA Negeri $i",
                 'school_address' => "Jalan Tunjungan No. $i",
                 'school_number' => '08123456789',

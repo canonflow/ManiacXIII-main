@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Admin::class)->nullable();
             $table->foreignIdFor(Message::class);
-            $table->text('message');
+            $table->longText('message');
             $table->tinyInteger('is_from_admin');
             $table->tinyInteger('status');
             $table->timestamps();

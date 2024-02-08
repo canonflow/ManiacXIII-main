@@ -29,6 +29,9 @@ Route::group(
         // Dashboard
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
+        Route::get('/messages/search', [AdminController::class, 'searchMessage'])->name('search-message');
+        //Route::get('show', [AdminController::class, 'showMessages'])->name('show');
+        Route::get('/messages/{team:name}', [AdminController::class, 'showChat'])->name('chat');
     }
 );
 

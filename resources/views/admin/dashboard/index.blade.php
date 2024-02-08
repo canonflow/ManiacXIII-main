@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="bg-red p-0">
-        Test
+        @if(isset($payload))
+            @foreach ($payload as $name => $py)
+                <p>{{ $name }}</p>
+                <p>{{ $py['chat'] }}</p>
+                <p>{{ $py['status'] }}</p>
+                <br /> <br />
+            @endforeach
+        @endif
     </div>
 @endsection

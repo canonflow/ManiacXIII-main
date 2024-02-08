@@ -141,6 +141,11 @@
     <div class="p-4 rounded-lg">
         @yield('content')
     </div>
+
+    {{--  Footer  --}}
+    <div class="w-full pt-12">
+        <p class="text-gray-500 text-md">COPYRIGHT &copy; MANIAC XIII, All rights Reserved</p>
+    </div>
 </div>
 
 @yield('scripts')
