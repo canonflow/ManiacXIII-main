@@ -96,9 +96,10 @@
             @foreach($payload as $message => $status)
                 @php($position = ($status['is_from_admin'] == 0 ? 'chat-start' : 'chat-end'))
                 @php($isSeen = ($status['status'] == 0 ? 'Delivered' : 'Seen'))
+                @php($by = ($status['is_from_admin']) ? $status['admin'] : $team['name'])
                 <div class="chat {{ $position }}">
                     <div class="chat-header">
-                        {{ $team['name'] }}
+                        {{ $by }}
                         <time class="text-xs opacity-50">{{ $status['time'] }}</time>
                     </div>
                     <div class="chat-bubble max-w-sm lg:max-w-xl">{{ $message }}</div>
