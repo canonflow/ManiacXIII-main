@@ -14,7 +14,15 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Team::class);
+//            $table->foreignIdFor(Team::class)
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
+            $table->foreignId('team_id');
+            $table->foreign('team_id')
+                    ->references('id')
+                    ->on('teams')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

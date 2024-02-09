@@ -7,6 +7,7 @@ use App\Models\Chat;
 use App\Models\Message;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,10 @@ class AdminController extends Controller
     }
 
     public function messages() {
-        $messages = Message::all();
+        $verifTeams = Team::where('status', 'verified')->pluck('id')->toArray();
+
+        // Tampilin Message dari Tim yg sudah terverifikasi
+        $messages = Message::whereIn('team_id', $verifTeams)->get();
         $payload = [];
 
         foreach ($messages as $message) {
@@ -79,5 +83,48 @@ class AdminController extends Controller
         }
         //dd($payload);
         return view('admin.chat.index', compact('team', 'payload'));
+    }
+
+    public function getChats(Team $team) {
+        /* Timestamp from database to readable time like from 2024-02-08 20:22:02 to 8:22pm
+            1. Get Time from db (in string)
+               $dateString = "".$chat->created_at
+            2. Convert to php timestamp
+               $timestamp = strtotime($dateString);
+            3. Convert to readable
+               $time = date("g:ia", $timestamp);
+        */
+        // Jangan LIMIT 10 -> tampilkan pesan yg dikirimkan hari ini saja (opsional)
+        $chats = Chat::where('message_id', $team->message->id)
+            ->orderBy('created_at', 'ASC')
+            ->get();
+        $payload = [];
+        foreach ($chats as $chat) {
+            $temp = [
+                $chat->message => [
+                    'is_from_admin' => $chat->is_from_admin,
+                    'status' => $chat->status,
+                    'admin' => ($chat->is_from_admin == 1) ? $chat->admin->name : '',
+                    'time' => date("g:ia", strtotime("".$chat->created_at))
+                ]
+            ];
+            $payload += $temp;
+        }
+
+        return $payload;
+    }
+    public function sendChat(Request $request) {
+        $team = Team::where('name', $request->get('team_name'))->first();
+        $messageRoom = Message::where('team_id', $team->id)->first();
+        $newMsg = $request->get('msg');
+
+        // Create Message
+        Chat::create([
+            'message' => $newMsg,
+            'is_from_admin' => 1,
+            'status' => 0,  // Asumsikan blm dibaca oleh Tim
+            'admin_id' => 1,  // Sementara gini nanti ganti ke admin yg lagi login
+            'message_id' => $messageRoom->id
+        ]);
     }
 }

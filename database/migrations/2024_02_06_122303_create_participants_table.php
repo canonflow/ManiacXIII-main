@@ -15,8 +15,24 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Team::class);
+//            $table->foreignIdFor(User::class)
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
+//            $table->foreignIdFor(Team::class)
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
+            $table->foreignId('team_id');
+            $table->foreignId('user_id');
+            $table->foreign('team_id')
+                ->references('id')
+                ->on('teams')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string('email')->unique();
             $table->enum('position', ['leader', 'member']);
             $table->string('phone_number');

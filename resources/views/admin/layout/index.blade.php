@@ -13,7 +13,8 @@
 
     {{-- Flowbite JS --}}
     <script src="{{ asset('js') }}/flowbite.min.js"></script>
-
+    {{--  JQuery  --}}
+    <script src="{{ asset('js') }}/jquery.min.js"></script>
     {{-- Tailwind --}}
     @vite(['resources/css/app.css'])
 

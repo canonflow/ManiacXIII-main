@@ -32,6 +32,7 @@ Route::group(
         Route::get('/messages/search', [AdminController::class, 'searchMessage'])->name('search-message');
         //Route::get('show', [AdminController::class, 'showMessages'])->name('show');
         Route::get('/messages/{team:name}', [AdminController::class, 'showChat'])->name('chat');
+        Route::post('/message-send', [AdminController::class, 'sendChat'])->name('chat.send');
     }
 );
 
