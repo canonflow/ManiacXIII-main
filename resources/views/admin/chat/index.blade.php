@@ -102,7 +102,7 @@
                         {{ $by }}
                         <time class="text-xs opacity-50">{{ $status['time'] }}</time>
                     </div>
-                    <div class="chat-bubble max-w-sm lg:max-w-xl">{{ $message }}</div>
+                    <div class="chat-bubble max-w-sm lg:max-w-xl break-all">{{ $message }}</div>
                     <div class="chat-footer opacity-50">{{ $isSeen }}</div>
                 </div>
             @endforeach
@@ -148,23 +148,23 @@
             let typingAnimation = document.getElementById('typing');
 
             // ==== PAKE AJAX LANGSUNG AJA ====
-            $.ajax({
-                url: '{{ route('admin.chat.send') }}',
-                type: 'POST',
-                data: {
-                    '_token': '<?php echo csrf_token(); ?>',
-                    'team_name': team,
-                    'msg': msg.value,
-                },
-                success: function (data) {
-                    location.reload();
-                },
-                error: function (xhr) {
-                    console.log(xhr);
-                }
+            {{--$.ajax({--}}
+            {{--    url: '{{ route('admin.chat.send') }}',--}}
+            {{--    type: 'POST',--}}
+            {{--    data: {--}}
+            {{--        '_token': '<?php echo csrf_token(); ?>',--}}
+            {{--        'team_name': team,--}}
+            {{--        'msg': msg.value,--}}
+            {{--    },--}}
+            {{--    success: function (data) {--}}
+            {{--        location.reload();--}}
+            {{--    },--}}
+            {{--    error: function (xhr) {--}}
+            {{--        console.log(xhr);--}}
+            {{--    }--}}
 
-            })
-            return;
+            {{--})--}}
+            {{--return;--}}
 
             // Time
             let timestamp = Date.now();  // Dikirimkan ke ajax
@@ -184,12 +184,13 @@
             let child = document.createElement('div');
             child.classList.add('chat', 'chat-end');
 
+
             let reply = `
                     <div class="chat-header">
                         admin
                     <time class="text-xs opacity-50">${time}</time>
                     </div>
-                    <div class="chat-bubble max-w-sm lg:max-w-xl newChat">${msg.value}</div>
+                    <div class="chat-bubble max-w-sm lg:max-w-xl break-all">${msg.value}</div>
                     <div class="chat-footer opacity-50">Delivered</div>`;
             child.innerHTML = reply;
 
@@ -198,6 +199,7 @@
             // Clear input
             msg.value = '';
             msg.focus();
+            chats.scrollTop = chats.scrollHeight;
         }
 
         // Send by enter
