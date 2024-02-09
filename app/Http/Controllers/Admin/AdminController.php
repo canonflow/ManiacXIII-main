@@ -37,7 +37,10 @@ class AdminController extends Controller
     }
 
     public function searchMessage(Request $request) {
-        $team = Team::where('name', 'like', "%".$request->get('name')."%")->pluck('id')->toArray();
+        $team = Team::where('name', 'like', "%".$request->get('name')."%")
+            ->where('status', 'verified')
+            ->pluck('id')
+            ->toArray();
         $messages = Message::whereIn('team_id', $team)->get();
         //dd($messages[0]->team_id);
         $payload = [];

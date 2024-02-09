@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,10 @@ Route::group(
         //Route::get('show', [AdminController::class, 'showMessages'])->name('show');
         Route::get('/messages/{team:name}', [AdminController::class, 'showChat'])->name('chat');
         Route::post('/message-send', [AdminController::class, 'sendChat'])->name('chat.send');
+
+        // Registration
+        Route::get('/registration', [TeamController::class, 'index'])->name('teams.index');
+        Route::get('/registration/search', [TeamController::class, 'search'])->name('teams.search');
     }
 );
 

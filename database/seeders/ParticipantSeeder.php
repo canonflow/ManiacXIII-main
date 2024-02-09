@@ -19,6 +19,7 @@ class ParticipantSeeder extends Seeder
             Participant::create([
                 'email' => "participant$i@gmail.com",
                 'position' => $position,
+                'name' => "Nathan",
                 'phone_number' => '08123456789',
                 'student_photo' => 'sdasdsadasd',
                 'team_id' => 1,
@@ -32,6 +33,7 @@ class ParticipantSeeder extends Seeder
             Participant::create([
                 'email' => "participant$i@gmail.com",
                 'position' => $position,
+                'name' => 'Garzya',
                 'phone_number' => '08123456789',
                 'student_photo' => 'sdasdsadasd',
                 'team_id' => 2,

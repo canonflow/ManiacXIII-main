@@ -18,7 +18,8 @@ class Participant extends Model
         'email',
         'position',
         'phone_number',
-        'student_photo'
+        'student_photo',
+        'name'
     ];
 
     public function user() : BelongsTo {

@@ -35,6 +35,7 @@ return new class extends Migration
                     ->onDelete('cascade');
             $table->string('email')->unique();
             $table->enum('position', ['leader', 'member']);
+            $table->string('name');
             $table->string('phone_number');
             $table->string('student_photo');
             $table->timestamps();
