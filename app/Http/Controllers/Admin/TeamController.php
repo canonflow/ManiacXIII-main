@@ -27,19 +27,16 @@ class TeamController extends Controller
 
     public function search(Request $request) {
         //dd($request->get('status'));
-//        $request->validate([
-//            'search' => 'required',
-//            'name' => 'required'
-//        ]);
+        $request->validate([
+            'search' => 'required',
+            'status' => 'required'
+        ]);
 
         $status = $request->get('status');
         $search = $request->get('search');
         $name = $request->get('name');
         $listStatus = ['verified', 'unverified', 'waiting'];
         $listSearch = ['teams.name', 'participants.name', 'teams.school_name'];
-
-        // Kalo parameter status tidak termasuk yg diminta -> abort / kosong
-        if ($status == null) abort(404);
 
         if (count(array_intersect($status, $listStatus)) != count($status)) abort(404);
 
