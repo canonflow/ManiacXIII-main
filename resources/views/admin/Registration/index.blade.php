@@ -95,7 +95,7 @@
                         <td width="5%" class="text-center">{{ $team['id'] }}</td>
                         <td width="20%" class="text-center">{{ $team['name'] }}</td>
                         <td width="10%" class="text-center">
-                            <div class="{{ $badgeColor }}">{{ $team['status'] }}</div>
+                            <div class="{{ $badgeColor }} font-medium">{{ $team['status'] }}</div>
                         </td>
                         <td width="30%">
                             <ul>
@@ -143,7 +143,7 @@
                     <p class="py-4">Apakah anda yakin untuk menonaktifkan tim ini?</p>
                     <div class="divider my-2"></div>
                     <div class="grid grid-cols-3">
-                        <button class="btn btn-error col-span-1 col-end-4" type="submit">Deactivate</button>
+                        <button class="btn btn-error col-span-1 col-end-4 font-medium" type="submit">Deactivate</button>
                     </div>
                 </form>
             </div>

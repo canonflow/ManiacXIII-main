@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             Admin::create([
                'user_id' =>  $i,
                 'name' => "Admin Ganteng $i"
