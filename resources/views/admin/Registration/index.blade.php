@@ -11,6 +11,16 @@
     </div>
 
     <div class="flex flex-col justify-center content-center w-full bg-gray-800 p-3 rounded-lg">
+        {{--    Alert    --}}
+        @if(session()->has('deactivateSuccess'))
+        <div role="alert" class="alert alert-success mb-3 rounded-md">
+            <div class="flex flex-row justify-start items-center gap-x-2 w-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Berhasil deactivate <strong>{{ session()->get('deactivateSuccess') }}</strong></span>
+            </div>
+        </div>
+        @endif
+
         {{--    Header    --}}
         <div class="flex flex-col gap-y-4">
             <h2 class="text-lg">Search & Filter</h2>
@@ -57,7 +67,6 @@
             </form>
         </div>
 
-        {{--      Pagination      --}}
         <div class="divider my-8">
             Teams
         </div>
@@ -103,7 +112,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                                     </svg>
                                 </button>
-                                <button class="btn btn-outline btn-error btn-sm rounded-md">
+                                <button class="btn btn-outline btn-error btn-sm rounded-md" onclick="deactivateTeam('{{ $team['name'] }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
                                     </svg>
@@ -116,8 +125,42 @@
             </table>
         </div>
 
+        {{--      Pagination      --}}
         <div class="mt-6">
             {{ $teams->onEachSide(1)->withQueryString()->links() }}
         </div>
+
+        {{--    Modal Deactivated    --}}
+        <dialog id="modalDeactivated" class="modal">
+            <div class="modal-box rounded-md p-4">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <form action="{{ route('admin.teams.deactivate') }}" method="POST">
+                    @csrf
+                    <input type="hidden" id="deactivatedTeam" name="team">
+                    <h3 class="font-bold text-xl lg:text-2xl">Deactivate Team</h3>
+                    <p class="py-4">Apakah anda yakin untuk menonaktifkan tim ini?</p>
+                    <div class="divider my-2"></div>
+                    <div class="grid grid-cols-3">
+                        <button class="btn btn-error col-span-1 col-end-4" type="submit">Deactivate</button>
+                    </div>
+                </form>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        let deactivatedModal = document.getElementById('modalDeactivated');
+        let deactivatedTeam = document.getElementById('deactivatedTeam');
+        const deactivateTeam = (team) => {
+            deactivatedTeam.value = team;
+            deactivatedModal.showModal();
+        }
+    </script>
 @endsection

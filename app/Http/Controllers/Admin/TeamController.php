@@ -55,6 +55,15 @@ class TeamController extends Controller
         session()->flash('name', $name);
 
         return view('admin.registration.index', compact('teams'));
+    }
+
+    public function deactivateTeam(Request $request) {
+        $team = Team::where('name', $request->get('team'))->first();
+        //dd($request->get('name'));
+        $team->status = 'deactivated';
+        $team->save();
+
+        return redirect()->back()->with('deactivateSuccess', "$team->name");
 
     }
 }
