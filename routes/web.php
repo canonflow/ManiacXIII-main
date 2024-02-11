@@ -43,8 +43,8 @@ Route::group(
 
         // Uers
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
         Route::post('/users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
-
     }
 );
 

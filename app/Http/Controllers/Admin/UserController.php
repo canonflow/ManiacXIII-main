@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,6 +17,40 @@ class UserController extends Controller
                     ->paginate(10);
         //dd($users);
         return view('admin.users.index', compact('users'));
+    }
+
+    public function store(Request $request) {
+        //dd($request);
+        $request->validate([
+            'role' => ['required'],
+            'username' => ['required', 'unique:users'],
+            'password' => ['required', 'confirmed', 'min:8'],
+            'name' => ['required']
+        ]);
+
+        // Biarin gini, Table Penpos blm ada soalnya
+        if ($request->get('role') != 'admin') abort(404);
+
+        // Buat User
+        $user = User::create([
+            'username' => $request->get('username'),
+            'role' => $request->get('role'),
+            'password' => Hash::make($request->get('password'))
+        ]);
+
+        // Check Role
+        switch ($request->get('role')) {
+            case 'admin':
+                Admin::create([
+                    'name' => $request->get('name'),
+                    'user_id' => $user->id
+                ]);
+                break;
+            case 'penpos':
+                abort(404);
+        }
+
+        return redirect()->back()->with('addSuccess', $user->username);
     }
 
     public function destroy(Request $request) {

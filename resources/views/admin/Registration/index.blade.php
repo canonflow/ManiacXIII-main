@@ -158,6 +158,7 @@
     <script>
         let deactivatedModal = document.getElementById('modalDeactivated');
         let deactivatedTeam = document.getElementById('deactivatedTeam');
+
         const deactivateTeam = (team) => {
             deactivatedTeam.value = team;
             deactivatedModal.showModal();
