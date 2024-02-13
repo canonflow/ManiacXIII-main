@@ -26,7 +26,7 @@ class ParticipantMiddleware
 //            else if (Auth::user()->team->status == 'unverified') return \response()->view('welcome');
 //            else if (Auth::user()->team->status == 'deactivated') return \response()->view('welcome');
             $next($request);
-//        }
+        }
 
         abort(404);
     }
