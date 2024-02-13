@@ -13,7 +13,6 @@ class Participant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'team_id',
         'email',
         'position',
@@ -21,10 +20,6 @@ class Participant extends Model
         'student_photo',
         'name'
     ];
-
-    public function user() : BelongsTo {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     public function team() : BelongsTo {
         return $this->belongsTo(Team::class, 'team_id');

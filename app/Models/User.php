@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Participant;
 use App\Models\Admin;
+use App\Models\Team;
 
 class User extends Authenticatable
 {
@@ -47,8 +48,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function participants() : HasMany {
-        return $this->hasMany(Participant::class, 'user_id');
+    public function team() : HasOne {
+        return $this->hasOne(User::class, 'user_id');
     }
 
     public function admin() : HasOne {

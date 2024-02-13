@@ -23,7 +23,6 @@ class ParticipantSeeder extends Seeder
                 'phone_number' => '08123456789',
                 'student_photo' => 'sdasdsadasd',
                 'team_id' => 1,
-                'user_id' => $i
             ]);
         }
 
@@ -37,7 +36,6 @@ class ParticipantSeeder extends Seeder
                 'phone_number' => '08123456789',
                 'student_photo' => 'sdasdsadasd',
                 'team_id' => 2,
-                'user_id' => $i
             ]);
         }
     }
