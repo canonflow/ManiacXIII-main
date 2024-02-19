@@ -23,6 +23,8 @@
             @endforeach
         @endif
     </div>
+
+    <a class="btn btn-outline btn-primary" href="{{ route('admin.download') }}">Download</a>
 @endsection
 
 @section('scripts')

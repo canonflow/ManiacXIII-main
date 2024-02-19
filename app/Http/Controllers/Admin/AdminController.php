@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -129,5 +130,13 @@ class AdminController extends Controller
             'admin_id' => 1,  // Sementara gini nanti ganti ke admin yg lagi login
             'message_id' => $messageRoom->id
         ]);
+    }
+
+    public function download() {
+        //dd(storage_path('app/public/'));
+        //dd(Storage::exists('public/test.png'));
+        if (Storage::exists('public/test.png')) {
+            return response()->download(storage_path('app/public/test.png'));
+        }
     }
 }
