@@ -12,9 +12,9 @@ const datePicker = (id) => {
     });
 }
 
-const minMaxDatePicker = (minDate, maxDateEl) => {
+const minMaxDatePicker = (minDateEl, maxDateEl) => {
     let dpMin, dpMax;
-    dpMin = new AirDatepicker(`${minDate}`, {
+    dpMin = new AirDatepicker(`${minDateEl}`, {
         locale: localeEn,
         inline: false,
         timepicker: true,
