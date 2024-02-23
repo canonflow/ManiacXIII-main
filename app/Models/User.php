@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Acara;
 use App\Models\Participant;
 use App\Models\Admin;
 use App\Models\Team;
@@ -49,10 +50,14 @@ class User extends Authenticatable
     ];
 
     public function team() : HasOne {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->hasOne(Team::class, 'user_id');
     }
 
     public function admin() : HasOne {
         return $this->hasOne(Admin::class, 'user_id');
+    }
+
+    public function acara() : HasOne {
+        return $this->hasOne(Acara::class, 'user_id');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Participant;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -33,5 +34,15 @@ class Team extends Model
 
     public function message() : HasOne {
         return $this->hasOne(Message::class, 'team_id');
+    }
+
+    public function contests() : BelongsToMany {
+        return $this->belongsToMany(Contest::class, 'contestants', 'team_id', 'contest_id')
+                    ->withPivot(['join_date'])
+                    ->withTimestamps();
+    }
+
+    public function submitions() : HasMany {
+        return $this->hasMany(Submition::class, 'team_id');
     }
 }
