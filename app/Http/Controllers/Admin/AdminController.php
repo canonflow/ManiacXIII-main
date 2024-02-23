@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ParticipantsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Message;
@@ -9,6 +10,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -138,5 +140,10 @@ class AdminController extends Controller
         if (Storage::exists('public/test.png')) {
             return response()->download(storage_path('app/public/test.png'));
         }
+    }
+
+    public function export() {
+        //return (new ParticipantsExport)->download('participants.xlsx');
+        return Excel::download(new ParticipantsExport(), 'participants.xlsx');
     }
 }

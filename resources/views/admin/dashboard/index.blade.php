@@ -24,7 +24,7 @@
         @endif
     </div>
 
-    <a class="btn btn-outline btn-primary" href="{{ route('admin.download') }}">Download</a>
+    <a class="btn btn-outline btn-primary" href="{{ route('admin.download.participants') }}">Download</a>
 @endsection
 
 @section('scripts')

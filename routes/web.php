@@ -32,6 +32,7 @@ Route::group(
         Route::get('/', [Admin\AdminController::class, 'index'])->name('dashboard');
         Route::get('/messages', [Admin\AdminController::class, 'messages'])->name('messages');
         Route::get('/download', [Admin\AdminController::class, 'download'])->name('download');
+        Route::get('/download/participant', [Admin\AdminController::class, 'export'])->name('download.participants');
 
         Route::get('/messages/search', [Admin\AdminController::class, 'searchMessage'])->name('search-message');
         //Route::get('show', [AdminController::class, 'showMessages'])->name('show');
