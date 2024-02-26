@@ -23,6 +23,7 @@ class ParticipantSeeder extends Seeder
                 'phone_number' => '08123456789',
                 'student_photo' => 'sdasdsadasd',
                 'team_id' => 1,
+                'alergi' => 'Kubis',
             ]);
         }
 
@@ -36,6 +37,7 @@ class ParticipantSeeder extends Seeder
                 'phone_number' => '08123456789',
                 'student_photo' => 'sdasdsadasd',
                 'team_id' => 2,
+                'alergi' => 'seafood',
             ]);
         }
     }

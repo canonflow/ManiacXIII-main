@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->string('student_photo');
+            $table->string('alergi');
             $table->timestamps();
         });
     }

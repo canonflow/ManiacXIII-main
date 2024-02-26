@@ -144,6 +144,7 @@ class AdminController extends Controller
 
     public function export() {
         //return (new ParticipantsExport)->download('participants.xlsx');
-        return Excel::download(new ParticipantsExport(), 'participants.xlsx');
+        return Excel::download(new ParticipantsExport(), 'participants.xlsx')
+                ->deleteFileAfterSend(true);
     }
 }

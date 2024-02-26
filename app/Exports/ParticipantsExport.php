@@ -22,7 +22,7 @@ class ParticipantsExport implements FromView, ShouldAutoSize
     {
         $teams = Team::all();
         $payloads = [];
-        $headers = ['name', 'phone_number', 'email', 'student_photo'];
+        $headers = ['name', 'phone_number', 'email', 'alergi', 'student_photo'];
 
         foreach ($teams as $team) {
             $temp = [];

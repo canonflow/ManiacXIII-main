@@ -12,12 +12,12 @@
     <table class="">
         <thead>
             <tr>
-                <th>No</th>
-                <th>School Name</th>
-                <th>Header</th>
-                <th>Ketua Tim</th>
-                <th>Anggota 1</th>
-                <th>Anggota 2</th>
+                <th valign="center" align="center"><strong>No</strong></th>
+                <th valign="center" align="center"><strong>School Name</strong></th>
+                <th valign="center" align="center"><strong>Header</strong></th>
+                <th valign="center" align="center"><strong>Ketua Tim</strong></th>
+                <th valign="center" align="center"><strong>Anggota 1</strong></th>
+                <th valign="center" align="center"><strong>Anggota 2</strong></th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +27,8 @@
             @foreach($payload as $header => $items)
                 <tr>
                     @if($isFirst)
-                        <td rowspan="4">{{ $no }}</td>
-                        <td rowspan="4">{{ $school }}</td>
+                        <td rowspan="5" valign="center" align="center">{{ $no }}</td>
+                        <td rowspan="5" valign="center" align="center">{{ $school }}</td>
                         @php($isFirst = false)
                     @endif
                     <td>{{ $header }}</td>
