@@ -21,7 +21,8 @@ class Team extends Model
         'school_address',
         'school_number',
         'status',
-        'user_id'
+        'user_id',
+        'payment_photo',
     ];
 
     public function participants() : HasMany {

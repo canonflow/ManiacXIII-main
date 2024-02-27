@@ -23,6 +23,7 @@ class TeamSeader extends Seeder
                     'school_number' => '08123456789',
                     'status' => 'waiting',
                     'user_id' => $i,
+                    'payment_photo' => 'bukti_pembayaran/tes.png',
                 ]);
             }
         }

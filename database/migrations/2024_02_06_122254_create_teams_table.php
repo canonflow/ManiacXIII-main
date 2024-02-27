@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('school_address');
             $table->string('school_number');
             $table->enum('status', ['waiting', 'verified', 'unverified', 'deactivated']);
+            $table->string('payment_photo')->nullable();
             $table->timestamps();
         });
     }
