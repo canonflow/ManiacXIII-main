@@ -68,7 +68,7 @@
             <h1 class="text-center">MANIAC XIII</h1>
             <h1 class="text-center">REGISTRATION</h1>
             <div class="form my-5">
-                <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}">
+                <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                         <label for="validationCustomUsername" class="form-label">Username</label>
@@ -76,7 +76,7 @@
                             {{-- <span class="input-group-text" id="inputGroupPrepend"> </span> --}}
                             <input type="text" class="form-control @error('username') is-invalid @enderror"
                                 id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username"
-                                required placeholder="Masukkan Username">
+                                required placeholder="Masukkan Username" value="{{ old('username') ?? '' }}" />
                             @error('username')
                                 <div class="invalid-feedback alert-danger">
                                     {{ $message }}
@@ -90,7 +90,7 @@
                             {{-- <span class="input-group-text" id="inputGroupPrepend"> </span> --}}
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 id="validationCustomUsername" aria-describedby="inputGroupPrepend" required
-                                name="password" placeholder="Masukkan Password">
+                                name="password" placeholder="Masukkan Password" />
                             @error('password')
                                 <div class="invalid-feedback alert-danger">
                                     {{ $message }}
@@ -101,7 +101,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom01" class="form-label">Nama Tim</label>
                         <input type="text" class="form-control @error('nama_tim') is-invalid @enderror"
-                            id="validationCustom01" placeholder="Masukkan Nama Tim" required name="nama_tim">
+                            id="validationCustom01" placeholder="Masukkan Nama Tim" required name="nama_tim"
+                            value="{{ old('nama_tim') }}" />
                         @error('nama_tim')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -111,7 +112,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Nama Sekolah</label>
                         <input type="text" class="form-control  @error('nama_sekolah') is-invalid @enderror"
-                            id="validationCustom02" placeholder="Masukkan Nama Sekolah" required name="nama_sekolah">
+                            id="validationCustom02" placeholder="Masukkan Nama Sekolah" required name="nama_sekolah"
+                            value="{{ old('nama_sekolah') }}">
                         @error('nama_sekolah')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -122,7 +124,8 @@
                         <label for="validationCustom03" class="form-label">Alamat Sekolah</label>
                         <input type="text" class="form-control @error('alamat_sekolah') is-invalid @enderror"
                             id="validationCustom03" placeholder="Masukkan Alamat Sekolah" required
-                            name="alamat_sekolah">
+                            name="alamat_sekolah"
+                            value="{{ old('alamat_sekolah') }}" />
                         @error('alamat_sekolah')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -133,7 +136,8 @@
                         <label for="validationCustom03" class="form-label">Nomor Telepon Sekolah</label>
                         <input type="text" class="form-control @error('nomor_sekolah') is-invalid @enderror"
                             id="validationCustom03" name="nomor_sekolah" required
-                            placeholder="Masukkan Nomor Telepon Sekolah">
+                            placeholder="Masukkan Nomor Telepon Sekolah"
+                            value="{{ old('nomor_sekolah') }}" />
                         @error('nomor_sekolah')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -145,7 +149,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Nama Ketua Tim</label>
                         <input type="text" class="form-control @error('nama_leader') is-invalid @enderror"
-                            id="validationCustom03" required name="nama_leader">
+                            id="validationCustom03" required name="nama_leader"
+                            value="{{ old('nama_leader') }}">
                         @error('nama_leader')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -155,7 +160,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Email</label>
                         <input type="text" class="form-control @error('email_leader') is-invalid @enderror"
-                            id="validationCustom03" required name="email_leader">
+                            id="validationCustom03" required name="email_leader"
+                            value="{{ old('email_leader') }}" />
                         @error('email_leader')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -165,7 +171,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Nomor Telepon</label>
                         <input type="text" class="form-control @error('nomor_leader') is-invalid @enderror"
-                            id="validationCustom03" required name="nomor_leader">
+                            id="validationCustom03" required name="nomor_leader"
+                            value="{{ old('nomor_leader') }}">
                         @error('nomor_leader')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -175,7 +182,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Foto</label>
                         <input type="file" class="form-control @error('foto_leader') is-invalid @enderror"
-                            id="validationCustom03" required name="foto_leader">
+                            id="validationCustom03" required name="foto_leader"
+                            accept="image/png, image/jpeg, image/jpg" />
                         @error('foto_leader')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -184,14 +192,16 @@
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Alergi</label>
-                        <input type="text" class="form-control" id="validationCustom03" name="alergi_leader">
+                        <input type="text" class="form-control" id="validationCustom03" name="alergi_leader"
+                        value="{{ old('alergi_leader') }}">
                     </div>
                     <hr>
                     {{-- anggota 1 --}}
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Nama Anggota 1</label>
                         <input type="text" class="form-control @error('nama_anggota1') is-invalid @enderror"
-                            id="validationCustom03" required name="nama_anggota1">
+                            id="validationCustom03" required name="nama_anggota1"
+                            value="{{ old('nama_anggota1') }}">
                         @error('nama_anggota1')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -201,7 +211,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Email</label>
                         <input type="text" class="form-control @error('email_anggota1') is-invalid @enderror"
-                            id="validationCustom03" required name="email_anggota1">
+                            id="validationCustom03" required name="email_anggota1"
+                            value="{{ old("email_anggota1") }}">
                         @error('email_anggota1')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -211,7 +222,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Nomor Telepon</label>
                         <input type="text" class="form-control @error('nomor_anggota1') is-invalid @enderror"
-                            id="validationCustom03" required name="nomor_anggota1">
+                            id="validationCustom03" required name="nomor_anggota1"
+                            value="{{ old('nomor_anggota1') }}">
                         @error('nomor_anggota1')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -230,14 +242,16 @@
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Alergi</label>
-                        <input type="text" class="form-control" id="validationCustom03">
+                        <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota1"
+                        value="{{ old('alergi_anggota1') }}">
                     </div>
                     <hr>
                     {{-- anggota 2 --}}
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Nama Anggota 2</label>
                         <input type="text" class="form-control @error('nama_anggota2') is-invalid @enderror"
-                            id="validationCustom03" required name="anggota2_nama">
+                            id="validationCustom03" required name="nama_anggota2"
+                            value="{{ old('nama_anggota2') }}">
                         @error('nama_anggota2')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -247,7 +261,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Email</label>
                         <input type="text" class="form-control @error('email_anggota2') is-invalid @enderror"
-                            id="validationCustom03" required name="email_anggota2">
+                            id="validationCustom03" required name="email_anggota2"
+                            value="{{ old('email_anggota2') }}">
                         @error('email_anggota2')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -257,7 +272,8 @@
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Phone Number</label>
                         <input type="text" class="form-control @error('nomor_anggota2') is-invalid @enderror"
-                            id="validationCustom03" required name="nomor_anggota2">
+                            id="validationCustom03" required name="nomor_anggota2"
+                            value="{{ old('nomor_anggota2') }}">
                         @error('nomor_anggota2')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -276,19 +292,8 @@
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Alergi</label>
-                        <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota2">
-                    </div>
-                    <div class="col-12 my-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
-                                required>
-                            <label class="form-check-label" for="invalidCheck">
-                                Agree to terms and conditions
-                            </label>
-                            <div class="invalid-feedback">
-                                You must agree before submitting.
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota2"
+                        value="{{ old('alergi_anggota2') }}">
                     </div>
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Register</button>

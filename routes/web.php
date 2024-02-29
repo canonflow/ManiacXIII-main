@@ -25,6 +25,7 @@ Route::get('/test', function () {
     return view('test');
 });
 
+// Admin Route (PUBREG)
 Route::group(
     ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'],
     function () {
@@ -48,6 +49,16 @@ Route::group(
         Route::get('/users', [Admin\UserController::class, 'index'])->name('users.index');
         Route::post('/users/store', [Admin\UserController::class, 'store'])->name('users.store');
         Route::post('/users/destroy', [Admin\UserController::class, 'destroy'])->name('users.destroy');
+    }
+);
+
+// Team Route
+Route::group(
+    ['middleware' => 'participant', 'prefix' => 'team', 'as' => 'team.'],
+    function () {
+        Route::get('/', function () {
+            echo "<h1>Pemain Dashboard</h1>";
+        })->name('index');
     }
 );
 
