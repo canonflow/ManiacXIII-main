@@ -113,7 +113,7 @@ class RegisteredUserController extends Controller
             'name' => $request->get('nama_anggota1'),
             'phone_number' => $request->get('nomor_anggota1'),
             'student_photo' => $team->name . '/foto/' . $fotoAnggota1,
-            'alergi' => "BELUM ADA INPUT E"
+            'alergi' => $request->get('alergi_anggota1')
         ]);
 
         // Anggota 2
