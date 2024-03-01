@@ -15,8 +15,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
+    {{-- font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
     @vite('resources/css/app.css')
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> --}}
     <style>
@@ -846,37 +853,45 @@
     <div
         class="relative sm:flex sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         @if (Route::has('login'))
-            {{-- <nav class="sm:fixed sm:top-0 z-10 max-w-screen">
-                <h1>MANIAC XIII</h1>
-                <div class="text-right">
-                    @auth
-                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-                    
-                    @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                    @endif
-                    @endauth
+            <nav
+                class="sm:fixed sm:top-0 z-10 max-w-screen bg-gray-800 text-white p-4 flex w-full justify-between items-center">
+                {{-- <h1 class="text-2xl font-bold">MANIAC XIII</h1> --}}
+                <div class="logo flex gap-2">
+                    <img src="{{ asset('../asset2024/logo-ubaya.png') }}" alt="logo-ubaya" class="icon">
+                    <img src="{{ asset('../asset2024/logo-maniac.jpg') }}" alt="logo-maniac" class="icon">
+
                 </div>
-            </nav> --}}
-            <nav class="sm:fixed sm:top-0 z-10 max-w-screen bg-gray-800 text-white p-4 flex w-full">
-                <h1 class="text-xl font-bold">MANIAC XIII</h1>
                 <div class="flex items-center">
-                    @auth
-                        <a href="{{ url('/dashboard') }}"
-                            class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">Log
-                            in</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">Register</a>
-                        @endif
-                    @endauth
+                    <a href="" class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">HOME</a>
+                    <a href="" class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">ABOUT US</a>
+                    <a href="" class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">FAQ</a>
+                    <a href="" class="mx-3 font-semibold hover:text-gray-300 focus:outline-none">GALLERY</a>
+                    <details class="dropdown">
+                        <summary class="m-1 btn">ACCOUNT</summary>
+                        <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-64">
+                            @auth
+                                <li>
+                                    <a href="{{ url('/dashboard') }}"
+                                        class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">DASHBOARD</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('login') }}"
+                                        class="mx-1 font-semibold hover:text-gray-300 focus:outline-none">LOG
+                                        IN</a>
+                                </li>
+                                @if (Route::has('register'))
+                                    <li>
+                                        <a href="{{ route('register') }}"
+                                            class="mx-1 font-semibold hover:text-gray-300 focus:outline-none">REGISTER</a>
+                                    </li>
+                                @endif
+                            @endauth
+                        </ul>
+                    </details>
                 </div>
             </nav>
-            <div class="navbar bg-auto">
+            {{-- <div class="navbar bg-auto">
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1">
                         <li><a>Link</a></li>
@@ -892,11 +907,10 @@
                                     @else
                                         <div class="link justify-between">
                                             <a href="{{ route('login') }}"
-                                                class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">Log
-                                                in</a>
+                                                class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">LOG IN</a>
                                             @if (Route::has('register'))
                                                 <a href="{{ route('register') }}"
-                                                    class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">Register</a>
+                                                    class="ml-4 font-semibold hover:text-gray-300 focus:outline-none">REGISTER</a>
                                             @endif
                                         </div>
                                     @endauth
@@ -905,10 +919,46 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         @endif
     </div>
+    @yield('content')
+
 
 </body>
+<footer class="footer p-10 bg-base-300 text-base-content">
+    <nav class="col">
+        <h5 class="text-white font-bold">MANIAC XII</h5>
+        <a class="link link-hover">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa Timur</a>
+        <div class="maps">
+            <iframe class="w-100 md:w-50"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3031802459786!2d112.76553161057895!3d-7.319800892657786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fae3f29c4665%3A0x7536c23b4453a79!2sUniversity%20of%20Surabaya!5e0!3m2!1sen!2sid!4v1709278257216!5m2!1sen!2sid"
+                style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </nav>
+    <nav>
+        <h6 class="text-white font-bold">SOCIAL</h6>
+        <div class="grid gap-4">
+            <p class="text-xl">
+                <i class="fa-brands fa-square-instagram"></i>
+                @maniac_ubaya
+            </p>
+            <p class="text-xl">
+                <i class="fa-brands fa-line"></i>
+                @994nxsfr
+            </p>
+            <p class="text-xl">
+                <i class="fa-solid fa-envelope"></i> maniac.ubayaa@gmail.com
+            </p>
+        </div>
+    </nav>
+    <nav>
+        <h6 class="text-white font-bold">SPONSORED BY</h6>
+
+    </nav>
+
+    <p>&#169; 2024 MANIAC XIII </p>
+</footer>
 
 </html>
