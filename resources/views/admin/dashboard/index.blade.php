@@ -1,9 +1,9 @@
-@extends('admin.layout.index', ['pageActive' => 'admin.dashboard', 'pageTitle' => 'Dashboard'])
+@extends('admin.layout.index', ['pageActive' => 'admin.dashboard', 'pageTitle' => 'pemain.dashboard'])
 
 @section('styles')
     <style>
         .air-datepicker-cell.-selected- {
-            background-color:  oklch(var(--p)) !important;
+            background-color: oklch(var(--p)) !important;
         }
 
         .air-datepicker-cell.-current- {
@@ -19,7 +19,7 @@
                 <p>{{ $name }}</p>
                 <p>{{ $py['chat'] }}</p>
                 <p>{{ $py['status'] }}</p>
-                <br /> <br />
+                <br/> <br/>
             @endforeach
         @endif
     </div>
