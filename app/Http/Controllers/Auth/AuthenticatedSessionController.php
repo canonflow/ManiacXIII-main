@@ -30,6 +30,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $this->authenticated($request, Auth::user());
+
         return redirect()->intended('/team');
     }
 
@@ -45,5 +47,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    // Untuk login cuma bisa 1 user
+    protected function authenticated(Request $request, $user)
+    {
+        Auth::logoutOtherDevices($request['password']);
     }
 }

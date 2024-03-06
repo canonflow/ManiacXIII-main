@@ -16,7 +16,7 @@ class ParticipantMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role == 'participant') {
+        if (Auth::check() && Auth::user()->role == 'participant') {
 //            if (Auth::user()->team->status == 'verified') return $next($request);
 //            // Biar bisa make POST untuk upload bukti Transfer
 //            else if (Auth::user()->team->status == 'waiting' && $request->get("_token") != null) return $next($request);

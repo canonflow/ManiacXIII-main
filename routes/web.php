@@ -58,6 +58,7 @@ Route::group(
     ['middleware' => 'participant', 'prefix' => 'team', 'as' => 'team.'],
     function () {
         Route::get('/', [Pemain\PemainController::class, 'index'])->name('index');
+        Route::get('/contest', [Pemain\PemainController::class, 'contest'])->name('contest');
     }
 );
 

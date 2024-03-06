@@ -871,7 +871,7 @@
                         <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-64">
                             @auth
                                 <li>
-                                    <a href="{{ url('/dashboard') }}"
+                                    <a href="{{ url('/team') }}"
                                         class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">DASHBOARD</a>
                                 </li>
                             @else

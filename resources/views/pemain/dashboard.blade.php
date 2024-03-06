@@ -1,76 +1,137 @@
-{{--<x-app-layout>--}}
-{{--    <x-slot name="header">--}}
-{{--        <h2 class="font-semibold text-xl text-gray-800 leading-tight">--}}
-{{--            {{ __('Dashboard') }}--}}
-{{--        </h2>--}}
-{{--    </x-slot>--}}
+@extends('pemain.layout.layout', ['title' => 'Dashboard'])
 
-{{--    <div class="py-12">--}}
-{{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
-{{--            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">--}}
-{{--                <div class="p-6 text-gray-900">--}}
-{{--                    {{ __("You're logged in!") }}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</x-app-layout>--}}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="bg-base-100">
-    {{--  Navigation Bar  --}}
-    <div class="navbar bg-base-100">
-        <div class="flex-1">
-            <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+@section('content')
+<div class="grid grid-cols-1 gap-8 w-full max-w-7xl border border-warning">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {{--  Data Anggota  --}}
+        <div class="bg-base-200 flex flex-col p-4 rounded-md">
+            <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Anggota</h1>
+            <table class="table">
+                <tbody>
+                    @foreach($participants as $participant)
+                        <tr>
+                            <td class="p-0">Nama</td>
+                            <td class="p-0">:</td>
+                            <td class="break-words">{{ $participant->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="p-0">Email</td>
+                            <td class="p-0">:</td>
+                            <td class="break-words">{{ $participant->email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="p-0">Posisi</td>
+                            <td class="p-0">:</td>
+                            @php($pos = ($participant->position == 'leader') ? 'ketua' : 'anggota')
+                            <td class="break-words">
+                                <span class="badge badge-md rounded-lg text-slate-900 {{ $pos == 'ketua' ? 'badge-success ' : 'badge-warning ' }} font-semibold">{{ $pos }}</span>
+                            </td>
+                        </tr>
+                        <tr><td colspan="3" class="p-0"><div class="w-full divider"></div></td></tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        {{--  Data Team  --}}
+        <div class="bg-base-200 flex flex-col p-4 rounded-md">
+            <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Tim</h1>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td class="p-0">Nama Tim</td>
+                    <td class="p-0">:</td>
+                    <td class="break-words">{{ $team->name }}</td>
+                </tr>
+                <tr>
+                    <td class="p-0">Nama Sekolah</td>
+                    <td class="p-0">:</td>
+                    <td class="break-words">{{ $team->school_name }}</td>
+                </tr>
+                <tr>
+                    <td class="p-0">Alamat Sekolah</td>
+                    <td class="p-0">:</td>
+                    <td class="break-all">{{ $team->school_address }}</td>
+                </tr>
+                <tr>
+                    <td class="p-0">Nomor Sekolah</td>
+                    <td class="p-0">:</td>
+                    <td class="break-words">{{ $team->school_number }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {{--  Timeline  --}}
+        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-1">
+            <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Timeline</h1>
+            <div class="flex flex-col justify-start items-start">
+                <ul class="timeline timeline-vertical">
+                    <li class="h-32">
+                        <div class="timeline-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="timeline-end timeline-box">First Macintosh computer</div>
+                        <hr/>
+                    </li>
+                    <li class="h-32">
+                        <hr/>
+                        <div class="timeline-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="timeline-end timeline-box">iMac</div>
+                        <hr/>
+                    </li>
+                    <li class="h-32">
+                        <hr/>
+                        <div class="timeline-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="timeline-end timeline-box">iPod</div>
+                        <hr/>
+                    </li>
+                    <li class="h-32">
+                        <hr/>
+                        <div class="timeline-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="timeline-end timeline-box">iPhone</div>
+                        <hr/>
+                    </li>
+                    <li class="h-32">
+                        <hr/>
+                        <div class="timeline-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="timeline-end timeline-box">Apple Watch</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {{--  Instruksi Penggunaan  --}}
+        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-2 gap-8">
+            <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Instruksi Penggunaan</h1>
+            <div class="flex flex-col gap-3">
+                <div class="badge badge-accent rounded-md text-slate-50  font-medium text-sm">6 Maret 2024</div>
+                <div class="divider"></div>
+                <div>
+                    <p class="p-0 pb-2 m-o font-medium text-slate-200">Akun</p>
+                    <p class="p-0 m-0 font-light text-slate-100 break-words">Setiap akun hanya bisa login di satu komputer. Apabila login lebih dari satu komputer, maka akun yang login pertama otomatis logout.</p>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>Dashboard</a></li>
-                    <li><a>Contest</a></li>
-                </ul>
-            </div>
-            <a class="btn btn-ghost text-xl">Maniac XII</a>
-        </div>
-        <div class="flex-none">
-            <ul class="menu menu-horizontal px-1">
-                <li>
-                    <details>
-                        <summary>
-                            Menu
-                        </summary>
-                        <ul class="p-2 bg-base-100 rounded-t-none">
-                            <li><a href="{{ route('index') }}">Home</a></li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </details>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="flex justify-center hidden lg:flex">
-        <div class="hidden lg:flex lg:justify-center bg-primary rounded-lg w-3/4">
-            <div class="flex gap-2 justify-center items-center">
-                <ul class="menu menu-horizontal gap-4">
-                    <li><a class="hover:bg-secondary focus:bg-accent">Dashboard</a></li>
-                    <li><a>Contest</a></li>
-                </ul>
+                <div class="divider"></div>
+                <div>
+                    <p class="p-0 pb-2 m-o font-medium text-slate-200">Browser</p>
+                    <p class="p-0 m-0 font-light text-slate-100 break-words">Disarankan menggunakan web browser Chrome dan TIDAK disarankan menggunakan web browser Safari dalam penggunaan web ini.</p>
+                </div>
+                <div class="divider"></div>
+                <div>
+                    <p class="p-0 pb-2 m-o font-medium text-slate-200">Contest</p>
+                    <p class="p-0 m-0 font-light text-slate-100 break-words">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-error">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

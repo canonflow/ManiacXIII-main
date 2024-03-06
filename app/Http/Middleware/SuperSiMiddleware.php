@@ -16,7 +16,7 @@ class SuperSiMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role == 'supersi') {
+        if (Auth::check() && Auth::user()->role == 'supersi') {
             return $next($request);
         }
 

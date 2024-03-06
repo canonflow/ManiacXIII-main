@@ -16,7 +16,7 @@ class SiMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role == 'si') {
+        if (Auth::check() && Auth::user()->role == 'si') {
             return $next($request);
         }
 
