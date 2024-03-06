@@ -59,6 +59,8 @@ Route::group(
     function () {
         Route::get('/', [Pemain\PemainController::class, 'index'])->name('index');
         Route::get('/contest', [Pemain\PemainController::class, 'contest'])->name('contest');
+
+        Route::get('/contest/{contest:slug}', [Pemain\PemainController::class, 'submition'])->name('contest.submition');
     }
 );
 

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->timestamp('open_date')->nullable();
             $table->timestamp('close_date')->nullable();
-            $table->enum('type', ['workshop']);
+            $table->enum('type', ['workshop', 'final']);
             $table->timestamps();
         });
     }

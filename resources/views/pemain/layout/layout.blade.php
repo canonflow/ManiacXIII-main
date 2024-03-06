@@ -12,7 +12,7 @@
 </head>
 <body class="bg-base-100">
 {{--  Navigation Bar  --}}
-<div class="navbar bg-base-100 px-4 mb-2">
+<div class="navbar bg-base-100 px-4 mb-2 z-50">
     <div class="flex-1">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -25,7 +25,7 @@
         </div>
         <a class="btn btn-ghost text-2xl">Maniac XIII</a>
     </div>
-    <div class="flex-none">
+    <div class="flex-none z-50">
         <ul class="menu menu-horizontal px-6">
             <li>
                 <details>
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<div class="flex justify-center hidden lg:flex">
+<div class="flex justify-center hidden lg:flex sticky top-5 z-40">
     <div class="hidden lg:flex lg:justify-center bg-base-300 rounded-lg w-3/4 py-1 max-w-7xl">
         <div class="flex justify-center items-center">
             <ul class="menu menu-horizontal gap-7">
@@ -84,8 +84,11 @@
     </div>
 </div>
 
-<div class="border border-1 border-white p-10 mt-7 flex flex-col items-center">
+<div class="p-10 mt-7 flex flex-col items-center">
     @yield('content')
+    <div class="w-full pt-12 px-2">
+        <p class="text-gray-500 text-md">COPYRIGHT &copy; MANIAC XIII Information System, All rights Reserved</p>
+    </div>
 </div>
 
 @yield('scripts')

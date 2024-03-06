@@ -9,6 +9,8 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Policies\PemainPolicy;
 
 class PemainController extends Controller
 {
@@ -26,9 +28,53 @@ class PemainController extends Controller
                                     ->where('team_id', '=', Auth::user()->team->id)
                                     ->get();
 
+        $upcomingContest = Contest::join('contestants', 'contestants.contest_id', '=', 'contests.id')
+                                    ->where('open_date', '>=', Carbon::now())
+                                    ->where('team_id', '=', Auth::user()->team->id)
+                                    ->get();
+
+        $finishedContest = Contest::join('contestants', 'contestants.contest_id', '=', 'contests.id')
+                                    ->where('close_date', '<=', Carbon::now())
+                                    ->where('team_id', '=', Auth::user()->team->id)
+                                    ->get();
+
         //dd($availableContest);
         return view('pemain.contest', array(
-            'available_contests' => $availableContest
+            'available_contests' => $availableContest,
+            'upcoming_contests' => $upcomingContest,
+            'finished_contests' => $finishedContest,
         ));
+    }
+
+    public function submition(Contest $contest)
+    {
+        // ===== Policy =====
+        // Kalo Team gk terdaftar pada contest
+        // Ini gk pake Gate gk knapa gk isa :((
+        if (!(new PemainPolicy())->access(Auth::user(), $contest)) {
+            return view('pemain.unauthorized');
+        }
+
+        // ===== Time =====
+        // Check if the current date is less than close date
+        if ($contest->close_date < Carbon::now()) {
+            return view('pemain.close-contest');
+        }
+
+        // Check if the current date is more than open date
+        if ($contest->open_date > Carbon::now()) {
+            return view('pemain.no-open-contest');
+        }
+
+        $team = Auth::user()->team;
+
+        if (!($team->contests()->where('contest_id', $contest->id)->first()->pivot->join_date)) {
+            // Update Join Date
+            $team->contests()->syncWithoutDetaching(
+                [$contest->id => ['join_date' => Carbon::now()]]
+            );
+        }
+
+        return view('pemain.submition');
     }
 }
