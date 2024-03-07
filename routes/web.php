@@ -61,6 +61,7 @@ Route::group(
         Route::get('/contest', [Pemain\PemainController::class, 'contest'])->name('contest');
 
         Route::get('/contest/{contest:slug}', [Pemain\PemainController::class, 'submition'])->name('contest.submition');
+        Route::post('/contest/{contest:slug}/submit', [Pemain\PemainController::class, 'submitLink'])->name('contest.submit');
     }
 );
 

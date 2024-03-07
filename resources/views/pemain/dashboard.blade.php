@@ -1,11 +1,15 @@
 @extends('pemain.layout.layout', ['title' => 'Dashboard'])
+@section('cdn')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
 
 @section('content')
 <div class="grid grid-cols-1 gap-8 w-full max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {{--  Data Anggota  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md">
-            <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Anggota</h1>
+        {{--  Data Peserta  --}}
+        <div class="bg-base-200 flex flex-col p-4 rounded-md shadow-md data">
+            <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Peserta</h1>
             <table class="table">
                 <tbody>
                     @foreach($participants as $participant)
@@ -34,7 +38,7 @@
         </div>
 
         {{--  Data Team  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md">
+        <div class="bg-base-200 flex flex-col p-4 rounded-md shadow-md data">
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Tim</h1>
             <table class="table">
                 <tbody>
@@ -64,7 +68,7 @@
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {{--  Timeline  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-1">
+        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-1 shadow-md data">
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Timeline</h1>
             <div class="flex flex-col justify-start items-start">
                 <ul class="timeline timeline-vertical">
@@ -137,7 +141,7 @@
         </div>
 
         {{--  Instruksi Penggunaan  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-2 gap-8">
+        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-2 shadow-md gap-8 data">
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Instruksi Penggunaan</h1>
             <div class="flex flex-col gap-3">
                 <div class="badge badge-accent rounded-md text-slate-50  font-medium text-sm">6 Maret 2024</div>
@@ -160,4 +164,29 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const datas = gsap.utils.toArray('.data');
+        datas.forEach(data => {
+            const anim = gsap.fromTo(
+                data,
+                {
+                    autoAlpha: 0,
+                    y: 100,
+                },
+                {
+                    duration: 0.6,
+                    autoAlpha: 1,
+                    y: 0,
+                    x: 0,
+                }
+            );
+            ScrollTrigger.create({
+                trigger: data,
+                animation: anim,
+            });
+        });
+    </script>
 @endsection

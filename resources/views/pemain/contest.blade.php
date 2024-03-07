@@ -1,5 +1,10 @@
 @extends('pemain.layout.layout', ['title' => 'Contest'])
 
+@section('cdn')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
+
 @section('styles')
     <style>
         .action:hover {
@@ -11,7 +16,7 @@
 @section('content')
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
-        <div class="card rounded-lg shadow-md">
+        <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Contest Maniac XIII 🏆</h1>
             <div class="card-body bg-slate-600 rounded-b-lg">
                 <p class="text-slate-100 pb-3 sm:pb-0 break-words">
@@ -25,7 +30,7 @@
         </div>
 
         {{--   Available Contest    --}}
-        <div class="card rounded-lg shadow-md">
+        <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg text-accent">Available Contest</h1>
             <div class="card-body bg-slate-600 rounded-b-lg">
                 <div class="overflow-x-auto">
@@ -68,7 +73,7 @@
         </div>
 
         {{--   Upcoming Contest    --}}
-        <div class="card rounded-lg shadow-md">
+        <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Upcoming Contest</h1>
             <div class="card-body bg-slate-600 rounded-b-lg">
                 <div class="overflow-x-auto">
@@ -101,7 +106,7 @@
         </div>
 
         {{--   Finished Contest    --}}
-        <div class="card rounded-lg shadow-md">
+        <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Finished Contest</h1>
             <div class="card-body bg-slate-600 rounded-b-lg">
                 <div class="overflow-x-auto">
@@ -132,6 +137,30 @@
                 </div>
             </div>
         </div>
-
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const datas = gsap.utils.toArray('.data');
+        datas.forEach(data => {
+            const anim = gsap.fromTo(
+                data,
+                {
+                    autoAlpha: 0,
+                    y: 100,
+                },
+                {
+                    duration: 0.6,
+                    autoAlpha: 1,
+                    y: 0,
+                    x: 0,
+                }
+            );
+            ScrollTrigger.create({
+                trigger: data,
+                animation: anim,
+            });
+        });
+    </script>
 @endsection

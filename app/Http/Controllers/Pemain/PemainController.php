@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pemain;
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
 use App\Models\Participant;
+use App\Models\Submition;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -75,6 +76,32 @@ class PemainController extends Controller
             );
         }
 
-        return view('pemain.submition');
+        return view('pemain.submition', compact('contest'));
+    }
+
+    public function submitLink(Contest $contest, Request $request)
+    {
+        $request->validate([
+            'link' => ['required']
+        ]);
+
+        $team = Auth::user()->team;
+        $link = $request->get('link');
+        $submition = Submition::where('contest_id', $contest->id)
+                            ->where('team_id', $team->id)
+                            ->get();
+
+        if (count($submition) == 0) {
+            Submition::create([
+                'contest_id' => $contest->id,
+                'team_id' => $team->id,
+                'link' => $link
+            ]);
+        } else {
+            $submition[0]->link = $link;
+            $submition[0]->save();
+        }
+
+        return redirect()->back()->with('success', "Berhasil menyimpan link!");
     }
 }

@@ -10,6 +10,12 @@ class Submition extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'contest_id',
+        'team_id',
+        'link'
+    ];
+
     public function team() : BelongsTo {
         return $this->belongsTo(Team::class, 'team_id');
     }
