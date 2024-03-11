@@ -871,7 +871,33 @@
                         <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-64">
                             @auth
                                 <li>
-                                    <a href="{{ url('/team') }}"
+                                    @php
+                                    $endpoint = '';
+                                    switch (\Illuminate\Support\Facades\Auth::user()->role) {
+                                        case 'participant':
+                                            $endpoint = '/team';
+                                            break;
+                                        case 'acara':
+                                            $endpoint = '/acara';
+                                            break;
+                                        case 'si':
+                                            $endpoint = '/si';
+                                            break;
+                                        case 'supersi':
+                                            $endpoint = '/supersi';
+                                            break;
+                                        case 'admin':
+                                            $endpoint = '/admin';
+                                            break;
+                                        case 'judge':
+                                            $endpoint = '/judge';
+                                            break;
+                                        default:
+                                            $endpoint = '/penpos';
+                                            break;
+                                    }
+                                    @endphp
+                                    <a href="{{ url($endpoint) }}"
                                         class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">DASHBOARD</a>
                                 </li>
                             @else

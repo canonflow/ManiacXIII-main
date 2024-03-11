@@ -70,5 +70,7 @@ class Kernel extends HttpKernel
         'penpos' => \App\Http\Middleware\PenposMiddleware::class,
         'si' => \App\Http\Middleware\SiMiddleware::class,
         'supersi' => \App\Http\Middleware\SuperSiMiddleware::class,
+        'acara' => \App\Http\Middleware\AcaraMiddleware::class,
+        'judge' => \App\Http\Middleware\JudgeMiddleware::class,
     ];
 }

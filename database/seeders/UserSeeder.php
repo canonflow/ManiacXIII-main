@@ -58,5 +58,14 @@ class UserSeeder extends Seeder
                 'role' => 'penpos'
             ]);
         }
+
+        // Make Acara
+        for ($i = 1; $i <= 2; $i++) {
+            User::create([
+                'username' => "acara$i",
+                'password' => Hash::make("acara"),
+                'role' => 'acara'
+            ]);
+        }
     }
 }

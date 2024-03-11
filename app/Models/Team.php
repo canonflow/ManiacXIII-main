@@ -43,7 +43,7 @@ class Team extends Model
                     ->withTimestamps();
     }
 
-    public function submitions() : HasMany {
+    public function submissions() : HasMany {
         return $this->hasMany(Submition::class, 'team_id');
     }
 }

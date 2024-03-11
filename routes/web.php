@@ -5,6 +5,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pemain;
+use App\Http\Controllers\Acara;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,7 @@ Route::get('/test', function () {
     return view('test');
 });
 
-// Admin Route (PUBREG)
+// ===== Admin Route (PUBREG) =====
 Route::group(
     ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'],
     function () {
@@ -53,14 +54,38 @@ Route::group(
     }
 );
 
-// Team Route
+// ===== Acara Route =====
+Route::group(
+    ['middleware' => 'acara', 'prefix' => 'acara', 'as' => 'acara.'],
+    function () {
+        // Index
+        Route::get('/', [Acara\AcaraController::class, 'index'])->name('index');
+        Route::get('/contest', [Acara\ContestController::class, 'index'])->name('contest');
+
+        // Create a new Contest
+        Route::get('/contest/create', [Acara\ContestController::class, 'create'])->name('contest.create');
+        Route::post('/contest/create', [Acara\ContestController::class, 'store'])->name('contest.store');
+
+        // Show Specified Contest
+        Route::get('/contest/{contest:slug}', [Acara\ContestController::class, 'show'])->name('contest.show');
+
+        // Edit Specified Contest
+        Route::get('/contest/{contest:slug}/edit', [Acara\ContestController::class, 'edit'])->name('contest.edit');
+        Route::post('/contest/{contest:slug}/edit', [Acara\ContestController::class, 'update'])->name('contest.update');
+
+        // Delete Specified Contest
+        Route::post('contest/{contest:slug}/destroy', [Acara\ContestController::class, 'destroy'])->name('contest.destroy');
+    }
+);
+
+// ===== Team Route =====
 Route::group(
     ['middleware' => 'participant', 'prefix' => 'team', 'as' => 'team.'],
     function () {
         Route::get('/', [Pemain\PemainController::class, 'index'])->name('index');
         Route::get('/contest', [Pemain\PemainController::class, 'contest'])->name('contest');
 
-        Route::get('/contest/{contest:slug}', [Pemain\PemainController::class, 'submition'])->name('contest.submition');
+        Route::get('/contest/{contest:slug}', [Pemain\PemainController::class, 'submission'])->name('contest.submission');
         Route::post('/contest/{contest:slug}/submit', [Pemain\PemainController::class, 'submitLink'])->name('contest.submit');
     }
 );

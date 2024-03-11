@@ -1,8 +1,13 @@
-@extends('pemain.layout.layout', ['title' => 'Contest'])
+@extends('acara.layout.index', ['title' => 'Contest'])
 
 @section('cdn')
+    {{--  GSAP  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{--  Notyf  --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @endsection
 
 @section('styles')
@@ -14,13 +19,18 @@
 @endsection
 
 @section('content')
+    @php($author = auth()->user()->acara->name)
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
         <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Contest Maniac XIII 🏆</h1>
             <div class="card-body bg-slate-600 rounded-b-lg">
+                <h2 class="text-xl font-medium text-white mb-3">Selamat Datang, <span class="text-warning">{{ $author }}</span></h2>
                 <p class="text-slate-100 pb-3 sm:pb-0 break-words">
                     Anda dapat melihat <strong>Available Contest</strong>, <strong>Upcoming Contest</strong>, and <strong>Finished Contest</strong> di sini.
+                </p>
+                <p class="font-medium alert alert-error py-2 rounded-md text-white">
+                    Anda hanya dapat mengubah contest yang Anda buat sendiri. <br />Tidak dapat mengubah atau menghapus contest yang dibuat oleh orang lain.
                 </p>
                 <div role="alert" class="alert rounded-md py-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -39,8 +49,9 @@
                         <tr class="text-white">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
-                            <th width="30%" class="text-center">Jadwal Mulai</th>
-                            <th width="30%" class="text-center">jadwal Selesai</th>
+                            <th width="25%" class="text-center">Jadwal Mulai</th>
+                            <th width="25%" class="text-center">jadwal Selesai</th>
+                            <th width="10%" class="text-center">Author</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -50,16 +61,30 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }}</td>
-                                    @php($action = ($contest->join_date) ? 'Rejoin' : 'Join')
+                                    <td width="25%" class="text-center">{{ $contest->open_date }}</td>
+                                    <td width="25%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="10%" class="text-center font-medium">{{ $contest->author->name }}</td>
                                     <td width="10%" class="text-center">
                                         <a
-                                            class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action"
-                                            href="{{ route('team.contest.submission', $contest) }}"
-                                            >
-                                            {{ $action }}
+                                            class="btn btn-outline btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
+                                            href="{{ route('acara.contest.show', $contest->slug) }}"
+                                        >
+                                            Contest
                                         </a>
+                                        <a
+                                            class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                            href="{{ route('acara.contest.edit', $contest->slug) }}"
+                                        >
+                                            Edit
+                                        </a>
+                                        @if($contest->author->name == $author)
+                                        <button
+                                            class="btn btn-outline btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                            onclick="deleteContest('{{ $contest->slug }}')"
+                                        >
+                                            Delete
+                                        </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -82,8 +107,9 @@
                         <tr class="text-white">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
-                            <th width="30%" class="text-center">Jadwal Mulai</th>
-                            <th width="30%" class="text-center">jadwal Selesai</th>
+                            <th width="25%" class="text-center">Jadwal Mulai</th>
+                            <th width="25%" class="text-center">jadwal Selesai</th>
+                            <th width="10%" class="text-center">Author</th>
                         </tr>
                         </thead>
                         <tbody class="text-white">
@@ -92,8 +118,9 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="25%" class="text-center">{{ $contest->open_date }}</td>
+                                    <td width="25%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="10%" class="text-center">{{ $contest->author->name }}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -115,8 +142,9 @@
                         <tr class="text-white">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
-                            <th width="30%" class="text-center">Jadwal Mulai</th>
-                            <th width="30%" class="text-center">jadwal Selesai</th>
+                            <th width="25%" class="text-center">Jadwal Mulai</th>
+                            <th width="25%" class="text-center">jadwal Selesai</th>
+                            <th width="10%" class="text-center">Author</th>
                         </tr>
                         </thead>
                         <tbody class="text-white">
@@ -125,8 +153,9 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="25%" class="text-center">{{ $contest->open_date }}</td>
+                                    <td width="25%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="25%" class="text-center font-medium">{{ $contest->author->name }}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -141,6 +170,7 @@
 @endsection
 
 @section('scripts')
+    {{--  GSAP  --}}
     <script>
         const datas = gsap.utils.toArray('.data');
         datas.forEach(data => {
@@ -162,5 +192,10 @@
                 animation: anim,
             });
         });
+    </script>
+    <script>
+        const deleteContest = (slug) => {
+            console.log(slug);
+        }
     </script>
 @endsection

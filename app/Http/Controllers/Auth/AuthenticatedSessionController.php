@@ -32,7 +32,17 @@ class AuthenticatedSessionController extends Controller
 
         $this->authenticated($request, Auth::user());
 
-        return redirect()->intended('/team');
+        switch (Auth::user()->role) {
+            case 'participant':
+                return redirect()->intended('/team');
+                break;
+            case 'acara':
+                return redirect()->intended('/acara');
+            case 'admin':
+                return redirect()->intended('/admin');
+        }
+
+        abort(404);
     }
 
     /**

@@ -47,11 +47,11 @@ class PemainController extends Controller
         ));
     }
 
-    public function submition(Contest $contest)
+    public function submission(Contest $contest)
     {
         // ===== Policy =====
         // Kalo Team gk terdaftar pada contest
-        // Ini gk pake Gate gk knapa gk isa :((
+        // Ini gk pake Gate soalnya gtw knapa gk isa :((
         if (!(new PemainPolicy())->access(Auth::user(), $contest)) {
             return view('pemain.unauthorized');
         }
@@ -76,7 +76,7 @@ class PemainController extends Controller
             );
         }
 
-        return view('pemain.submition', compact('contest'));
+        return view('pemain.submission', compact('contest'));
     }
 
     public function submitLink(Contest $contest, Request $request)
@@ -87,19 +87,19 @@ class PemainController extends Controller
 
         $team = Auth::user()->team;
         $link = $request->get('link');
-        $submition = Submition::where('contest_id', $contest->id)
+        $submission = Submition::where('contest_id', $contest->id)
                             ->where('team_id', $team->id)
                             ->get();
 
-        if (count($submition) == 0) {
+        if (count($submission) == 0) {
             Submition::create([
                 'contest_id' => $contest->id,
                 'team_id' => $team->id,
                 'link' => $link
             ]);
         } else {
-            $submition[0]->link = $link;
-            $submition[0]->save();
+            $submission[0]->link = $link;
+            $submission[0]->save();
         }
 
         return redirect()->back()->with('success', "Berhasil menyimpan link!");
