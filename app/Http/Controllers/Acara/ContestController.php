@@ -45,7 +45,31 @@ class ContestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) : RedirectResponse {
-        return redirect()->back();
+        $request->validate([
+            'name' => ['required'],
+            'type' => ['required'],
+            'open_date' => ['required'],
+            'close_date' => ['required'],
+        ]);
+
+//        dd($request);
+
+        $open = strtotime($request->get('open_date'));
+        $close = strtotime($request->get('close_date'));
+
+        $openDate = date("Y-m-d H:i", $open);
+        $closeDate = date("Y-m-d H:i", $close);
+
+        Contest::create([
+            'name' => $request->get('name'),
+            'type' => $request->get('type'),
+            'slug' => $this->createSlug(Auth::user()->acara->name, $request->get('name')),
+            'author_id' => Auth::user()->acara->id,
+            'open_date' => $openDate,
+            'close_date' => $closeDate,
+        ]);
+
+        return redirect()->back()->with('addSuccess', $request->get('name'));
     }
 
     /**
@@ -54,7 +78,8 @@ class ContestController extends Controller
      * @param \App\Models\Contest $contest
      */
     public function show(Contest $contest) {
-        return view('acara.layout.index');
+//        dd($contest);
+        return view('acara.contest.contest', compact('contest'));
     }
 
     /**
@@ -95,7 +120,15 @@ class ContestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Contest $contest) : RedirectResponse {
-        return redirect()->back();
+        if (
+            $contest->author_id != Auth::user()->acara->id ||
+            Carbon::now() > $contest->close_date
+        ) {
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa menghapus Contest yang telah selesai!");
+        }
+
+        $contest->delete();
+        return redirect()->back()->with('deleteSuccess', $contest->name);
     }
 
     public function createSlug(string $author, string $contest) : string {

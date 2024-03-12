@@ -12,11 +12,11 @@ const datePicker = (id) => {
     });
 }
 
-const minMaxDatePicker = (minDateEl, maxDateEl) => {
+const minMaxDatePicker = (minDateEl, maxDateEl, inline=false) => {
     let dpMin, dpMax;
     dpMin = new AirDatepicker(`${minDateEl}`, {
         locale: localeEn,
-        inline: false,
+        inline: inline,
         timepicker: true,
         dateFormat: "MM/dd/yyyy",
         timeFormat: "HH:mm",
@@ -30,7 +30,7 @@ const minMaxDatePicker = (minDateEl, maxDateEl) => {
 
     dpMax = new AirDatepicker(`${maxDateEl}`, {
         locale: localeEn,
-        inline: false,
+        inline: inline,
         timepicker: true,
         dateFormat: "MM/dd/yyyy",
         timeFormat: "HH:mm",
