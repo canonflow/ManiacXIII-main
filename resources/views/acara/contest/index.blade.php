@@ -52,7 +52,14 @@
                             <th width="25%" class="text-center">Jadwal Mulai</th>
                             <th width="25%" class="text-center">jadwal Selesai</th>
                             <th width="10%" class="text-center">Author</th>
-                            <th width="10%" class="text-center">Action</th>
+                            <th width="10%" class="text-center">
+                                <button
+                                    class="btn btn-outline btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
+                                    onclick="tambahContest()"
+                                >
+                                    Tambah
+                                </button>
+                            </th>
                         </tr>
                         </thead>
                         <tbody class="text-white">
@@ -71,13 +78,13 @@
                                         >
                                             Contest
                                         </a>
+                                        @if($contest->author->name == $author)
                                         <a
                                             class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
-                                            href="{{ route('acara.contest.edit', $contest->slug) }}"
+                                            onclick="editContest('{{ $contest->slug }}')"
                                         >
                                             Edit
                                         </a>
-                                        @if($contest->author->name == $author)
                                         <button
                                             class="btn btn-outline btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
                                             onclick="deleteContest('{{ $contest->slug }}')"
@@ -167,6 +174,48 @@
             </div>
         </div>
     </div>
+
+    {{--  Modal Tambah  --}}
+    <dialog id="modalTambah" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    {{--  Modal Edit  --}}
+    <dialog id="modalEdit" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    {{--  Modal Hapus  --}}
+    <dialog id="modalHapus" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 @endsection
 
 @section('scripts')
@@ -192,6 +241,23 @@
                 animation: anim,
             });
         });
+    </script>
+    {{--  Date Picker  --}}
+    @vite('resources/js/datepicker.js')
+    <script type="module">
+        //const { tambahMin, tambahMax } = minMaxDatePicker("#")
+        const modalTambah = document.getElementById('modalTambah');
+        const tambahContest = (slug) => {
+            modalTambah.showModal();
+        }
+
+        const editContest = (slug) => {
+            let action = `{{ route('acara.index') }}/${slug}/edit`;
+            console.log(action);
+        }
+
+        window.tambahContest = tambahContest;
+        window.editContest = editContest;
     </script>
     <script>
         const deleteContest = (slug) => {

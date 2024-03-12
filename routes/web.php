@@ -63,7 +63,7 @@ Route::group(
         Route::get('/contest', [Acara\ContestController::class, 'index'])->name('contest');
 
         // Create a new Contest
-        Route::get('/contest/create', [Acara\ContestController::class, 'create'])->name('contest.create');
+        //Route::get('/contest/create', [Acara\ContestController::class, 'create'])->name('contest.create');
         Route::post('/contest/create', [Acara\ContestController::class, 'store'])->name('contest.store');
 
         // Show Specified Contest

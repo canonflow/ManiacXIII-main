@@ -62,7 +62,12 @@ class ContestController extends Controller
      *
      * @param \App\Models\Contest $contest
      */
-    public function edit(Contest $contest){
+    public function edit(Contest $contest) {
+        // Check if user is authorized
+        if ($contest->author_id != Auth::user()->acara->id) {
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+        }
+
         return view('acara.layout.index');
     }
 
@@ -74,6 +79,12 @@ class ContestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Contest $contest) : RedirectResponse {
+        // Check if user is authorized
+        if ($contest->author_id != Auth::user()->acara->id) {
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+        }
+
+        dd($contest);
         return redirect()->back();
     }
 
