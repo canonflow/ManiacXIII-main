@@ -32,7 +32,7 @@ class Contest extends Model
     }
 
     public function submitions() : HasMany {
-        return $this->hasMany(Submition::class, 'contest_id');
+        return $this->hasMany(Submission::class, 'contest_id');
     }
 
 }

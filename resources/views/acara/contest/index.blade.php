@@ -8,6 +8,13 @@
     {{--  Notyf  --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    {{--  Select2  --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    {{--  Air Datepicker  --}}
+    @vite('resources/js/datepicker.js')
 @endsection
 
 @section('styles')
@@ -22,6 +29,10 @@
 
         .air-datepicker-cell.-current- {
             font-weight: bold;
+        }
+
+        #air-datepicker-global-container {
+            z-index: 10000 !important;
         }
     </style>
 @endsection
@@ -55,7 +66,7 @@
                     <div role="alert" class="alert alert-error mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>Berhasil Menambahkan Contest <strong>{{ session()->get('deleteSuccess') }}</strong></span>
+                            <span>Berhasil Menghapus Contest <strong>{{ session()->get('deleteSuccess') }}</strong></span>
                         </div>
                     </div>
                 @elseif(session()->has('unauthorized'))
@@ -216,7 +227,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="5"><p class="font-medium text-slate-200 text-center">No Upcoming Contest</p></td></tr>
+                            <tr><td colspan="6"><p class="font-medium text-slate-200 text-center">No Upcoming Contest</p></td></tr>
                         @endif
                         </tbody>
                     </table>
@@ -260,7 +271,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="5"><p class="font-medium text-slate-200 text-center">No Finished Contest</p></td></tr>
+                            <tr><td colspan="6"><p class="font-medium text-slate-200 text-center">No Finished Contest</p></td></tr>
                         @endif
                         </tbody>
                     </table>
@@ -300,7 +311,7 @@
                 <button class="btn btn-success w-full action font-medium">Tambah</button>
             </form>
             <div class="modal-action">
-                <form method="dialog">
+                <form method="dialog" id="closeDialog">
                     <!-- if there is a button in form, it will close the modal -->
                     <button class="btn btn-outline btn-error action rounded-lg px-8">Close</button>
                 </form>
@@ -349,6 +360,9 @@
 @section('scripts')
     {{--  GSAP  --}}
     <script>
+        $('body').on('focus',".air-datepicker-global-container", function(){
+            $(this).datepicker();
+        });
         const datas = gsap.utils.toArray('.data');
         datas.forEach(data => {
             const anim = gsap.fromTo(
@@ -371,15 +385,18 @@
         });
     </script>
     {{--  Date Picker  --}}
-    @vite('resources/js/datepicker.js')
     <script type="module">
-        const { tambahMin, tambahMax } = minMaxDatePicker("#tambahOpenDate", '#tambahCloseDate', true);
+        // Gk tau kenapa gk isa pakai object destruction
+        const calendar = minMaxDatePicker("#tambahOpenDate", '#tambahCloseDate', true);
         const modalTambah = document.getElementById('modalTambah');
         const modalDelete = document.getElementById('modalHapus');
         const formDelete = document.getElementById('formDelete');
 
+
         const tambahContest = (slug) => {
             modalTambah.showModal();
+            calendar.dpMin.clear(true);
+            calendar.dpMax.clear(true);
         }
 
         const editContest = (slug) => {

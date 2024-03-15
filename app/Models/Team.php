@@ -44,6 +44,6 @@ class Team extends Model
     }
 
     public function submissions() : HasMany {
-        return $this->hasMany(Submition::class, 'team_id');
+        return $this->hasMany(Submission::class, 'team_id');
     }
 }

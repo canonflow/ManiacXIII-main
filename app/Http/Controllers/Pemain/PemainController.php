@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Pemain;
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
 use App\Models\Participant;
-use App\Models\Submition;
+use App\Models\Submission;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -87,12 +87,12 @@ class PemainController extends Controller
 
         $team = Auth::user()->team;
         $link = $request->get('link');
-        $submission = Submition::where('contest_id', $contest->id)
+        $submission = Submission::where('contest_id', $contest->id)
                             ->where('team_id', $team->id)
                             ->get();
 
         if (count($submission) == 0) {
-            Submition::create([
+            Submission::create([
                 'contest_id' => $contest->id,
                 'team_id' => $team->id,
                 'link' => $link

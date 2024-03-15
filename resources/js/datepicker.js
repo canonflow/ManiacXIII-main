@@ -34,6 +34,7 @@ const minMaxDatePicker = (minDateEl, maxDateEl, inline=false) => {
         timepicker: true,
         dateFormat: "MM/dd/yyyy",
         timeFormat: "HH:mm",
+        minDate: new Date(),
         onSelect({date}) {
             dpMin.update({
                 maxDate: date

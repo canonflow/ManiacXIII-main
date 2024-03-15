@@ -28,6 +28,7 @@
             border-radius: 0.8rem;
         }
     </style>
+    <script src="{{ asset('js') }}/jquery.min.js"></script>
     @yield('cdn')
     @yield('styles')
 </head>
@@ -111,8 +112,6 @@
         <p class="text-gray-500 text-md">COPYRIGHT &copy; MANIAC XIII Information System, All rights Reserved</p>
     </div>
 </div>
-
-<script src="{{ asset('js') }}/jquery.min.js"></script>
 @yield('scripts')
 </body>
 </html>
