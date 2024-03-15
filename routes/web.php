@@ -27,6 +27,13 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::view('/about', 'visitor.about')->name('visitor.about');
+
+Route::view('/faq', 'visitor.faq')->name('visitor.faq');
+
+Route::view('/gallery', 'visitor.faq')->name('visitor.gallery');
+
+
 // ===== Admin Route (PUBREG) =====
 Route::group(
     ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'],

@@ -863,39 +863,42 @@
                 </div>
                 <div class="flex items-center">
                     <a href="" class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">HOME</a>
-                    <a href="" class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">ABOUT US</a>
-                    <a href="" class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">FAQ</a>
-                    <a href="" class="mx-3 font-semibold hover:text-gray-300 focus:outline-none">GALLERY</a>
+                    <a href="{{ route('visitor.about') }}"
+                        class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">ABOUT US</a>
+                    <a href="{{ route('visitor.faq') }}"
+                        class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">FAQ</a>
+                    <a href="{{ route('visitor.gallery') }}"
+                        class="mx-3 font-semibold hover:text-gray-300 focus:outline-none">GALLERY</a>
                     <details class="dropdown">
                         <summary class="m-1 btn">ACCOUNT</summary>
                         <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-64">
                             @auth
                                 <li>
                                     @php
-                                    $endpoint = '';
-                                    switch (\Illuminate\Support\Facades\Auth::user()->role) {
-                                        case 'participant':
-                                            $endpoint = '/team';
-                                            break;
-                                        case 'acara':
-                                            $endpoint = '/acara';
-                                            break;
-                                        case 'si':
-                                            $endpoint = '/si';
-                                            break;
-                                        case 'supersi':
-                                            $endpoint = '/supersi';
-                                            break;
-                                        case 'admin':
-                                            $endpoint = '/admin';
-                                            break;
-                                        case 'judge':
-                                            $endpoint = '/judge';
-                                            break;
-                                        default:
-                                            $endpoint = '/penpos';
-                                            break;
-                                    }
+                                        $endpoint = '';
+                                        switch (\Illuminate\Support\Facades\Auth::user()->role) {
+                                            case 'participant':
+                                                $endpoint = '/team';
+                                                break;
+                                            case 'acara':
+                                                $endpoint = '/acara';
+                                                break;
+                                            case 'si':
+                                                $endpoint = '/si';
+                                                break;
+                                            case 'supersi':
+                                                $endpoint = '/supersi';
+                                                break;
+                                            case 'admin':
+                                                $endpoint = '/admin';
+                                                break;
+                                            case 'judge':
+                                                $endpoint = '/judge';
+                                                break;
+                                            default:
+                                                $endpoint = '/penpos';
+                                                break;
+                                        }
                                     @endphp
                                     <a href="{{ url($endpoint) }}"
                                         class="mx-4 font-semibold hover:text-gray-300 focus:outline-none">DASHBOARD</a>
@@ -946,6 +949,19 @@
                     </ul>
                 </div>
             </div> --}}
+            <nav class="navbar">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="{{ route('index') }}">Home</a></li>
+                    <li><a href="{{ route('visitor.about') }}">About</a></li>
+                    <li><a href="{{ route('visitor.faq') }}">FAQ</a></li>
+                    <li><a href="{{ route('visitor.gallery') }}">Gallery</a></li>
+                </ul>
+            </nav>
         @endif
     </div>
     @yield('content')
@@ -988,3 +1004,10 @@
 </footer>
 
 </html>
+
+<script>
+    document.getElementById('mobile-menu').addEventListener('click', function() {
+        var navList = document.querySelector('.nav-list');
+        navList.style.display = navList.style.display === 'block' ? 'none' : 'block';
+    });
+</script>

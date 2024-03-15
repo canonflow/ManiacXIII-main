@@ -3,3 +3,47 @@
     width: 50px;
     height: 50px;
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .nav-list {
+    display: none;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-list li {
+    margin: 10px 0;
+  }
+  
+  .nav-list li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .menu-toggle {
+    cursor: pointer;
+    display: block;
+  }
+  
+  .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .nav-list {
+      display: block;
+    }
+  }
+  
