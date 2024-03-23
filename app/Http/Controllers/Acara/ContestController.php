@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Acara;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
+use App\Models\Team;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -78,8 +79,52 @@ class ContestController extends Controller
      * @param \App\Models\Contest $contest
      */
     public function show(Contest $contest) {
-//        dd($contest);
-        return view('acara.contest.contest', compact('contest'));
+        // Authorization
+        if ($contest->author_id != Auth::user()->acara->id) {
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+        }
+
+        // Get Contestants
+        $contestants = $contest->teams()
+                        ->orderBy('id', 'DESC')
+                        ->get();
+
+        // Get Unregistered Contestant
+        $registeredTeams = $contest->teams()->pluck('id')->toArray();
+        $unregisteredTeams = Team::whereNotIn('id', $registeredTeams)
+                                    ->where('status', 'verified')
+                                    ->get();
+//        dd($contestants);
+        return view('acara.contest.contest',
+            compact('contest', 'contestants', 'unregisteredTeams')
+        );
+    }
+
+    public function addContestants(Contest $contest, Request $request) {
+        // Authorization
+        if ($contest->author_id != Auth::user()->acara->id) {
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+        }
+
+        // Get Teams and Store Teams
+        $teams = $request->get('teams');
+        foreach ($teams as $id) {
+            $contest->teams()->attach($id);
+        }
+
+        return redirect()->back()->with('addSuccess', "Berhasil menambahkan " . count($teams) . " Tim");
+    }
+
+    public function deleteContestant(Contest $contest, Team $team) {
+        // Authorization
+        if ($contest->author_id != Auth::user()->acara->id) {
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+        }
+
+        // Delete a Record on Many-to-Many table
+        $contest->teams()->detach($team->id);
+
+        return redirect()->back()->with('deleteSuccess', $team->name);
     }
 
     /**
@@ -124,7 +169,7 @@ class ContestController extends Controller
             $contest->author_id != Auth::user()->acara->id ||
             Carbon::now() > $contest->close_date
         ) {
-            return redirect()->back()->with('unauthorized', "Anda tidak bisa menghapus Contest yang telah selesai!");
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa menghapus Contest yang telah selesai atau Contest yang dibuat oleh orang lain!");
         }
 
         $contest->delete();

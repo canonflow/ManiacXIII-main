@@ -76,6 +76,14 @@ Route::group(
         // Show Specified Contest
         Route::get('/contest/{contest:slug}', [Acara\ContestController::class, 'show'])->name('contest.show');
 
+        // Add Contestant
+        Route::post('/contest/{contest:slug}/contestants/store', [Acara\ContestController::class, 'addContestants'])
+            ->name('contest.contestant.store');
+
+        // Delete Contestant
+        Route::post('/contest/{contest:slug}/contestants/{team}/destroy', [Acara\ContestController::class, 'deleteContestant'])
+            ->name('contest.contestant.destroy');
+
         // Edit Specified Contest
         Route::get('/contest/{contest:slug}/edit', [Acara\ContestController::class, 'edit'])->name('contest.edit');
         Route::post('/contest/{contest:slug}/edit', [Acara\ContestController::class, 'update'])->name('contest.update');

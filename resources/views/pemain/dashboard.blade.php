@@ -147,18 +147,18 @@
                 <div class="badge badge-accent rounded-md text-slate-50  font-medium text-sm">6 Maret 2024</div>
                 <div class="divider"></div>
                 <div>
-                    <p class="p-0 pb-2 m-o font-medium text-slate-200">Akun</p>
-                    <p class="p-0 m-0 font-light text-slate-100 break-words">Setiap akun hanya bisa login di satu komputer. Apabila login lebih dari satu komputer, maka akun yang login pertama otomatis logout.</p>
+                    <p class="p-0 pb-2 m-o font-medium text-slate-200 dark:text-slate-800">Akun</p>
+                    <p class="p-0 m-0 font-light text-slate-100 break-words dark:text-slate-800">Setiap akun hanya bisa login di satu komputer. Apabila login lebih dari satu komputer, maka akun yang login pertama otomatis logout.</p>
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <p class="p-0 pb-2 m-o font-medium text-slate-200">Browser</p>
-                    <p class="p-0 m-0 font-light text-slate-100 break-words">Disarankan menggunakan web browser Chrome dan TIDAK disarankan menggunakan web browser Safari dalam penggunaan web ini.</p>
+                    <p class="p-0 pb-2 m-o font-medium text-slate-200 dark:text-slate-800">Browser</p>
+                    <p class="p-0 m-0 font-light text-slate-100 break-words dark:text-slate-800">Disarankan menggunakan web browser Chrome dan TIDAK disarankan menggunakan web browser Safari dalam penggunaan web ini.</p>
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <p class="p-0 pb-2 m-o font-medium text-slate-200">Contest</p>
-                    <p class="p-0 m-0 font-light text-slate-100 break-words">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-error">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
+                    <p class="p-0 pb-2 m-o font-medium text-slate-200 dark:text-slate-800">Contest</p>
+                    <p class="p-0 m-0 font-light text-slate-100 break-words dark:text-slate-800">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-error">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
                 </div>
             </div>
         </div>

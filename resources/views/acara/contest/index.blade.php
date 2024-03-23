@@ -119,7 +119,7 @@
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="text-white">
+                        <tr class="dark:text-white light:text-slate-800">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="25%" class="text-center">Jadwal Mulai</th>
@@ -184,7 +184,7 @@
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="text-white">
+                        <tr class="dark:text-white light:text-slate-800">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="25%" class="text-center">Jadwal Mulai</th>
@@ -242,7 +242,7 @@
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="text-white">
+                        <tr class="dark:text-white light:text-slate-800">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="25%" class="text-center">Jadwal Mulai</th>
