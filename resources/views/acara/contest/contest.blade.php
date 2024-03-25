@@ -116,7 +116,7 @@
 
         {{--    Daftar Peserta    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">Daftar Peserta</h1>
+            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">List of Contestants</h1>
             <div class="card-body bg-slate-600 rounded-b-lg">
                 {{--  Select Team  --}}
                 <div class="flex flex-col">

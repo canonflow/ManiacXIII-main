@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Acara;
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -80,9 +81,9 @@ class ContestController extends Controller
      */
     public function show(Contest $contest) {
         // Authorization
-        if ($contest->author_id != Auth::user()->acara->id) {
-            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
-        }
+//        if ($contest->author_id != Auth::user()->acara->id) {
+//            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+//        }
 
         // Get Contestants
         $contestants = $contest->teams()
@@ -101,9 +102,14 @@ class ContestController extends Controller
     }
 
     public function addContestants(Contest $contest, Request $request) {
+        // Validator
+        $request->validate([
+            'teams' => ['required']
+        ]);
+
         // Authorization
         if ($contest->author_id != Auth::user()->acara->id) {
-            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa menambah contestant pada contest yang dibuat oleh " . $contest->author->name);
         }
 
         // Get Teams and Store Teams
@@ -128,17 +134,19 @@ class ContestController extends Controller
     }
 
     /**
-     * Show the form for editing the specified Contest.
+     * Send data for editing the specified Contest.
      *
      * @param \App\Models\Contest $contest
      */
     public function edit(Contest $contest) {
         // Check if user is authorized
         if ($contest->author_id != Auth::user()->acara->id) {
-            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+            return response()->json(array(
+                'unauthorized' => true,
+            ));
         }
 
-        return view('acara.layout.index');
+        return response()->json(compact('contest'));
     }
 
     /**
@@ -148,14 +156,40 @@ class ContestController extends Controller
      * @param \App\Models\Contest $contest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contest $contest) : RedirectResponse {
+    public function update( Contest $contest, Request $request) : RedirectResponse {
+        // Validation
+        $request->validate([
+            'name' => ['required'],
+            'type' => ['required'],
+            'open_date' => ['required'],
+            'close_date' => ['required'],
+        ]);
+
         // Check if user is authorized
         if ($contest->author_id != Auth::user()->acara->id) {
-            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
+            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah Contest yang dibuat oleh " . $contest->author->name);
         }
 
-        dd($contest);
-        return redirect()->back();
+        // Check if contest is available or not
+        if ($contest->close_date <= Carbon::now()) {
+            return redirect()->back()->with('unauthorized', 'Anda tidak bisa mengubah Contest yg telah selesai');
+        }
+
+        // ===== Update =====
+        $open = strtotime($request->get('open_date'));
+        $close = strtotime($request->get('close_date'));
+
+        $openDate = date("Y-m-d H:i", $open);
+        $closeDate = date("Y-m-d H:i", $close);
+
+        $contest->update([
+            'name' => $request->get('name'),
+            'type' => $request->get('type'),
+            'open_date' => $openDate,
+            'close_date' => $closeDate
+        ]);
+
+        return redirect()->back()->with('editSuccess', $contest->name);
     }
 
     /**

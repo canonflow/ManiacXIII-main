@@ -58,21 +58,28 @@
                 @if(session()->has('addSuccess'))
                     <div role="alert" class="alert alert-success mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             <span>Berhasil Menambahkan Contest <strong>{{ session()->get('addSuccess') }}</strong></span>
+                        </div>
+                    </div>
+                @elseif(session()->has('editSuccess'))
+                    <div role="alert" class="alert alert-success mb-3 rounded-md">
+                        <div class="flex flex-row justify-start items-center gap-x-2 w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span>Berhasil Mengubah Contest <strong>{{ session()->get('editSuccess') }}</strong></span>
                         </div>
                     </div>
                 @elseif(session()->has('deleteSuccess'))
                     <div role="alert" class="alert alert-error mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             <span>Berhasil Menghapus Contest <strong>{{ session()->get('deleteSuccess') }}</strong></span>
                         </div>
                     </div>
                 @elseif(session()->has('unauthorized'))
                     <div role="alert" class="alert alert-error mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             <span><strong>{{ session()->get('unauthorized') }}</strong></span>
                         </div>
                     </div>
@@ -154,7 +161,7 @@
                                         @if($contest->author->name == $author)
                                         <a
                                             class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
-                                            onclick="editContest('{{ $contest->slug }}')"
+                                            onclick="openEditModal('{{ $contest->slug }}')"
                                         >
                                             Edit
                                         </a>
@@ -212,7 +219,7 @@
                                         @if($contest->author->name == $author)
                                             <a
                                                 class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
-                                                onclick="editContest('{{ $contest->slug }}')"
+                                                onclick="openEditModal('{{ $contest->slug }}')"
                                             >
                                                 Edit
                                             </a>
@@ -325,15 +332,43 @@
     {{--  Modal Edit  --}}
     <dialog id="modalEdit" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
-            <h3 class="font-bold text-lg">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
+            <h3 class="font-bold text-2xl text-accent">Tambah Contest</h3>
+            <form class="flex flex-col items-center justify-center mt-5 gap-y-6" method="POST" action="{{ route('acara.contest.store') }}" id="formEdit">
+                @csrf
+                <input type="text" placeholder="Nama Contest" name="name" class="input input-bordered input-accent w-full" />
+                <select class="select select-accent w-full" name="type">
+                    <option disabled selected>Pilih tipe contest</option>
+                    <option value="workshop">Workshop</option>
+                    {{--                    <option value="final">Final</option>--}}
+                </select>
+                <label for="" class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Tanggal Buka</span>
+                    </div>
+                    <div class="flex flex-col justify-center items-center gap-y-5">
+                        <input type="text" placeholder="Tanggal Buka" id="editOpenDate" name="open_date" class="input input-bordered input-accent w-full" value="{{ $contest->open_date }}" readonly>
+                    </div>
+                </label>
+                <label for="" class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Tanggal Tutup</span>
+                    </div>
+                    <div class="flex flex-col justify-center items-center gap-y-5">
+                        <input type="text" placeholder="Tanggal Tutup" id="editCloseDate" name="close_date" class="input input-bordered input-accent w-full" readonly>
+                    </div>
+                </label>
+                <button class="btn btn-success w-full action font-medium">Ubah</button>
+            </form>
             <div class="modal-action">
-                <form method="dialog">
+                <form method="dialog" id="closeDialog">
                     <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
+                    <button class="btn btn-outline btn-error action rounded-lg px-8">Close</button>
                 </form>
             </div>
         </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
     </dialog>
 
     {{--  Modal Hapus  --}}
@@ -388,8 +423,11 @@
     <script type="module">
         // Gk tau kenapa gk isa pakai object destruction
         const calendar = minMaxDatePicker("#tambahOpenDate", '#tambahCloseDate', true);
+        const calendar2 = minMaxDatePicker("#editOpenDate", '#editCloseDate', true);
         const modalTambah = document.getElementById('modalTambah');
         const modalDelete = document.getElementById('modalHapus');
+        const modalEdit = document.getElementById('modalEdit');
+        const formEdit = document.getElementById('formEdit');
         const formDelete = document.getElementById('formDelete');
 
 
@@ -404,6 +442,18 @@
             console.log(action);
         }
 
+        const openEditModal = (slug) => {
+            let action = `{{ route('acara.index') }}/${slug}/edit`;
+            formEdit.setAttribute('action', action);
+
+            $.get(`{{ route('acara.contest') }}/${slug}/edit`, function (data, status) {
+                formEdit.setAttribute('action', `{{ route('acara.contest') }}/${slug}/edit`);
+                calendar2.dpMin.clear(true);
+                calendar2.dpMax.clear(true);
+                modalEdit.showModal();
+            })
+        }
+
         const openDeleteModal = (slug) => {
             let action = `{{ route('acara.contest') }}/${slug}/destroy`;
             formDelete.setAttribute('action', action);
@@ -413,10 +463,9 @@
         window.tambahContest = tambahContest;
         window.editContest = editContest;
         window.openDeleteModal = openDeleteModal;
+        window.openEditModal = openEditModal;
     </script>
     <script>
-        const deleteContest = (slug) => {
-            console.log(slug);
-        }
+
     </script>
 @endsection

@@ -70,7 +70,7 @@
         {{--  Timeline  --}}
         <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-1 shadow-md data">
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Timeline</h1>
-            <div class="flex flex-col justify-start items-start">
+            <div class="flex flex-col justify-center items-center">
                 <ul class="timeline timeline-vertical">
                     <li class="h-32">
                         <div class="timeline-start text-sm mr-2">7 Mei - 7 Juni 2024</div>
@@ -147,18 +147,18 @@
                 <div class="badge badge-accent rounded-md text-slate-50  font-medium text-sm">6 Maret 2024</div>
                 <div class="divider"></div>
                 <div>
-                    <p class="p-0 pb-2 m-o font-medium text-slate-200 dark:text-slate-800">Akun</p>
-                    <p class="p-0 m-0 font-light text-slate-100 break-words dark:text-slate-800">Setiap akun hanya bisa login di satu komputer. Apabila login lebih dari satu komputer, maka akun yang login pertama otomatis logout.</p>
+                    <p class="p-0 pb-2 m-o font-medium dark:text-slate-200 light:text-slate-800">Akun</p>
+                    <p class="p-0 m-0 font-light dark:text-slate-100 break-words light:text-slate-800">Setiap akun hanya bisa login di satu komputer. Apabila login lebih dari satu komputer, maka akun yang login pertama otomatis logout.</p>
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <p class="p-0 pb-2 m-o font-medium text-slate-200 dark:text-slate-800">Browser</p>
-                    <p class="p-0 m-0 font-light text-slate-100 break-words dark:text-slate-800">Disarankan menggunakan web browser Chrome dan TIDAK disarankan menggunakan web browser Safari dalam penggunaan web ini.</p>
+                    <p class="p-0 pb-2 m-o font-medium dark:text-slate-200 light:text-slate-800">Browser</p>
+                    <p class="p-0 m-0 font-light dark:text-slate-100 break-words light:text-slate-800">Disarankan menggunakan web browser Chrome dan TIDAK disarankan menggunakan web browser Safari dalam penggunaan web ini.</p>
                 </div>
                 <div class="divider"></div>
                 <div>
-                    <p class="p-0 pb-2 m-o font-medium text-slate-200 dark:text-slate-800">Contest</p>
-                    <p class="p-0 m-0 font-light text-slate-100 break-words dark:text-slate-800">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-error">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
+                    <p class="p-0 pb-2 m-o font-medium dark:text-slate-200 light:text-slate-800">Contest</p>
+                    <p class="p-0 m-0 font-light dark:text-slate-100 break-words light:text-slate-800">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-error">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
                 </div>
             </div>
         </div>
