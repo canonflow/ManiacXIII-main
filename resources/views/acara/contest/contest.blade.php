@@ -137,8 +137,8 @@
                     <table class="table table-pin-cols">
                         <thead>
                         <tr class="dark:text-white light:text-slate-800">
-                            <th width="10%" class="text-center">Id</th>
-                            <th width="40%" class="text-center">Nama</th>
+                            <th width="10%" class="text-center">ID</th>
+                            <th width="40%" class="text-center">Tim</th>
                             <th width="40%" class="text-center">Sekolah</th>
                             <th width="10%" class="text-center">Hapus</th>
                         </tr>
@@ -164,6 +164,40 @@
                             @endforeach
                         @else
                             <tr><td colspan="4"><p class="font-medium text-slate-200 text-center">No Contestants</p></td></tr>
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{--    Daftar Submission Peserta    --}}
+        <div class="card rounded-lg shadow-md data">
+            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">List of Submissions</h1>
+            <div class="card-body bg-slate-600 rounded-b-lg">
+                {{--  Table  --}}
+                <div class="overflow-x-auto">
+                    <table class="table table-pin-cols">
+                        <thead>
+                        <tr class="dark:text-white light:text-slate-800">
+                            <th width="10%" class="text-center">ID</th>
+                            <th width="40%" class="text-center">Tim</th>
+                            <th width="40%" class="text-center">Link Pengumpulan</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-white">
+                        @if(count($submissions) != 0)
+                            @foreach($submissions as $submission)
+                                <tr>
+                                    <td width="10%" class="text-center">{{ $submission->id }}</td>
+                                    <td width="40%" class="text-center font-bold">{{ $submission->team->name }}</td>
+                                    <td width="40%" class="text-center">
+                                        <a href="{{ $submission->link }}" target="_blank" class="btn btn-neutral btn-xs rounded-md action">Link Tugas</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr><td colspan="3"><p class="font-medium text-slate-200 text-center">No Submissions</p></td></tr>
                         @endif
                         </tbody>
                     </table>

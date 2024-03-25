@@ -332,10 +332,10 @@
     {{--  Modal Edit  --}}
     <dialog id="modalEdit" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
-            <h3 class="font-bold text-2xl text-accent">Tambah Contest</h3>
+            <h3 class="font-bold text-2xl text-accent">Edit Contest</h3>
             <form class="flex flex-col items-center justify-center mt-5 gap-y-6" method="POST" action="{{ route('acara.contest.store') }}" id="formEdit">
                 @csrf
-                <input type="text" placeholder="Nama Contest" name="name" class="input input-bordered input-accent w-full" />
+                <input type="text" placeholder="Nama Contest" name="name" class="input input-bordered input-accent w-full" id="editName"/>
                 <select class="select select-accent w-full" name="type">
                     <option disabled selected>Pilih tipe contest</option>
                     <option value="workshop">Workshop</option>
@@ -429,6 +429,8 @@
         const modalEdit = document.getElementById('modalEdit');
         const formEdit = document.getElementById('formEdit');
         const formDelete = document.getElementById('formDelete');
+        const editOpenDate = document.getElementById('editOpenDate');
+        const editCloseDate = document.getElementById('editCloseDate');
 
 
         const tambahContest = (slug) => {
@@ -450,6 +452,13 @@
                 formEdit.setAttribute('action', `{{ route('acara.contest') }}/${slug}/edit`);
                 calendar2.dpMin.clear(true);
                 calendar2.dpMax.clear(true);
+
+                // Set Calendar value
+                const dateOpen = new Date(data.contest.open_date);
+                const dateClose = new Date(data.contest.close_date);
+                calendar2.dpMin.selectDate(dateOpen, { updateTime: true });
+                calendar2.dpMax.selectDate(dateClose, { updateTime: true });
+
                 modalEdit.showModal();
             })
         }

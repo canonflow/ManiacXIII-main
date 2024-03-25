@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Acara;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contest;
+use App\Models\Submission;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -85,19 +86,24 @@ class ContestController extends Controller
 //            return redirect()->back()->with('unauthorized', "Anda tidak bisa mengubah kontest yang dibuat oleh " . $contest->author->name);
 //        }
 
-        // Get Contestants
+        // ===== Get Contestants =====
         $contestants = $contest->teams()
                         ->orderBy('id', 'DESC')
                         ->get();
 
-        // Get Unregistered Contestant
+        // ===== Get Current Submissions =====
+        $submissions = Submission::where('contest_id', $contest->id)
+                                ->orderBy('id', "DESC")
+                                ->get();
+
+        // ===== Get Unregistered Contestant =====
         $registeredTeams = $contest->teams()->pluck('id')->toArray();
         $unregisteredTeams = Team::whereNotIn('id', $registeredTeams)
                                     ->where('status', 'verified')
                                     ->get();
-//        dd($contestants);
+
         return view('acara.contest.contest',
-            compact('contest', 'contestants', 'unregisteredTeams')
+            compact('contest', 'contestants', 'unregisteredTeams', 'submissions')
         );
     }
 
@@ -110,6 +116,11 @@ class ContestController extends Controller
         // Authorization
         if ($contest->author_id != Auth::user()->acara->id) {
             return redirect()->back()->with('unauthorized', "Anda tidak bisa menambah contestant pada contest yang dibuat oleh " . $contest->author->name);
+        }
+
+        // Check if contest is available or not
+        if ($contest->close_date <= Carbon::now()) {
+            return redirect()->back()->with('unauthorized', 'Anda tidak bisa menambah contestant pada Contest yang telah selesai');
         }
 
         // Get Teams and Store Teams
