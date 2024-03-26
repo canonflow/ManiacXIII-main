@@ -62,7 +62,7 @@
                     <li>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="account-dropdown"
-                                data-bs-toggle="dropdown"> ACCOUNT</button>
+                                data-bs-toggle="dropdown">ACCOUNT</button>
                             <ul class="dropdown-menu" aria-labelledby="account-dropdown">
                                 @auth
                                     @php
@@ -93,6 +93,12 @@
                                     @endphp
                                     <li>
                                         <a href="{{ url($endpoint) }}" class="dropdown-item text-danger">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST" id="logout">
+                                            @csrf
+                                            <button class="dropdown-item text-danger" type="submit">Logout</button>
+                                        </form>
                                     </li>
                                 @else
                                     <li>
