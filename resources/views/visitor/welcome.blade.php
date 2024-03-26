@@ -32,7 +32,7 @@
             display: block;
         }
     </style>
-    @vite('resources/css/app.css')
+{{--    @vite('resources/css/app.css')--}}
 </head>
 
 <body class="antialiased">
@@ -63,49 +63,50 @@
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="account-dropdown"
                                 data-bs-toggle="dropdown"> ACCOUNT</button>
-                        </div>
-                        <ul class="dropdown-menu" aria-labelledby="account-dropdown">
-                            @auth
-                                @php
-                                    $endpoint = '';
-                                    switch (\Illuminate\Support\Facades\Auth::user()->role) {
-                                        case 'participant':
-                                            $endpoint = '/team';
-                                            break;
-                                        case 'acara':
-                                            $endpoint = '/acara';
-                                            break;
-                                        case 'si':
-                                            $endpoint = '/si';
-                                            break;
-                                        case 'supersi':
-                                            $endpoint = '/supersi';
-                                            break;
-                                        case 'admin':
-                                            $endpoint = '/admin';
-                                            break;
-                                        case 'judge':
-                                            $endpoint = '/judge';
-                                            break;
-                                        default:
-                                            $endpoint = '/penpos';
-                                            break;
-                                    }
-                                @endphp
-                                <li>
-                                    <a href="{{ url($endpoint) }}" class="dropdown-item text-danger"></a>
-                                </li>
-                            @else
-                                <li>
-                                    <a href="{{ route('login') }}" class="dropdown-item text-danger">LOGIN</a>
-                                </li>
-                                @if (Route::has('register'))
+                            <ul class="dropdown-menu" aria-labelledby="account-dropdown">
+                                @auth
+                                    @php
+                                        $endpoint = '';
+                                        switch (\Illuminate\Support\Facades\Auth::user()->role) {
+                                            case 'participant':
+                                                $endpoint = '/team';
+                                                break;
+                                            case 'acara':
+                                                $endpoint = '/acara';
+                                                break;
+                                            case 'si':
+                                                $endpoint = '/si';
+                                                break;
+                                            case 'supersi':
+                                                $endpoint = '/supersi';
+                                                break;
+                                            case 'admin':
+                                                $endpoint = '/admin';
+                                                break;
+                                            case 'judge':
+                                                $endpoint = '/judge';
+                                                break;
+                                            default:
+                                                $endpoint = '/penpos';
+                                                break;
+                                        }
+                                    @endphp
                                     <li>
-                                        <a href="{{ route('register') }}" class="dropdown-item text-danger">REGISTER</a>
+                                        <a href="{{ url($endpoint) }}" class="dropdown-item text-danger">Dashboard</a>
                                     </li>
-                                @endif
+                                @else
+                                    <li>
+                                        <a href="{{ route('login') }}" class="dropdown-item text-danger">LOGIN</a>
+                                    </li>
+                                    @if (Route::has('register'))
+                                        <li>
+                                            <a href="{{ route('register') }}" class="dropdown-item text-danger">REGISTER</a>
+                                        </li>
+                                    @endif
+                                @endauth
                             </ul>
-                        @endauth
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
