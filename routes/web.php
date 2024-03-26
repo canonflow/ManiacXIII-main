@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('visitor.welcome');
+    return view('visitor.home');
 })->name('index');
 
 Route::get('/test', function () {
@@ -31,7 +31,10 @@ Route::view('/about', 'visitor.about')->name('visitor.about');
 
 Route::view('/faq', 'visitor.faq')->name('visitor.faq');
 
-Route::view('/gallery', 'visitor.faq')->name('visitor.gallery');
+Route::view('/gallery', 'visitor.gallery')->name('visitor.gallery');
+
+Route::view('/competition', 'visitor.competition')->name('visitor.competition');
+
 
 
 // ===== Admin Route (PUBREG) =====
