@@ -1,4 +1,4 @@
-@extends('admin.layout.index', ['pageActive' => 'admin.dashboard', 'pageTitle' => 'pemain.dashboard'])
+@extends('admin.layout.index', ['pageActive' => 'admin.dashboard', 'pageTitle' => 'Dashboard'])
 
 @section('styles')
     <style>

@@ -108,7 +108,7 @@
                         <td width="5%">
                             <div class="flex flex-col gap-2 py-1">
                                 @if($team->status != 'waiting')
-                                <button class="btn btn-outline btn-info btn-sm rounded-md">
+                                <button class="btn btn-outline btn-info btn-sm rounded-md" onclick="getTeamData('{{ $team->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                                     </svg>
@@ -153,6 +153,23 @@
                 <button>close</button>
             </form>
         </dialog>
+
+        {{--    Modal Team Data    --}}
+        <dialog id="modalTeamData" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Hello!</h3>
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
     </div>
 @endsection
 
@@ -160,10 +177,31 @@
     <script>
         let deactivatedModal = document.getElementById('modalDeactivated');
         let deactivatedTeam = document.getElementById('deactivatedTeam');
+        const teamDataModal = document.getElementById('modalTeamData');
+        // teamDataModal.showModal();
 
         const deactivateTeam = (team) => {
             deactivatedTeam.value = team;
             deactivatedModal.showModal();
+        }
+
+        const getTeamData = (team_id) => {
+            $.ajax({
+                url: '{{ route('admin.teams.data') }}',
+                method: 'POST',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'team_id': team_id,
+                },
+                success: function (data) {
+                    for (const participant of data.team.participants) {
+                        console.log(participant);
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            })
         }
     </script>
 @endsection

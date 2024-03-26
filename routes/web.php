@@ -55,6 +55,7 @@ Route::group(
         // Registration
         Route::get('/registration', [Admin\TeamController::class, 'index'])->name('teams.index');
         Route::get('/registration/search', [Admin\TeamController::class, 'search'])->name('teams.search');
+        Route::post('/registration/team-data', [Admin\TeamController::class, 'getTeamData'])->name('teams.data');
         Route::post('registration/deactivate', [Admin\TeamController::class, 'deactivateTeam'])->name('teams.deactivate');
 
         // Users

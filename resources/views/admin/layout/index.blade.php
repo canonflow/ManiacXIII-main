@@ -16,8 +16,9 @@
     {{--  JQuery  --}}
     <script src="{{ asset('js') }}/jquery.min.js"></script>
     {{-- Tailwind --}}
-    @vite(['resources/css/app.css', 'resources/js/datepicker.js'])
+    @vite(['resources/css/app.css', 'resources/js/datepicker.js', 'resources/js/swiper.js'])
 
+    {{--  CDN  --}}
     <!-- Custom CSS -->
     @yield('styles')
 </head>

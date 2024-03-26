@@ -64,6 +64,11 @@ class TeamController extends Controller
         $team->save();
 
         return redirect()->back()->with('deactivateSuccess', "$team->name");
+    }
 
+    public function getTeamData(Request $request) {
+        $team = Team::with('participants')->find($request->get('team_id'));
+
+        return response()->json(compact('team'));
     }
 }
