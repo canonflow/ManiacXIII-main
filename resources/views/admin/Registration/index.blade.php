@@ -310,6 +310,9 @@
                         fotoLeader.setAttribute('src', `{{ asset('storage') }}/${team.participants[0].student_photo}`)
                         fotoAnggota1.setAttribute('src', `{{ asset('storage') }}/${team.participants[1].student_photo}`)
                         fotoAnggota2.setAttribute('src', `{{ asset('storage') }}/${team.participants[2].student_photo}`)
+                        namaLeader.innerHTML = team.participants[0].name;
+                        namaAnggota1.innerHTML = team.participants[1].name;
+                        namaAnggota2.innerHTML = team.participants[2].name;
                     }
                     teamDataModal.showModal();
                 },
