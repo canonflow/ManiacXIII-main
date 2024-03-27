@@ -15,6 +15,32 @@
     <script src="{{ asset('js') }}/flowbite.min.js"></script>
     {{--  JQuery  --}}
     <script src="{{ asset('js') }}/jquery.min.js"></script>
+    {{--  Scroll Bar  --}}
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        *::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        *::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: oklch(var(--b3));
+            width: 1px;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: oklch(var(--nc));
+            outline: 1px solid slategrey;
+            border-radius: 0.8rem;
+        }
+
+        .action:hover {
+            color: white !important;
+        }
+    </style>
     {{-- Tailwind --}}
     @vite(['resources/css/app.css', 'resources/js/datepicker.js', 'resources/js/swiper.js'])
 
@@ -30,7 +56,11 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         {{-- Logo dan Judul --}}
         <a href="{{ route('admin.dashboard') }}" class="flex items-center ps-2.5 mb-5">
-            <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
+            <div class="avatar mr-3">
+                <div class="w-12 rounded-full">
+                    <img src="{{ asset('asset2024') }}/logo-maniac.jpg" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
+                </div>
+            </div>
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Maniac XIII</span>
         </a>
 

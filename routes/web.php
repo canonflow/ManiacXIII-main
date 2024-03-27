@@ -39,29 +39,47 @@ Route::view('/competition', 'visitor.competition')->name('visitor.competition');
 
 // ===== Admin Route (PUBREG) =====
 Route::group(
-    ['middleware' => 'guest', 'prefix' => 'admin', 'as' => 'admin.'],
+    ['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'],
     function () {
         // Dashboard
-        Route::get('/', [Admin\AdminController::class, 'index'])->name('dashboard');
-        Route::get('/messages', [Admin\AdminController::class, 'messages'])->name('messages');
-        Route::get('/download', [Admin\AdminController::class, 'download'])->name('download');
-        Route::get('/download/participant', [Admin\AdminController::class, 'export'])->name('download.participants');
+        Route::get('/', [Admin\AdminController::class, 'index'])
+            ->name('dashboard');
+        Route::get('/messages', [Admin\AdminController::class, 'messages'])
+            ->name('messages');
+        Route::get('/download', [Admin\AdminController::class, 'download'])
+            ->name('download');
+        Route::get('/download/participant', [Admin\AdminController::class, 'export'])
+            ->name('download.participants');
 
-        Route::get('/messages/search', [Admin\AdminController::class, 'searchMessage'])->name('search-message');
+        Route::get('/messages/search', [Admin\AdminController::class, 'searchMessage'])
+            ->name('search-message');
         //Route::get('show', [AdminController::class, 'showMessages'])->name('show');
-        Route::get('/messages/{team:name}', [Admin\AdminController::class, 'showChat'])->name('chat');
-        Route::post('/message-send', [Admin\AdminController::class, 'sendChat'])->name('chat.send');
+        Route::get('/messages/{team:name}', [Admin\AdminController::class, 'showChat'])
+            ->name('chat');
+        Route::post('/message-send', [Admin\AdminController::class, 'sendChat'])
+            ->name('chat.send');
 
         // Registration
-        Route::get('/registration', [Admin\TeamController::class, 'index'])->name('teams.index');
-        Route::get('/registration/search', [Admin\TeamController::class, 'search'])->name('teams.search');
-        Route::post('/registration/team-data', [Admin\TeamController::class, 'getTeamData'])->name('teams.data');
-        Route::post('registration/deactivate', [Admin\TeamController::class, 'deactivateTeam'])->name('teams.deactivate');
+        Route::get('/registration', [Admin\TeamController::class, 'index'])
+            ->name('teams.index');
+        Route::get('/registration/search', [Admin\TeamController::class, 'search'])
+            ->name('teams.search');
+        Route::post('/registration/{team:name}/verification', [Admin\TeamController::class, 'verificationTeam'])
+            ->name('teams.verification');
+        Route::post('/registration/{team:name}/unverified', [Admin\TeamController::class, 'unverifiedTeam'])
+            ->name('teams.unverified');
+        Route::post('/registration/team-data', [Admin\TeamController::class, 'getTeamData'])
+            ->name('teams.data');
+        Route::post('registration/deactivate', [Admin\TeamController::class, 'deactivateTeam'])
+            ->name('teams.deactivate');
 
         // Users
-        Route::get('/users', [Admin\UserController::class, 'index'])->name('users.index');
-        Route::post('/users/store', [Admin\UserController::class, 'store'])->name('users.store');
-        Route::post('/users/destroy', [Admin\UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('/users', [Admin\UserController::class, 'index'])
+            ->name('users.index');
+        Route::post('/users/store', [Admin\UserController::class, 'store'])
+            ->name('users.store');
+        Route::post('/users/destroy', [Admin\UserController::class, 'destroy'])
+            ->name('users.destroy');
     }
 );
 

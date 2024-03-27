@@ -71,4 +71,34 @@ class TeamController extends Controller
 
         return response()->json(compact('team'));
     }
+
+    public function verificationTeam(Team $team, Request $request) {
+        if ($team->status == 'verified') {
+            return redirect()->back()->with('unsuccessful', 'Tim sudah terverifikasi!');
+        }
+
+        if ($team->payment_photo == null) {
+            return redirect()->back()->with('unsuccessful', 'Tim belum mengunggah bukti pembayaran!');
+        }
+
+        $team->status = 'verified';
+        $team->save();
+        return redirect()->back()->with('successful', 'Tim ' . $team->name . ' berhasil terverifikasi');
+//        dd($team);
+    }
+
+    public function unverifiedTeam(Team $team, Request $request) {
+        if ($team->status == 'unverified') {
+            return redirect()->back()->with('unsuccessful', 'Tim belum terverifikasi!');
+        }
+
+        if ($team->payment_photo == null) {
+            return redirect()->back()->with('unsuccessful', 'Tim belum mengunggah bukti pembayaran!');
+        }
+
+        $team->status = 'unverified';
+        $team->save();
+        return redirect()->back()->with('successful', 'Berhasil unverified tim ' . $team->name);
+//        dd($team);
+    }
 }
