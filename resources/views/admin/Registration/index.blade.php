@@ -192,7 +192,7 @@
         {{--    Modal Team Data    --}}
         <dialog id="modalTeamData" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box relative">
-                <h3 class="font-bold text-2xl sticky top-0 bg-slate-800 rounded-sm shadow-xl py-1 md:py-3 mb-3 text-slate-200 text-center" id="namaTim">IUseArchBTW</h3>
+                <h3 class="font-bold text-2xl sticky top-0 bg-slate-800 rounded-sm shadow-xl py-1 md:py-3 mb-3 text-slate-200 text-center" id="namaTim"></h3>
                 <div class="overflow-auto h-full flex flex-col items-center mb-12 gap-2">
                     <p class="font-medium text-xl text-success">Bukti Transfer</p>
                     <img src="" alt="Bukti Transfer" class="w-3/4" id="fotoBuktiTransfer">
@@ -205,19 +205,19 @@
                         <div class="swiper-slide">
                             <div class="overflow-auto h-full flex flex-col items-center mb-8 gap-3">
                                 <img src="" alt="foto-leader" class="w-3/4" id="fotoLeader">
-                                <p class="font-medium text-lg" id="namaLeader">Nathan</p>
+                                <p class="font-medium text-lg" id="namaLeader"></p>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="overflow-auto h-full flex flex-col items-center mb-8 gap-3">
                                 <img src="" alt="foto-anggota-1" class="w-3/4" id="fotoAnggota1">
-                                <p class="font-medium text-lg" id="namaAnggota1">Garzya</p>
+                                <p class="font-medium text-lg" id="namaAnggota1"></p>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="overflow-auto h-full flex flex-col items-center mb-8 gap-3">
                                 <img src="" alt="foto-anggota-2" class="w-3/4" id="fotoAnggota2">
-                                <p class="font-medium text-lg" id="namaAnggota2">Santoso</p>
+                                <p class="font-medium text-lg" id="namaAnggota2"></p>
                             </div>
                         </div>
                     </div>
@@ -227,11 +227,11 @@
                 <div class="flex flex-col justify-center gap-4">
                     <form action="" method="POST" id="formVerification">
                         @csrf
-                        <button class="btn btn-success btn-outline action w-full" id="btnVerif">Verifikasi</button>
+                        <button class="btn btn-success btn-outline action w-full rounded-md" id="btnVerif">Verifikasi</button>
                     </form>
                     <form onclick="event.preventDefault(); modalTeamData.close()">
                         <!-- if there is a button in form, it will close the modal -->
-                        <button class="btn btn-error w-full action">Close</button>
+                        <button class="btn btn-error w-full action rounded-md">Close</button>
                     </form>
                 </div>
             </div>
@@ -327,7 +327,6 @@
     @vite('resources/js/swiper.js')
     <script type="module">
         const swiper = new Swiper('.swiper', {
-            modules: [Pagination],
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
@@ -344,7 +343,11 @@
             mousewheel: {
                 thresholdDelta: 70
             },
-            loop: true,
+            // loop: true,
+            speed: 600,
+            autoplay: {
+                delay: 2800,
+            },
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true
