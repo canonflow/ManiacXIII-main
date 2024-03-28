@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function acara() : HasOne {
         return $this->hasOne(Acara::class, 'user_id');
     }
+
+    public function rallyGame() : HasOne {
+        return $this->hasOne(RallyGame::class, 'user_id');
+    }
 }

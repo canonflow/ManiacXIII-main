@@ -33,6 +33,10 @@ class Team extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function player() : HasOne {
+        return $this->hasOne(Player::class, 'team_id');
+    }
+
     public function message() : HasOne {
         return $this->hasOne(Message::class, 'team_id');
     }

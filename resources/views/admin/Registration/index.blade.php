@@ -90,12 +90,12 @@
                 </div>
             </form>
             @if(session()->has('successful'))
-            <div role="alert" class="alert alert-success">
+            <div role="alert" class="alert alert-success rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span class="font-medium text-slate-200">{{ session()->get('successful') }}</span>
             </div>
             @elseif(session()->has('unsuccessful'))
-            <div role="alert" class="alert alert-error">
+            <div role="alert" class="alert alert-error rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span class="font-medium text-slate-200">{{ session()->get('unsuccessful') }}</span>
             </div>
@@ -313,6 +313,13 @@
                         namaLeader.innerHTML = team.participants[0].name;
                         namaAnggota1.innerHTML = team.participants[1].name;
                         namaAnggota2.innerHTML = team.participants[2].name;
+                    } else {
+                        fotoLeader.setAttribute('src', '');
+                        fotoAnggota1.setAttribute('src', '');
+                        fotoAnggota2.setAttribute('src', '');
+                        namaLeader.innerHTML = "-----";
+                        namaAnggota1.innerHTML = "-----";
+                        namaAnggota2.innerHTML = "-----";
                     }
                     teamDataModal.showModal();
                 },

@@ -89,6 +89,8 @@ Route::group(
     function () {
         // Index
         Route::get('/', [Acara\AcaraController::class, 'index'])->name('index');
+
+        // ==================================== CONTEST ====================================
         Route::get('/contest', [Acara\ContestController::class, 'index'])->name('contest');
 
         // Create a new Contest
@@ -112,6 +114,9 @@ Route::group(
 
         // Delete Specified Contest
         Route::post('contest/{contest:slug}/destroy', [Acara\ContestController::class, 'destroy'])->name('contest.destroy');
+
+        // ==================================== Rally Games ====================================
+
     }
 );
 
