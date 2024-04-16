@@ -25,6 +25,7 @@
 
         .air-datepicker-cell.-selected- {
             background-color:  oklch(var(--wa)) !important;
+            color: oklch(var(--b3));
         }
 
         .air-datepicker-cell.-current- {
@@ -42,8 +43,8 @@
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Contest Maniac XIII 🏆</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl text-slate-200 bg-primary p-5 font-medium rounded-t-lg">Contest Maniac XIII 🏆</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 <h2 class="text-xl font-medium text-white mb-3">Selamat Datang, <span class="text-warning">{{ $author }}</span></h2>
                 <p class="text-slate-100 pb-3 sm:pb-0 break-words">
                     Anda dapat melihat <strong>Available Contest</strong>, <strong>Upcoming Contest</strong>, and <strong>Finished Contest</strong> di sini.
@@ -121,12 +122,12 @@
 
         {{--   Available Contest    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">Available Contest</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl bg-primary p-5 font-medium rounded-t-lg text-primary-content">Available Contest</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="text-secondary">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="25%" class="text-center">Jadwal Mulai</th>
@@ -153,20 +154,20 @@
                                     <td width="10%" class="text-center font-medium">{{ $contest->author->name }}</td>
                                     <td width="10%" class="text-center">
                                         <a
-                                            class="btn btn-outline btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
+                                            class="btn btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
                                             href="{{ route('acara.contest.show', $contest->slug) }}"
                                         >
                                             Contest
                                         </a>
                                         @if($contest->author->name == $author)
                                         <a
-                                            class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                            class="btn btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
                                             onclick="openEditModal('{{ $contest->slug }}')"
                                         >
                                             Edit
                                         </a>
                                         <button
-                                            class="btn btn-outline btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                            class="btn text-primary-content btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
                                             onclick="openDeleteModal('{{ $contest->slug }}')"
                                         >
                                             Delete
@@ -176,7 +177,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="5"><p class="font-medium text-slate-200 text-center">No Active Contest</p></td></tr>
+                            <tr><td colspan="6"><p class="font-medium text-slate-200 text-center">No Active Contest</p></td></tr>
                         @endif
                         </tbody>
                     </table>
@@ -186,12 +187,12 @@
 
         {{--   Upcoming Contest    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Upcoming Contest</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl text-primary-content bg-primary p-5 font-medium rounded-t-lg">Upcoming Contest</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="text-secondary">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="25%" class="text-center">Jadwal Mulai</th>
@@ -211,20 +212,20 @@
                                     <td width="10%" class="text-center">{{ $contest->author->name }}</td>
                                     <td width="10%" class="text-center">
                                         <a
-                                            class="btn btn-outline btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
+                                            class="btn btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
                                             href="{{ route('acara.contest.show', $contest->slug) }}"
                                         >
                                             Contest
                                         </a>
                                         @if($contest->author->name == $author)
                                             <a
-                                                class="btn btn-outline btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                                class="btn btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
                                                 onclick="openEditModal('{{ $contest->slug }}')"
                                             >
                                                 Edit
                                             </a>
                                             <button
-                                                class="btn btn-outline btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                                class="btn text-primary-content btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
                                                 onclick="openDeleteModal('{{ $contest->slug }}')"
                                             >
                                                 Delete
@@ -244,12 +245,12 @@
 
         {{--   Finished Contest    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Finished Contest</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl text-primary-content bg-primary p-5 font-medium rounded-t-lg">Finished Contest</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="text-secondary">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="25%" class="text-center">Jadwal Mulai</th>
@@ -269,7 +270,7 @@
                                     <td width="10%" class="text-center font-medium">{{ $contest->author->name }}</td>
                                     <td width="10">
                                         <a
-                                            class="btn btn-outline btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
+                                            class="btn btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
                                             href="{{ route('acara.contest.show', $contest->slug) }}"
                                         >
                                             Contest

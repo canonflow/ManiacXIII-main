@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rally_games', function (Blueprint $table) {
+        Schema::create('dragons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
             $table->string('name');
-            $table->enum('type', ['single', 'battle', 'dungeon']);
+            $table->double('threshold');
+            //$table->double('damage');
+            $table->text('img_url');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rally_games');
+        Schema::dropIfExists('dragons');
     }
 };

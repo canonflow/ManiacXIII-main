@@ -56,19 +56,23 @@
             font-size: 0.8rem; /* 14px */
             line-height: 1.25rem; /* 20px */
             padding-right: 0.3rem;
+            font-weight: bold;
         }
 
         /* Option Select2 remove */
         .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
             border: none;
             border-radius: 0;
-            background-color: #94a3b8;
+            /*background-color: #94a3b8;*/
+            background-color: oklch(var(--b1));
             color: oklch(var(--b3));
+            font-weight: bold;
         }
 
         /* Selected Option */
         .select2-container--default .select2-results__option--selected {
-            background-color: #334155;
+            /*background-color: #334155;*/
+            background-color: #A67563;
             color: white;
         }
     </style>
@@ -79,11 +83,11 @@
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">🏆 {{ $contest->name }} 🏆</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl text-primary-content bg-primary p-5 font-medium rounded-t-lg">🏆 {{ $contest->name }} 🏆</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 <h2 class="text-xl font-medium text-white mb-3">Selamat Datang, <span class="text-warning">{{ $author }}</span></h2>
                 <p class="text-slate-100 pb-3 sm:pb-0 break-words">
-                    Anda dapat menambahkan peserta dan melihat submission peserta pada Contest <strong class="text-accent">{{ $contest->name }}</strong>.
+                    Anda dapat menambahkan peserta dan melihat submission peserta pada Contest <strong class="text-base-100">{{ $contest->name }}</strong>.
                 </p>
                 <div role="alert" class="alert rounded-md py-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -116,8 +120,8 @@
 
         {{--    Daftar Peserta    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">List of Contestants</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl bg-primary p-5 font-medium rounded-t-lg text-primary-content">List of Contestants</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 {{--  Select Team  --}}
                 <div class="flex flex-col">
                     <form action="{{ route('acara.contest.contestant.store', $contest->slug) }}" method="POST">
@@ -136,7 +140,7 @@
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="text-secondary">
                             <th width="10%" class="text-center">ID</th>
                             <th width="40%" class="text-center">Tim</th>
                             <th width="40%" class="text-center">Sekolah</th>
@@ -152,7 +156,7 @@
                                     <td width="40%" class="text-center">{{ $contestant->school_name }}</td>
                                     <td width="10%" class="text-center">
                                         <button
-                                            class="btn btn-outline btn-error rounded-md px-5 py-0 font-bold action"
+                                            class="btn text-primary-content btn-error rounded-md px-5 py-0 font-bold action"
                                             onclick="openDeleteModal('{{ $contest->slug }}', '{{ $contestant->id }}')"
                                             >
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -173,13 +177,13 @@
 
         {{--    Daftar Submission Peserta    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">List of Submissions</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl bg-primary p-5 font-medium rounded-t-lg text-primary-content">List of Submissions</h1>
+            <div class="card-body bg-accent rounded-b-lg">
                 {{--  Table  --}}
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="text-secondary">
                             <th width="10%" class="text-center">ID</th>
                             <th width="40%" class="text-center">Tim</th>
                             <th width="40%" class="text-center">Link Pengumpulan</th>

@@ -14,7 +14,8 @@ class RallyGame extends Model
 
     protected $fillable = [
         'user_id',
-        'name'
+        'name',
+        'type'
     ];
 
     public function user() : BelongsTo {
