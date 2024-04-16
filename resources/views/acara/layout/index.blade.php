@@ -23,7 +23,7 @@
         }
 
         *::-webkit-scrollbar-thumb {
-            background-color: oklch(var(--nc));
+            background-color: oklch(var(--s));
             outline: 1px solid slategrey;
             border-radius: 0.8rem;
         }
@@ -34,7 +34,7 @@
 </head>
 <body class="bg-base-100" data-theme="dark">
 {{--  Navigation Bar  --}}
-<div class="navbar bg-base-100 px-4 mb-2 z-50">
+<div class="navbar bg-base-200 px-4 mb-2 z-50 rounded-br-xl rounded-bl-xl">
     <div class="flex-1">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -45,7 +45,10 @@
                 <li><a class="{{ (Route::current()->getName() == 'acara.contest') ? 'active' : '' }}" href="{{ route('acara.contest') }}">Contest</a></li>
             </ul>
         </div>
-        <a class="btn btn-ghost text-2xl">Maniac XIII</a>
+        <a class="btn btn-ghost text-2xl">
+            <img src="{{ asset('asset2024') }}/maniac13-pp.png" alt="" class="w-8 rounded">
+            Maniac XIII
+        </a>
     </div>
     <div class="flex-none z-50">
         <ul class="menu menu-horizontal px-6">

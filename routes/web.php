@@ -116,7 +116,11 @@ Route::group(
         Route::post('contest/{contest:slug}/destroy', [Acara\ContestController::class, 'destroy'])->name('contest.destroy');
 
         // ==================================== Rally Games ====================================
+        Route::post('/rallygames/add', [Acara\AcaraController::class, 'store'])
+            ->name('rallygames.store');
 
+        Route::get('/rallygames/{rallyGame}', [Acara\AcaraController::class, 'rally'])
+            ->name('rallygames.rally');
     }
 );
 

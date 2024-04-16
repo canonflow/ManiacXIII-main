@@ -118,62 +118,25 @@
         <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl bg-primary p-5 font-medium rounded-t-lg text-primary-content">Available Rally Games</h1>
             <div class="card-body bg-accent rounded-b-lg">
-                {{--      Pagination      --}}
-                <div class="mb-6">
-                    {{ $rallyGames->onEachSide(1)->withQueryString()->links('pagination::tailwind') }}
-                </div>
-
                 {{--      Rally Games      --}}
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
                         <tr class="text-secondary">
-                            <th width="5%" class="text-center">ID</th>
-                            <th width="30%" class="text-center">Name</th>
-                            <th width="30%" class="text-center">Type</th>
-                            <th width="30%" class="text-center">Penpos</th>
-                            <th width="5%" class="text-center">
-                                <button
-                                    class="btn btn-outline btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
-                                    onclick="event.preventDefault(); modalTambah.showModal()"
-                                >
-                                    Tambah
-                                </button>
-                            </th>
+                            <th width="50%" class="text-center">Name</th>
+                            <th width="50%" class="text-center">Score</th>
                         </tr>
                         </thead>
                         <tbody class="text-white">
-                        @if(count($rallyGames) != 0)
-                            @foreach($rallyGames as $rally)
+                        @if(count($players) != 0)
+                            @foreach($players as $player)
                                 <tr>
-                                    <td width="5%" class="text-center">{{ $rally->id }}</td>
-                                    <td width="30%" class="text-center">{{ $rally->name }}</td>
-                                    <td width="30%" class="text-center">{{ $rally->type }}</td>
-                                    <td width="30%" class="text-center">{{ $rally->user->username }}</td>
-                                    <td width="5%" class="text-center">
-                                        <a
-                                            class="btn btn-success btn-sm rounded-md px-5 py-0 w-full font-bold action"
-                                            href="{{ route('acara.rallygames.rally', ['rallyGame' => $rally->id]) }}"
-                                        >
-                                            Point
-                                        </a>
-                                        <a
-                                            class="btn btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
-                                            onclick=""
-                                        >
-                                            Edit
-                                        </a>
-                                        <button
-                                            class="btn text-primary-content btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
-                                            onclick=""
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
+                                    <td width="50%" class="text-center">{{ $player->team->name }}</td>
+                                    <td width="50%" class="text-center">{{ $player->pivot->score }}</td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="5"><p class="font-medium text-slate-200 text-center">No Rally Games</p></td></tr>
+                            <tr><td colspan="2"><p class="font-medium text-slate-200 text-center">No Players</p></td></tr>
                         @endif
                         </tbody>
                     </table>
@@ -181,49 +144,6 @@
             </div>
         </div>
     </div>
-
-    {{--  Modal Tambah  --}}
-    <dialog id="modalTambah" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-            <h3 class="font-bold text-2xl text-accent">Tambah Rally Games</h3>
-            <form class="flex flex-col items-center justify-center mt-5 gap-y-6" method="POST" action="{{ route('acara.rallygames.store') }}">
-                @csrf
-                <input type="text" placeholder="Nama Rally Games" name="name" class="input input-bordered input-accent w-full" />
-                <label for="" class="form-control w-full">
-                    <span class="label">
-                        <span class="label-text">Tipe</span>
-                    </span>
-                    <select class="select select-accent w-full" name="type">
-                        <option disabled selected>Pilih Tipe Rally Games</option>
-                        <option value="single">Single</option>
-                        <option value="battle">Battle</option>
-                        <option value="dungeon">Dungeon</option>
-                    </select>
-                </label>
-                <label for="" class="form-control w-full">
-                    <span class="label">
-                        <span class="label-text">Penpos</span>
-                    </span>
-                    <select class="select select-accent w-full" name="user_id">
-                        <option disabled selected>Pilih Penpos</option>
-                        @foreach($penpos as $p)
-                            <option value="{{ $p->id }}">{{ $p->username }}</option>
-                        @endforeach
-                    </select>
-                </label>
-                <button class="btn btn-success w-full action font-medium">Tambah</button>
-            </form>
-            <div class="modal-action">
-                <form method="dialog" id="closeDialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn btn-outline btn-error action rounded-lg px-8">Close</button>
-                </form>
-            </div>
-        </div>
-        <form method="dialog" class="modal-backdrop">
-            <button>close</button>
-        </form>
-    </dialog>
 @endsection
 
 @section('scripts')

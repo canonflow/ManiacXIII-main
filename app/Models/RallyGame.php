@@ -23,6 +23,8 @@ class RallyGame extends Model
     }
 
     public function players() : BelongsToMany {
-        return $this->belongsToMany(Player::class, 'rg_score', 'penpos_id', 'player_id');
+        return $this->belongsToMany(Player::class, 'rg_score', 'penpos_id', 'player_id')
+            ->withPivot(['score'])
+            ->withTimestamps();
     }
 }
