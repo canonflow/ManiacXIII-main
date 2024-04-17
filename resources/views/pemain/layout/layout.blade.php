@@ -23,7 +23,7 @@
         }
 
         body::-webkit-scrollbar-thumb {
-            background-color: oklch(var(--nc));
+            background-color: oklch(var(--s));
             outline: 1px solid slategrey;
             border-radius: 0.8rem;
         }
@@ -33,18 +33,21 @@
 </head>
 <body class="bg-base-100" data-theme="dark">
 {{--  Navigation Bar  --}}
-<div class="navbar bg-base-100 px-4 mb-2 z-50">
+<div class="navbar bg-base-200 px-4 mb-2 z-50 rounded-br-xl rounded-bl-xl">
     <div class="flex-1">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
-            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a href="{{ route('team.index') }}">Dashboard</a></li>
-                <li><a href="{{ route('team.contest') }}">Contest</a></li>
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[20] p-2 shadow bg-base-100 rounded-box w-52 gap-2">
+                <li><a href="{{ route('team.index') }}" class="{{ (Route::current()->getName() == 'team.index') ? 'active' : '' }}">Dashboard</a></li>
+                <li><a href="{{ route('team.contest') }}" class="{{ (Route::current()->getName() == 'team.contest') ? 'active' : '' }}">Contest</a></li>
             </ul>
         </div>
-        <a class="btn btn-ghost text-2xl">Maniac XIII</a>
+        <a class="btn btn-ghost text-2xl">
+            <img src="{{ asset('asset2024') }}/maniac13-pp.png" alt="" class="w-8 rounded">
+            Maniac XIII
+        </a>
     </div>
     <div class="flex-none z-50">
         <ul class="menu menu-horizontal px-6">
@@ -105,10 +108,11 @@
     </div>
 </div>
 
+{{--  Content  --}}
 <div class="p-10 mt-7 flex flex-col items-center">
     @yield('content')
     <div class="w-full pt-12 px-2">
-        <p class="text-gray-500 text-md">COPYRIGHT &copy; MANIAC XIII Information System, All rights Reserved</p>
+        <p class="text-white text-md" id="footer">COPYRIGHT &copy; MANIAC XIII Information System, All rights Reserved</p>
     </div>
 </div>
 

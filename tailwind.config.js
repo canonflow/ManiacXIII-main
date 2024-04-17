@@ -19,8 +19,9 @@ const customPalette = {
     "base-300": "#a6ab93",
     "base-content": "#022601",
     "success": "#3F7319",
-    "info": '#075985',
-    // info: "#99CCFF",
+    // "info": '#075985',
+    info: "#99CCFF",
+    "info-content": "#363D28",
     "warning": "#D9CE40"
 };
 

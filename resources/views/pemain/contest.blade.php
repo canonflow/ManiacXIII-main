@@ -7,6 +7,10 @@
 
 @section('styles')
     <style>
+        body {
+            background: url("{{ asset('asset2024') }}/main/peserta-contest.png") no-repeat center;
+            background-size: cover;
+        }
         .action:hover {
             color: white !important;
         }
@@ -17,12 +21,12 @@
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Contest Maniac XIII 🏆</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
-                <p class="text-slate-100 pb-3 sm:pb-0 break-words">
+            <h1 class="text-xl bg-base-300 p-5 font-bold rounded-t-lg">Contest Maniac XIII 🏆</h1>
+            <div class="card-body bg-base-200 rounded-b-lg">
+                <p class="pb-3 sm:pb-0 break-words">
                     Anda dapat melihat <strong>Available Contest</strong>, <strong>Upcoming Contest</strong>, and <strong>Finished Contest</strong> di sini.
                 </p>
-                <div role="alert" class="alert rounded-md py-2">
+                <div role="alert" class="alert alert-success rounded-md py-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Mohon lakukan refresh page untuk update data contest.</span>
                 </div>
@@ -31,12 +35,12 @@
 
         {{--   Available Contest    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl bg-slate-800 p-5 font-medium rounded-t-lg text-accent">Available Contest</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl bg-base-300 p-5 font-bold rounded-t-lg">Available Contest</h1>
+            <div class="card-body bg-base-200 rounded-b-lg">
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="30%" class="text-center">Jadwal Mulai</th>
@@ -44,7 +48,7 @@
                             <th width="10%" class="text-center">Action</th>
                         </tr>
                         </thead>
-                        <tbody class="text-white">
+                        <tbody class="text-white bg-accent">
                         @if(count($available_contests) != 0)
                             @foreach($available_contests as $contest)
                                 <tr>
@@ -74,19 +78,19 @@
 
         {{--   Upcoming Contest    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Upcoming Contest</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl bg-base-300 p-5 font-bold rounded-t-lg">Upcoming Contest</h1>
+            <div class="card-body bg-base-200 rounded-b-lg">
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="30%" class="text-center">Jadwal Mulai</th>
                             <th width="30%" class="text-center">jadwal Selesai</th>
                         </tr>
                         </thead>
-                        <tbody class="text-white">
+                        <tbody class="bg-accent text-white">
                         @if(count($upcoming_contests) != 0)
                             @foreach($upcoming_contests as $contest)
                                 <tr>
@@ -107,19 +111,19 @@
 
         {{--   Finished Contest    --}}
         <div class="card rounded-lg shadow-md data">
-            <h1 class="text-xl text-slate-200 bg-slate-800 p-5 font-medium rounded-t-lg">Finished Contest</h1>
-            <div class="card-body bg-slate-600 rounded-b-lg">
+            <h1 class="text-xl bg-base-300 p-5 font-bold rounded-t-lg">Finished Contest</h1>
+            <div class="card-body bg-base-200 rounded-b-lg">
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
                         <thead>
-                        <tr class="dark:text-white light:text-slate-800">
+                        <tr class="">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
                             <th width="30%" class="text-center">Jadwal Mulai</th>
                             <th width="30%" class="text-center">jadwal Selesai</th>
                         </tr>
                         </thead>
-                        <tbody class="text-white">
+                        <tbody class="text-white bg-accent">
                         @if(count($finished_contests) != 0)
                             @foreach($finished_contests as $contest)
                                 <tr>

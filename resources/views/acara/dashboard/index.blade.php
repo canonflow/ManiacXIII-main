@@ -158,7 +158,7 @@
                                             Point
                                         </a>
                                         <a
-                                            class="btn btn-info btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
+                                            class="btn btn-info btn-sm rounded-md px-5 py-0 w-full font-bold mt-4 lg:mt-3"
                                             onclick=""
                                         >
                                             Edit
