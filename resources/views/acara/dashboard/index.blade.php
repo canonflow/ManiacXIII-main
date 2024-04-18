@@ -50,25 +50,18 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Mohon lakukan refresh page untuk update data contest.</span>
                 </div>
-                @if(session()->has('addSuccess'))
+                @if(session()->has('editSuccess'))
                     <div role="alert" class="alert alert-success mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>Berhasil Menambahkan Contest <strong>{{ session()->get('addSuccess') }}</strong></span>
-                        </div>
-                    </div>
-                @elseif(session()->has('editSuccess'))
-                    <div role="alert" class="alert alert-success mb-3 rounded-md">
-                        <div class="flex flex-row justify-start items-center gap-x-2 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>Berhasil Mengubah Contest <strong>{{ session()->get('editSuccess') }}</strong></span>
+                            <span>Berhasil Mengubah Rally Games <strong>{{ session()->get('editSuccess') }}</strong></span>
                         </div>
                     </div>
                 @elseif(session()->has('deleteSuccess'))
                     <div role="alert" class="alert alert-error mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>Berhasil Menghapus Contest <strong>{{ session()->get('deleteSuccess') }}</strong></span>
+                            <span>Berhasil Menghapus Rally Games <strong>{{ session()->get('deleteSuccess') }}</strong></span>
                         </div>
                     </div>
                 @elseif(session()->has('unauthorized'))
@@ -159,13 +152,13 @@
                                         </a>
                                         <a
                                             class="btn btn-info btn-sm rounded-md px-5 py-0 w-full font-bold mt-4 lg:mt-3"
-                                            onclick=""
+                                            onclick="openModalEdit('{{ $rally->id }}')"
                                         >
                                             Edit
                                         </a>
                                         <button
                                             class="btn text-primary-content btn-error btn-sm rounded-md px-5 py-0 w-full font-bold action mt-4 lg:mt-3"
-                                            onclick=""
+                                            onclick="openModalHapus('{{ $rally->id }}')"
                                         >
                                             Delete
                                         </button>
@@ -224,6 +217,70 @@
             <button>close</button>
         </form>
     </dialog>
+
+    {{--  Modal Edit  --}}
+    <dialog id="modalEdit" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-2xl text-accent">Edit Rally Games</h3>
+            <form class="flex flex-col items-center justify-center mt-5 gap-y-6" method="POST" action="" id="formEdit">
+                @csrf
+                <input type="text" placeholder="Nama Rally Games" name="name" class="input input-bordered input-accent w-full" id="nameEdit"/>
+                <label for="" class="form-control w-full">
+                    <span class="label">
+                        <span class="label-text">Tipe</span>
+                    </span>
+                    <select class="select select-accent w-full" name="type" id="typeEdit">
+                        <option disabled selected>Pilih Tipe Rally Games</option>
+                        <option value="single">Single</option>
+                        <option value="battle">Battle</option>
+                        <option value="dungeon">Dungeon</option>
+                    </select>
+                </label>
+                <label for="" class="form-control w-full">
+                    <span class="label">
+                        <span class="label-text">Penpos</span>
+                    </span>
+                    <select class="select select-accent w-full" name="user_id" id="penposEdit">
+                        <option disabled selected>Pilih Penpos</option>
+                        @foreach($penpos as $p)
+                            <option value="{{ $p->id }}">{{ $p->username }}</option>
+                        @endforeach
+                    </select>
+                </label>
+                <button class="btn btn-success w-full action font-medium">Edit</button>
+            </form>
+            <div class="modal-action">
+                <form method="dialog" id="closeDialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-outline btn-error action rounded-lg px-8">Close</button>
+                </form>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    {{--  Modal Hapus  --}}
+    <dialog id="modalHapus" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-2xl text-accent">Edit Rally Games</h3>
+            <form class="flex flex-col items-center justify-center mt-5 gap-y-6" method="POST" action="" id="formHapus">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-success w-full action font-medium">Hapus</button>
+            </form>
+            <div class="modal-action">
+                <form method="dialog" id="closeDialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-outline btn-error action rounded-lg px-8">Close</button>
+                </form>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 @endsection
 
 @section('scripts')
@@ -249,5 +306,50 @@
                 animation: anim,
             });
         });
+    </script>
+
+    <script>
+        const modalEdit = document.getElementById('modalEdit');
+        const modalHapus = document.getElementById('modalHapus');
+        const formEdit = document.getElementById('formEdit');
+        const formHapus = document.getElementById('formHapus');
+        const nameEdit = document.getElementById('nameEdit');
+        const typeEdit = document.getElementById('typeEdit');
+        // const penposEdit = document.getElementById('penposEdit');
+
+        const openModalEdit = (id) => {
+            let endpoint = `{{ route('acara.index') }}/rallygames/${id}/detail`
+            let action = `{{ route('acara.index') }}/rallygames/${id}/update`;
+            // modalEdit.showModal();
+            // console.log(id);
+            $.get(endpoint, function (data) {
+                const availablePenpos = data.availablePenpos;
+                const originalPenposId = data.originalPenpos;
+                const rallyGame = data.rallyGame;
+
+                nameEdit.value = rallyGame.name;
+                typeEdit.value = rallyGame.type;
+                $("#penposEdit").empty();
+                $("#penposEdit").append("<option disabled>Pilih Penpos</option>");
+
+                for (penpos of availablePenpos) {
+                    if (penpos.id == originalPenposId) {
+                        $("#penposEdit").append(`<option selected value=${penpos.id}>${penpos.username}</option>`);
+                    } else {
+                        $("#penposEdit").append(`<option value=${penpos.id}>${penpos.username}</option>`);
+                    }
+                }
+                formEdit.setAttribute('action', action);
+                modalEdit.showModal();
+            }).fail(function (xhr) {
+                console.log(xhr)
+            });
+        }
+
+        const openModalHapus = (id) => {
+            const action = `{{ route('acara.index') }}/rallygames/${id}/destroy`;
+            formHapus.setAttribute('action', action);
+            modalHapus.showModal();
+        }
     </script>
 @endsection

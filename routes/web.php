@@ -118,8 +118,17 @@ Route::group(
         Route::post('/rallygames/add', [Acara\AcaraController::class, 'store'])
             ->name('rallygames.store');
 
+        Route::get('/rallygames/{rallyGame}/detail', [Acara\AcaraController::class, 'rallyDetail'])
+            ->name('rallygames.detail');
+
+        Route::post('/rallygames/{rallyGame}/update', [Acara\AcaraController::class, 'update'])
+            ->name('rallygames.update');
+
         Route::get('/rallygames/{rallyGame}', [Acara\AcaraController::class, 'rally'])
             ->name('rallygames.rally');
+
+        Route::delete('/rallygames/{rallyGame}/destroy', [Acara\AcaraController::class, 'destroy'])
+            ->name('rallygames.destroy');
     }
 );
 
