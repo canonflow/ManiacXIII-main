@@ -31,7 +31,6 @@ Route::view('/about', 'visitor.about')->name('visitor.about');
 
 Route::view('/faq', 'visitor.faq')->name('visitor.faq');
 
-Route::view('/gallery', 'visitor.gallery')->name('visitor.gallery');
 
 Route::view('/competition', 'visitor.competition')->name('visitor.competition');
 

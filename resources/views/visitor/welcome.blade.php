@@ -36,8 +36,7 @@
     {{--    @vite('resources/css/app.css') --}}
 </head>
 
-<body class="antialiased">
-
+<body class="antialiased overflow-x-hidden">
     @if (Route::has('login'))
         <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between px-3">
             <div class="logo">
@@ -59,7 +58,6 @@
                                         class="sr-only">(current)</span></a>
                                 <a class="nav-link text-dark" href="{{ route('visitor.competition') }}">COMPETITION</a>
                                 <a class="nav-link text-dark" href="{{ route('visitor.faq') }}">FAQ</a>
-                                <a class="nav-link text-dark" href="{{ route('visitor.gallery') }}">GALLERY </a>
                                 <div class="dropdown">
                                     <button class="btn btn-light dropdown-toggle bg-dark text-white" type="button"
                                         id="account-dropdown" data-bs-toggle="dropdown">ACCOUNT</button>

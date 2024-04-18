@@ -35,18 +35,17 @@
 </head>
 
 <body>
-    <div class="container-fluid bg-gray-800">
+    <div class="container-fluid bg-body-secondary">
         <div class="container">
-            <div class="pt-3">
-                <h1 class="text-center text-white">MANIAC XIII</h1>
-                <h1 class="text-center text-white">REGISTRATION</h1>
+            <div class="title d-flex justify-content-center w-100">
+                <img class="w-50" src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac">
             </div>
             <div class="form my-5 w-75 container">
                 <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
-                        <label for="validationCustomUsername" class="form-label">Username</label>
+                        <label for="validationCustomUsername" class="form-label text-dark">Username</label>
                         <div class="input-group has-validation">
                             {{-- <span class="input-group-text" id="inputGroupPrepend"> </span> --}}
                             <input type="text" class="form-control @error('username') is-invalid @enderror"
@@ -61,7 +60,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label for="validationCustomUsername" class="form-label">Password</label>
+                        <label for="validationCustomUsername" class="form-label text-dark">Password</label>
                         <div class="input-group has-validation">
                             {{-- <span class="input-group-text" id="inputGroupPrepend"> </span> --}}
                             <input type="password" class="form-control d-block @error('password') is-invalid @enderror"
@@ -74,11 +73,11 @@
                             @enderror
                         </div>
                         <div class="text-danger mt-1">
-                            *) Min Character 8
+                            *) Minimal 8 Karakter
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom01" class="form-label">Nama Tim</label>
+                        <label for="validationCustom01" class="form-label text-dark">Nama Tim</label>
                         <input type="text" class="form-control @error('nama_tim') is-invalid @enderror"
                             id="validationCustom01" placeholder="ex: 123" required name="nama_tim"
                             value="{{ old('nama_tim') }}" />
@@ -89,7 +88,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom02" class="form-label">Nama Sekolah</label>
+                        <label for="validationCustom02" class="form-label text-dark">Nama Sekolah</label>
                         <input type="text" class="form-control  @error('nama_sekolah') is-invalid @enderror"
                             id="validationCustom02" placeholder="ex: UBAYA" required name="nama_sekolah"
                             value="{{ old('nama_sekolah') }}">
@@ -100,7 +99,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Alamat Sekolah</label>
+                        <label for="validationCustom03" class="form-label text-dark">Alamat Sekolah</label>
                         <input type="text" class="form-control @error('alamat_sekolah') is-invalid @enderror"
                             id="validationCustom03"
                             placeholder="ex: Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa Timur"
@@ -112,7 +111,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Nomor Telepon Sekolah</label>
+                        <label for="validationCustom03" class="form-label text-dark">Nomor Telepon Sekolah</label>
                         <input type="text" class="form-control @error('nomor_sekolah') is-invalid @enderror"
                             id="validationCustom03" name="nomor_sekolah" required placeholder="ex: +62123456789"
                             value="{{ old('nomor_sekolah') }}" />
@@ -125,7 +124,7 @@
                     <hr>
                     {{-- Leader --}}
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Nama Ketua Tim</label>
+                        <label for="validationCustom03" class="form-label text-dark">Nama Ketua Tim</label>
                         <input type="text" class="form-control @error('nama_leader') is-invalid @enderror"
                             id="validationCustom03" placeholder="ex: someone1" required name="nama_leader"
                             value="{{ old('nama_leader') }}">
@@ -136,7 +135,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Email</label>
+                        <label for="validationCustom03" class="form-label text-dark">Email</label>
                         <input type="text" class="form-control @error('email_leader') is-invalid @enderror"
                             id="validationCustom03" required placeholder="ex: someone1@gmail.com" name="email_leader"
                             value="{{ old('email_leader') }}" />
@@ -147,7 +146,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Nomor Telepon</label>
+                        <label for="validationCustom03" class="form-label text-dark">Nomor Telepon</label>
                         <input type="text" class="form-control @error('nomor_leader') is-invalid @enderror"
                             id="validationCustom03" placeholder="ex: +62123456789" required name="nomor_leader"
                             value="{{ old('nomor_leader') }}">
@@ -158,7 +157,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Foto</label>
+                        <label for="validationCustom03" class="form-label text-dark">Foto</label>
                         <input type="file" class="form-control @error('foto_leader') is-invalid @enderror"
                             id="validationCustom03" required name="foto_leader"
                             accept="image/png, image/jpeg, image/jpg" />
@@ -169,7 +168,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Alergi</label>
+                        <label for="validationCustom03" class="form-label text-dark">Alergi</label>
                         <input type="text" class="form-control" id="validationCustom03" name="alergi_leader"
                             value="{{ old('alergi_leader') }}">
                     </div>
@@ -179,7 +178,7 @@
                     <hr>
                     {{-- anggota 1 --}}
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Nama Anggota 1</label>
+                        <label for="validationCustom03" class="form-label text-dark">Nama Anggota 1</label>
                         <input type="text" class="form-control @error('nama_anggota1') is-invalid @enderror"
                             id="validationCustom03" required name="nama_anggota1" placeholder="ex: someone2"
                             value="{{ old('nama_anggota1') }}">
@@ -190,7 +189,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Email</label>
+                        <label for="validationCustom03" class="form-label text-dark">Email</label>
                         <input type="text" class="form-control @error('email_anggota1') is-invalid @enderror"
                             id="validationCustom03" required name="email_anggota1"
                             placeholder="ex: someone2@gmail.com" value="{{ old('email_anggota1') }}">
@@ -201,7 +200,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Nomor Telepon</label>
+                        <label for="validationCustom03" class="form-label text-dark">Nomor Telepon</label>
                         <input type="text" class="form-control @error('nomor_anggota1') is-invalid @enderror"
                             id="validationCustom03" required name="nomor_anggota1" placeholder="ex: +62123456789"
                             value="{{ old('nomor_anggota1') }}">
@@ -212,7 +211,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Foto</label>
+                        <label for="validationCustom03" class="form-label text-dark">Foto</label>
                         <input type="file" class="form-control @error('foto_anggota1') is-invalid @enderror"
                             id="validationCustom03" required name="foto_anggota1">
                         @error('foto_anggota1')
@@ -222,7 +221,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Alergi</label>
+                        <label for="validationCustom03" class="form-label text-dark">Alergi</label>
                         <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota1"
                             value="{{ old('alergi_anggota1') }}">
                     </div>
@@ -232,7 +231,7 @@
                     <hr>
                     {{-- anggota 2 --}}
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Nama Anggota 2</label>
+                        <label for="validationCustom03" class="form-label text-dark">Nama Anggota 2</label>
                         <input type="text" class="form-control @error('nama_anggota2') is-invalid @enderror"
                             id="validationCustom03" required name="nama_anggota2" placeholder="ex: someone3"
                             value="{{ old('nama_anggota2') }}">
@@ -243,7 +242,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Email</label>
+                        <label for="validationCustom03" class="form-label text-dark">Email</label>
                         <input type="text" class="form-control @error('email_anggota2') is-invalid @enderror"
                             id="validationCustom03" required name="email_anggota2"
                             value="{{ old('email_anggota2') }}" placeholder="someone3@gmail.com">
@@ -254,7 +253,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Phone Number</label>
+                        <label for="validationCustom03" class="form-label text-dark">Phone Number</label>
                         <input type="text" class="form-control @error('nomor_anggota2') is-invalid @enderror"
                             id="validationCustom03" required name="nomor_anggota2" placeholder="ex: +62123456789"
                             value="{{ old('nomor_anggota2') }}">
@@ -265,7 +264,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Photo</label>
+                        <label for="validationCustom03" class="form-label text-dark">Photo</label>
                         <input type="file" class="form-control @error('foto_anggota2') is-invalid @enderror"
                             id="validationCustom03" required name="foto_anggota2">
                         @error('nomor_anggota2')
@@ -275,7 +274,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom03" class="form-label">Alergi</label>
+                        <label for="validationCustom03" class="form-label text-dark">Alergi</label>
                         <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota2"
                             value="{{ old('alergi_anggota2') }}">
                     </div>
@@ -283,7 +282,7 @@
                         *) Berikan tanda - jika tidak ada
                     </div>
                     <div class="col-12s mb-3 text-end">
-                        <button class="btn btn-dark w-25" type="submit">Register</button>
+                        <button class="btn btn-primary fs-5 w-25" type="submit">Register</button>
                     </div>
                 </form>
             </div>
