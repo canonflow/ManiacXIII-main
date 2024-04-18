@@ -12,6 +12,22 @@
             scroll-behavior: smooth;
         }
 
+        body {
+            cursor: url("{{ asset('asset2024') }}/cursor/CURSOR.cur"),
+                    url("{{ asset('asset2024') }}/cursor/CURSOR.svg"),
+                    url("{{ asset('asset2024') }}/cursor/CURSOR.png"), auto;
+        }
+
+        button:hover, a:hover, li:hover {
+            cursor: url("{{ asset('asset2024') }}/cursor/shield.svg"),
+                    url("{{ asset('asset2024') }}/cursor/shield.png"), pointer !important;
+        }
+
+        input:hover {
+            cursor: url("{{ asset('asset2024') }}/cursor/sword.svg"),
+                    url("{{ asset('asset2024') }}/cursor/sword.png"), text !important;
+        }
+
         body::-webkit-scrollbar {
             width: 0.5em;
         }

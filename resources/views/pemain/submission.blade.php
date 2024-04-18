@@ -43,7 +43,7 @@
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl relative">
 {{--        <img src="{{ asset('asset2024') }}/main/axe.png" alt="" class="absolute z-10 w-32 left-[-5rem] top-[-2rem]" id="axe">--}}
 {{--        <img src="{{ asset('asset2024') }}/main/cloud.png" alt="" class="absolute z-[1] sm:z-10 w-72 right-5 sm:right-[-2.5rem] 2xl:right-[-8rem] top-[-0.1rem] select-none" id="cloud">--}}
-        <img src="{{ asset('asset2024') }}/main/cloud.png" alt="" class="absolute left-1/6 z-[1] w-80 top-[-0.1rem] select-none" id="cloud">
+        <img draggable="false" src="{{ asset('asset2024') }}/main/cloud.png" alt="" class="absolute left-1/6 z-[1] w-80 top-[-0.1rem] select-none" id="cloud">
         <h1 class="text-4xl text-center text-accent font-bold z-[9]">{{ $contest->name }}</h1>
         <div class="card rounded-lg shadow-md data z-[9]">
             {{--  Header  --}}
@@ -85,8 +85,8 @@
                 </form>
             </div>
         </div>
-        <img src="{{ asset('asset2024') }}/main/mount.png" alt="" class="absolute z-[1] w-64 bottom-[-2rem] left-[-5rem]">
-        <img src="{{ asset('asset2024') }}/main/mount.png" alt="" class="absolute z-[1] w-64 bottom-[-2rem] right-[-2.52rem] xl:right-[-5rem]" id="mount-flip">
+        <img draggable="false" src="{{ asset('asset2024') }}/main/mount.png" alt="" class="absolute z-[1] w-64 bottom-[-2rem] left-[-5rem]">
+        <img draggable="false" src="{{ asset('asset2024') }}/main/mount.png" alt="" class="absolute z-[1] w-64 bottom-[-2rem] right-[-2.52rem] xl:right-[-5rem]" id="mount-flip">
     </div>
 @endsection
 

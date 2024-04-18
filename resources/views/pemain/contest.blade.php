@@ -21,6 +21,12 @@
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
         <div class="card rounded-lg shadow-md data">
+            <img
+                src="{{ asset('asset2024') }}/main/viking-head.png"
+                alt=""
+                class="absolute w-32 top-[-4.3rem] left-[-4rem] animate-pulse"
+                draggable="false"
+            >
             <h1 class="text-xl bg-base-300 p-5 font-bold rounded-t-lg">Contest Maniac XIII 🏆</h1>
             <div class="card-body bg-base-200 rounded-b-lg">
                 <p class="pb-3 sm:pb-0 break-words">

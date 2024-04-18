@@ -42,7 +42,7 @@
     @php($author = auth()->user()->acara->name)
     <div class="grid grid-cols-1 gap-10 w-full max-w-7xl">
         {{--   Introduction    --}}
-        <div class="card rounded-lg shadow-md data">
+        <div class="card rounded-lg shadow-md data relative">
             <h1 class="text-xl text-slate-200 bg-primary p-5 font-medium rounded-t-lg">Contest Maniac XIII 🏆</h1>
             <div class="card-body bg-accent rounded-b-lg">
                 <h2 class="text-xl font-medium text-white mb-3">Selamat Datang, <span class="text-warning">{{ $author }}</span></h2>

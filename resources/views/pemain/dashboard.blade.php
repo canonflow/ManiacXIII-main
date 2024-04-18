@@ -10,6 +10,10 @@
             background: url("{{ asset('asset2024') }}/main/peserta-dashboard.png") no-repeat center;
             background-size: cover;
         }
+
+        #decordDataTim {
+            transform: scaleX(-1);
+        }
     </style>
 @endsection
 
@@ -17,7 +21,21 @@
 <div class="grid grid-cols-1 gap-8 w-full max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {{--  Data Peserta  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md shadow-md data">
+        <div class="bg-base-200 flex flex-col p-4 rounded-md shadow-md data relative">
+            <img
+                src="{{ asset('asset2024') }}/main/6.png"
+                alt=""
+                class="absolute hidden lg:block bottom-1 left-2/3 w-28"
+                style="transform: translateX(-50%)"
+                draggable="false"
+            >
+            <img
+                src="{{ asset('asset2024') }}/main/7.png"
+                alt=""
+                class="absolute hidden lg:block bottom-1 left-1/3 w-28"
+                style="transform: translateX(-50%)"
+                draggable="false"
+            >
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Peserta</h1>
             <table class="table">
                 <tbody>
@@ -47,7 +65,14 @@
         </div>
 
         {{--  Data Team  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md shadow-md data">
+        <div class="bg-base-200 flex flex-col p-4 rounded-md shadow-md data relative">
+            <img
+                src="{{ asset('asset2024') }}/main/11.png"
+                alt=""
+                class="absolute hidden lg:block w-32 bottom-2 right-2"
+                id="decordDataTim"
+                draggable="false"
+            >
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md mb-3">Data Tim</h1>
             <table class="table">
                 <tbody>
@@ -78,6 +103,13 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {{--  Timeline  --}}
         <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-1 shadow-md data">
+            <img
+                src="{{ asset('asset2024') }}/main/1.png"
+                alt=""
+                class="absolute hidden lg:block bottom-3 left-1/2 w-80"
+                style="transform: translateX(-50%)"
+                draggable="false"
+            >
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Timeline</h1>
             <div class="flex flex-col justify-center items-center">
                 <ul class="timeline timeline-vertical">
@@ -150,7 +182,26 @@
         </div>
 
         {{--  Instruksi Penggunaan  --}}
-        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-2 shadow-md gap-8 data">
+        <div class="bg-base-200 flex flex-col p-4 rounded-md w-full lg:col-span-2 shadow-md gap-8 data relative">
+            <img
+                src="{{ asset('asset2024') }}/main/6.png"
+                alt=""
+                class="absolute hidden lg:block bottom-3 left-0 w-40"
+                draggable="false"
+            >
+            <img
+                src="{{ asset('asset2024') }}/main/7.png"
+                alt=""
+                class="absolute hidden lg:block bottom-3 right-0 w-40"
+                draggable="false"
+            >
+            <img
+                src="{{ asset('asset2024') }}/main/2.png"
+                alt=""
+                class="absolute hidden lg:block bottom-3 left-1/2 w-52"
+                style="transform: translateX(-50%)"
+                draggable="false"
+            >
             <h1 class="text-md md:text-xl font-semibold bg-base-300 py-2 px-4 text-center rounded-md">Instruksi Penggunaan</h1>
             <div class="flex flex-col gap-3">
                 <div class="badge badge-accent rounded-md font-medium text-sm">6 Maret 2024</div>
