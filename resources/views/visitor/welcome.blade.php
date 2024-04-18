@@ -33,6 +33,7 @@
             display: block;
         }
     </style>
+    @yield('styles')
     {{--    @vite('resources/css/app.css') --}}
 </head>
 
@@ -112,7 +113,6 @@
                                         @endauth
                                     </ul>
                                 </div>
-
                             </div>
                         </div>
                     </div>
