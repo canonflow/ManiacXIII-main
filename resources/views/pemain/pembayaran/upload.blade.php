@@ -1,5 +1,15 @@
 @extends('pemain.pembayaran.layout', ["title" => "Upload Bukti Pembayaran", "heading" => "Upload Bukti Pembayaran"])
 
+@section('styles')
+    <style>
+        li:hover {
+            cursor: url("{{ asset('asset2024/cursor/CURSOR.cur') }}"),
+                    url("{{ asset('asset2024/cursor/CURSOR.svg') }}"),
+                    url("{{ asset('asset2024/cursor/CURSOR.png') }}"), default !important;
+        }
+    </style>
+@endsection
+
 @section("content")
     <h2 class="pt-3 sm:pb-0 text-xl font-semibold">Petunjuk Pembayaran</h2>
     <div class="divider my-0"></div>
