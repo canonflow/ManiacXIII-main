@@ -34,6 +34,9 @@ Route::view('/faq', 'visitor.faq')->name('visitor.faq');
 
 Route::view('/competition', 'visitor.competition')->name('visitor.competition');
 
+Route::view('/pembayaran/upload', 'pemain.pembayaran.upload');
+Route::view('/pembayaran/unverified', 'pemain.pembayaran.unverified');
+
 
 
 // ===== Admin Route (PUBREG) =====
