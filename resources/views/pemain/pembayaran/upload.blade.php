@@ -13,7 +13,7 @@
 @section("content")
     <h2 class="pt-3 sm:pb-0 text-xl font-semibold">Petunjuk Pembayaran</h2>
     <div class="divider my-0"></div>
-    <p class="text-red-500 font-bold">Transfer melalui rekening BCA: 0182418941 a/n ANTONIUS KUSTIONO PUTRA</p>
+    <p class="text-red-600 font-bold">Transfer melalui rekening BCA: 0182418941 a/n ANTONIUS KUSTIONO PUTRA</p>
     <p>Biaya Pendaftaran:</p>
     <table class="table">
         <thead class="bg-secondary text-neutral-content text-center">
@@ -46,7 +46,14 @@
         <li>Setelah mengupload bukti transfer harap <strong>mengkonfirmasi</strong> ke contact person Whatsapp <a href="https://wa.me/6285104914848" style="cursor: pointer !important;" class="font-bold text-primary">Fiorello Austin Ardianto (085104914848)</a></li>
     </ul>
     <div class="divider my-0"></div>
-    <form action="" method="get">
+    @error('bukti_pembayaran')
+    <div role="alert" class="alert alert-error">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>{{ $message }}</span>
+    </div>
+    @enderror
+    <form action="{{ route('team.pembayaran.upload') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <label class="form-control w-full">
             <div class="label">
                 <span class="label-text font-medium">Foto Bukti Pembayaran (max: <strong>10MB</strong>, type: png/jpeg/jpg)</span>

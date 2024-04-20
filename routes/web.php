@@ -144,6 +144,10 @@ Route::group(
 
         Route::get('/contest/{contest:slug}', [Pemain\PemainController::class, 'submission'])->name('contest.submission');
         Route::post('/contest/{contest:slug}/submit', [Pemain\PemainController::class, 'submitLink'])->name('contest.submit');
+
+        // Pembayaran
+        Route::post('/pembayaran/upload', [Pemain\PemainController::class, 'upload'])
+            ->name('pembayaran.upload');
     }
 );
 

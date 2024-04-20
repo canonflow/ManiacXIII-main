@@ -17,14 +17,14 @@ class ParticipantMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && Auth::user()->role == 'participant') {
-//            if (Auth::user()->team->status == 'verified') return $next($request);
+            if (Auth::user()->team->status == 'verified') return $next($request);
 //            // Biar bisa make POST untuk upload bukti Transfer
-//            else if (Auth::user()->team->status == 'waiting' && $request->get("_token") != null) return $next($request);
+            else if (Auth::user()->team->status == 'waiting' && $request->get("_token") != null) return $next($request);
 //
 //            // Sementara view nya pake welcome dlu (Belum dibuat)
-//            else if (Auth::user()->team->status == 'waiting') return \response()->view('welcome');
-//            else if (Auth::user()->team->status == 'unverified') return \response()->view('welcome');
-//            else if (Auth::user()->team->status == 'deactivated') return \response()->view('welcome');
+            else if (Auth::user()->team->status == 'waiting') return \response()->view('pemain.pembayaran.upload');
+            else if (Auth::user()->team->status == 'unverified') return \response()->view('pemain.pembayaran.unverified');
+            else if (Auth::user()->team->status == 'deactivated') return \response()->view('welcome');
             return $next($request);
         }
 

@@ -104,4 +104,28 @@ class PemainController extends Controller
 
         return redirect()->back()->with('success', "Berhasil menyimpan link!");
     }
+
+    public function upload(Request $request) {
+//        dd($request->all()['bukti_pembayaran']);
+        $request->validate([
+            'bukti_pembayaran' => ['required', 'file', 'max:10240', 'mimes:jpeg,jpg,png']
+        ]);
+
+        $team = Team::where('user_id', Auth::user()->id)->first();
+        $buktiPembayaran = 'bukti_pembayaran.' . $request->file('bukti_pembayaran')->getClientOriginalExtension();
+        $request->file('bukti_pembayaran')
+            ->storeAs(
+                $team->name . '/buktiPembayaran',
+                $buktiPembayaran,
+                'public'
+            );
+
+        // Ganti status & save bukti pembayaran
+        $team->status = 'unverified';
+        $team->payment_photo = $team->name . '/buktiPembayaran/' . $buktiPembayaran;
+        $team->save();
+
+        return redirect()->back();
+
+    }
 }
