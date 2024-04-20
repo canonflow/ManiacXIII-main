@@ -54,7 +54,8 @@
 <div class="navbar bg-base-200 px-4 mb-2 z-50 rounded-br-xl rounded-bl-xl">
     <div class="flex-1">
         <a class="btn btn-ghost text-2xl">
-            <img src="{{ asset('asset2024') }}/maniac13-pp.png" alt="" class="w-8 rounded">
+{{--            <img src="{{ asset('asset2024') }}/maniac13-pp.png" alt="" class="w-8 rounded">--}}
+            <img src="{{ asset('asset2024') }}/logo-maniac.jpg" alt="" class="w-8 rounded">
             Maniac XIII
         </a>
     </div>

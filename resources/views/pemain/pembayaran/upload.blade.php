@@ -25,24 +25,24 @@
         <tbody class="text-center">
             <tr>
                 <td width="50%" class="font-medium">Batch Early Bird (7 Mei 2024 s/d 7 Juni 2024)</td>
-                <td width="50%">Rp. 10.000/tim</td>
+                <td width="50%">Rp. 50.000/tim</td>
             </tr>
             <tr>
                 <td width="50%" class="font-medium">Batch Normal (10 Juni 2024 s/d 8 Juli 2024)</td>
-                <td width="50%">Rp. 25.000/tim</td>
+                <td width="50%">Rp. 75.000/tim</td>
             </tr>
         </tbody>
     </table>
     <div role="alert" class="alert alert-warning">
         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-        <span class="text-justify">Jika pada <strong>Batch Normal</strong> Mendaftar 3 tim atau lebih secara langsung (berasal dari sekolah yang SAMA) akan mendapatkan diskon Rp. 15.000/tim</span>
+        <span class="text-justify">Jika pada <strong>Batch Normal</strong> Mendaftar 3 tim atau lebih secara langsung (berasal dari sekolah yang SAMA) akan mendapatkan potongan harga menjadi Rp. 50.000/tim</span>
     </div>
     <div class="divider my-0"></div>
     <p class="font-bold text-lg">Ketentuan Transfer</p>
     <p>Bagi sekolah yang mendaftarkan 3 tim atau lebih pada <strong>Batch Normal</strong></p>
     <ul class="list-disc list-outside pl-5">
         <li class="mb-3 md:mb-0">Wajib transfer menggunakan <strong>1 rekening</strong> yang sama dalam 1x transfer dan mencantumkan nama tiap tim dan sekolah di keterangan transfer.</li>
-        <li class="mb-3 md:mb-0">Total Biaya pendaftaran: <strong>Rp. 10.000 x jumlah tim</strong></li>
+        <li class="mb-3 md:mb-0">Total Biaya pendaftaran: <strong>Rp. 50.000 x jumlah tim</strong></li>
         <li>Setelah mengupload bukti transfer harap <strong>mengkonfirmasi</strong> ke contact person Whatsapp <a href="https://wa.me/6285104914848" style="cursor: pointer !important;" class="font-bold text-primary">Fiorello Austin Ardianto (085104914848)</a></li>
     </ul>
     <div class="divider my-0"></div>
