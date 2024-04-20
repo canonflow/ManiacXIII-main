@@ -218,7 +218,7 @@
                 <div class="divider"></div>
                 <div>
                     <p class="p-0 pb-2 m-o font-bold">Contest</p>
-                    <p class="p-0 m-0">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-error">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
+                    <p class="p-0 m-0">Menu <strong>Contest</strong> digunakan untuk mengumpulkan tugas Workshop berupa link Google Drive dari <strong class="text-bold">File</strong> (<strong class="text-bold text-red-600">BUKAN FOLDER</strong>) yang akan dikumpulkan berupa <strong>PDF</strong>.</p>
                 </div>
             </div>
         </div>
