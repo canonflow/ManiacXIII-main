@@ -31,6 +31,21 @@
             z-index: 1000;
             display: block;
         }
+
+        @font-face {
+            font-family: 'cinzel';
+            src: url("../fonts/cinzel/Cinzel-Black.ttf") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'viking';
+            src: url("../fonts/viking/pr-viking.ttf") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url("../fonts/montserrat/Montserrat-Regular.otf") format("otf");
+        }
     </style>
     @yield('styles')
 
