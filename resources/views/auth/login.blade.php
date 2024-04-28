@@ -21,7 +21,7 @@
             background-repeat: no-repeat;
         }
         body>div>div>div {
-            margin-bottom: 1.75rem;
+            margin-bottom: 4.25rem;
         }
     </style>
 </head>
@@ -29,8 +29,8 @@
     <div class="container-fluid bg-primary m-0 p-0">
         <div class="container d-flex justify-content-center align-items-center flex-column">
             <img src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50">
-            <div class="bg-primary w-50 d-flex justify-content-center">
-                <form method="POST" action="{{ route('login') }}">
+            <div class="w-75 d-flex justify-content-center">
+                <form method="POST" action="{{ route('login') }}" class="">
                     @csrf
                     
                     <!-- Email Address -->
@@ -43,7 +43,7 @@
                     
                     <!-- Password -->
                     <div class="mt-4">
-                        <label for="password" :value="__('Password')">Password :</label>
+                        <label for="password" :value="__('Password')">Password:</label>
                         <input id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="current-password" />
                         
@@ -71,7 +71,7 @@
                         </div>
                             
                         <!-- Button Log in -->
-                        <button class="ms-3 btn-primary btn ">
+                        <button class="ms-3 btn-secondary btn ">
                             {{ __('Log in') }}
                         </button>
                     </div>
