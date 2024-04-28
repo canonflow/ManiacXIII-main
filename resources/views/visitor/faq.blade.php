@@ -2,28 +2,49 @@
 
 @section('styles')
     <style>
-        .accordion-item {
-            border-radius: 5px;
-        }
-
         .accordion-header>button {
-            border-radius: 3px;
+            border-radius: 20px;
         }
 
+        .accordion-button:not(.collapsed){
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        } 
+
+        .accordion-button{
+            background-color: #a67563;
+            color: white;
+            font-family: Montserrat;
+            font-weight: bold;
+
+        }
         .accordion-button:not(.collapsed) {
-            background-color: #625f44;
+            background-color: #a67563;
             color: #fff;
+        }
+        .bg-faq{
+            background-color: #a67563;
+        }
+        .accordion-body{
+            background-color: #7f4c42;
+            color: white;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            font-family: Montserrat;
+        }
+        h1{
+            font-family: Montserrat;
+            text-shadow: 1px 1px 1px #620706; 
         }
     </style>
 @endsection
 
 @section('content')
     <div class="container-fluid">
-        <div class="container">
-            <div class="logo text-center">
-               <img src="{{ asset('asset2024/main/maniac.png') }}" class="w-25">            
-            </div>
-            <h1 class="text-center text-bold pt-3"><strong>FREQUENTLY ASKED QUESTIONS</strong></h1>
+        <div class="container py-5">
+            <h1 class="text-center text-bold py-2"><strong>FREQUENTLY ASKED QUESTIONS</strong></h1>
             <br>
             <div class="faq">
                 <div class="accordion" id="accordionExample">
@@ -31,7 +52,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <strong>1. Apa itu MANIAC?</strong>
+                                Apa itu MANIAC?
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -49,8 +70,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <strong>2. Apakah MANIAC XIII akan diadakan secara <em>online</em> atau
-                                    <em>offline</em>?</strong>
+                                Apakah MANIAC XIII akan diadakan secara&nbsp;<em>online</em>&nbsp;atau&nbsp;<em>offline</em>?
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -67,7 +87,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <strong>3. Apa saja tahap dalam MANIAC XIII?</strong>
+                                Apa saja tahap dalam MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -88,8 +108,8 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <strong>4. Apakah MANIAC XIII bersifat akademis (seperti mengerjakan soal-soal
-                                    pelajaran)?</strong>
+                                Apakah MANIAC XIII bersifat akademis (seperti mengerjakan soal-soal
+                                    pelajaran)?
                             </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -104,8 +124,8 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                <strong>5. Apakah bidang lomba yang diujikan hanya tentang Digital Media
-                                    Technology?</strong>
+                                Apakah bidang lomba yang diujikan hanya tentang Digital Media
+                                    Technology?
                             </button>
                         </h2>
                         <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -121,7 +141,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                <strong>6. Apakah akan ada pelatihan sebelum pelaksanaan acara?</strong>
+                                Apakah akan ada pelatihan sebelum pelaksanaan acara?
                             </button>
                         </h2>
                         <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -138,7 +158,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                <strong>7. <em>Software </em>apa yang digunakan selama lomba?</strong>
+                                <em>Software </em>apa yang digunakan selama lomba?
                             </button>
                         </h2>
                         <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -152,7 +172,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                <strong>8. Bagaimana cara mendaftar menjadi peserta MANIAC XIII?</strong>
+                                Bagaimana cara mendaftar menjadi peserta MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -168,7 +188,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                                <strong>9. Bagaimana <em>timeline</em> lomba MANIAC XIII?</strong>
+                                Bagaimana <em>timeline</em> lomba MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -191,8 +211,8 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                <strong>10. Apakah <em>workshop</em> diwajibkan bagi semua peserta lomba MANIAC
-                                    XIII?</strong>
+                                Apakah <em>workshop</em> diwajibkan bagi semua peserta lomba MANIAC
+                                    XIII?
                             </button>
                         </h2>
                         <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -210,7 +230,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                                <strong>11. Berapakah biaya pendaftaran untuk MANIAC XIII?</strong>
+                                Berapakah biaya pendaftaran untuk MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -232,7 +252,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                                <strong>12. Apakah terdapat batasan jumlah tim yang mendaftar (dari tiap sekolah)?</strong>
+                                Apakah terdapat batasan jumlah tim yang mendaftar (dari tiap sekolah)?
                             </button>
                         </h2>
                         <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -246,7 +266,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
-                                <strong>13. Berapa jumlah orang dalam satu tim ?</strong>
+                              Berapa jumlah orang dalam satu tim ?
                             </button>
                         </h2>
                         <div id="collapse13" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -260,7 +280,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
-                                <strong>14. Dimana saya dapat memperoleh informasi terkait MANIAC XIII?</strong>
+                                Dimana saya dapat memperoleh informasi terkait MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapse14" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -280,7 +300,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
-                                <strong>15. Dimana saya dapat melihat kisi-kisi perlombaan?</strong>
+                                Dimana saya dapat melihat kisi-kisi perlombaan?
                             </button>
                         </h2>
                         <div id="collapse15" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -294,7 +314,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
-                                <strong>16. Apakah wajib mengikuti <em>Technical Meeting</em>?</strong>
+                                Apakah wajib mengikuti <em>Technical Meeting</em>?
                             </button>
                         </h2>
                         <div id="collapse16" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -308,7 +328,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
-                                <strong>17. Batas pendaftaran MANIAC XIII hingga kapan?</strong>
+                                Batas pendaftaran MANIAC XIII hingga kapan?
                             </button>
                         </h2>
                         <div id="collapse17" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -326,7 +346,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
-                                <strong>18. Apa saja yang dilombakan pada babak utama penyisihan dan final?</strong>
+                                Apa saja yang dilombakan pada babak utama penyisihan dan final?
                             </button>
                         </h2>
                         <div id="collapse18" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -344,7 +364,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse19" aria-expanded="false" aria-controls="collapse19">
-                                <strong>19. Apakah kelas 12 boleh mengikuti MANIAC XIII?</strong>
+                                Apakah kelas 12 boleh mengikuti MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapse19" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -360,7 +380,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse20" aria-expanded="false" aria-controls="collapse20">
-                                <strong>20. Apakah diperbolehkan jika teman satu kelompok berbeda angkatan?</strong>
+                                Apakah diperbolehkan jika teman satu kelompok berbeda angkatan?
                             </button>
                         </h2>
                         <div id="collapse20" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -375,7 +395,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse21" aria-expanded="false" aria-controls="collapse21">
-                                <strong>21. Apakah ada keringanan apabila terdapat gangguan koneksi?</strong>
+                                Apakah ada keringanan apabila terdapat gangguan koneksi?
                             </button>
                         </h2>
                         <div id="collapse21" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -389,8 +409,8 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse22" aria-expanded="false" aria-controls="collapse22">
-                                <strong>22. Apakah diperbolehkan menggantikan rekan satu tim jika mendadak tidak bisa
-                                    mengikuti MANIAC XIII?</strong>
+                                Apakah diperbolehkan menggantikan rekan satu tim jika mendadak tidak bisa
+                                    mengikuti MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapse22" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
