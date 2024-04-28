@@ -27,11 +27,6 @@
 
 
     <style>
-        .dropDownMenu {
-            z-index: 1000;
-            display: block;
-        }
-
         @font-face {
             font-family: 'cinzel';
             src: url("../fonts/cinzel/Cinzel-Black.ttf") format('truetype');
@@ -46,6 +41,22 @@
             font-family: 'Montserrat';
             src: url("../fonts/montserrat/Montserrat-Regular.otf") format("otf");
         }
+
+        .dropDownMenu {
+            z-index: 1000;
+            display: block;
+        }
+
+        .navbar {
+            background-color: #620706 !important;
+        }
+
+        .btn-account {
+            background-color: #620706;
+        }
+        .bg-red{
+            background-color: #620706 !important;
+        }
     </style>
     @yield('styles')
 
@@ -54,80 +65,77 @@
 
 <body class="antialiased overflow-x-hidden">
     @if (Route::has('login'))
-        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between px-3">
+        <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between px-3">
             <div class="logo">
                 <img src="{{ asset('../asset2024/logo-ubaya.png') }}" alt="logo-ubaya" class="icon">
                 <img src="{{ asset('../asset2024/logo-maniac.jpg') }}" alt="logo-maniac" class="icon">
             </div>
-            <div class="link pe-3 d-flex">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link text-dark" href="{{ route('index') }}">HOME</a>
-                                <a class="nav-link text-dark" href="{{ route('visitor.about') }}">ABOUT US <span
-                                        class="sr-only">(current)</span></a>
-                                <a class="nav-link text-dark" href="{{ route('visitor.competition') }}">COMPETITION</a>
-                                <a class="nav-link text-dark" href="{{ route('visitor.faq') }}">FAQ</a>
-                                <div class="dropdown">
-                                    <button class="btn btn-light dropdown-toggle bg-dark text-white" type="button"
-                                        id="account-dropdown" data-bs-toggle="dropdown">ACCOUNT</button>
-                                    <ul class="dropdown-menu" aria-labelledby="account-dropdown">
-                                        @auth
-                                            @php
-                                                $endpoint = '';
-                                                switch (\Illuminate\Support\Facades\Auth::user()->role) {
-                                                    case 'participant':
-                                                        $endpoint = '/team';
-                                                        break;
-                                                    case 'acara':
-                                                        $endpoint = '/acara';
-                                                        break;
-                                                    case 'si':
-                                                        $endpoint = '/si';
-                                                        break;
-                                                    case 'supersi':
-                                                        $endpoint = '/supersi';
-                                                        break;
-                                                    case 'admin':
-                                                        $endpoint = '/admin';
-                                                        break;
-                                                    case 'judge':
-                                                        $endpoint = '/judge';
-                                                        break;
-                                                    default:
-                                                        $endpoint = '/penpos';
-                                                        break;
-                                                }
-                                            @endphp
+            <div class="link pe-3  ">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link text-white" href="{{ route('index') }}">HOME</a>
+                            <a class="nav-link text-white" href="{{ route('visitor.about') }}">ABOUT US <span
+                                    class="sr-only">(current)</span></a>
+                            <a class="nav-link text-white" href="{{ route('visitor.competition') }}">COMPETITION</a>
+                            <a class="nav-link text-white" href="{{ route('visitor.faq') }}">FAQ</a>
+                            <div class="dropdown">
+                                <button class="btn btn-account dropdown-toggle text-white" type="button"
+                                    id="account-dropdown" data-bs-toggle="dropdown">ACCOUNT</button>
+                                <ul class="dropdown-menu" aria-labelledby="account-dropdown">
+                                    @auth
+                                        @php
+                                            $endpoint = '';
+                                            switch (\Illuminate\Support\Facades\Auth::user()->role) {
+                                                case 'participant':
+                                                    $endpoint = '/team';
+                                                    break;
+                                                case 'acara':
+                                                    $endpoint = '/acara';
+                                                    break;
+                                                case 'si':
+                                                    $endpoint = '/si';
+                                                    break;
+                                                case 'supersi':
+                                                    $endpoint = '/supersi';
+                                                    break;
+                                                case 'admin':
+                                                    $endpoint = '/admin';
+                                                    break;
+                                                case 'judge':
+                                                    $endpoint = '/judge';
+                                                    break;
+                                                default:
+                                                    $endpoint = '/penpos';
+                                                    break;
+                                            }
+                                        @endphp
+                                        <li>
+                                            <a href="{{ url($endpoint) }}" class="dropdown-item text-danger">Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('logout') }}" method="POST" id="logout">
+                                                @csrf
+                                                <button class="dropdown-item text-danger" type="submit">Logout</button>
+                                            </form>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{ route('login') }}" class="dropdown-item text-danger">LOGIN</a>
+                                        </li>
+                                        @if (Route::has('register'))
                                             <li>
-                                                <a href="{{ url($endpoint) }}"
-                                                    class="dropdown-item text-danger">Dashboard</a>
+                                                <a href="{{ route('register') }}"
+                                                    class="dropdown-item text-danger">REGISTER</a>
                                             </li>
-                                            <li>
-                                                <form action="{{ route('logout') }}" method="POST" id="logout">
-                                                    @csrf
-                                                    <button class="dropdown-item text-danger" type="submit">Logout</button>
-                                                </form>
-                                            </li>
-                                        @else
-                                            <li>
-                                                <a href="{{ route('login') }}" class="dropdown-item text-danger">LOGIN</a>
-                                            </li>
-                                            @if (Route::has('register'))
-                                                <li>
-                                                    <a href="{{ route('register') }}"
-                                                        class="dropdown-item text-danger">REGISTER</a>
-                                                </li>
-                                            @endif
-                                        @endauth
-                                    </ul>
-                                </div>
+                                        @endif
+                                    @endauth
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -138,10 +146,10 @@
     <main class="bg-primary">
         @yield('content')
     </main>
-    <footer class="bg-dark d-flex row py-4">
+    <footer class="bg-red d-flex row py-4">
         <div class="col-lg-5 px-4">
             <h3 class="text-white">MANIAC XIII</h3>
-            <a class="link link-hover">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa Timur</a>
+            <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa Timur</a>
             <div class="maps py-3">
                 <iframe class="w-75 w-sm-25"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3031802459786!2d112.76553161057895!3d-7.319800892657786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fae3f29c4665%3A0x7536c23b4453a79!2sUniversity%20of%20Surabaya!5e0!3m2!1sen!2sid!4v1709278257216!5m2!1sen!2sid"
