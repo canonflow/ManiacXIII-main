@@ -32,7 +32,7 @@
                 <div class="divider divider-vertical md:divider-horizontal divider-secondary my-0 md:mx-0"></div>
                 <div class="flex flex-col items-start">
                     <p class="font-medium mb-3 md:mb-0">Harap Menunggu Proses Verifikasi Data</p>
-                    <p class="text-sm">Apabila terjadi kesalahan, dapat menghubungi: <a href="https://wa.me/6285104914848" style="cursor: pointer !important;" class="font-bold text-primary">Fiorello Austin Ardianto (085104914848)</a></p>
+                    <p class="text-sm">Apabila terjadi kesalahan, dapat menghubungi: <a target="_blank" href="https://wa.me/6285104914848" style="cursor: pointer !important;" class="font-bold text-primary">Fiorello Austin Ardianto (085104914848)</a></p>
                 </div>
             </div>
         </div>

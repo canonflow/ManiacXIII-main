@@ -24,7 +24,7 @@ class ParticipantMiddleware
 //            // Sementara view nya pake welcome dlu (Belum dibuat)
             else if (Auth::user()->team->status == 'waiting') return \response()->view('pemain.pembayaran.upload');
             else if (Auth::user()->team->status == 'unverified') return \response()->view('pemain.pembayaran.unverified');
-            else if (Auth::user()->team->status == 'deactivated') return \response()->view('welcome');
+            else if (Auth::user()->team->status == 'deactivated') return \response()->view('pemain.deactivated');
             return $next($request);
         }
 

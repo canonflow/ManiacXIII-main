@@ -43,7 +43,7 @@
     <ul class="list-disc list-outside pl-5">
         <li class="mb-3 md:mb-0">Wajib transfer menggunakan <strong>1 rekening</strong> yang sama dalam 1x transfer dan mencantumkan nama tiap tim dan sekolah di keterangan transfer.</li>
         <li class="mb-3 md:mb-0">Total Biaya pendaftaran: <strong>Rp. 50.000 x jumlah tim</strong></li>
-        <li>Setelah mengupload bukti transfer harap <strong>mengkonfirmasi</strong> ke contact person Whatsapp <a href="https://wa.me/6285104914848" style="cursor: pointer !important;" class="font-bold text-primary">Fiorello Austin Ardianto (085104914848)</a></li>
+        <li>Setelah mengupload bukti transfer harap <strong>mengkonfirmasi</strong> ke contact person Whatsapp <a target="_blank" href="https://wa.me/6285104914848" style="cursor: pointer !important;" class="font-bold text-primary">Fiorello Austin Ardianto (085104914848)</a></li>
     </ul>
     <div class="divider my-0"></div>
     @error('bukti_pembayaran')
