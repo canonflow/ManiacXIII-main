@@ -25,6 +25,8 @@
     <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
+    <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
+
 
     <style>
         @font-face {
