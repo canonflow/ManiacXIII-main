@@ -21,6 +21,14 @@
             justify-content: center;
             align-items: center;
         }
+
+        .divider {
+            color: oklch(var(--s)) !important;
+        }
+
+        .divider::before, .divider::after {
+            background-color: oklch(var(--b3)) !important;;
+        }
     </style>
 @endsection
 
@@ -30,11 +38,11 @@
         <div class="divider divider-horizontal mx-0"></div>
         <ul>
             <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li><a href="{{ route('admin.teams.index') }}" class="text-secondary font-medium">Registration</a></li>
+            <li><a href="{{ route('admin.teams.index') }}" class="text-primary font-bold">Registration</a></li>
         </ul>
     </div>
 
-    <div class="flex flex-col justify-center content-center w-full bg-gray-800 p-3 rounded-lg">
+    <div class="flex flex-col justify-center content-center w-full bg-base-200 p-3 rounded-lg">
         {{--    Alert    --}}
         @if(session()->has('deactivateSuccess'))
         <div role="alert" class="alert alert-success mb-3 rounded-md">
@@ -47,7 +55,7 @@
 
         {{--    Header    --}}
         <div class="flex flex-col gap-y-4">
-            <h2 class="text-lg">Search & Filter</h2>
+            <h2 class="text-lg font-medium">Search & Filter</h2>
             {{--      Search      --}}
             <form class="grid grid-cols-1 md:grid-cols-2 items-start w-full justify-between" method="GET" action="{{ route('admin.teams.search') }}">
                 {{--  Status  --}}
@@ -84,7 +92,7 @@
                             </div>
                         </div>
                         <div class="indicator">
-                            <button class="btn join-item sm:btn-md rounded-l-none" type="submit">Search</button>
+                            <button class="btn btn-primary join-item sm:btn-md rounded-l-none" type="submit">Search</button>
                         </div>
                     </div>
                 </div>
@@ -143,13 +151,13 @@
                         <td width="5%">
                             <div class="flex flex-col gap-2 py-1">
                                 @if($team->status != 'waiting')
-                                <button class="btn btn-outline btn-info btn-sm rounded-md" onclick="getTeamData('{{ $team->id }}')">
+                                <button class="btn btn-info btn-sm rounded-md" onclick="getTeamData('{{ $team->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                                     </svg>
                                 </button>
                                 @endif
-                                <button class="btn btn-outline btn-error btn-sm rounded-md" onclick="deactivateTeam('{{ $team['name'] }}')">
+                                <button class="btn btn-error btn-sm rounded-md" onclick="deactivateTeam('{{ $team['name'] }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
                                     </svg>
@@ -227,7 +235,7 @@
                 <div class="flex flex-col justify-center gap-4">
                     <form action="" method="POST" id="formVerification">
                         @csrf
-                        <button class="btn btn-success btn-outline action w-full rounded-md" id="btnVerif">Verifikasi</button>
+                        <button class="btn btn-success action w-full rounded-md" id="btnVerif">Verifikasi</button>
                     </form>
                     <form onclick="event.preventDefault(); modalTeamData.close()">
                         <!-- if there is a button in form, it will close the modal -->

@@ -6,11 +6,11 @@
         <div class="divider divider-horizontal mx-0"></div>
         <ul>
             <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li><a href="{{ route('admin.users.index') }}" class="text-secondary font-medium">Users</a></li>
+            <li><a href="{{ route('admin.users.index') }}" class="text-primary font-bold">Users</a></li>
         </ul>
     </div>
 
-    <div class="flex flex-col justify-center content-center w-full bg-gray-800 p-3 rounded-lg">
+    <div class="flex flex-col justify-center content-center w-full bg-base-200 p-3 rounded-lg">
         @if(session()->has('addSuccess'))
             <div role="alert" class="alert alert-success mb-3 rounded-md">
                 <div class="flex flex-row justify-start items-center gap-x-2 w-full">
@@ -89,7 +89,7 @@
                             <td width="30%" class="text-center py-5">{{ $user['username'] }}</td>
                             <td width="30%" class="text-center py-5">{{ $user['role'] }}</td>
                             <td width="5%" class="py-5">
-                                <button class="btn btn-error btn-outline btn-sm rounded-md px-4" onclick="deleteModal('{{ $username }}')">
+                                <button class="btn btn-error btn-sm rounded-md px-4" onclick="deleteModal('{{ $username }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                     </svg>
