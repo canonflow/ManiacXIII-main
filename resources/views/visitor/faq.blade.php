@@ -9,7 +9,7 @@
         .accordion-button:not(.collapsed){
             border-bottom-left-radius: 0px;
             border-bottom-right-radius: 0px;
-        } 
+        }
 
         .accordion-button{
             background-color: #a67563;
@@ -36,7 +36,7 @@
         }
         h1{
             font-family: Montserrat;
-            text-shadow: 1px 1px 1px #620706; 
+            text-shadow: 1px 1px 1px #620706;
         }
     </style>
 @endsection
@@ -158,7 +158,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                <em>Software </em>apa yang digunakan selama lomba?
+                                <em>Software</em>&nbsp;apa yang digunakan selama lomba?
                             </button>
                         </h2>
                         <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -188,7 +188,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                                Bagaimana <em>timeline</em> lomba MANIAC XIII?
+                                Bagaimana&nbsp;<em>timeline</em>&nbsp;lomba MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -211,7 +211,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                Apakah <em>workshop</em> diwajibkan bagi semua peserta lomba MANIAC
+                                Apakah&nbsp;<em>workshop</em>&nbsp;diwajibkan bagi semua peserta lomba MANIAC
                                     XIII?
                             </button>
                         </h2>
@@ -314,7 +314,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
-                                Apakah wajib mengikuti <em>Technical Meeting</em>?
+                                Apakah wajib mengikuti&nbsp;<em>Technical Meeting</em>?
                             </button>
                         </h2>
                         <div id="collapse16" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
