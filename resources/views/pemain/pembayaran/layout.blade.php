@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Peserta | {{ $title ?? 'Pembayaran' }}</title>
+    <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
     @vite('resources/css/app.css')
     <style>
         * {
@@ -49,7 +50,7 @@
     @yield('cdn')
     @yield('styles')
 </head>
-<body class="bg-base-100">
+<body class="bg-base-100 min-h-screen">
 {{--  Navigation Bar  --}}
 <div class="navbar bg-base-200 px-4 mb-2 z-50 rounded-br-xl rounded-bl-xl">
     <div class="flex-1">

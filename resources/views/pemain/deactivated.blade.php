@@ -48,7 +48,7 @@
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
 {{--  Navigation Bar  --}}
 <div class="navbar bg-base-200 px-4 mb-2 z-50 rounded-br-xl rounded-bl-xl">
     <div class="flex-1">
