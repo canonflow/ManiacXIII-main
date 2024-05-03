@@ -108,15 +108,15 @@
 @endsection
 
 @section('content')
-<div class="container-bg container-fluid">
-    <div class="container-page">
-        <h1>COMPETITIONS</h1>
+<div class="container-bg container-xxl">
+    <div class="p-5">
+        <h1 class="fs-1">COMPETITIONS</h1>
         <br>
         <div class="box-container">
             <div class="floating-box">
                 @foreach (['PENYISIHAN', 'SEMIFINAL', 'FINAL'] as $section)
-                <div class="sub fs-1">{{ $section }}</div>
-                <div class="text fs-2">
+                <div class="sub fs-4">{{ $section }}</div>
+                <div class="text fs-6 fw-normal">
                     @if ($section == 'PENYISIHAN')
                     Babak penyisihan MANIAC XIII berupa workshop yang dibawakan langsung oleh salah satu game developer ternama di Indonesia. Terdapat dua jenis workshop yang diselenggarakan, yaitu Game Asset Design yang berfokus pada cara pembuatan aset di suatu permainan dan Game Concept Design yang membahas bagaimana cara merancang konsep sebuah permainan. Peserta akan diberikan tugas pengumpulan karya pada akhir workshop.
                     @elseif ($section == 'SEMIFINAL')
@@ -143,9 +143,11 @@
             </div>
         </div>
         <br>
-        <h1>GUIDEBOOK</h1>
-        <br>
-        <a href="https://drive.google.com/" class="button btn-lg" target="_blank">DOWNLOAD</a>
+        <div class="d-flex flex-column align-items-center mb-2">
+            <h1>GUIDEBOOK</h1>
+            <br>
+            <a href="https://drive.google.com/" class="button btn-lg" target="_blank">DOWNLOAD</a>
+        </div>
     </div>
 </div>
 @endsection
