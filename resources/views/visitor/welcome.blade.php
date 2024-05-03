@@ -56,7 +56,8 @@
         .btn-account {
             background-color: #620706;
         }
-        .bg-red{
+
+        .bg-red {
             background-color: #620706 !important;
         }
     </style>
@@ -118,12 +119,16 @@
                                             }
                                         @endphp
                                         <li>
-                                            <a href="{{ url($endpoint) }}" class="dropdown-item text-danger">Dashboard</a>
+                                            <a href="{{ url($endpoint) }}"
+                                                style="font-size: 1rem !important; letter-spacing: 1px !important;"
+                                                class="dropdown-item text-danger">Dashboard</a>
                                         </li>
                                         <li>
                                             <form action="{{ route('logout') }}" method="POST" id="logout">
                                                 @csrf
-                                                <button class="dropdown-item text-danger" type="submit">Logout</button>
+                                                <button class="btn-logout dropdown-item text-danger"
+                                                    style="font-size: 1rem !important; letter-spacing: 1px !important;"
+                                                    type="submit">Logout</button>
                                             </form>
                                         </li>
                                     @else
@@ -151,7 +156,8 @@
     <footer class="bg-red d-flex row py-4">
         <div class="col-lg-5 px-4">
             <h3 class="text-white">MANIAC XIII</h3>
-            <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa Timur</a>
+            <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa
+                Timur</a>
             <div class="maps py-3">
                 <iframe class="w-75 w-sm-25"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3031802459786!2d112.76553161057895!3d-7.319800892657786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fae3f29c4665%3A0x7536c23b4453a79!2sUniversity%20of%20Surabaya!5e0!3m2!1sen!2sid!4v1709278257216!5m2!1sen!2sid"
