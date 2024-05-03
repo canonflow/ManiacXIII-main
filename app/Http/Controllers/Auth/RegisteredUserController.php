@@ -35,9 +35,9 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             //sekolah
-            'username' => ['required', 'string','min:8' ,'max:255', 'unique:users,username'],
+            'username' => ['required', 'string','min:8' ,'max:25', 'unique:users,username'],
             'password' => ['required'],
-            'nama_tim' => ['required', 'string', 'max:255', 'unique:teams,name'],
+            'nama_tim' => ['required', 'string', 'max:25', 'unique:teams,name'],
             'nama_sekolah' => ['required', 'string', 'max:255'],
             'alamat_sekolah' => ['required', 'string', 'max:255'],
             'nomor_sekolah' => ['required', 'string', 'max:255'],
