@@ -75,7 +75,7 @@
 
         .bottom-web-home{
             bottom: 0%;
-            width: 102.4%;
+            width: 100%;
             z-index: -1;
             /*height: 42.3%; !* Kasih Responsive*!*/
             /*object-fit: cover;*/

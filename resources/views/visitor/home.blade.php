@@ -405,7 +405,7 @@
 @endsection
 
 @section('content')
-<div class="container-bg container-fluid">
+<div class="container-xxl">
     <div class="container-page-1 position-relative">
         <!-- <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-1 z-0">
         <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-2 z-0"> -->

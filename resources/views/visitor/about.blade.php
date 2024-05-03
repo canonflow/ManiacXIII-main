@@ -84,7 +84,7 @@
     <div class="container py-5">
         <h1 class="text-center text-bold py-2">WHAT IS MANIAC</h1>
         <br>
-        <div class="box">
+        <div class="box py-5">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -126,14 +126,16 @@
                     </button>
                 </div>
         </div>
-        <div class="body fs-2">
-            MANIAC adalah acara lomba untuk anak SMA/K sederajat yang mencakup
-            workshop, rally games, dan final. Materi yang dilombakan mengenai Game
-            Concept Design dan Game Asset Design. MANIAC diselenggarakan oleh jurusan
-            Teknik Informatika program Digital Media Technology Universitas Surabaya.
+        <div class="body">
+            <p class="fs-5 font-normal">
+                MANIAC adalah acara lomba untuk anak SMA/K sederajat yang mencakup
+                workshop, rally games, dan final. Materi yang dilombakan mengenai Game
+                Concept Design dan Game Asset Design. MANIAC diselenggarakan oleh jurusan
+                Teknik Informatika program Digital Media Technology Universitas Surabaya.
+            </p>
         </div>
         <br>
-        <h1 class="text-center text-bold py-2">JOIN NOW</h1>
+        <h1 class="text-center text-bold py-2 mt-5">JOIN NOW</h1>
         <div class="container py-2 d-flex justify-content-center">
             <div class="video-container">
                 <video controls>
