@@ -496,14 +496,14 @@
         <div class="d-flex justify-content-center flex-column align-items-center ">
             <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
             <h1 class="text-join-now">JOIN NOW</h1>
-            <img sr c="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-5">
+            <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-5">
             <div class="container-video d-flex justify-content-center align-items-center z-1">
                 <video src="{{ asset('asset2024/main/after_movie.mp4') }}" controls class="d-flex align-items-center justify-content-center"></video>
             </div>
         </div>
-        <div class="container-bottom-home z-0 d-flex justify-content-center ">
-            <img src="{{ asset('asset2024/bg-home-bawah.png') }}"  class="bottom-web-home position-absolute z-0">
-        </div>
+{{--        <div class="container-bottom-home z-0 d-flex justify-content-center ">--}}
+{{--            <img src="{{ asset('asset2024/bg-home-bawah.png') }}"  class="bottom-web-home position-absolute z-0">--}}
+{{--        </div>--}}
     </div>
 </div>
 @endsection

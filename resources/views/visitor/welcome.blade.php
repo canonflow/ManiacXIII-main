@@ -68,12 +68,17 @@
             background-position: top center;
         }
 
-        #bgBawah {
-            position: absolute;
-            /*top: -50rem;*/
-            bottom: 0;
+        .container-bottom-home{
+            padding-top: 44%; /* Kasih responsive ini berhubungan dengan .buttom-web-home */
+            align-items: start;
+        }
+
+        .bottom-web-home{
+            bottom: 0%;
+            width: 102.4%;
             z-index: -1;
-            /*transform: translateY(50%);*/
+            /*height: 42.3%; !* Kasih Responsive*!*/
+            /*object-fit: cover;*/
         }
     </style>
     @yield('styles')
@@ -165,9 +170,12 @@
             </div>
         </nav>
     @endif
-    <main class="">
+    <main class="position-relative">
         @yield('content')
 {{--        <img src="{{ asset('asset2024') }}/bg-home-bawah.png" alt="" id="bgBawah">--}}
+        <div class="container-bottom-home z-0 d-flex justify-content-center">
+            <img src="{{ asset('asset2024/bg-home-bawah.png') }}"  class="bottom-web-home position-absolute">
+        </div>
     </main>
     <footer class="bg-red d-flex row py-4 position-relative">
         <div class="col-lg-5 px-4">
