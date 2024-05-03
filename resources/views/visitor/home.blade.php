@@ -14,7 +14,7 @@
                 --button-weight: 550;
             }
         }
-        
+
         @media (min-width: 576px) and (max-width: 768px){
             :root{/* Titik tengah : 672 */
                 --fs-1: 1.7rem;
@@ -25,8 +25,8 @@
                 --button-radius: 12px;
                 --button-weight: 550;
             }
-        } 
-        
+        }
+
         @media (min-width: 769px) and (max-width: 992px){
             :root{ /* Titik Tengah : 880.5 */
                 --fs-1: 2.3rem;
@@ -37,8 +37,8 @@
                 --button-radius: 16px;
                 --button-weight: 600;
             }
-        } 
-        
+        }
+
         @media (min-width: 993px) and (max-width: 1200px){
             :root{/* Titik Tengah: 1096.5 */
                 --fs-1: 3rem;
@@ -49,8 +49,8 @@
                 --button-radius: 26.5px;
                 --button-weight: 600;
             }
-        } 
-        
+        }
+
         @media (min-width: 1201px) {
             :root{/* Ambil width 1350 */
                 --fs-1: 3.6rem;
@@ -63,12 +63,12 @@
             }
         }
         /* Variabel */
-        
+
         p {
-            margin: 0; 
+            margin: 0;
             padding: 0;
         }
-        
+
         .container-bg{
             background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");
             background-repeat: repeat-y;
@@ -83,7 +83,7 @@
             margin-top: 6%;
             margin-bottom: 17%;
         }
-        
+
         .container-page-5 {
             margin-top: 5.5%;
         }
@@ -98,7 +98,7 @@
             object-fit: cover;
             position:absolute;
         }
-        
+
         .cloud-1{
             top: 9%;
             left: -23%;
@@ -123,7 +123,7 @@
             top: 19%;
             left: -2.7%;
         }
-        
+
         .cloud-6 {
             top: 50%;
             right: -13%;
@@ -142,7 +142,7 @@
             top: -17.5%;
             left: -15.5%;
         }
-        
+
         .cloud-10 {
             transform: rotateY(3.14159rad);
             top: -3%;
@@ -194,21 +194,21 @@
         .text-timeline{
             font-size: var(--fs-timeline);
         }
-        
+
         .text-prizes{
             font-size: var(--fs-prizes);
         }
-        
+
         .text-join-now{
             font-size: var(--fs-join-now);
         }
-        
+
         .timeline-text-1{
             font-family: "viking";
-            font-size: 26px; 
+            font-size: 26px;
             white-space: nowrap;
         }
-        
+
         .timeline-text-2{
             font-family: "cinzel";
             font-size: 15px;
@@ -236,7 +236,7 @@
             font-size: var(--fs-timeline-1);
             white-space: nowrap;
         }
-        
+
         .container-text-1 p:nth-child(1){
             margin-right: 20%;
         }
@@ -260,13 +260,13 @@
             font-weight: 600;
             text-align: center;
             font-style: italic;
-            color: #5C0616; 
+            color: #5C0616;
         }
-        
+
         .container-text-3 p:nth-child(1){
             font-size: 20px;
         }
-        
+
         .container-text-3 p:nth-child(2){
             font-size: 17px;
         }
@@ -284,7 +284,7 @@
             width: 2.3%;
             height: 100%;
         }
-        
+
         .dec-2-2 {
             height: auto;
             bottom: 0;
@@ -298,7 +298,7 @@
             margin-bottom: 5%;
             transform: rotate(3.14159rad);
         }
-        
+
         .dec-3-4 {
             transform: rotate(3.14159rad);
             margin-bottom: 37%;
@@ -308,10 +308,10 @@
             transform: rotate(3.14159rad);
         }
         /* Decoration */
-        
+
         /* Button */
         .register-now {
-            margin-bottom: calc(0.063rem + 4.25%); 
+            margin-bottom: calc(0.063rem + 4.25%);
             padding: calc(0.063rem + 1.025%) calc(1px + 4%);
             background-color: #620706;
             border-radius: var(--button-radius);
@@ -348,12 +348,12 @@
             padding: 2.8%;
             background-color: #A67563;
         }
-        
+
         .poster{
             z-index: 4;
         }
         /* Poster */
-        
+
         /* Timeline */
         .timeline{
             width: 90%;
@@ -382,7 +382,7 @@
             border-radius: 30px;
             background-color: #A67563;
         }
-        
+
         video {
             width: 100%;
             height: 40%;
@@ -396,10 +396,10 @@
         }
 
         .bottom-web-home{
-            bottom: 0;
-            width: 108.5%;
-            height: 42.3%; /* Kasih Responsive*/
-            object-fit: cover;
+            bottom: 0%;
+            width: 102.4%;
+            /*height: 42.3%; !* Kasih Responsive*!*/
+            /*object-fit: cover;*/
         }
         </style>
 @endsection
@@ -451,7 +451,7 @@
             <div class="container-text-1 d-flex align-items-center justify-content-center flex-column">
                 <p class="timeline-text-1">EARLY BIRD</p>
                 <p class="timeline-text-2">7 Mei - 7 Juni</p>
-            </div>    
+            </div>
             <div class="container-text-2 d-flex align-items-center justify-content-center flex-column">
                 <p class="timeline-text-1">Normal</p>
                 <p class="timeline-text-2">10 Juni - 6 Juli</p>
@@ -501,9 +501,9 @@
                 <video src="{{ asset('asset2024/main/after_movie.mp4') }}" controls class="d-flex align-items-center justify-content-center"></video>
             </div>
         </div>
-        <!-- <div class="container-bottom-home z-0 d-flex justify-content-center ">
-            <img src="{{ asset('asset2024/main/bottom-web-home.png') }}"  class="bottom-web-home position-absolute z-0">
-        </div> -->
+        <div class="container-bottom-home z-0 d-flex justify-content-center ">
+            <img src="{{ asset('asset2024/bg-home-bawah.png') }}"  class="bottom-web-home position-absolute z-0">
+        </div>
     </div>
 </div>
 @endsection

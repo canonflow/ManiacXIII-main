@@ -60,6 +60,21 @@
         .bg-red {
             background-color: #620706 !important;
         }
+
+        body {
+            background-image: url("{{ asset('asset2024/bg-home.png') }}") !important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top center;
+        }
+
+        #bgBawah {
+            position: absolute;
+            /*top: -50rem;*/
+            bottom: 0;
+            z-index: -1;
+            /*transform: translateY(50%);*/
+        }
     </style>
     @yield('styles')
 
@@ -150,10 +165,11 @@
             </div>
         </nav>
     @endif
-    <main class="bg-primary">
+    <main class="">
         @yield('content')
+{{--        <img src="{{ asset('asset2024') }}/bg-home-bawah.png" alt="" id="bgBawah">--}}
     </main>
-    <footer class="bg-red d-flex row py-4">
+    <footer class="bg-red d-flex row py-4 position-relative">
         <div class="col-lg-5 px-4">
             <h3 class="text-white">MANIAC XIII</h3>
             <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa

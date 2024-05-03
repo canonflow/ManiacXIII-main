@@ -17,8 +17,9 @@
     }
 
     .container-bg {
-        background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");
-        background-repeat: repeat-y;
+        {{--background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");--}}
+        background-image: url("{{ asset('asset2024/bg-home.png') }}");
+        background-repeat: no-repeat;
         background-size: cover;
     }
 
@@ -108,7 +109,7 @@
 @endsection
 
 @section('content')
-<div class="container-bg container-xxl">
+<div class="container-xxl">
     <div class="p-5">
         <h1 class="fs-1">COMPETITIONS</h1>
         <br>

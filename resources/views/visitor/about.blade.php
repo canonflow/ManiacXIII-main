@@ -11,13 +11,13 @@
         .box {
             background-color: #a67563;
             border-radius: 20px 20px 0 0;
-        }   
+        }
 
         .carousel-image-wrapper {
-            padding: 40px; 
-            background-color: black; 
-            max-width: 60%; 
-            margin: 0 auto; 
+            padding: 40px;
+            background-color: black;
+            max-width: 60%;
+            margin: 0 auto;
             border-radius: 20px;
         }
 
@@ -28,9 +28,9 @@
 
         h1{
             font-family: Cinzel;
-            text-shadow: 1px 1px 1px #620706; 
+            text-shadow: 1px 1px 1px #620706;
         }
-        
+
         .body {
             background-color: #7f4c42;
             color: white;
@@ -43,7 +43,7 @@
         /* Ukuran teks untuk layar kecil */
         @media (max-width: 576px) {
             .body {
-                font-size: 4vw !important; 
+                font-size: 4vw !important;
             }
         }
 
@@ -57,7 +57,7 @@
         /* Ukuran teks untuk layar besar */
         @media (min-width: 769px) {
             .body {
-                font-size: 1.5vw !important ; 
+                font-size: 1.5vw !important ;
             }
         }
 
@@ -80,11 +80,11 @@
 @endsection
 
 @section('content')
-<div class="container-bg container-fluid">
+<div class="container-bg container-xxl">
     <div class="container py-5">
         <h1 class="text-center text-bold py-2">WHAT IS MANIAC</h1>
         <br>
-        <div class="box"> 
+        <div class="box">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="carousel-image-wrapper d-flex justify-content-center"> 
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
                                 <img src="{{ asset('asset2024/main/shield.png') }}" class="rounded img-fluid" alt="Shield">
                             </div>
                         </div>
@@ -103,34 +103,34 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <div class="carousel-image-wrapper d-flex justify-content-center"> 
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
                                 <img src="{{ asset('asset2024/main/shield.png') }}" class="rounded img-fluid" alt="Sword">
                             </div>
                         </div>
                     </div>
-                    <button 
-                        class="carousel-control-prev" 
-                        type="button" 
-                        data-bs-target="#carouselExampleIndicators" 
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button 
-                        class="carousel-control-next" 
-                        type="button" 
-                        data-bs-target="#carouselExampleIndicators" 
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-        </div> 
+        </div>
         <div class="body fs-2">
             MANIAC adalah acara lomba untuk anak SMA/K sederajat yang mencakup
             workshop, rally games, dan final. Materi yang dilombakan mengenai Game
             Concept Design dan Game Asset Design. MANIAC diselenggarakan oleh jurusan
-            Teknik Informatika program Digital Media Technology Universitas Surabaya. 
+            Teknik Informatika program Digital Media Technology Universitas Surabaya.
         </div>
         <br>
         <h1 class="text-center text-bold py-2">JOIN NOW</h1>
