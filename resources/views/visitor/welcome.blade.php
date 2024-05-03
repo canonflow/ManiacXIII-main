@@ -29,10 +29,43 @@
 
 
     <style>
+        /* Font cinzel */
+        @font-face {
+            font-family: 'cinzel';
+            src: url("../fonts/cinzel/Cinzel-Regular.ttf") format('truetype');
+            font-weight: 100;
+        }
+        
+        @font-face {
+            font-family: 'cinzel';
+            src: url("../fonts/cinzel/Cinzel-Medium.ttf") format('truetype');
+            font-weight: 300;
+        }
+        
+        @font-face {
+            font-family: 'cinzel';
+            src: url("../fonts/cinzel/Cinzel-SemiBold.ttf") format('truetype');
+            font-weight: 500;
+        }
+        
+        @font-face {
+            font-family: 'cinzel';
+            src: url("../fonts/cinzel/Cinzel-Bold.ttf") format('truetype');
+            font-weight: 700;
+        }
+        
+        @font-face {
+            font-family: 'cinzel';
+            src: url("../fonts/cinzel/Cinzel-ExtraBold.ttf") format('truetype');
+            font-weight: 800;
+        }
+
         @font-face {
             font-family: 'cinzel';
             src: url("../fonts/cinzel/Cinzel-Black.ttf") format('truetype');
+            font-weight: 900;
         }
+        /* Font cinzel */
 
         @font-face {
             font-family: 'viking';
