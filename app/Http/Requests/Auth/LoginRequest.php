@@ -45,11 +45,11 @@ class LoginRequest extends FormRequest
         if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-            Redirect::to('/login')->withErrors('login', 'Login Gagal! Kombinasi username dan password salah!');
-//            throw ValidationException::withMessages([
-////                'email' => trans('auth.failed'),
-//                'login' => "Login Gagal! Kombinasi username dan password salah!"
-//            ]);
+            //Redirect::to('/login')->withErrors('login', 'Login Gagal! Kombinasi username dan password salah!');
+            throw ValidationException::withMessages([
+//                'email' => trans('auth.failed'),
+                'login' => "Login Gagal! Kombinasi username dan password salah!"
+            ]);
 
         }
 

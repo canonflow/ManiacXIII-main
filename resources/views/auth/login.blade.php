@@ -35,6 +35,16 @@
     <div class="container-fluid bg-primary m-0 p-0">
         <div class="container d-flex justify-content-center align-items-center flex-column">
             <img src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50">
+            @if(session()->has('gagal'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session()->get('gagal') }}
+                </div>
+            @endif
+{{--            @error('gagal')--}}
+{{--                <div class="alert alert-success" role="alert">--}}
+{{--                    {{ $message }}--}}
+{{--                </div>--}}
+{{--            @enderror--}}
             <div class="w-75 d-flex justify-content-center">
                 <form method="POST" action="{{ route('login') }}" class="">
                     @csrf
@@ -48,9 +58,6 @@
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
                             </div>
-                        @enderror
-                        @error('login')
-                            <span class="text-danger invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
