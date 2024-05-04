@@ -17,6 +17,7 @@
                 --button-weight: 650;
                 --video-container-br: 11px;
                 --video-br: 10px;
+                --video-height: 130px;
             }
         }
 
@@ -34,6 +35,7 @@
                 --button-weight: 650;
                 --video-container-br: 22px;
                 --video-br: 17px;
+                --video-height: 190px;
             }
         }
 
@@ -51,6 +53,7 @@
                 --button-weight: 600;
                 --video-container-br: 26px;
                 --video-br: 21px;
+                --video-height: 250px;
             }
         }
 
@@ -68,6 +71,7 @@
                 --button-weight: 600;
                 --video-container-br: 30px;
                 --video-br: 25px;
+                --video-height: 300px;
             }
         }
 
@@ -85,6 +89,7 @@
                 --button-weight: 600;
                 --video-container-br: 34px;
                 --video-br: 29px;
+                --video-height: 400px;
             }
         }
         /* Variabel */
@@ -269,18 +274,18 @@
         /* video */
         .container-video{
             width: 50%;
-            height: 10%;
+            height: 100%;
             padding: 2% 3.5%;
-            margin-bottom: 30%;
+            margin-bottom: 37%;
             border-bottom: 1px solid #D9D9D9;
             border-radius: var(--video-container-br);
             background-color: #A67563;
             box-shadow: 0 4px 6px -2px gray;
         }
 
-        video {
+        .iframe {
             width: 100%;
-            height: 40%;
+            height: var(--video-height);
             border-radius: var(--video-br);
         }
         /* video */
@@ -312,7 +317,7 @@
                 <img src="{{ asset('asset2024/main/8.png') }}" class="dec-2 dec-2-1">
                 <div class="wrap-poster d-flex justify-content-center position-relative">
                     <div class="container-poster d-flex justify-content-center ">
-                        <img src="{{ asset('asset2024/main/peserta-contest.png') }}" alt="Poster Maniac" class="poster w-100">
+                        <img src="{{ asset('asset2024/main/poster.png') }}" alt="Poster Maniac" class="poster w-100">
                     </div>
                 </div>
                 <div class="wrap-dec-2">
@@ -352,12 +357,12 @@
         </div>
     </div>
     <div class="container-page-5 position-relative">
-        <div class="d-flex justify-content-center flex-column align-items-center ">
+        <div class="container-text-iframe d-flex justify-content-center flex-column align-items-center ">
             <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
             <h1 class="text-join-now">JOIN NOW</h1>
             <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-5">
             <div class="container-video d-flex justify-content-center align-items-center z-1">
-                <video src="{{ asset('asset2024/main/after_movie.mp4') }}" controls class="d-flex align-items-center justify-content-center"></video>
+                <iframe src="https://www.youtube.com/embed/anuXjaAuX8k?si=qphMwYppClkTZCg4" frameborder="0" class="iframe d-flex align-items-center justify-content-center"></iframe>
             </div>
         </div>
     </div>
