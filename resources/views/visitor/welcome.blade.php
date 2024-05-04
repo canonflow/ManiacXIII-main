@@ -83,7 +83,7 @@
         }
 
         .icon {
-            width: 15px;
+            width: 20px;
             height: auto;
         }
     </style>
@@ -311,46 +311,58 @@
     <footer class="w-100 bg-red pt-2">
         <div class="container-fluid px-4 py-4">
             <div class="row">
-                <h3 class="text-white d-block" style="font-family: 'cinzel';">MANIAC XIII</h3>
-                <div class="col-lg-4 col-sm-12">
-                    <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya,
-                        Jawa Timur</a>
-                    <div class="maps py-3">
-                        <iframe class="w-75"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3031802459786!2d112.76553161057895!3d-7.319800892657786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fae3f29c4665%3A0x7536c23b4453a79!2sUniversity%20of%20Surabaya!5e0!3m2!1sen!2sid!4v1709278257216!5m2!1sen!2sid"
-                            style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                <div class="col-lg-5 col-sm-12 pe-3">
+                    <h3 class="text-white d-block" style="font-family: 'cinzel';">MANIAC XIII</h3>
+                    <p class="text-white text-justify"><strong>MANIAC (Multimedia And Interactive Art
+                            Competition)</strong> adalah lomba berbasis multimedia untuk anak SMA/K sederajat yang
+                        mencakup rally games, game concept design, dan game asset design,
+                        yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology
+                        Universitas Surabaya.
+                    </p>
+                    <img src="{{ asset('asset2024/logo-maniac.jpg') }}" width="60px" height="auto"
+                        alt="logo-maniac">
+                    <img src="{{ asset('asset2024/logo-ubaya.png') }}" width="60px" height="auto"
+                        alt="logo-ubaya">
                 </div>
-                <div class="col-lg-4">
-                    <h6 class="text-white"><strong>SOCIAL MEDIA</strong></h6>
+                <div class="col-lg-4 ps-5">
+                    <h5 class="text-white"><strong>SOCIAL MEDIA</strong></h5>
                     <div class="grid gap-4">
                         <p class="text-white">
-                            <img class="icon" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
+                            <img class="icon pb-2" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
                             @maniac_ubaya
                         </p>
-                        <p class="text-white">
+
+                        {{--                        <p class="text-white"> --}}
+                        {{--                            <img class="icon" src="{{ asset('asset2024/footer/tiktok.png') }}" alt="tiktok"> --}}
+                        {{--                            @maniac_ubaya --}}
+                        {{--                        </p> --}}
+                        <br><br><br>
+                        <h5 class="text-white"><strong>CONTACT US</strong></h5>
+                        <p class="text-white pb-2">
                             <img class="icon" src="{{ asset('asset2024/footer/line.png') }}" alt="line">
                             @994nxsfr
                         </p>
-                        <p class="text-white">
+                        <p class="text-white pb-2">
                             <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
                             @maniac.ubayaa@gmail.com
                         </p>
-{{--                        <p class="text-white">--}}
-{{--                            <img class="icon" src="{{ asset('asset2024/footer/tiktok.png') }}" alt="tiktok">--}}
-{{--                            @maniac_ubaya--}}
-{{--                        </p>--}}
+                        <p class="text-white pb-2">
+                            <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
+                            085951465290 (Caitlyn)
+                        </p>
+                        <p class="text-white pb-2">
+                            <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
+                            085104914848 (Fiorello)
+                        </p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="col-lg-2">
-                        <h6 class="text-white pt-sm-3"><strong>SPONSORED BY</strong></h6>
-                    </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white"><strong>SPONSORED BY</strong></h5>
                 </div>
                 <br>
                 <br>
-                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights Reserved</p>
+                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights
+                    Reserved</p>
             </div>
         </div>
     </footer>
