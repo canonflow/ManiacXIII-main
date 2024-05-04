@@ -21,63 +21,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/font.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
 
-
     <style>
-        /* Font cinzel */
-        @font-face {
-            font-family: 'cinzel';
-            src: url("../fonts/cinzel/Cinzel-Regular.ttf") format('truetype');
-            font-weight: 100;
-        }
-
-        @font-face {
-            font-family: 'cinzel';
-            src: url("../fonts/cinzel/Cinzel-Medium.ttf") format('truetype');
-            font-weight: 300;
-        }
-
-        @font-face {
-            font-family: 'cinzel';
-            src: url("../fonts/cinzel/Cinzel-SemiBold.ttf") format('truetype');
-            font-weight: 500;
-        }
-
-        @font-face {
-            font-family: 'cinzel';
-            src: url("../fonts/cinzel/Cinzel-Bold.ttf") format('truetype');
-            font-weight: 700;
-        }
-
-        @font-face {
-            font-family: 'cinzel';
-            src: url("../fonts/cinzel/Cinzel-ExtraBold.ttf") format('truetype');
-            font-weight: 800;
-        }
-
-        @font-face {
-            font-family: 'cinzel';
-            src: url("../fonts/cinzel/Cinzel-Black.ttf") format('truetype');
-            font-weight: 900;
-        }
-
-        /* Font cinzel */
-
-        @font-face {
-            font-family: 'viking';
-            src: url("../fonts/viking/pr-viking.ttf") format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Montserrat';
-            src: url("../fonts/montserrat/Montserrat-Regular.otf") format("otf");
-        }
-
         #navbarNav {
             justify-content: end;
         }
@@ -87,6 +35,10 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: top center;
+        }
+
+        p {
+            font-family: 'Montserrat';
         }
 
         .container-fluid {
@@ -107,9 +59,6 @@
         }
 
         .container-bottom-home {
-            /* padding-top: 44%; */
-            /* Kasih responsive ini berhubungan dengan .buttom-web-home */
-            /* align-items: start; */
             position: absolute;
             bottom: 100px;
         }
@@ -132,10 +81,14 @@
             gap: 8px;
 
         }
+
+        .icon {
+            width: 15px;
+            height: auto;
+        }
     </style>
     @yield('styles')
 
-    {{--    @vite('resources/css/app.css') --}}
 </head>
 
 <body class="antialiased overflow-x-hidden">
@@ -152,7 +105,6 @@
                 <!-- Toggle button for small screens -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                    {{-- <span class="navbar-toggler-icon" style="color: white;"></span> --}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-list text-white" style="transform: scale(1.2)" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -222,7 +174,7 @@
                                         <li>
                                             <a href="{{ url($endpoint) }}"
                                                 style="font-size: 1rem !important; letter-spacing: 1px !important;"
-                                                class="dropdown-item text-danger">Dashboard</a>
+                                                class="dropdown-item text-white">Dashboard</a>
                                         </li>
                                         <li>
                                             <form action="{{ route('logout') }}" method="POST" id="logout">
@@ -246,7 +198,6 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- Add more navbar links as needed -->
                     </ul>
                 </div>
             </div>
@@ -256,9 +207,9 @@
         <div class="offcanvas offcanvas-start bg-red" tabindex="-1" id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">MANIAC XIII</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
+                <h4 class="offcanvas-title text-white" id="offcanvasNavbarLabel" style="font-family: 'cinzel'">MANIAC
+                    XIII</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <!-- Offcanvas menu links -->
@@ -318,24 +269,24 @@
                                     <li>
                                         <a href="{{ url($endpoint) }}"
                                             style="font-size: 1rem !important; letter-spacing: 1px !important;"
-                                            class="dropdown-item text-danger">Dashboard</a>
+                                            class="dropdown-item text-white">Dashboard</a>
                                     </li>
                                     <li>
                                         <form action="{{ route('logout') }}" method="POST" id="logout">
                                             @csrf
-                                            <button class="btn-logout dropdown-item text-danger"
+                                            <button class="btn-logout dropdown-item text-white"
                                                 style="font-size: 1rem !important; letter-spacing: 1px !important;"
                                                 type="submit">Logout</button>
                                         </form>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ route('login') }}" class="dropdown-item text-danger">LOGIN</a>
+                                        <a href="{{ route('login') }}" class="dropdown-item text-white">LOGIN</a>
                                     </li>
                                     @if (Route::has('register'))
                                         <li>
                                             <a href="{{ route('register') }}"
-                                                class="dropdown-item text-danger">REGISTER</a>
+                                                class="dropdown-item text-white">REGISTER</a>
                                         </li>
                                     @endif
                                 @endauth
@@ -350,113 +301,58 @@
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        {{-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link text-white" href="{{ route('index') }}">HOME</a>
-                <a class="nav-link text-white" href="{{ route('visitor.about') }}">ABOUT US <span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-link text-white" href="{{ route('visitor.competition') }}">COMPETITION</a>
-                <a class="nav-link text-white" href="{{ route('visitor.faq') }}">FAQ</a>
-                <a class="nav-link text-white" href="{{ asset('asset2024/main/guidebook.pdf') }}"
-                    download="Guidebook MANIAC XIII.pdf">GUIDEBOOK</a>
-                <div class="dropdown">
-                    <button class="btn btn-account dropdown-toggle text-white" type="button" id="account-dropdown"
-                        data-bs-toggle="dropdown">ACCOUNT</button>
-                    <ul class="dropdown-menu" aria-labelledby="account-dropdown">
-                        @auth
-                            @php
-                                $endpoint = '';
-                                switch (\Illuminate\Support\Facades\Auth::user()->role) {
-                                    case 'participant':
-                                        $endpoint = '/team';
-                                        break;
-                                    case 'acara':
-                                        $endpoint = '/acara';
-                                        break;
-                                    case 'si':
-                                        $endpoint = '/si';
-                                        break;
-                                    case 'supersi':
-                                        $endpoint = '/supersi';
-                                        break;
-                                    case 'admin':
-                                        $endpoint = '/admin';
-                                        break;
-                                    case 'judge':
-                                        $endpoint = '/judge';
-                                        break;
-                                    default:
-                                        $endpoint = '/penpos';
-                                        break;
-                                }
-                            @endphp
-                            <li>
-                                <a href="{{ url($endpoint) }}"
-                                    style="font-size: 1rem !important; letter-spacing: 1px !important;"
-                                    class="dropdown-item text-danger">Dashboard</a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST" id="logout">
-                                    @csrf
-                                    <button class="btn-logout dropdown-item text-danger"
-                                        style="font-size: 1rem !important; letter-spacing: 1px !important;"
-                                        type="submit">Logout</button>
-                                </form>
-                            </li>
-                        @else
-                            <li>
-                                <a href="{{ route('login') }}" class="dropdown-item text-danger">LOGIN</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li>
-                                    <a href="{{ route('register') }}" class="dropdown-item text-danger">REGISTER</a>
-                                </li>
-                            @endif
-                        @endauth
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </nav> --}}
     @endif
     <main class="position-relative">
         @yield('content')
         <span class="d-block" style="height: 7rem;"></span>
         <img src="{{ asset('asset2024/bg-home-bawah.png') }}" class="bottom-web-home position-absolute">
     </main>
-    <footer class="bg-red d-flex row py-4 position-relative">
-        <div class="col-lg-5 px-4">
-            <h3 class="text-white">MANIAC XIII</h3>
-            <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya, Jawa
-                Timur</a>
-            <div class="maps py-3">
-                <iframe class="w-75 w-sm-25"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3031802459786!2d112.76553161057895!3d-7.319800892657786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fae3f29c4665%3A0x7536c23b4453a79!2sUniversity%20of%20Surabaya!5e0!3m2!1sen!2sid!4v1709278257216!5m2!1sen!2sid"
-                    style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-        <div class="col-lg-5">
-            <h4 class="text-white font-bold">SOCIAL MEDIA</h4>
-            <div class="grid gap-4">
-                <p class="text-white">
-                    <i class="fa-brands fa-square-instagram"></i>
-                    @maniac_ubaya
-                </p>
-                <p class="text-white">
-                    <i class="fa-brands fa-line"></i>
-                    @994nxsfr
-                </p>
-                <p class="text-white">
-                    <i class="fa-solid fa-envelope"></i> maniac.ubayaa@gmail.com
-                </p>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <h6 class="text-white font-bold">SPONSORED BY</h6>
 
-        </div>
-        <p class="text-white text-end pe-5">&#169; 2024 MANIAC XIII </p>
+    <footer class="w-100 bg-red pt-2">
+        <div class="container-fluid px-4">
+            <div class="row">
+                <h3 class="text-white d-block" style="font-family: 'cinzel';">MANIAC XIII</h3>
+                <div class="col-lg-4 col-sm-12">
+                    <a class="link link-hover text-white">Jl. Raya Kalirungkut, Kali Rungkut, Kec. Rungkut, Surabaya,
+                        Jawa Timur</a>
+                    <div class="maps py-3">
+                        <iframe class="w-75"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3031802459786!2d112.76553161057895!3d-7.319800892657786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fae3f29c4665%3A0x7536c23b4453a79!2sUniversity%20of%20Surabaya!5e0!3m2!1sen!2sid!4v1709278257216!5m2!1sen!2sid"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-white"><strong>SOCIAL MEDIA</strong></h6>
+                    <div class="grid gap-4">
+                        <p class="text-white">
+                            <img class="icon" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
+                            @maniac_ubaya
+                        </p>
+                        <p class="text-white">
+                            <img class="icon" src="{{ asset('asset2024/footer/line.png') }}" alt="line">
+                            @994nxsfr
+                        </p>
+                        <p class="text-white">
+                            <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
+                            @maniac.ubayaa@gmail.com
+                        </p>
+                        <p class="text-white">
+                            <img class="icon" src="{{ asset('asset2024/footer/tiktok.png') }}" alt="tiktok">
+                            @maniac_ubaya
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="col-lg-2">
+                        <h6 class="text-white pt-sm-3"><strong>SPONSORED BY</strong></h6>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <p class="text-white text-end pe-5 pb-3">&#169; Developed by MANIAC XIII Committee </p>
+            </div>
 
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -21,16 +21,18 @@
         }
 
         @media (max-width: 575px) {
-            :root{ /* Ambil width : 420 */
+            :root {
+                /* Ambil width : 420 */
                 --height-wrap-all: 80vh;
                 --width-input-1: 16em;
                 --width-button: 250%;
-                --form-p: 3% 5% ;
+                --form-p: 3% 5%;
             }
         }
-        
+
         @media (min-width: 576px) {
-            :root{/* Titik tengah : 672 */
+            :root {
+                /* Titik tengah : 672 */
                 --height-wrap-all: 110vh;
                 --width-input-1: 21em;
                 --width-button: 350%;
@@ -39,25 +41,27 @@
             }
         }
 
-        .input-1{
-            padding-left: 2%;
-            width: var(--width-input-1);
-            border-radius: 8px; 
-            background-color: #DCE2E2;
-        }
-
-        a{
+        a {
             color: #2300FD;
             font-size: 12px;
             font-weight: 450;
         }
 
-        .wrap-all{
+        .input-1 {
+            padding-left: 2%;
+            width: var(--width-input-1);
+            border-radius: 8px;
+            background-color: #DCE2E2;
+        }
+
+
+
+        .wrap-all {
             padding-bottom: 4%;
             font-family: "Montserrat";
             font-weight: 600;
-            letter-spacing: 1.2px; 
-            width:100vw;
+            letter-spacing: 1.2px;
+            width: 100vw;
             height: var(--height-wrap-all);
         }
 
@@ -69,34 +73,28 @@
             width: 17%;
         }
 
-        .container-form{
+        .container-form {
             padding: var(--form-p);
             border: 1px solid rgba(255, 255, 255, 0.7);
-            border-radius: 21px; 
+            border-radius: 21px;
             background-color: rgba(217, 217, 217, 0.7);
             backdrop-filter: blur(8px);
         }
 
-        .button{
+        .button {
             margin-top: 5%;
             width: var(--width-button);
-            border-radius: 10px; 
+            border-radius: 10px;
             font-size: 15px;
             font-weight: 700;
             background-color: #620706;
             color: #D9D9D9;
         }
 
-        .button:hover{
+        .button:hover {
             color: #D9D9D9;
             background-color: #540707;
         }
-
-
-
-
-
-
 
         .txtPass {
             position: relative;
@@ -138,9 +136,9 @@
     <div class="container-fluid m-0 p-0">
         <div class="position-relative">
             <!-- <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-1 position-absolute z-0">
-            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-2 position-absolute z-0">
-            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-3 position-absolute z-0">
-            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-4 position-absolute z-0"> -->
+                                                    <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-2 position-absolute z-0">
+                                                    <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-3 position-absolute z-0">
+                                                    <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-4 position-absolute z-0"> -->
         </div>
         <div class="wrap-all d-flex justify-content-center align-items-center flex-column ">
             <img src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50 z-1">
@@ -156,14 +154,14 @@
             {{--            @enderror --}}
             <img src="{{ asset('asset2024/main/2.png') }}" class="dec-1 z-1">
             <div class="container-form d-flex justify-content-center align-items-center z-1">
-                <form method="POST" action="{{ route('login') }}" class="d-flex justify-content-center align-items-center flex-column">
+                <form method="POST" action="{{ route('login') }}"
+                    class="d-flex justify-content-center align-items-center flex-column">
                     @csrf
                     <!-- Email Address -->
                     <div>
                         <label for="username" :value="__('Username')">Username</label>
                         <br>
-                        <input id="username"
-                            class="input-1 block mt-1 w-full @error('username') is-invalid @enderror"
+                        <input id="username" class="input-1 block mt-1 w-full @error('username') is-invalid @enderror"
                             type="text" name="username" :value="old('username')" autofocus autocomplete="username" />
                         @error('username')
                             <div class="invalid-feedback alert-danger">
@@ -176,9 +174,9 @@
                     <div class="mt-4">
                         <label for="password" :value="__('Password')">Password</label>
                         <div class="input-group d-flex txtPass rounded">
-                            <input id="password" class="input-1 block mt-1 w-full" type="password"
-                                name="password" autocomplete="current-password" />
-                            <svg style="width: 25px; height:auto;" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            <input id="password" class="input-1 block mt-1 w-full" type="password" name="password"
+                                autocomplete="current-password" />
+                            <svg style="width: 20px; height:auto;" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                 class="togle-position eye-close" onclick="togglePasswordVisibility()">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -187,7 +185,7 @@
                                     d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                             </svg>
 
-                            <svg style="width: 25px; height:auto;" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            <svg style="width: 20px; height:auto;" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="togle-position eye"
                                 onclick="togglePasswordVisibility()">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -219,7 +217,7 @@
                             {{ __('Log in') }}
                         </button>
                     </div>
-                </div>
+            </div>
             </form>
         </div>
     </div>
