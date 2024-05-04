@@ -140,6 +140,7 @@
                                     class="sr-only">(current)</span></a>
                             <a class="nav-link text-white" href="{{ route('visitor.competition') }}">COMPETITION</a>
                             <a class="nav-link text-white" href="{{ route('visitor.faq') }}">FAQ</a>
+                            <a class="nav-link text-white" href="{{ asset('asset2024/main/guidebook.pdf') }}" download="Guidebook MANIAC XIII.pdf">GUIDEBOOK</a>
                             <div class="dropdown">
                                 <button class="btn btn-account dropdown-toggle text-white" type="button"
                                     id="account-dropdown" data-bs-toggle="dropdown">ACCOUNT</button>
