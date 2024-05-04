@@ -6,26 +6,29 @@
             border-radius: 20px;
         }
 
-        .accordion-button:not(.collapsed){
+        .accordion-button:not(.collapsed) {
             border-bottom-left-radius: 0px;
             border-bottom-right-radius: 0px;
         }
 
-        .accordion-button{
+        .accordion-button {
             background-color: #a67563;
             color: white;
             font-family: Montserrat;
             font-weight: bold;
 
         }
+
         .accordion-button:not(.collapsed) {
             background-color: #a67563;
             color: #fff;
         }
-        .bg-faq{
+
+        .bg-faq {
             background-color: #a67563;
         }
-        .accordion-body{
+
+        .accordion-body {
             background-color: #7f4c42;
             color: white;
             border-top-left-radius: 0px;
@@ -34,7 +37,8 @@
             border-bottom-right-radius: 20px;
             font-family: Montserrat;
         }
-        h1{
+
+        h1 {
             font-family: Montserrat;
             text-shadow: 1px 1px 1px #620706;
         }
@@ -57,7 +61,7 @@
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>MANIAC (Multimedia ANd Interactive Art Competition)</strong> adalah lomba berbasis
+                                <strong>MANIAC (Multimedia And Interactive Art Competition)</strong> adalah lomba berbasis
                                 multimedia untuk
                                 anak SMA/K sederajat yang mencakup rally games, game concept design, dan game asset design,
                                 yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology
@@ -70,7 +74,8 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Apakah MANIAC XIII akan diadakan secara&nbsp;<em>online</em>&nbsp;atau&nbsp;<em>offline</em>?
+                                Apakah MANIAC XIII akan diadakan
+                                secara&nbsp;<em>online</em>&nbsp;atau&nbsp;<em>offline</em>?
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -109,7 +114,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                 Apakah MANIAC XIII bersifat akademis (seperti mengerjakan soal-soal
-                                    pelajaran)?
+                                pelajaran)?
                             </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -125,7 +130,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                 Apakah bidang lomba yang diujikan hanya tentang Digital Media
-                                    Technology?
+                                Technology?
                             </button>
                         </h2>
                         <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -212,7 +217,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                                 Apakah&nbsp;<em>workshop</em>&nbsp;diwajibkan bagi semua peserta lomba MANIAC
-                                    XIII?
+                                XIII?
                             </button>
                         </h2>
                         <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -266,7 +271,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
-                              Berapa jumlah orang dalam satu tim ?
+                                Berapa jumlah orang dalam satu tim ?
                             </button>
                         </h2>
                         <div id="collapse13" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -410,7 +415,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse22" aria-expanded="false" aria-controls="collapse22">
                                 Apakah diperbolehkan menggantikan rekan satu tim jika mendadak tidak bisa
-                                    mengikuti MANIAC XIII?
+                                mengikuti MANIAC XIII?
                             </button>
                         </h2>
                         <div id="collapse22" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
