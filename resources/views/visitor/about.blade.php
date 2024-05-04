@@ -2,6 +2,9 @@
 
 @section('styles')
     <style>
+        :root {
+            --video-h: 150px;
+        }
         .container-bg {
             background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");
             background-repeat: repeat-y;
@@ -62,15 +65,34 @@
         .video-container {
             width: 50%;
             height: 10%;
-            padding: 2.5% 3%;
+            padding: 1.25rem 1.5rem;
             border-radius: 30px;
             background-color: #A67563;
         }
 
-        .video-container video {
-            max-width: 100%; /* Agar video tidak melewati lebar container */
-            height: auto; /* Mempertahankan rasio aspek */
-            border-radius: 20px; /* Menjaga sudut melengkung */
+        /*.video-container video {*/
+        /*    max-width: 100%; !* Agar video tidak melewati lebar container *!*/
+        /*    height: auto; !* Mempertahankan rasio aspek *!*/
+        /*    border-radius: 20px; !* Menjaga sudut melengkung *!*/
+        /*}*/
+
+        #video {
+            /*width: 560px;*/
+            height: var(--video-h);
+            width: 100%;
+            /*height: 50%;*/
+        }
+
+        @media (min-width: 772px) {
+            :root {
+                --video-h: 200px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            :root {
+                --video-h: 314px;
+            }
         }
     </style>
 @endsection
@@ -134,9 +156,9 @@
         <h1 class="text-center text-bold py-2 mt-5">JOIN NOW</h1>
         <div class="container py-2 d-flex justify-content-center">
             <div class="video-container">
-                <video controls>
-                    <source src="{{ asset('asset2024/main/after_movie.mp4') }}" type="video/mp4">
-                </video>
+                <div class="d-flex justify-content-center align-items-center z-1">
+                    <iframe id="video" src="https://www.youtube.com/embed/anuXjaAuX8k?si=OfKhz67COFjPfS8d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
