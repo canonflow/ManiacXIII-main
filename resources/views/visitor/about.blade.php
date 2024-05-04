@@ -3,13 +3,14 @@
 @section('styles')
     <style>
         :root {
-            --video-h: 150px;
+            --video-h: 165px;
+            --video-w: 200%;
         }
-        .container-bg {
-            background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");
-            background-repeat: repeat-y;
-            background-size: cover;
-        }
+        {{--.container-bg {--}}
+        {{--    background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");--}}
+        {{--    background-repeat: repeat-y;--}}
+        {{--    background-size: cover;--}}
+        {{--}--}}
 
         .box {
             background-color: #a67563;
@@ -63,9 +64,9 @@
         }
 
         .video-container {
-            width: 50%;
+            width: 100%;
             height: 10%;
-            padding: 1.25rem 1.5rem;
+            padding: 1.25rem 2rem;
             border-radius: 30px;
             background-color: #A67563;
         }
@@ -77,21 +78,46 @@
         /*}*/
 
         #video {
-            /*width: 560px;*/
             height: var(--video-h);
-            width: 100%;
-            /*height: 50%;*/
+            width: var(--video-w);
+        }
+
+        iframe {
+            border-radius: 1rem;
+        }
+
+        @media (max-width: 486px) {
+            :root {
+                --video-w: 100%;
+            }
+        }
+
+        @media (min-width: 486px) {
+            :root {
+                --video-h: 240px;
+            }
         }
 
         @media (min-width: 772px) {
             :root {
-                --video-h: 200px;
+                --video-h: 225px;
+                --video-w: 100%;
+            }
+
+            .video-container {
+                width: 70%;
             }
         }
 
         @media (min-width: 992px) {
             :root {
                 --video-h: 314px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            :root {
+                --video-h: 440px;
             }
         }
     </style>
