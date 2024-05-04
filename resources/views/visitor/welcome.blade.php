@@ -350,7 +350,7 @@
                 </div>
                 <br>
                 <br>
-                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, ALl RIghts Reserved</p>
+                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights Reserved</p>
             </div>
         </div>
     </footer>
