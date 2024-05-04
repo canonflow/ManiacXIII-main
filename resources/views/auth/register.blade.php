@@ -22,10 +22,6 @@
             border: 1px solid;
         }
 
-        .form {
-            z-index: 999999;
-        }
-
         .mount {
             width: 500px;
             bottom: 0px;
@@ -72,7 +68,7 @@
                 src="{{ asset('asset2024/main/cloud.png') }}" alt="">
 
         </div>
-        <div class="form my-5 w-75 container position-relative">
+        <div class="my-5 w-75 container position-relative">
             <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}"
                 enctype="multipart/form-data">
                 @csrf
