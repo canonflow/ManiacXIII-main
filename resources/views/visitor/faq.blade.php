@@ -74,8 +74,10 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span>
                                 Apakah MANIAC XIII akan diadakan
                                 secara&nbsp;<em>online</em>&nbsp;atau&nbsp;<em>offline</em>?
+                                </span>
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -163,7 +165,9 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                <em>Software</em>&nbsp;apa yang digunakan selama lomba?
+                                <span>
+                                    <em>Software</em>&nbsp;apa yang digunakan selama lomba?
+                                </span>
                             </button>
                         </h2>
                         <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -193,7 +197,9 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                                Bagaimana&nbsp;<em>timeline</em>&nbsp;lomba MANIAC XIII?
+                                <span>
+                                    Bagaimana&nbsp;<em>timeline</em>&nbsp;lomba MANIAC XIII?
+                                </span>
                             </button>
                         </h2>
                         <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -216,8 +222,10 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                Apakah&nbsp;<em>workshop</em>&nbsp;diwajibkan bagi semua peserta lomba MANIAC
-                                XIII?
+                                <span>
+                                    Apakah&nbsp;<em>workshop</em>&nbsp;diwajibkan bagi semua peserta lomba MANIAC
+                                    XIII?
+                                </span>
                             </button>
                         </h2>
                         <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -241,10 +249,10 @@
                         <div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Pendaftaran untuk mengikuti lomba dikenakan biaya sebesar Rp 10.000,-/tim (Early
+                                    <li>Pendaftaran untuk mengikuti lomba dikenakan biaya sebesar Rp 50.000,-/tim (Early
                                         bird) &
-                                        Rp 25.000,-/tim (Normal), terdapat juga potongan biaya pendaftaran bagi sekolah yang
-                                        mendaftarkan 3 tim/lebih sebesar Rp 15.000,-/tim.</li>
+                                        Rp 75.000,-/tim (Normal), terdapat juga potongan biaya pendaftaran bagi sekolah yang
+                                        mendaftarkan 3 tim/lebih menjadi Rp 50.000,-/tim.</li>
                                     <li>
                                         Pendaftaran workshop untuk peserta tidak dikenakan biaya (GRATIS).
                                     </li>
@@ -257,7 +265,9 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                                Apakah terdapat batasan jumlah tim yang mendaftar (dari tiap sekolah)?
+                                <span>
+                                    Apakah terdapat batasan jumlah tim yang mendaftar (dari tiap sekolah)?
+                                </span>
                             </button>
                         </h2>
                         <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -319,7 +329,9 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
-                                Apakah wajib mengikuti&nbsp;<em>Technical Meeting</em>?
+                                <span>
+                                    Apakah wajib mengikuti&nbsp;<em>Technical Meeting</em>?
+                                </span>
                             </button>
                         </h2>
                         <div id="collapse16" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
