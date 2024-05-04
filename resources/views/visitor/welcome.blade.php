@@ -94,7 +94,7 @@
 <body class="antialiased overflow-x-hidden">
     @if (Route::has('login'))
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-inline: 2rem;">
                 <div class="logo">
                     <img src="{{ asset('asset2024/logo-maniac.jpg') }}" width="50px" height="50px" alt="logo-maniac"
                         style="border-radius: 50%;">
