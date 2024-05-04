@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
         // dd($request->all());
         $request->validate([
             //sekolah
-            'username' => ['required', 'string','min:8' ,'max:15', 'unique:users,username'],
+            'username' => ['required', 'string','min:8' ,'max:15', 'unique:users,username', 'regex:/^\S*$/u'],
             'password' => ['required', 'min:8'],
             'nama_tim' => ['required', 'string', 'min:1', 'max:15', 'unique:teams,name'],
             'nama_sekolah' => ['required', 'string', 'max:255'],
@@ -96,7 +96,7 @@ class RegisteredUserController extends Controller
             'name' => $request->get('nama_leader'),
             'phone_number' => $request->get('nomor_leader'),
             'student_photo' => $team->name . '/foto/' . $fotoKetua,
-            'alergi' => $request->get("alergi_leader"),
+            'alergi' => $request->get("alergi_leader") ?? "-",
         ]);
 
         // Anggota 1
@@ -114,7 +114,7 @@ class RegisteredUserController extends Controller
             'name' => $request->get('nama_anggota1'),
             'phone_number' => $request->get('nomor_anggota1'),
             'student_photo' => $team->name . '/foto/' . $fotoAnggota1,
-            'alergi' => $request->get('alergi_anggota1')
+            'alergi' => $request->get('alergi_anggota1') ?? "-",
         ]);
 
         // Anggota 2
@@ -132,7 +132,7 @@ class RegisteredUserController extends Controller
             'name' => $request->get('nama_anggota2'),
             'phone_number' => $request->get('nomor_anggota2'),
             'student_photo' => $team->name . '/foto/' . $fotoAnggota2,
-            'alergi' => $request->get('alergi_anggota2')
+            'alergi' => $request->get('alergi_anggota2') ?? "-",
         ]);
 
         event(new Registered($user));

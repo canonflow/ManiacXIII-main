@@ -42,6 +42,15 @@
             background-color: #e7eadf !important;
         }
 
+        #formContainer {
+            background-color: rgba(202, 206, 190, 1);
+            border-radius: 0.75rem;
+        }
+
+        #formContainer > form {
+            padding: 1rem;
+        }
+
         @media screen and (min-width : 1344px) {
             form {
                 min-width: 50%;
@@ -72,14 +81,14 @@
                 src="{{ asset('asset2024/main/cloud.png') }}" alt="">
 
         </div>
-        <div class="my-5 w-75 container position-relative">
+        <div class="my-4 w-75 container position-relative" id="formContainer">
             <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-12 col-lg-6">
                     <label for="validationCustomUsername" class="form-label text-dark label-stroke">Username</label>
                     <div class="input-group has-validation">
-                        <input type="text" class="form-control" id="validationCustomUsername"
+                        <input type="text" class="form-control @error('password') is-invalid @enderror" id="validationCustomUsername"
                             aria-describedby="inputGroupPrepend" name="username" required placeholder="ex: someone"
                             value="{{ old('username') ?? '' }}" />
                         @error('username')
@@ -89,7 +98,7 @@
                         @enderror
                     </div>
                     <div class="text-danger mt-1" id="passwordCriteriaMessage">
-                        *) Minimal 8 Karakter dan Maximal 15 Karakter
+                        *) Minimal 8 Karakter dan Maximal 15 Karakter. <strong>Tidak mengandung Spasi</strong>
                     </div>
                 </div>
 
@@ -150,7 +159,7 @@
                     <label for="validationCustom03" class="form-label text-dark label-stroke">Nomor Telepon
                         Sekolah</label>
                     <input type="text" class="form-control @error('nomor_sekolah') is-invalid @enderror"
-                        id="validationCustom03" name="nomor_sekolah" required placeholder="ex: +62123456789"
+                        id="validationCustom03" name="nomor_sekolah" required placeholder="ex: 08123456789"
                         value="{{ old('nomor_sekolah') }}" />
                     @error('nomor_sekolah')
                         <div class="invalid-feedback alert-danger">
@@ -185,7 +194,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label for="validationCustom03" class="form-label text-dark label-stroke">Nomor Telepon</label>
                     <input type="text" class="form-control @error('nomor_leader') is-invalid @enderror"
-                        id="validationCustom03" placeholder="ex: +62123456789" required name="nomor_leader"
+                        id="validationCustom03" placeholder="ex: 08123456789" required name="nomor_leader"
                         value="{{ old('nomor_leader') }}">
                     @error('nomor_leader')
                         <div class="invalid-feedback alert-danger">
@@ -238,7 +247,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label for="validationCustom03" class="form-label text-dark label-stroke">Nomor Telepon</label>
                     <input type="text" class="form-control @error('nomor_anggota1') is-invalid @enderror"
-                        id="validationCustom03" required name="nomor_anggota1" placeholder="ex: +62123456789"
+                        id="validationCustom03" required name="nomor_anggota1" placeholder="ex: 08123456789"
                         value="{{ old('nomor_anggota1') }}">
                     @error('nomor_anggota1')
                         <div class="invalid-feedback alert-danger">
@@ -291,7 +300,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label for="validationCustom03" class="form-label text-dark label-stroke">Phone Number</label>
                     <input type="text" class="form-control @error('nomor_anggota2') is-invalid @enderror"
-                        id="validationCustom03" required name="nomor_anggota2" placeholder="ex: +62123456789"
+                        id="validationCustom03" required name="nomor_anggota2" placeholder="ex: 08123456789"
                         value="{{ old('nomor_anggota2') }}">
                     @error('nomor_anggota2')
                         <div class="invalid-feedback alert-danger">
@@ -317,19 +326,21 @@
 {{--                <div class="information mt-2 fw-bold text-white">--}}
 {{--                    *) Berikan tanda - jika tidak ada--}}
 {{--                </div>--}}
-                <div class="col-12s mb-3 text-end">
+                <div class="col-12 mb-3">
                     {{-- <button class="btn btn-primary fs-5 w-25" type="button" data-bs-target="#confirmationModal"
                         data-bs-toggle="modal" id="registerButton">Register</button> --}}
-                    <button type="button" class="btn-register btn btn-primary fs-5 w-25" data-bs-toggle="modal"
-                        data-bs-target="#confirmationModal">
-                        Register
-                    </button>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn-register btn btn-primary fs-5 px-4" data-bs-toggle="modal"
+                            data-bs-target="#confirmationModal">
+                            Register
+                        </button>
+                    </div>
                     <div class="modal fade" id="confirmationModal" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">KONFIMRASI</h1>
+                                    <h1 class="modal-title fs-3 fw-bold" id="staticBackdropLabel">Konfirmasi</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
