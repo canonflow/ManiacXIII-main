@@ -86,7 +86,7 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-12 col-lg-6">
-                    <label for="validationCustomUsername" class="form-label text-dark label-stroke">Username</label>
+                    <label for="validationCustomUsername" class="form-label text-dark label-stroke">Username Akun</label>
                     <div class="input-group has-validation">
                         <input type="text" class="form-control @error('password') is-invalid @enderror" id="validationCustomUsername"
                             aria-describedby="inputGroupPrepend" name="username" required placeholder="ex: someone"
@@ -107,7 +107,7 @@
                     <div class="input-group has-validation">
                         <input type="password" id="validationCustomUsername"
                             class="form-control d-block @error('password') is-invalid @enderror"
-                            id="validationCustomUsername" aria-describedby="inputGroupPrepend" required name="password" />
+                            placeholder="********" aria-describedby="inputGroupPrepend" required name="password" />
                         @error('password')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -298,7 +298,7 @@
                     @enderror
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <label for="validationCustom03" class="form-label text-dark label-stroke">Phone Number</label>
+                    <label for="validationCustom03" class="form-label text-dark label-stroke">Nomor Telepon</label>
                     <input type="text" class="form-control @error('nomor_anggota2') is-invalid @enderror"
                         id="validationCustom03" required name="nomor_anggota2" placeholder="ex: 08123456789"
                         value="{{ old('nomor_anggota2') }}">
@@ -309,7 +309,7 @@
                     @enderror
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <label for="validationCustom03" class="form-label text-dark label-stroke">Photo</label>
+                    <label for="validationCustom03" class="form-label text-dark label-stroke">Foto</label>
                     <input type="file" class="form-control @error('foto_anggota2') is-invalid @enderror"
                         id="validationCustom03" required name="foto_anggota2">
                     @error('nomor_anggota2')
