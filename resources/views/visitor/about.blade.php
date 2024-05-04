@@ -14,8 +14,6 @@
         }
 
         .carousel-image-wrapper {
-            padding: 40px;
-            background-color: black;
             max-width: 60%;
             margin: 0 auto;
             border-radius: 20px;
@@ -62,13 +60,11 @@
         }
 
         .video-container {
-            background-color: #a67563;
-            padding: 20px;
-            border-radius: 20px;
-            max-width: 400px; /* Lebar maksimal untuk container video */
-            width: 100%; /* Agar responsif terhadap container induk */
-            display: flex;
-            justify-content: center; /* Untuk menjaga video tetap terpusat */
+            width: 50%;
+            height: 10%;
+            padding: 2.5% 3%;
+            border-radius: 30px;
+            background-color: #A67563;
         }
 
         .video-container video {
@@ -94,17 +90,17 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="carousel-image-wrapper d-flex justify-content-center">
-                                <img src="{{ asset('asset2024/main/shield.png') }}" class="rounded img-fluid" alt="Shield">
+                                <img src="{{ asset('asset2024/main/foto-peserta-1.jpg') }}" class="rounded img-fluid" alt="foto1">
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="carousel-image-wrapper d-flex justify-content-center">
-                                <img src="{{ asset('asset2024/main/Shield.png') }}" class="rounded img-fluid" alt="Axe">
+                                <img src="{{ asset('asset2024/main/foto-peserta-2.jpg') }}" class="rounded img-fluid" alt="foto2">
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="carousel-image-wrapper d-flex justify-content-center">
-                                <img src="{{ asset('asset2024/main/shield.png') }}" class="rounded img-fluid" alt="Sword">
+                                <img src="{{ asset('asset2024/main/foto-peserta-3.jpg') }}" class="rounded img-fluid" alt="foto3">
                             </div>
                         </div>
                     </div>
@@ -139,7 +135,7 @@
         <div class="container py-2 d-flex justify-content-center">
             <div class="video-container">
                 <video controls>
-                    <source src="video-example.mp4" type="video/mp4">
+                    <source src="{{ asset('asset2024/main/after_movie.mp4') }}" type="video/mp4">
                 </video>
             </div>
         </div>
