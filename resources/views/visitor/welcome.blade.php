@@ -309,7 +309,7 @@
     </main>
 
     <footer class="w-100 bg-red pt-2">
-        <div class="container-fluid px-4">
+        <div class="container-fluid px-4 py-4">
             <div class="row">
                 <h3 class="text-white d-block" style="font-family: 'cinzel';">MANIAC XIII</h3>
                 <div class="col-lg-4 col-sm-12">
@@ -337,23 +337,22 @@
                             <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
                             @maniac.ubayaa@gmail.com
                         </p>
-                        <p class="text-white">
-                            <img class="icon" src="{{ asset('asset2024/footer/tiktok.png') }}" alt="tiktok">
-                            @maniac_ubaya
-                        </p>
+{{--                        <p class="text-white">--}}
+{{--                            <img class="icon" src="{{ asset('asset2024/footer/tiktok.png') }}" alt="tiktok">--}}
+{{--                            @maniac_ubaya--}}
+{{--                        </p>--}}
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="col-lg-2">
                         <h6 class="text-white pt-sm-3"><strong>SPONSORED BY</strong></h6>
-
                     </div>
                 </div>
                 <br>
                 <br>
-                <p class="text-white text-end pe-5 pb-3">&#169; Developed by MANIAC XIII Committee </p>
+                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, ALl RIghts Reserved</p>
             </div>
-
+        </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
