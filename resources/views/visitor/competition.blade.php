@@ -115,12 +115,12 @@
         <br>
         <div class="box-container">
             <div class="floating-box">
-                @foreach (['PENYISIHAN', 'SEMIFINAL', 'FINAL'] as $section)
+                @foreach (['PENYISIHAN', 'SEMI FINAL', 'FINAL'] as $section)
                 <div class="sub fs-4">{{ $section }}</div>
                 <div class="text fs-6 fw-normal text-center">
                     @if ($section == 'PENYISIHAN')
                     Babak penyisihan MANIAC XIII berupa workshop yang dibawakan langsung oleh salah satu game developer ternama di Indonesia.<br /><br />Terdapat dua jenis workshop yang diselenggarakan, yaitu Game Asset Design yang berfokus pada cara pembuatan aset di suatu permainan dan Game Concept Design yang membahas bagaimana cara merancang konsep sebuah permainan. Peserta akan diberikan tugas di akhir workshop.
-                    @elseif ($section == 'SEMIFINAL')
+                    @elseif ($section == 'SEMI FINAL')
                     Babak semi final MANIAC XIII akan diadakan di Fakultas Teknik Universitas Surabaya. Semi final terdiri dari Rally Games dan Game Besar yang harus diselesaikan dengan strategi dan kerja sama tim.
                     @else
                     Babak Final MANIAC XIII akan diadakan secara on-site di Universitas Surabaya.
