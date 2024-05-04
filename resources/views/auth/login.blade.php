@@ -2,31 +2,98 @@
 
 @section('styles')
     <style>
-        * {
-            padding: 0px;
-            margin: 0px;
-            box-sizing: border-box;
+        @font-face {
+            font-family: 'Montserrat';
+            src: url("../fonts/montserrat/Montserrat-SemiBold.otf") format("otf");
+            font-weight: 300;
         }
 
-        label {
-            text-shadow: 0px 0px 8px #e7eadf;
+        @font-face {
+            font-family: 'Montserrat';
+            src: url("../fonts/montserrat/Montserrat-Bold.otf") format("otf");
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url("../fonts/montserrat/Montserrat-ExtraBold.otf") format("otf");
+            font-weight: 700;
+        }
+
+        @media (max-width: 575px) {
+            :root{ /* Ambil width : 420 */
+                --height-wrap-all: 80vh;
+                --width-input-1: 16em;
+                --width-button: 250%;
+                --form-p: 3% 5% ;
+            }
+        }
+        
+        @media (min-width: 576px) {
+            :root{/* Titik tengah : 672 */
+                --height-wrap-all: 110vh;
+                --width-input-1: 21em;
+                --width-button: 350%;
+                --form-p: 1% 2%;
+
+            }
+        }
+
+        .input-1{
+            padding-left: 2%;
+            width: var(--width-input-1);
+            border-radius: 8px; 
+            background-color: #DCE2E2;
+        }
+
+        a{
+            color: #2300FD;
+            font-size: 12px;
+            font-weight: 450;
+        }
+
+        .wrap-all{
+            padding-bottom: 4%;
+            font-family: "Montserrat";
             font-weight: 600;
+            letter-spacing: 1.2px; 
+            width:100vw;
+            height: var(--height-wrap-all);
         }
 
-        body>div {
-            /* background-image: url("{{ asset('asset2024/main/bg.png') }}"); */
-            background-size: 101% 101%;
-            background-position: center;
-            background-repeat: no-repeat;
+        .maniac {
+            width: 40%;
         }
 
-        body>div>div>div {
-            margin-bottom: 4.25rem;
+        .dec-1 {
+            width: 17%;
         }
 
-        .container {
-            height: 100vh;
+        .container-form{
+            padding: var(--form-p);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 21px; 
+            background-color: rgba(217, 217, 217, 0.7);
+            backdrop-filter: blur(8px);
         }
+
+        .button{
+            margin-top: 5%;
+            width: var(--width-button);
+            border-radius: 10px; 
+            font-size: 15px;
+            font-weight: 700;
+            background-color: #620706;
+            color: #D9D9D9;
+        }
+
+        .button:hover{
+            color: #D9D9D9;
+            background-color: #540707;
+        }
+
+
+
 
 
 
@@ -69,8 +136,14 @@
 
 @section('content')
     <div class="container-fluid m-0 p-0">
-        <div class="container d-flex justify-content-center align-items-center flex-column">
-            <img src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50">
+        <div class="position-relative">
+            <!-- <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-1 position-absolute z-0">
+            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-2 position-absolute z-0">
+            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-3 position-absolute z-0">
+            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-4 position-absolute z-0"> -->
+        </div>
+        <div class="wrap-all d-flex justify-content-center align-items-center flex-column ">
+            <img src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50 z-1">
             @if (session()->has('gagal'))
                 <div class="alert alert-danger" role="alert">
                     {{ session()->get('gagal') }}
@@ -81,15 +154,16 @@
             {{--                    {{ $message }} --}}
             {{--                </div> --}}
             {{--            @enderror --}}
-            <div class="w-100 d-flex justify-content-center">
-                <form method="POST" action="{{ route('login') }}" class="w-75">
+            <img src="{{ asset('asset2024/main/2.png') }}" class="dec-1 z-1">
+            <div class="container-form d-flex justify-content-center align-items-center z-1">
+                <form method="POST" action="{{ route('login') }}" class="d-flex justify-content-center align-items-center flex-column">
                     @csrf
-
                     <!-- Email Address -->
                     <div>
-                        <label for="username" :value="__('Username')"><strong>Username</strong></label>
+                        <label for="username" :value="__('Username')">Username</label>
+                        <br>
                         <input id="username"
-                            class="block mt-1 d-block w-100 py-1 px-2 @error('username') is-invalid @enderror"
+                            class="input-1 block mt-1 w-full @error('username') is-invalid @enderror"
                             type="text" name="username" :value="old('username')" autofocus autocomplete="username" />
                         @error('username')
                             <div class="invalid-feedback alert-danger">
@@ -100,9 +174,9 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <label for="password" :value="__('Password')"><strong>Password</strong></label>
-                        <div class="input-group d-flex txtPass">
-                            <input id="password" style="width: 100%" class="block mt-1 d-block py-1 px-2" type="password"
+                        <label for="password" :value="__('Password')">Password</label>
+                        <div class="input-group d-flex txtPass rounded">
+                            <input id="password" class="input-1 block mt-1 w-full" type="password"
                                 name="password" autocomplete="current-password" />
                             <svg style="width: 25px; height:auto;" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -129,11 +203,11 @@
                         @enderror
                     </div>
 
-                    <div class="mt-3 d-flex justify-content-end">
+                    <div class="mt-3 d-flex align-items-center flex-column">
                         <!-- Forgot your password? -->
                         {{-- <div>
                             @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-decoration-none"
+                                <a class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-decoration-none"
                                     href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
                                 </a>
@@ -141,11 +215,11 @@
                         </div> --}}
 
                         <!-- Button Log in -->
-                        <button class="ms-3 btn-secondary btn text-white w-25">
+                        <button class="button btn">
                             {{ __('Log in') }}
                         </button>
                     </div>
-            </div>
+                </div>
             </form>
         </div>
     </div>

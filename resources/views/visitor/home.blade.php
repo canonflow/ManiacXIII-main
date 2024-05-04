@@ -238,6 +238,7 @@
             margin: 2%;
             padding: 2.8%;
             background-color: #A67563;
+            box-shadow: 0 3px 5px -2px gray;
         }
 
         .poster{
@@ -270,8 +271,11 @@
             width: 50%;
             height: 10%;
             padding: 2% 3.5%;
+            margin-bottom: 30%;
+            border-bottom: 1px solid #D9D9D9;
             border-radius: var(--video-container-br);
             background-color: #A67563;
+            box-shadow: 0 4px 6px -2px gray;
         }
 
         video {
