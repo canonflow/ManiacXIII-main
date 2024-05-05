@@ -24,7 +24,10 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings
     public function data()
     {
         // Ambil Team yg udh terverifikasi
-        $teams = Team::where('status', 'verified')->get();
+        $listTeamIdSandbox = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+        $teams = Team::where('status', 'verified')
+                    ->whereNotIn('id', $listTeamIdSandbox)
+                    ->get();
         $payloads = [];
         $headers = ['name', 'phone_number', 'email', 'alergi', 'student_photo'];
 
