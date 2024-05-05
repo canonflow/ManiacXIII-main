@@ -45,19 +45,19 @@ class RegisteredUserController extends Controller
 
             //leader
             'nama_leader' => ['required', 'string', 'max:255'],
-            'email_leader' => ['required', 'email', 'lowercase', 'max:255', 'unique:participants,email'],
+            'email_leader' => ['required', 'email', 'lowercase', 'max:255'],
             'nomor_leader' => ['required', 'string', 'max:255', 'unique:participants,phone_number'],
             'foto_leader' => ['required','file','max:10240', 'mimes:jpg,jpeg,png'],
 
             //anggota1
             'nama_anggota1' => ['required', 'string', 'max:255'],
-            'email_anggota1' => ['required', 'email', 'lowercase', 'max:255', 'unique:participants,email'],
+            'email_anggota1' => ['required', 'email', 'lowercase', 'max:255'],
             'nomor_anggota1' => ['required', 'string', 'max:255', 'unique:participants,phone_number'],
             'foto_anggota1' => ['required','file','max:10240', 'mimes:jpg,jpeg,png'],
 
             //anggota2
             'nama_anggota2' => ['required', 'string', 'max:255'],
-            'email_anggota2' => ['required', 'email', 'lowercase', 'max:255', 'unique:participants,email'],
+            'email_anggota2' => ['required', 'email', 'lowercase', 'max:255'],
             'nomor_anggota2' => ['required', 'string', 'max:255', 'unique:participants,phone_number'],
             'foto_anggota2' => ['required','file','max:10240', 'mimes:jpg,jpeg,png'],
         ]);
