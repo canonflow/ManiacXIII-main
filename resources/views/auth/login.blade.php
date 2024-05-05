@@ -169,7 +169,7 @@
                     <div class="mt-4">
                         <label for="password" :value="__('Password')">Password</label>
                         <div class="input-group d-flex txtPass rounded">
-                            <input id="password" class="input-1 block mt-1 w-full" type="password" name="password"
+                            <input id="password" class="input-1 block mt-1 w-full @error('password') is-invalid @enderror" type="password" name="password"
                                 autocomplete="current-password" />
                             <svg style="width: 20px; height:auto;" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
