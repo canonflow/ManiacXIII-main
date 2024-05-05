@@ -159,14 +159,18 @@
                         <input id="username" class="input-1 block mt-1 w-full @error('username') is-invalid @enderror"
                             type="text" name="username" :value="old('username')" autofocus autocomplete="username" />
                         @error('username')
-                            <div class="invalid-feedback alert-danger w-50">
+                            <div class="invalid-feedback alert-danger mw-100"
+                                style="max-width: 21em !important;
+                            overflow-wrap: break-word !important;
+                            word-wrap: break-word !important;"
+                                style="left: 0; width: 100%; top: 100%; ">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
                     <!-- Password -->
-                    <div class="mt-4">
+                    <div class="mt-4 position-relative">
                         <label for="password" :value="__('Password')">Password</label>
                         <div class="input-group d-flex txtPass rounded">
                             <input id="password" class="input-1 block mt-1 w-full @error('password') is-invalid @enderror"
