@@ -141,6 +141,14 @@
                             aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                             aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+                            aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6"
+                            aria-label="Slide 7"></button>
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -159,6 +167,30 @@
                             <div class="carousel-image-wrapper d-flex justify-content-center">
                                 <img src="{{ asset('asset2024/main/foto-peserta-3.jpg') }}" class="rounded img-fluid"
                                     alt="foto3">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-4.jpg') }}" class="rounded img-fluid"
+                                    alt="foto4">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-5.jpg') }}" class="rounded img-fluid"
+                                    alt="foto5">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-6.jpg') }}" class="rounded img-fluid"
+                                    alt="foto6">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-7.jpg') }}" class="rounded img-fluid"
+                                    alt="foto7">
                             </div>
                         </div>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
@@ -180,10 +212,7 @@
             </div>
             <div class="body">
                 <p class="fs-5 font-normal">
-                    MANIAC adalah acara lomba untuk anak SMA/K sederajat yang mencakup
-                    workshop, rally games, dan final. Materi yang dilombakan mengenai Game
-                    Concept Design dan Game Asset Design. MANIAC diselenggarakan oleh jurusan
-                    Teknik Informatika program Digital Media Technology Universitas Surabaya.
+                    MANIAC (Multimedia ANd Interactive Art Competition) adalah lomba berbasis multimedia untuk anak SMA/K sederajat yang mencakup game concept design dan game asset design, yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology Universitas Surabaya.
                 </p>
             </div>
         </div>
