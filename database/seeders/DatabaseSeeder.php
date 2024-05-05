@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(TeamSeader::class);
         $this->call(ParticipantSeeder::class);
-        $this->call(MessageSeeder::class);
+        $this->call(AcaraSeeder::class);
+//        $this->call(MessageSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 

@@ -13,12 +13,14 @@ class TeamController extends Controller
 
         $status = $request->get('status');
         $listStatus = ['verified', 'unverified', 'waiting'];
+        $listTeamIdSandbox = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
         // Kalo parameter status tidak termasuk yg diminta -> abort
         if (count(array_intersect($status, $listStatus)) != count($status)) abort(404);
 
         $teams = Team::where('status', '!=', 'deactivated')
                     ->whereIn('status', $status)
+                    ->whereNotIn('id', $listTeamIdSandbox)
                     ->orderBy('id', 'DESC')
                     ->paginate(10);
 
@@ -37,6 +39,7 @@ class TeamController extends Controller
         $name = $request->get('name');
         $listStatus = ['verified', 'unverified', 'waiting'];
         $listSearch = ['teams.name', 'participants.name', 'teams.school_name'];
+        $listTeamIdSandbox = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
         if (count(array_intersect($status, $listStatus)) != count($status)) abort(404);
 
@@ -49,6 +52,7 @@ class TeamController extends Controller
                     ->where("$search", 'LIKE', "%$name%")
                     ->orderBy('teams.id', 'DESC')
                     ->whereIn("teams.status", $status)
+                    ->whereNotIn('id', $listTeamIdSandbox)
                     ->orderBy('teams.id', 'DESC')
                     ->paginate(10);
 

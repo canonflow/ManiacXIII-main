@@ -337,7 +337,7 @@
             <form class="flex flex-col items-center justify-center mt-5 gap-y-6" method="POST" action="{{ route('acara.contest.store') }}" id="formEdit">
                 @csrf
                 <input type="text" placeholder="Nama Contest" name="name" class="input input-bordered input-accent w-full" id="editName"/>
-                <select class="select select-accent w-full" name="type">
+                <select class="select select-accent w-full" name="type" id="type">
                     <option disabled selected>Pilih tipe contest</option>
                     <option value="workshop">Workshop</option>
                     {{--                    <option value="final">Final</option>--}}
@@ -347,7 +347,7 @@
                         <span class="label-text">Tanggal Buka</span>
                     </div>
                     <div class="flex flex-col justify-center items-center gap-y-5">
-                        <input type="text" placeholder="Tanggal Buka" id="editOpenDate" name="open_date" class="input input-bordered input-accent w-full" value="{{ $contest->open_date }}" readonly>
+                        <input type="text" placeholder="Tanggal Buka" id="editOpenDate" name="open_date" class="input input-bordered input-accent w-full" readonly>
                     </div>
                 </label>
                 <label for="" class="form-control w-full">
@@ -429,6 +429,8 @@
         const modalDelete = document.getElementById('modalHapus');
         const modalEdit = document.getElementById('modalEdit');
         const formEdit = document.getElementById('formEdit');
+        const editName= document.getElementById('editName');
+        const type = document.getElementById('type');
         const formDelete = document.getElementById('formDelete');
         const editOpenDate = document.getElementById('editOpenDate');
         const editCloseDate = document.getElementById('editCloseDate');
@@ -457,6 +459,8 @@
                 // Set Calendar value
                 const dateOpen = new Date(data.contest.open_date);
                 const dateClose = new Date(data.contest.close_date);
+                editName.value = data.contest.name;
+                type.value = data.contest.type;
                 calendar2.dpMin.selectDate(dateOpen, { updateTime: true });
                 calendar2.dpMax.selectDate(dateClose, { updateTime: true });
 

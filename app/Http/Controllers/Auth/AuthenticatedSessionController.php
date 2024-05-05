@@ -29,8 +29,8 @@ class AuthenticatedSessionController extends Controller
         //print_r($request->all());
         try {
             $request->validate([
-                'username' => ['required', 'min:8', 'max:25'],
-                'password' => ['required']
+                'username' => ['required', 'string', 'min:1', 'max:15'],
+                'password' => ['required', 'string', 'min:8']
             ]);
             $request->authenticate();
 

@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
         // dd($request->all());
         $request->validate([
             //sekolah
-            'username' => ['required', 'string','min:8' ,'max:15', 'unique:users,username', 'regex:/^\S*$/u'],
+            'username' => ['required', 'string','min:1' ,'max:15', 'unique:users,username', 'regex:/^\S*$/u'],
             'password' => ['required', 'min:8'],
             'nama_tim' => ['required', 'string', 'min:1', 'max:15', 'unique:teams,name'],
             'nama_sekolah' => ['required', 'string', 'max:255'],

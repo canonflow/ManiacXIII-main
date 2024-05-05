@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use function Laravel\Prompts\password;
 
 class UserSeeder extends Seeder
 {
@@ -15,55 +16,59 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Make Admin
-        for ($i = 1; $i <= 5; $i++) {
-            User::create([
-                'username' => "admin$i",
-                'password' => Hash::make("password$i"),
-                'role' => 'admin'
-            ]);
-        }
+        User::create([
+            'username' => 'admin',
+            'password' => Hash::make('AdminManiac@2024'),
+            'role' => 'admin'
+        ]);
+
+        User::create([
+            'username' => 'fio',
+            'password' => Hash::make('AdminManiac@2024'),
+            'role' => 'admin'
+        ]);
+
+        User::create([
+            'username' => 'edward',
+            'password' => Hash::make('AdminManiac@2024'),
+            'role' => 'admin'
+        ]);
 
         // Make Participant
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             User::create([
-                'username' => "participant$i",
-                'password' => Hash::make("password$i"),
+                'username' => "tim_$i",
+                'password' => Hash::make("TimManiac@2024"),
                 'role' => 'participant'
             ]);
         }
 
         // Make si
-        for ($i = 1; $i <= 5; $i++) {
+        $listSi = ['nathan', 'fanny', 'ricky', 'syarif', 'mapet', 'yosua'];
+        foreach ($listSi as $si) {
             User::create([
-                'username' => "si$i",
-                'password' => Hash::make("password$i"),
+                'username' => $si,
+                'password' => Hash::make("SIManiacJago@2024"),
                 'role' => 'si'
             ]);
         }
 
         // Make supersi
-        for ($i = 1; $i <= 1; $i++) {
+        $superSI = ['nathan', 'fanny'];
+        foreach ($superSI as $super) {
             User::create([
-                'username' => "supersi$i",
-                'password' => Hash::make("password$i"),
+                'username' => "super_$super",
+                'password' => Hash::make("SuperSIJago@2024"),
                 'role' => 'supersi'
             ]);
         }
 
-        // Make penpos
-        for ($i = 1; $i <= 5; $i++) {
-            User::create([
-                'username' => "penpos$i",
-                'password' => Hash::make("password$i"),
-                'role' => 'penpos'
-            ]);
-        }
-
         // Make Acara
-        for ($i = 1; $i <= 2; $i++) {
+        $listAcara = ['aril', 'nicole', 'cait', 'nicho'];
+        foreach ($listAcara as $acara) {
             User::create([
-                'username' => "acara$i",
-                'password' => Hash::make("acara"),
+                'username' => $acara,
+                'password' => Hash::make("AcaraManiac@2024"),
                 'role' => 'acara'
             ]);
         }
