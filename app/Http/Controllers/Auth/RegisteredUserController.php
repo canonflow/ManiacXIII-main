@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         // dd($request->all());
-        $request->validate([
+        $tmp = $request->validate([
             //sekolah
             'username' => ['required', 'string','min:1' ,'max:15', 'unique:users,username', 'regex:/^\S*$/u'],
             'password' => ['required', 'min:8'],

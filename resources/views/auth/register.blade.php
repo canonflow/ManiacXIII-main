@@ -88,7 +88,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label for="validationCustomUsername" class="form-label text-dark label-stroke">Username Akun</label>
                     <div class="input-group has-validation">
-                        <input type="text" class="form-control @error('password') is-invalid @enderror"
+                        <input type="text" class="form-control @error('username') is-invalid @enderror"
                             id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username" required
                             placeholder="ex: someone" value="{{ old('username') ?? '' }}" />
                         @error('username')

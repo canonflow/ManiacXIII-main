@@ -33,7 +33,7 @@ return new class extends Migration
 //                    ->on('users')
 //                    ->onUpdate('cascade')
 //                    ->onDelete('cascade');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->enum('position', ['leader', 'member']);
             $table->string('name');
             $table->string('phone_number');
