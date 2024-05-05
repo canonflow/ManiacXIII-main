@@ -26,6 +26,13 @@ class TeamController extends Controller
 
         return view('admin.Registration.index', compact('teams'));
     }
+    public function getRegistCount(Request $request) {
+        $teams = count(Team::where('status', 'unverified')->get());
+
+        return response()->json(array(
+            'teams' => $teams
+        ), 200);
+    }
 
     public function search(Request $request) {
         //dd($request->get('status'));
@@ -52,7 +59,7 @@ class TeamController extends Controller
                     ->where("$search", 'LIKE', "%$name%")
                     ->orderBy('teams.id', 'DESC')
                     ->whereIn("teams.status", $status)
-                    ->whereNotIn('id', $listTeamIdSandbox)
+                    ->whereNotIn('teams.id', $listTeamIdSandbox)
                     ->orderBy('teams.id', 'DESC')
                     ->paginate(10);
 

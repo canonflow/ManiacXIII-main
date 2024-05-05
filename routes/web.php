@@ -74,6 +74,8 @@ Route::group(
             ->name('teams.data');
         Route::post('registration/deactivate', [Admin\TeamController::class, 'deactivateTeam'])
             ->name('teams.deactivate');
+        Route::post('/registration/count', [Admin\TeamController::class, 'getRegistCount'])
+            ->name('teams.count');
 
         // Users
         Route::get('/users', [Admin\UserController::class, 'index'])
