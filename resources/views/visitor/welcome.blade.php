@@ -353,7 +353,7 @@
                     <div class="grid gap-4">
                         <div class="text-white d-flex align-items-center">
                             <img class="icon" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
-                            <p>&nbsp;@maniac_ubaya</p>
+                            <p class="mb-0">&nbsp;@maniac_ubaya</p>
                         </div>
                         <br><br><br>
                         <h5 class="text-white"><strong>CONTACT US</strong></h5>
