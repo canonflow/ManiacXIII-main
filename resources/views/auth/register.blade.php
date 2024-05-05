@@ -47,7 +47,7 @@
             border-radius: 0.75rem;
         }
 
-        #formContainer > form {
+        #formContainer>form {
             padding: 1rem;
         }
 
@@ -76,21 +76,21 @@
 @section('content')
     <div class="container-xxl position-relative">
         <div class="title d-flex justify-content-center w-100 py-2 position-relative">
-            <img class="w-50 z-1" src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac">
+            <img class="w-50 z-1" src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" data-aos="fade-in">
             <img class="position-absolute clouds" style="width: 500px; height: 200px; top: 100px; right: 20px;"
                 src="{{ asset('asset2024/main/cloud.png') }}" alt="">
 
         </div>
-        <div class="my-4 w-75 container position-relative" id="formContainer">
+        <div class="my-4 w-75 container position-relative" id="formContainer" data-aos="fade-up" data-aos-delay="100">
             <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('register') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-12 col-lg-6">
                     <label for="validationCustomUsername" class="form-label text-dark label-stroke">Username Akun</label>
                     <div class="input-group has-validation">
-                        <input type="text" class="form-control @error('password') is-invalid @enderror" id="validationCustomUsername"
-                            aria-describedby="inputGroupPrepend" name="username" required placeholder="ex: someone"
-                            value="{{ old('username') ?? '' }}" />
+                        <input type="text" class="form-control @error('password') is-invalid @enderror"
+                            id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username" required
+                            placeholder="ex: someone" value="{{ old('username') ?? '' }}" />
                         @error('username')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -106,8 +106,8 @@
                     <label for="validationCustomUsername" class="form-label text-dark label-stroke">Password</label>
                     <div class="input-group has-validation">
                         <input type="password" id="validationCustomUsername"
-                            class="form-control d-block @error('password') is-invalid @enderror"
-                            placeholder="********" aria-describedby="inputGroupPrepend" required name="password" />
+                            class="form-control d-block @error('password') is-invalid @enderror" placeholder="********"
+                            aria-describedby="inputGroupPrepend" required name="password" />
                         @error('password')
                             <div class="invalid-feedback alert-danger">
                                 {{ $message }}
@@ -217,9 +217,9 @@
                     <input type="text" class="form-control" id="validationCustom03" name="alergi_leader"
                         value="{{ old('alergi_leader') }}" placeholder="Berikan tanda - jika tidak ada">
                 </div>
-{{--                <div class="information mt-2 fw-bold">--}}
-{{--                    *) Berikan tanda - jika tidak ada--}}
-{{--                </div>--}}
+                {{--                <div class="information mt-2 fw-bold"> --}}
+                {{--                    *) Berikan tanda - jika tidak ada --}}
+                {{--                </div> --}}
                 <hr>
                 {{-- anggota 1 --}}
                 <div class="col-md-12 col-lg-6">
@@ -270,9 +270,9 @@
                     <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota1"
                         value="{{ old('alergi_anggota1') }}" placeholder="Berikan tanda - jika tidak ada!">
                 </div>
-{{--                <div class="information mt-2 fw-bold">--}}
-{{--                    *) Berikan tanda - jika tidak ada--}}
-{{--                </div>--}}
+                {{--                <div class="information mt-2 fw-bold"> --}}
+                {{--                    *) Berikan tanda - jika tidak ada --}}
+                {{--                </div> --}}
                 <hr>
                 {{-- anggota 2 --}}
                 <div class="col-md-12 col-lg-6">
@@ -323,9 +323,9 @@
                     <input type="text" class="form-control" id="validationCustom03" name="alergi_anggota2"
                         value="{{ old('alergi_anggota2') }}" placeholder="Berikan tanda - jika tidak ada!">
                 </div>
-{{--                <div class="information mt-2 fw-bold text-white">--}}
-{{--                    *) Berikan tanda - jika tidak ada--}}
-{{--                </div>--}}
+                {{--                <div class="information mt-2 fw-bold text-white"> --}}
+                {{--                    *) Berikan tanda - jika tidak ada --}}
+                {{--                </div> --}}
                 <div class="col-12 mb-3">
                     {{-- <button class="btn btn-primary fs-5 w-25" type="button" data-bs-target="#confirmationModal"
                         data-bs-toggle="modal" id="registerButton">Register</button> --}}

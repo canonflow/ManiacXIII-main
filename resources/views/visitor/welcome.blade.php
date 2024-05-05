@@ -20,6 +20,9 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {{-- aos --}}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/font.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
@@ -135,15 +138,14 @@
                             <div class="dropdown">
                                 <button style="background-color: #7f4c42;"
                                     class="btn btn-secondary nav-link dropdown-toggle text-center" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"
-                                >
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <strong>
-{{--                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"--}}
-{{--                                            fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">--}}
-{{--                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />--}}
-{{--                                            <path fill-rule="evenodd"--}}
-{{--                                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />--}}
-{{--                                        </svg>&nbsp;--}}
+                                        {{--                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" --}}
+                                        {{--                                            fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"> --}}
+                                        {{--                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" /> --}}
+                                        {{--                                            <path fill-rule="evenodd" --}}
+                                        {{--                                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" /> --}}
+                                        {{--                                        </svg>&nbsp; --}}
                                         ACCOUNT
                                     </strong>
                                 </button>
@@ -351,11 +353,11 @@
                             @maniac.ubayaa@gmail.com
                         </p>
                         <p class="text-white pb-2">
-                            <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
+                            <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
                             085951465290 (Caitlyn)
                         </p>
                         <p class="text-white pb-2">
-                            <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
+                            <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
                             085104914848 (Fiorello)
                         </p>
                     </div>
@@ -372,6 +374,10 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     @yield('script')
 </body>
 

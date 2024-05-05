@@ -6,13 +6,8 @@
             --video-h: 165px;
             --video-w: 200%;
         }
-        {{--.container-bg {--}}
-        {{--    background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}");--}}
-        {{--    background-repeat: repeat-y;--}}
-        {{--    background-size: cover;--}}
-        {{--}--}}
 
-        .box {
+        {{-- .container-bg { --}} {{--    background-image: url("{{ asset('asset2024/main/bg-transparent.png') }}"); --}} {{--    background-repeat: repeat-y; --}} {{--    background-size: cover; --}} {{-- } --}} .box {
             background-color: #a67563;
             border-radius: 20px 20px 0 0;
         }
@@ -28,7 +23,7 @@
             height: auto;
         }
 
-        h1{
+        h1 {
             font-family: Cinzel;
             text-shadow: 1px 1px 1px #620706;
         }
@@ -42,6 +37,7 @@
             text-align: center;
             font-family: Montserrat;
         }
+
         /* Ukuran teks untuk layar kecil */
         @media (max-width: 576px) {
             .body {
@@ -59,7 +55,7 @@
         /* Ukuran teks untuk layar besar */
         @media (min-width: 769px) {
             .body {
-                font-size: 1.5vw !important ;
+                font-size: 1.5vw !important;
             }
         }
 
@@ -124,67 +120,76 @@
 @endsection
 
 @section('content')
-<div class="container py-5">
-    <h1 class="text-center text-bold py-2">WHAT IS MANIAC</h1>
-    <br>
-    <div class="box py-5">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div class="container py-5">
+        <h1 data-aos="zoom-in" class="text-center text-bold py-2">WHAT IS MANIAC</h1>
+        <br>
+        <div>
+            <div class="box py-5">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-1.jpg') }}" class="rounded img-fluid"
+                                    alt="foto1">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-2.jpg') }}" class="rounded img-fluid"
+                                    alt="foto2">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-image-wrapper d-flex justify-content-center">
+                                <img src="{{ asset('asset2024/main/foto-peserta-3.jpg') }}" class="rounded img-fluid"
+                                    alt="foto3">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="carousel-image-wrapper d-flex justify-content-center">
-                            <img src="{{ asset('asset2024/main/foto-peserta-1.jpg') }}" class="rounded img-fluid" alt="foto1">
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-image-wrapper d-flex justify-content-center">
-                            <img src="{{ asset('asset2024/main/foto-peserta-2.jpg') }}" class="rounded img-fluid" alt="foto2">
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-image-wrapper d-flex justify-content-center">
-                            <img src="{{ asset('asset2024/main/foto-peserta-3.jpg') }}" class="rounded img-fluid" alt="foto3">
-                        </div>
-                    </div>
-                </div>
-                <button
-                    class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
-                    <img src="{{ asset('asset2024/main/arrow-top.png') }}" style="transform: rotate(-90deg)" class="carousel-arrow prev-arrow" alt="Previous">
+                    <img src="{{ asset('asset2024/main/arrow-top.png') }}" style="transform: rotate(-90deg)"
+                        class="carousel-arrow prev-arrow" alt="Previous">
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button
-                    class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="next">
-                    <img src="{{ asset('asset2024/main/arrow-top.png') }}" style="transform: rotate(90deg)" class="carousel-arrow prev-arrow" alt="Next">
+                    <img src="{{ asset('asset2024/main/arrow-top.png') }}" style="transform: rotate(90deg)"
+                        class="carousel-arrow prev-arrow" alt="Next">
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-    </div>
-    <div class="body">
-        <p class="fs-5 font-normal">
-            MANIAC adalah acara lomba untuk anak SMA/K sederajat yang mencakup
-            workshop, rally games, dan final. Materi yang dilombakan mengenai Game
-            Concept Design dan Game Asset Design. MANIAC diselenggarakan oleh jurusan
-            Teknik Informatika program Digital Media Technology Universitas Surabaya.
-        </p>
-    </div>
-    <br>
-    <h1 class="text-center text-bold py-2 mt-5">JOIN NOW</h1>
-    <div class="container py-2 d-flex justify-content-center">
-        <div class="video-container">
-            <div class="d-flex justify-content-center align-items-center z-1">
-                <iframe id="video" src="https://www.youtube.com/embed/anuXjaAuX8k?si=OfKhz67COFjPfS8d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="body">
+                <p class="fs-5 font-normal">
+                    MANIAC adalah acara lomba untuk anak SMA/K sederajat yang mencakup
+                    workshop, rally games, dan final. Materi yang dilombakan mengenai Game
+                    Concept Design dan Game Asset Design. MANIAC diselenggarakan oleh jurusan
+                    Teknik Informatika program Digital Media Technology Universitas Surabaya.
+                </p>
+            </div>
+        </div>
+
+        <br>
+        <h1 class="text-center text-bold py-2 mt-5">JOIN NOW</h1>
+        <div class="container py-2 d-flex justify-content-center">
+            <div class="video-container" data-aos="fade-up">
+                <div class="d-flex justify-content-center align-items-center z-1">
+                    <iframe id="video" src="https://www.youtube.com/embed/anuXjaAuX8k?si=OfKhz67COFjPfS8d"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

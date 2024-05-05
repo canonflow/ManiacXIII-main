@@ -134,14 +134,8 @@
 
 @section('content')
     <div class="container-fluid m-0 p-0">
-        <div class="position-relative">
-            <!-- <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-1 position-absolute z-0">
-                                                            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-2 position-absolute z-0">
-                                                            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-3 position-absolute z-0">
-                                                            <img src="{{ asset('asset2024/main/cloud.png') }}" class="cloud cloud-4 position-absolute z-0"> -->
-        </div>
         <div class="wrap-all d-flex justify-content-center align-items-center flex-column ">
-            <img src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50 z-1">
+            <img data-aos="fade-in" src="{{ asset('asset2024/main/maniac.png') }}" alt="logo-maniac" class="w-50 z-1">
             @if (session()->has('gagal'))
                 <div class="alert alert-danger" role="alert">
                     {{ session()->get('gagal') }}
@@ -153,7 +147,8 @@
             {{--                </div> --}}
             {{--            @enderror --}}
             <img src="{{ asset('asset2024/main/2.png') }}" class="dec-1 z-1">
-            <div class="container-form d-flex justify-content-center align-items-center z-1">
+            <div class="container-form d-flex justify-content-center align-items-center z-1" data-aos="zoom-in"
+                data-aos-delay="50">
                 <form method="POST" action="{{ route('login') }}"
                     class="d-flex justify-content-center align-items-center flex-column">
                     @csrf

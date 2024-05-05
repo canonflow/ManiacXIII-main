@@ -1,11 +1,12 @@
 @extends('visitor.welcome')
 
 @section('styles')
-<style>
-    /* Variabel */
-    @media (max-width: 575px) {
-        :root{ /* Ambil width : 420 */
-                --logo-maniac : 75%;
+    <style>
+        /* Variabel */
+        @media (max-width: 575px) {
+            :root {
+                /* Ambil width : 420 */
+                --logo-maniac: 75%;
                 --fs-1: 0.87rem;
                 --fs-timeline: 9.5px;
                 --fs-prizes: 10.4px;
@@ -21,9 +22,10 @@
             }
         }
 
-        @media (min-width: 576px) and (max-width: 768px){
-            :root{/* Titik tengah : 672 */
-                --logo-maniac : 75%;
+        @media (min-width: 576px) and (max-width: 768px) {
+            :root {
+                /* Titik tengah : 672 */
+                --logo-maniac: 75%;
                 --fs-1: 1.7rem;
                 --fs-timeline: 22px;
                 --fs-prizes: 24px;
@@ -39,9 +41,10 @@
             }
         }
 
-        @media (min-width: 769px) and (max-width: 992px){
-            :root{ /* Titik Tengah : 880.5 */
-                --logo-maniac : 65%;
+        @media (min-width: 769px) and (max-width: 992px) {
+            :root {
+                /* Titik Tengah : 880.5 */
+                --logo-maniac: 65%;
                 --fs-1: 2.3rem;
                 --fs-timeline: 29px;
                 --fs-prizes: 33px;
@@ -57,9 +60,10 @@
             }
         }
 
-        @media (min-width: 993px) and (max-width: 1200px){
-            :root{/* Titik Tengah: 1096.5 */
-                --logo-maniac : 65%;
+        @media (min-width: 993px) and (max-width: 1200px) {
+            :root {
+                /* Titik Tengah: 1096.5 */
+                --logo-maniac: 65%;
                 --fs-1: 3rem;
                 --fs-timeline: 37px;
                 --fs-prizes: 41px;
@@ -76,8 +80,9 @@
         }
 
         @media (min-width: 1201px) {
-            :root{/* Ambil width 1350 */
-                --logo-maniac :65%;
+            :root {
+                /* Ambil width 1350 */
+                --logo-maniac: 65%;
                 --fs-1: 3rem;
                 --fs-timeline: 44px;
                 --fs-prizes: 48px;
@@ -92,6 +97,7 @@
                 --video-height: 400px;
             }
         }
+
         /* Variabel */
 
         p {
@@ -99,7 +105,7 @@
             padding: 0;
         }
 
-        .logo-maniac{
+        .logo-maniac {
             width: var(--logo-maniac);
         }
 
@@ -107,7 +113,7 @@
             padding-top: 5%;
         }
 
-        .container-page-4{
+        .container-page-4 {
             margin-top: 6%;
             margin-bottom: 17%;
         }
@@ -119,6 +125,7 @@
         .container-juara {
             top: 28%;
         }
+
         /* Text */
         .text-maniac {
             margin: 0;
@@ -130,22 +137,24 @@
             color: #620706;
         }
 
-        .text-timeline, .text-join-now, .text-prizes{
+        .text-timeline,
+        .text-join-now,
+        .text-prizes {
             margin: 1.5% 0 1% 0;
             font-family: "cinzel";
             font-weight: 900;
             text-shadow: 0.5px 0.5px red;
         }
 
-        .text-timeline{
+        .text-timeline {
             font-size: var(--fs-timeline);
         }
 
-        .text-prizes{
+        .text-prizes {
             font-size: var(--fs-prizes);
         }
 
-        .text-join-now{
+        .text-join-now {
             font-size: var(--fs-join-now);
         }
 
@@ -157,11 +166,11 @@
             color: #5C0616;
         }
 
-        .container-text-3 p:nth-child(1){
+        .container-text-3 p:nth-child(1) {
             font-size: var(--fs-ket-prizes-1);
         }
 
-        .container-text-3 p:nth-child(2){
+        .container-text-3 p:nth-child(2) {
             font-size: var(--fs-ket-prizes-2);
         }
 
@@ -169,13 +178,13 @@
         /* Text */
 
         /* Decoration */
-        .dec-1{
+        .dec-1 {
             margin: 1.7% 0 3% 0;
             width: 2.3%;
             height: 100%;
         }
 
-        .dec-2{
+        .dec-2 {
             z-index: 1;
             width: 2.3%;
             height: 100%;
@@ -199,10 +208,12 @@
             transform: rotate(3.14159rad);
             margin-bottom: 37%;
         }
+
         .dec-3-5 {
             margin-bottom: 3%;
             transform: rotate(3.14159rad);
         }
+
         /* Decoration */
 
         /* Button */
@@ -219,6 +230,7 @@
             color: white;
             cursor: default;
         }
+
         /* Button */
 
         .container-axe-poster {
@@ -235,6 +247,7 @@
         .axe-2 {
             transform: rotateY(3.142rad);
         }
+
         /* Axe */
 
         /* Poster */
@@ -246,15 +259,17 @@
             box-shadow: 0 3px 5px -2px gray;
         }
 
-        .poster{
+        .poster {
             z-index: 4;
         }
+
         /* Poster */
 
         /* Timeline */
-        .timeline{
+        .timeline {
             width: 90%;
         }
+
         /* Timeline */
 
         /* Juara */
@@ -262,17 +277,18 @@
             width: 33%;
         }
 
-        .juara-2{
+        .juara-2 {
             width: 25%;
         }
 
-        .juara-2-1{
+        .juara-2-1 {
             margin-right: 5%;
         }
+
         /* Juara */
 
         /* video */
-        .container-video{
+        .container-video {
             width: 50%;
             height: 100%;
             padding: 2% 3.5%;
@@ -288,83 +304,86 @@
             height: var(--video-height);
             border-radius: var(--video-br);
         }
+
         /* video */
-        </style>
+    </style>
 @endsection
 
 @section('content')
-<div class="container-xxl">
-    <div class="container-page-1 position-relative">
-        <div class="d-flex align-items-center flex-column">
-            <img src="{{ asset('asset2024/main/maniac.png') }}" alt="Logo Maniac" class="logo-maniac mb-3 z-1">
+    <div class="container-xxl">
+        <div class="container-page-1 position-relative">
+            <div class="d-flex align-items-center flex-column" data-aos="fade-up">
+                <img src="{{ asset('asset2024/main/maniac.png') }}" alt="Logo Maniac" class="logo-maniac mb-3 z-1">
+            </div>
         </div>
-    </div>
-    <div class="container-page-2 position-relative">
-        <div class="d-flex align-items-center flex-column">
-            <h1 class="text-maniac text-red">WIN UP IDR</h1>
-            <h1 class="text-maniac text-red">100 ++ MILLION</h1>
-            <img src="{{ asset('asset2024/main/9.png') }}" class="dec-1">
-            <div class="register-now">REGISTER NOW</div>
+        <div class="container-page-2 position-relative">
+            <div class="d-flex align-items-center flex-column">
+                <h1 class="text-maniac text-red">WIN UP IDR</h1>
+                <h1 class="text-maniac text-red">100 ++ MILLION</h1>
+                <img src="{{ asset('asset2024/main/9.png') }}" class="dec-1">
+                <div class="register-now">REGISTER NOW</div>
+            </div>
         </div>
-    </div>
-    <div class="container-page-3 position-relative">
-        <div class="container-axe d-flex justify-content-center ">
-            <img src="{{ asset('asset2024/main/axe.png') }}" class="position-absolute axe axe-1">
-            <img src="{{ asset('asset2024/main/axe.png') }}" class="position-absolute axe axe-2">
-        </div>
-        <div class="wrap-axe-poster">
-            <div class="container-axe-poster d-flex justify-content-center">
-                <img src="{{ asset('asset2024/main/8.png') }}" class="dec-2 dec-2-1">
-                <div class="wrap-poster d-flex justify-content-center position-relative">
-                    <div class="container-poster d-flex justify-content-center ">
-                        <img src="{{ asset('asset2024/main/poster.png') }}" alt="Poster Maniac" class="poster w-100">
+        <div class="container-page-3 position-relative" data-aos="fade-down" data-aos-delay="50">
+            <div class="container-axe d-flex justify-content-center ">
+                <img src="{{ asset('asset2024/main/axe.png') }}" class="position-absolute axe axe-1">
+                <img src="{{ asset('asset2024/main/axe.png') }}" class="position-absolute axe axe-2">
+            </div>
+            <div class="wrap-axe-poster">
+                <div class="container-axe-poster d-flex justify-content-center">
+                    <img src="{{ asset('asset2024/main/8.png') }}" class="dec-2 dec-2-1">
+                    <div class="wrap-poster d-flex justify-content-center position-relative">
+                        <div class="container-poster d-flex justify-content-center">
+                            <img src="{{ asset('asset2024/main/poster.png') }}" alt="Poster Maniac" class="poster w-100">
+                        </div>
                     </div>
-                </div>
-                <div class="wrap-dec-2">
-                    <img src="{{ asset('asset2024/main/8.png') }}" class="dec-2 dec-2-2 position-absolute">
+                    <div class="wrap-dec-2">
+                        <img src="{{ asset('asset2024/main/8.png') }}" class="dec-2 dec-2-2 position-absolute">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-page-4 position-relative">
-        <div class="d-flex justify-content-center flex-column align-items-center">
-            <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
-            <h1 class="text-timeline">TIMELINE</h1>
-            <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-2">
-            <img src="{{ asset('asset2024/main/timeline.png') }}" alt="Timeline Maniac" class="timeline">
+        <div class="container-page-4 position-relative" data-aos="fade-right" data-aos-delay="100">
+            <div class="d-flex justify-content-center flex-column align-items-center">
+                <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
+                <h1 class="text-timeline">TIMELINE</h1>
+                <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-2">
+                <img src="{{ asset('asset2024/main/timeline.png') }}" alt="Timeline Maniac" class="timeline">
+            </div>
         </div>
-    </div>
-    <div class="container-page-5 position-relative">
-        <div class="d-flex justify-content-center flex-column align-items-center ">
+        <div class="container-page-5 position-relative" data-aos="fade-left" data-aos-delay="100">
+            <div class="d-flex justify-content-center flex-column align-items-center ">
                 <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
                 <h1 class="text-prizes">PRIZES</h1>
                 <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-4">
-            <div class="container-juara position-absolute">
-                <div class="img-juara-1 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('asset2024/main/juara-1.png') }}" alt="Juara I" class="juara">
-                    <img src="{{ asset('asset2024/main/juara-2.png') }}" alt="Juara II" class="juara">
-                    <img src="{{ asset('asset2024/main/juara-3.png') }}" alt="Juara III" class="juara">
+                <div class="container-juara position-absolute">
+                    <div class="img-juara-1 d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('asset2024/main/juara-1.png') }}" alt="Juara I" class="juara">
+                        <img src="{{ asset('asset2024/main/juara-2.png') }}" alt="Juara II" class="juara">
+                        <img src="{{ asset('asset2024/main/juara-3.png') }}" alt="Juara III" class="juara">
+                    </div>
+                    <div class="img-juara-2 d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('asset2024/main/harapan-1.png') }}" alt="Harapan I" class="juara-2 juara-2-1">
+                        <img src="{{ asset('asset2024/main/harapan-2.png') }}" alt="Harapan II" class="juara-2 juara-2-2">
+                    </div>
                 </div>
-                <div class="img-juara-2 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('asset2024/main/harapan-1.png') }}" alt="Harapan I" class="juara-2 juara-2-1">
-                    <img src="{{ asset('asset2024/main/harapan-2.png') }}" alt="Harapan II" class="juara-2 juara-2-2">
+                <div class="container-text-3 d-flex justify-content-center flex-column ">
+                    <p>*Terdiri atas 3 orang dari SMA/SMK yang sama</p>
+                    <p>*&#41;USP berlaku jika masuk Jurusan Teknik Informatika Program Digital Media Technology</p>
                 </div>
             </div>
-            <div class="container-text-3 d-flex justify-content-center flex-column ">
-                <p>*Terdiri atas 3 orang dari SMA/SMK yang sama</p>
-                <p>*&#41;USP berlaku jika masuk Jurusan Teknik Informatika Program Digital Media Technology</p>
+        </div>
+        <div class="container-page-5 position-relative">
+            <div class="container-text-iframe d-flex justify-content-center flex-column align-items-center ">
+                <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
+                <h1 class="text-join-now">JOIN NOW</h1>
+                <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-5">
+                <div class="container-video d-flex justify-content-center align-items-center z-1" data-aos="zoom-in"
+                    data-aos-delay="50">
+                    <iframe src="https://www.youtube.com/embed/anuXjaAuX8k?si=qphMwYppClkTZCg4" frameborder="0"
+                        class="iframe d-flex align-items-center justify-content-center"></iframe>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container-page-5 position-relative">
-        <div class="container-text-iframe d-flex justify-content-center flex-column align-items-center ">
-            <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-1">
-            <h1 class="text-join-now">JOIN NOW</h1>
-            <img src="{{ asset('asset2024/main/2.png') }}" class="dec-3 dec-3-5">
-            <div class="container-video d-flex justify-content-center align-items-center z-1">
-                <iframe src="https://www.youtube.com/embed/anuXjaAuX8k?si=qphMwYppClkTZCg4" frameborder="0" class="iframe d-flex align-items-center justify-content-center"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
