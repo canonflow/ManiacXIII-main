@@ -29,6 +29,24 @@
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
 
     <style>
+        body {
+            cursor: url("{{ asset('asset2024') }}/cursor/CURSOR.cur"),
+                url("{{ asset('asset2024') }}/cursor/CURSOR.svg"),
+                url("{{ asset('asset2024') }}/cursor/CURSOR.png"), auto;
+        }
+
+        button:hover,
+        a:hover,
+        li:hover {
+            cursor: url("{{ asset('asset2024') }}/cursor/shield.svg"),
+                url("{{ asset('asset2024') }}/cursor/shield.png"), pointer !important;
+        }
+
+        input:hover {
+            cursor: url("{{ asset('asset2024') }}/cursor/sword.svg"),
+                url("{{ asset('asset2024') }}/cursor/sword.png"), text !important;
+        }
+
         #navbarNav {
             justify-content: end;
         }
@@ -131,8 +149,9 @@
                             <a class="nav-link" href="{{ route('visitor.faq') }}">FAQ</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="{{ asset('asset2024/main/guidebook.pdf') }}"
-                                download="Guidebook MANIAC XIII.pdf">GUIDEBOOK</a>
+                            {{-- <a class="nav-link" href="{{ asset('asset2024/main/guidebook.pdf') }}"
+                                download="Guidebook MANIAC XIII.pdf">GUIDEBOOK</a> --}}
+                            <a class="nav-link" href="https://bit.ly/GuideBookMANIACXIII" target="_blank">GUIDEBOOK</a>
                         </li>
                         <li>
                             <div class="dropdown">
@@ -317,31 +336,25 @@
     <footer class="w-100 bg-red pt-2">
         <div class="container-fluid px-4 py-4">
             <div class="row">
-                <div class="col-lg-5 col-sm-12 pe-3">
+                <div class="col-lg-6 col-sm-12 pe-3 pb-5">
                     <h3 class="text-white d-block" style="font-family: 'cinzel';">MANIAC XIII</h3>
-                    <p class="text-white text-justify"><strong>MANIAC (Multimedia And Interactive Art
-                            Competition)</strong> adalah lomba berbasis multimedia untuk anak SMA/K sederajat yang
-                        mencakup rally games, game concept design, dan game asset design,
-                        yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology
-                        Universitas Surabaya.
-                    </p>
-                    <img src="{{ asset('asset2024/logo-maniac.jpg') }}" width="60px" height="auto"
+                    <p class="text-white text-justify"><strong>MANIAC (Multimedia ANd Interactive Art Competition)
+                        </strong> adalah lomba
+                        berbasis multimedia untuk anak SMA/K sederajat yang mencakup game concept design dan game asset
+                        design, yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology
+                        Universitas Surabaya.</p>
+                    <img src="{{ asset('asset2024/footer/logo-maniac.png') }}" width="150px" height="auto"
                         alt="logo-maniac">
-                    <img src="{{ asset('asset2024/logo-ubaya.png') }}" width="60px" height="auto"
+                    <img src="{{ asset('asset2024/footer/logo-ubaya.png') }}" width="150px" height="auto"
                         alt="logo-ubaya">
                 </div>
-                <div class="col-lg-4 ps-5">
+                <div class="col-lg-6 ps-lg-5 pt-sm-2">
                     <h5 class="text-white"><strong>SOCIAL MEDIA</strong></h5>
                     <div class="grid gap-4">
-                        <p class="text-white">
-                            <img class="icon pb-2" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
-                            @maniac_ubaya
-                        </p>
-
-                        {{--                        <p class="text-white"> --}}
-                        {{--                            <img class="icon" src="{{ asset('asset2024/footer/tiktok.png') }}" alt="tiktok"> --}}
-                        {{--                            @maniac_ubaya --}}
-                        {{--                        </p> --}}
+                        <div class="text-white d-flex align-items-center">
+                            <img class="icon" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
+                            <p>&nbsp;@maniac_ubaya</p>
+                        </div>
                         <br><br><br>
                         <h5 class="text-white"><strong>CONTACT US</strong></h5>
                         <p class="text-white pb-2">
@@ -362,9 +375,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                {{-- <div class="col-lg-3">
                     <h5 class="text-white"><strong>SPONSORED BY</strong></h5>
-                </div>
+                </div> --}}
                 <br>
                 <br>
                 <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights

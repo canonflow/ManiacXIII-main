@@ -126,9 +126,17 @@
         <div>
             <div class="box py-5">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="white"
+                            fill-opacity="0.5" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                        </svg>
+                    </button>
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
                             aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
@@ -153,21 +161,22 @@
                                     alt="foto3">
                             </div>
                         </div>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="white"
+                                fill-opacity="0.5" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                            </svg>
+                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
+
+
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <img src="{{ asset('asset2024/main/arrow-top.png') }}" style="transform: rotate(-90deg)"
-                        class="carousel-arrow prev-arrow" alt="Previous">
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <img src="{{ asset('asset2024/main/arrow-top.png') }}" style="transform: rotate(90deg)"
-                        class="carousel-arrow prev-arrow" alt="Next">
-                    <span class="visually-hidden">Next</span>
-                </button>
+
             </div>
             <div class="body">
                 <p class="fs-5 font-normal">

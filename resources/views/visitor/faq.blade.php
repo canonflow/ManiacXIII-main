@@ -305,7 +305,7 @@
                                     <li>IG: maniac_ubaya</li>
                                     <li>OA Line: @994nxsfr</li>
                                     <li>Email: maniac.ubayaa@gmail.com</li>
-                                    <li>CP: Caitlyn (WA: 087858998276), Fiorello (WA: 085104914848)</li>
+                                    <li>CP: Caitlyn (WA: 085951465290), Fiorello (WA: 085104914848)</li>
                                 </ul>
                             </div>
                         </div>

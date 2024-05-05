@@ -6321,11 +6321,11 @@ fieldset:disabled .btn {
     justify-content: center;
     width: 15%;
     padding: 0;
-    color: #fff;
+    color: #000;
     text-align: center;
     background: none;
     border: 0;
-    opacity: 0.5;
+    opacity: 1;
     transition: opacity 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {

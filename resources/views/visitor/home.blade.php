@@ -318,10 +318,11 @@
         </div>
         <div class="container-page-2 position-relative">
             <div class="d-flex align-items-center flex-column">
-                <h1 class="text-maniac text-red">WIN UP IDR</h1>
-                <h1 class="text-maniac text-red">100 ++ MILLION</h1>
+                <h1 class="text-maniac text-red text-center">WIN UP TO <br> 100++ MILLIONS</h1>
                 <img src="{{ asset('asset2024/main/9.png') }}" class="dec-1">
-                <div class="register-now">REGISTER NOW</div>
+                <div class="register-now">
+                    <a class="text-white" style="text-decoration: none" href="{{ url('/register') }}">REGISTER NOW</a>
+                </div>
             </div>
         </div>
         <div class="container-page-3 position-relative" data-aos="fade-down" data-aos-delay="50">
