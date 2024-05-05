@@ -24,7 +24,7 @@ class TeamController extends Controller
                     ->orderBy('id', 'DESC')
                     ->paginate(10);
 
-        return view('admin.registration.index', compact('teams'));
+        return view('admin.Registration.index', compact('teams'));
     }
 
     public function search(Request $request) {
@@ -58,7 +58,7 @@ class TeamController extends Controller
 
         session()->flash('name', $name);
 
-        return view('admin.registration.index', compact('teams'));
+        return view('admin.Registration.index', compact('teams'));
     }
 
     public function deactivateTeam(Request $request) {
