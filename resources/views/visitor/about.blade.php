@@ -120,6 +120,7 @@
 @endsection
 
 @section('content')
+<div class="container-fluid">
     <div class="container py-5">
         <h1 data-aos="zoom-in" class="text-center text-bold py-2">WHAT IS MANIAC</h1>
         <br>
@@ -230,4 +231,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
