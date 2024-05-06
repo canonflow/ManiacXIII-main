@@ -107,6 +107,17 @@
             width: 20px;
             height: auto;
         }
+
+        .sosmedLink {
+            text-decoration: none;
+            font-size: 1.05rem;
+            /*color: #E7EADF;*/
+            /*transition: all 0.3s ease-in-out;*/
+        }
+
+        .sosmedLink:hover {
+            font-weight: bolder;
+        }
     </style>
     @yield('styles')
 
@@ -344,35 +355,66 @@
                         design, yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology
                         Universitas Surabaya.</p>
                     <img src="{{ asset('asset2024/footer/logo-maniac.png') }}" width="150px" height="auto"
-                        alt="logo-maniac">
+                        alt="logo-maniac" class="pt-3">
                     <img src="{{ asset('asset2024/footer/logo-ubaya.png') }}" width="150px" height="auto"
-                        alt="logo-ubaya">
+                        alt="logo-ubaya" class="pt-3">
                 </div>
                 <div class="col-lg-6 ps-lg-5 pt-sm-2">
                     <h5 class="text-white"><strong>SOCIAL MEDIA</strong></h5>
                     <div class="grid gap-4">
                         <div class="text-white d-flex align-items-center">
                             <img class="icon" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
-                            <p class="mb-0">&nbsp;@maniac_ubaya</p>
+                            <a
+                                class="mb-0 sosmedLink text-white"
+                                href="https://www.instagram.com/maniac_ubaya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                &nbsp;@maniac_ubaya
+                            </a>
                         </div>
                         <br><br><br>
                         <h5 class="text-white"><strong>CONTACT US</strong></h5>
-                        <p class="text-white pb-2">
-                            <img class="icon" src="{{ asset('asset2024/footer/line.png') }}" alt="line">
-                            @994nxsfr
-                        </p>
-                        <p class="text-white pb-2">
-                            <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
-                            @maniac.ubayaa@gmail.com
-                        </p>
-                        <p class="text-white pb-2">
-                            <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
-                            085951465290 (Caitlyn)
-                        </p>
-                        <p class="text-white pb-2">
-                            <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
-                            085104914848 (Fiorello)
-                        </p>
+                        <div class="d-flex flex-column">
+                            <a
+                                class="text-white pb-2 sosmedLink"
+                                href="https://line.me/R/ti/p/%40994nxsfr"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img class="icon" src="{{ asset('asset2024/footer/line.png') }}" alt="line">
+                                @994nxsfr
+                            </a>
+                            <a
+                                class="text-white pb-2 sosmedLink"
+                                href="mailto:maniac.ubayaa@gmail.com"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
+                                @maniac.ubayaa@gmail.com
+                            </a>
+                            <a
+                                class="text-white pb-2 sosmedLink"
+                                href="https://wa.me/+6285951465290"
+                                target="_blank"
+                                rel="noopener"
+                                style="font-size: 1rem;"
+                            >
+                                <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
+                                085951465290 (Caitlyn)
+                            </a>
+                            <a
+                                class="text-white pb-2 sosmedLink"
+                                href="https://wa.me/+6285104914848"
+                                target="_blank"
+                                rel="noopener"
+                                style="font-size: 1rem;"
+                            >
+                                <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
+                                085104914848 (Fiorello)
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {{-- <div class="col-lg-3">
@@ -380,8 +422,9 @@
                 </div> --}}
                 <br>
                 <br>
-                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights
-                    Reserved</p>
+{{--                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights--}}
+{{--                    Reserved</p>--}}
+                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &copy; MANIAC XIII Information System, All Rights Reserved</p>
             </div>
         </div>
     </footer>

@@ -130,7 +130,7 @@
 <div class="p-10 mt-7 flex flex-col items-center">
     @yield('content')
     <div class="w-full pt-12 px-2">
-        <p class="text-white text-md" id="footer">COPYRIGHT &copy; MANIAC XIII Information System, All rights Reserved</p>
+        <p class="text-white text-md" id="footer">COPYRIGHT &copy; MANIAC XIII Information System, All Rights Reserved</p>
     </div>
 </div>
 
