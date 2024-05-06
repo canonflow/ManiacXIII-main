@@ -8,6 +8,18 @@
     <title>{{ $title }}</title>
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
     @vite(['resources/css/app.css'])
+    <style>
+        body {
+            cursor: url("{{ asset('asset2024') }}/cursor/CURSOR.cur"),
+            url("{{ asset('asset2024') }}/cursor/CURSOR.svg"),
+            url("{{ asset('asset2024') }}/cursor/CURSOR.png"), auto;
+        }
+
+        button:hover, a:hover, li:hover {
+            cursor: url("{{ asset('asset2024') }}/cursor/shield.svg"),
+            url("{{ asset('asset2024') }}/cursor/shield.png"), pointer !important;
+        }
+    </style>
 </head>
 <body>
     <div class="p-10 min-h-screen flex flex-col items-center justify-center border border-black gap-y-3 lg:gap-y-1">
