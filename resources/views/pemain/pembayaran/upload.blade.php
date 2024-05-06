@@ -58,7 +58,7 @@
             <div class="label">
                 <span class="label-text font-medium">Foto Bukti Pembayaran (max: <strong>10MB</strong>, type: png/jpeg/jpg)</span>
             </div>
-            <input type="file" class="file-input file-input-bordered w-full max-w-md" name="bukti_pembayaran" id="bukti_pembayaran"/>
+            <input type="file" class="file-input file-input-bordered w-full max-w-md" name="bukti_pembayaran" id="bukti_pembayaran" accept="image/png, image/jpg, image/jpeg"/>
         </label>
         <div class="flex justify-center items-center w-full">
             <img src="" alt="" class="w-1/2 lg:w-2/6 pt-2" id="fotoPembayaran">
