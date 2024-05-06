@@ -23,8 +23,8 @@
 </head>
 <body>
     <div class="p-10 min-h-screen flex flex-col items-center justify-center border border-black gap-y-3 lg:gap-y-1">
-        <img src="{{ asset('asset2024') }}/main/maniac.png" alt="" class="sm:w-2/3 md:w-1/2 xl:w-1/3">
-        <div class="flex gap-x-2 lg:gap-x-3 text-xl md:text-2xl font-black text-primary">
+        <img src="{{ asset('asset2024') }}/main/maniac.png" alt="" class="sm:w-2/3 md:w-1/2 xl:w-1/3 select-none" draggable="false">
+        <div class="flex gap-x-2 lg:gap-x-3 text-xl md:text-2xl font-black text-primary select-none">
             <p>{{ $code }}</p>
             <p>{{ $title }}</p>
         </div>
