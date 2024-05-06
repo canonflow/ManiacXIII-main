@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Acara;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class UserController extends Controller
         ]);
 
         // Biarin gini, Table Penpos blm ada soalnya
-        if ($request->get('role') != 'admin') abort(404);
+        $roles = ['acara', 'admin', 'penpos'];
+        if (!in_array($request->get('role'), $roles)) abort(404);
+//        if ($request->get('role') != 'admin') abort(404);
 
         // Buat User
         $user = User::create([
@@ -46,8 +49,12 @@ class UserController extends Controller
                     'user_id' => $user->id
                 ]);
                 break;
-            case 'penpos':
-                abort(404);
+            case 'acara':
+                Acara::create([
+                    'name' => $request->get('name'),
+                    'user_id' => $user->id
+                ]);
+                break;
         }
 
         return redirect()->back()->with('addSuccess', $user->username);

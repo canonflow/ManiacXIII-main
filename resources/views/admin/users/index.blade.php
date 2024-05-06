@@ -80,9 +80,12 @@
                                     case 'admin':
                                         $name = $user->admin->name;
                                         break;
-                                        default:
-                                            $name = 'undefined';
-                                            break;
+                                    case 'acara':
+                                        $name = $user->acara->name;
+                                        break;
+                                    default:
+                                        $name = 'undefined';
+                                        break;
                                 }
                             @endphp
                             <td width="30%" class="text-center py-5">{{ $name }}</td>
