@@ -112,7 +112,7 @@ class PemainController extends Controller
         ]);
 
         $team = Team::where('user_id', Auth::user()->id)->first();
-        $buktiPembayaran = 'bukti_pembayaran.' . $request->file('bukti_pembayaran')->getClientOriginalExtension();
+        $buktiPembayaran = 'bukti_pembayaran.' . "png";
         $request->file('bukti_pembayaran')
             ->storeAs(
                 $team->name . '/buktiPembayaran',
