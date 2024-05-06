@@ -15,14 +15,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Carbon;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
+        $closeDate = "15 July 2024";
+        if (time() >= strtotime($closeDate)) {
+            return redirect()->route('login')->with('gagal', 'Pendaftaran telah ditutup. Sampai jumpa di Maniac XIV');
+        }
         return view('auth.register');
     }
 
@@ -33,6 +38,11 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $closeDate = "15 July 2024";
+        if (time() >= strtotime($closeDate)) {
+            return redirect()->route('login')->with('gagal', 'Pendaftaran telah ditutup. Sampai jumpa di Maniac XIV');
+        }
+
         // dd($request->all());
         $tmp = $request->validate([
             //sekolah
