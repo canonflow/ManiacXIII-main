@@ -98,7 +98,7 @@
                         @enderror
                     </div>
                     <div class="text-danger mt-1" id="passwordCriteriaMessage">
-                        *) Minimal 8 Karakter dan Maximal 15 Karakter. <strong>Tidak mengandung Spasi</strong>
+                        *) Minimal 1 Karakter dan Maximal 15 Karakter. <strong>Tidak mengandung Spasi</strong>
                     </div>
                 </div>
 
