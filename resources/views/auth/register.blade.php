@@ -203,7 +203,8 @@
                     @enderror
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <label for="validationCustom03" class="form-label text-dark label-stroke">Foto Diri</label>
+                    <label for="validationCustom03" class="form-label text-dark label-stroke">Kartu Pelajar/ Surat
+                        Keterangan Sekolah</label>
                     <input type="file" class="form-control @error('foto_leader') is-invalid @enderror"
                         id="validationCustom03" required name="foto_leader" accept="image/png, image/jpeg, image/jpg" />
                     <p class="text-danger">*) Format yang didukung jpg, jpeg, png. MAX 10MB </p>
@@ -257,7 +258,8 @@
                     @enderror
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <label for="validationCustom03" class="form-label text-dark label-stroke">Foto Diri</label>
+                    <label for="validationCustom03" class="form-label text-dark label-stroke">Kartu Pelajar/ Surat
+                        Keterangan Sekolah</label>
                     <input type="file" class="form-control @error('foto_anggota1') is-invalid @enderror"
                         id="validationCustom03" required name="foto_anggota1">
                     <p class="text-danger">*) Format yang didukung jpg, jpeg, png. MAX 10MB </p>
@@ -311,7 +313,8 @@
                     @enderror
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <label for="validationCustom03" class="form-label text-dark label-stroke">Foto Diri</label>
+                    <label for="validationCustom03" class="form-label text-dark label-stroke">Kartu Pelajar/ Surat
+                        Keterangan Sekolah</label>
                     <input type="file" class="form-control @error('foto_anggota2') is-invalid @enderror"
                         id="validationCustom03" required name="foto_anggota2">
                     <p class="text-danger">*) Format yang didukung jpg, jpeg, png. MAX 10MB </p>
