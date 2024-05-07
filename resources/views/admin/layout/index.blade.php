@@ -215,7 +215,7 @@
                 registLoading.innerHTML = `${data.teams}`;
             }
         })
-    }, 3000);
+    }, 2300);
 </script>
 </body>
 </html>
