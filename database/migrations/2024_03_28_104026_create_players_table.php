@@ -19,7 +19,8 @@ return new class extends Migration
                     ->on('teams')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            $table->double('money');
+            $table->double('cycle')->default(0.0);
+            $table->integer('dragon_breath')->default(0);
             $table->timestamps();
         });
     }

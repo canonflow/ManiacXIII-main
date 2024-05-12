@@ -128,15 +128,19 @@
                         </tr>
                         </thead>
                         <tbody class="text-white">
-                        @if(count($players) != 0)
-                            @foreach($players as $player)
+                        @if(count($scores) != 0)
+                            @foreach($scores as $score)
+{{--                                <tr>--}}
+{{--                                    <td width="50%" class="text-center">{{ $player->team->name }}</td>--}}
+{{--                                    <td width="50%" class="text-center">{{ $player->pivot->score }}</td>--}}
+{{--                                </tr>--}}
                                 <tr>
-                                    <td width="50%" class="text-center">{{ $player->team->name }}</td>
-                                    <td width="50%" class="text-center">{{ $player->pivot->score }}</td>
+                                    <td width="50%" class="text-center">{{ $score->player->team->name }}</td>
+                                    <td width="50%" class="text-center">{{ $score->point }}</td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="2"><p class="font-medium text-slate-200 text-center">No Players</p></td></tr>
+                            <tr><td colspan="2"><p class="font-medium text-slate-200 text-center">No Scores</p></td></tr>
                         @endif
                         </tbody>
                     </table>

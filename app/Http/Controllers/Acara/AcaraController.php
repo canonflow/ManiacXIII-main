@@ -70,9 +70,11 @@ class AcaraController extends Controller
     }
 
     public function rally(RallyGame $rallyGame) {
-        $players = $rallyGame->players()->orderBy('created_at', 'DESC')->get();
+//        $players = $rallyGame->players()->orderBy('created_at', 'DESC')->get();
+        $scores = $rallyGame->getScores();
+//        dd($scores);
 
-        return view('acara.dashboard.rally', compact('rallyGame', 'players'));
+        return view('acara.dashboard.rally', compact('rallyGame', 'scores'));
     }
 
     public function destroy(RallyGame $rallyGame) {
