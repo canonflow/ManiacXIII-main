@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
 
-    <link rel="shortcut icon" type="image/x-icon"
-        href="{{ asset('asset2024/maniac13-pp-rounded.ico') }}/identity/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png">
+
     <style>
         body {
             cursor: url("{{ asset('asset2024') }}/cursor/CURSOR.cur"),
