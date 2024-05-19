@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png">
 
+    <link rel="shortcut icon" type="image/x-icon"
+        href="{{ asset('asset2024/maniac13-pp-rounded.ico') }}/identity/favicon.ico">
     <style>
         body {
             cursor: url("{{ asset('asset2024') }}/cursor/CURSOR.cur"),
@@ -364,54 +366,35 @@
                     <div class="grid gap-4">
                         <div class="text-white d-flex align-items-center">
                             <img class="icon" src="{{ asset('asset2024/footer/IG.png') }}" alt="instagram">
-                            <a
-                                class="mb-0 sosmedLink text-white"
+                            <a class="mb-0 sosmedLink text-white"
                                 href="https://www.instagram.com/maniac_ubaya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                                target="_blank"
-                                rel="noopener"
-                            >
+                                target="_blank" rel="noopener">
                                 &nbsp;@maniac_ubaya
                             </a>
                         </div>
                         <br><br><br>
                         <h5 class="text-white"><strong>CONTACT US</strong></h5>
                         <div class="d-flex flex-column">
-                            <a
-                                class="text-white pb-2 sosmedLink"
-                                href="https://line.me/R/ti/p/%40994nxsfr"
-                                target="_blank"
-                                rel="noopener"
-                            >
+                            <a class="text-white pb-2 sosmedLink" href="https://line.me/R/ti/p/%40994nxsfr"
+                                target="_blank" rel="noopener">
                                 <img class="icon" src="{{ asset('asset2024/footer/line.png') }}" alt="line">
                                 @994nxsfr
                             </a>
-                            <a
-                                class="text-white pb-2 sosmedLink"
-                                href="mailto:maniac.ubayaa@gmail.com"
-                                target="_blank"
-                                rel="noopener"
-                            >
+                            <a class="text-white pb-2 sosmedLink" href="mailto:maniac.ubayaa@gmail.com"
+                                target="_blank" rel="noopener">
                                 <img class="icon" src="{{ asset('asset2024/footer/email.png') }}" alt="email">
                                 @maniac.ubayaa@gmail.com
                             </a>
-                            <a
-                                class="text-white pb-2 sosmedLink"
-                                href="https://wa.me/+6285951465290"
-                                target="_blank"
-                                rel="noopener"
-                                style="font-size: 1rem;"
-                            >
-                                <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
+                            <a class="text-white pb-2 sosmedLink" href="https://wa.me/+6285951465290" target="_blank"
+                                rel="noopener" style="font-size: 1rem;">
+                                <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}"
+                                    alt="whatsapp">
                                 085951465290 (Caitlyn)
                             </a>
-                            <a
-                                class="text-white pb-2 sosmedLink"
-                                href="https://wa.me/+6285104914848"
-                                target="_blank"
-                                rel="noopener"
-                                style="font-size: 1rem;"
-                            >
-                                <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}" alt="whatsapp">
+                            <a class="text-white pb-2 sosmedLink" href="https://wa.me/+6285104914848" target="_blank"
+                                rel="noopener" style="font-size: 1rem;">
+                                <img class="icon" src="{{ asset('asset2024/footer/whatsapp.png') }}"
+                                    alt="whatsapp">
                                 085104914848 (Fiorello)
                             </a>
                         </div>
@@ -422,9 +405,10 @@
                 </div> --}}
                 <br>
                 <br>
-{{--                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights--}}
-{{--                    Reserved</p>--}}
-                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &copy; MANIAC XIII Information System, All Rights Reserved</p>
+                {{--                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights --}}
+                {{--                    Reserved</p> --}}
+                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &copy; MANIAC XIII Information System, All
+                    Rights Reserved</p>
             </div>
         </div>
     </footer>
