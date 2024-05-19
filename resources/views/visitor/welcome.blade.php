@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     {{-- <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.png" type="image/png"> --}}
 
-    <link rel="icon" href="{{ asset('asset2024') }}/round.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.ico" type="image/x-icon">
 
     <style>
         body {
