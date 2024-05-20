@@ -164,7 +164,7 @@
                         <li>
                             {{-- <a class="nav-link" href="{{ asset('asset2024/main/guidebook.pdf') }}"
                                 download="Guidebook MANIAC XIII.pdf">GUIDEBOOK</a> --}}
-                            <a class="nav-link" href="https://bit.ly/GuideBookMANIACXIII" target="_blank">GUIDEBOOK</a>
+                            <a class="nav-link" href="https://bit.ly/guidebookMANIACXIII" target="_blank">GUIDEBOOK</a>
                         </li>
                         <li>
                             <div class="dropdown">
