@@ -2,13 +2,13 @@
 @php($user = auth()->user())
 
 @section('content')
-    <div role="alert" class="alert text-start rounded-lg justify-start">
+    <div role="alert" class="alert alert-info text-start rounded-lg justify-start">
 {{--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>--}}
         <div>
-            <span>Hi, <strong>{{ $user->username }}</strong>! Have a nice day :)</span>
+            <span>Hi, <strong>{{ ucfirst($user->username) }}</strong>! Have a nice day :)</span>
         </div>
     </div>
-    <div role="alert" class="alert alert-warning rounded-lg mt-4 text-start">
+    <div role="alert" class="alert rounded-lg mt-4 text-start">
         <div>
             <ul class="list-disc list-inside">
                 <li>Selamat Datang di Pos <strong>{{ $user->rallyGame->name }}</strong></li>
