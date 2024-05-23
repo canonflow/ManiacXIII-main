@@ -44,7 +44,7 @@
             </select>
         </label>
         <div class="modal-action">
-            <button class="btn btn-primary" onclick="submitScore()">Submit</button>
+            <button class="btn btn-primary" onclick="submitScore()" id="btnSubmit">Submit</button>
         </div>
     </div>
 
@@ -65,8 +65,8 @@
                             <td width="40%" class="text-center">{{ $score->player->team->name }}</td>
                             <td width="30%" class="text-center">{{ $score->point->point }}</td>
                             <td width="30%" class="text-center">
-                                <button class="btn btn-error btn-md rounded-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <button class="btn btn-error btn-md rounded" onclick="openModalHapus('{{ $score->id }}', '{{ $score->player->team->name }}')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="" class="w-5 h-5 stroke-white">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                     </svg>
                                 </button>
@@ -77,6 +77,20 @@
             </table>
         </div>
     </div>
+
+    {{--  Modal Hapus  --}}
+    <dialog id="modalHapus" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-2xl">Konfirmasi</h3>
+            <p class="pt-4">Apakah anda yakin untuk menghapus Score untuk tim <strong><span id="teamHapus"></span></strong></p>
+            <div class="modal-action">
+                <button class="btn btn-error" id="btnHapus">Hapus</button>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 @endsection
 
 @section('scripts')
@@ -137,6 +151,10 @@
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 </script>
 <script>
+    const btnSubmit = document.getElementById('btnSubmit');
+    const modalHapus = document.getElementById('modalHapus');
+    const teamHapus = document.getElementById('teamHapus');
+    const btnHapus = document.getElementById('btnHapus');
     const submitScore = () => {
         // console.log($("#tim").val());
         // console.log($("#point_id").val());
@@ -144,7 +162,8 @@
             return showNotifError("Silahkan scan QR atau Pilih score yang ingin diinput!", isError=true);
         }
 
-        // return;
+        // Disable Dlu
+        btnSubmit.disabled = true;
         // ===== LANJUTIN AJAX =====
         $.ajax({
             type: 'POST',
@@ -160,6 +179,7 @@
                     return showNotifError("Gagal Submit! Team sudah pernah main di pos ini.", isError = true);
                 }
                 showNotifError("Berhasil menambahkan poin ke " + data.team)
+                updateTableScore(data.scores);
             },
             error : function(xhr){
                 console.log(xhr)
@@ -167,9 +187,73 @@
                     "Error AJAX! Beberapa kesalahan seperti QR yang tidak terdaftar atau Player tidak terdaftar. Hubungi SI secepatnya!!!",
                     isError=true
                 );
+            },
+            complete: function (data) {
+                btnSubmit.disabled = false;
             }
         })
 
+    }
+
+    const openModalHapus = (scoreId, team) => {
+        teamHapus.innerHTML = team;
+        btnHapus.onclick = function () {
+            hapusScore(scoreId);
+        }
+
+        // Buka Modal
+        modalHapus.showModal();
+    }
+
+    const hapusScore = (scoreId) => {
+        // console.log(scoreId)
+        let url = `{{ route('penpos.index') }}/${scoreId}/destroy`;
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: {
+                '_token': '{{ csrf_token() }}',
+                '_method': 'delete',
+            },
+            success: function (data) {
+                showNotifError(data.msg);
+
+                // Ubah Table Score
+                // $("#scoresBody").html('');
+                console.log(data);
+                updateTableScore(data.scores);
+            },
+            error: function (xhr) {
+                showNotifError(
+                    "Error AJAX! Beberapa kesalahan seperti tim blm pernah diinputkan. Segera Hubungi SI!!!",
+                    isError=true
+                );
+                console.log(xhr);
+            },
+            complete: function (data) {
+                modalHapus.close();
+            }
+        });
+    }
+
+    const updateTableScore = (data) => {
+        let newScore = "";
+        for (const [key, value] of Object.entries(data)) {
+            let data = `<tr>
+                            <td width="40%" class="text-center">${ value.player.team.name}</td>
+                            <td width="30%" class="text-center">${ value.point.point }</td>
+                            <td width="30%" class="text-center">
+                                <button class="btn btn-error btn-md rounded" onclick="openModalHapus('${ value.id  }', '${ value.player.team.name }')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="" class="w-5 h-5 stroke-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>`;
+            newScore += data;
+        }
+        $("#scoresBody").html('');
+        $("#scoresBody").html(newScore);
     }
 </script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class RallyGame extends Model
 {
@@ -50,6 +51,18 @@ class RallyGame extends Model
             ->join('points', 'scores.point_id', '=', 'points.id')
             ->orderBy('points.point', 'DESC')
             ->get();
+        return $scores;
+    }
+
+    public static function getPenposScores($id) {
+        $scores = Score::where('rally_game_id', $id)
+            // Kita ambil relasi score dengan player,
+            // karena score yg punya relasi langsung dgn team, maka kita panggil relasi player setelah itu tim
+            ->with('player.team')
+            ->with('point')
+            ->orderBy('scores.created_at', 'DESC')
+            ->get();
+
         return $scores;
     }
 

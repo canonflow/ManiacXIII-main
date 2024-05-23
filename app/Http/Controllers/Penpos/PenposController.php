@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Penpos;
 use App\Http\Controllers\Controller;
 use App\Models\Player;
 use App\Models\Point;
+use App\Models\RallyGame;
 use App\Models\Score;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -54,11 +55,13 @@ class PenposController extends Controller
             $player -> dragon_breath = $player -> dragon_breath + 1;
         }
 
+        $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
 
         return response()->json([
             'team' => $team->name,
             'point' => $point->point,
-            'msg' => $msg
+            'msg' => $msg,
+            'scores' => $scores,
         ], 200);
     }
 
@@ -69,7 +72,14 @@ class PenposController extends Controller
         $score -> delete();
 
         // Ambil semua score
-        $scores = [];
+//        $scores = Score::where('rally_game_id', Auth::user()->rallyGame->id)
+//            // Kita ambil relasi score dengan player,
+//            // karena score yg punya relasi langsung dgn team, maka kita panggil relasi player setelah itu tim
+//            ->with('player.team')
+//            ->with('point')
+//            ->orderBy('scores.created_at', 'DESC')
+//            ->get();
+        $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
 
         return response()->json([
             'msg' => 'Berhasil Menghapus Score untuk Tim ' . $team,

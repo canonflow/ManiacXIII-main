@@ -162,6 +162,8 @@ Route::group(
             ->name('index');
         Route::post('/store', [Penpos\PenposController::class, 'store'])
             ->name('store');
+        Route::delete('/{score}/destroy', [Penpos\PenposController::class, 'destroy'])
+            ->name('destroy');
     }
 );
 
