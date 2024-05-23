@@ -15,7 +15,8 @@ class Player extends Model
     protected $fillable = [
         'team_id',
         'cycle',
-        'dragon_breath'
+        'dragon_breath',
+        'restore'
     ];
 
     public function team() : BelongsTo {
