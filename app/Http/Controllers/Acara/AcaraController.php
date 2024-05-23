@@ -28,20 +28,30 @@ class AcaraController extends Controller
         ]);
 
         // ===== Create Rally Games =====
+        $rg = RallyGame::create([
+            "name" => $request->get("name"),
+            "type" => $request->get("type"),
+            "user_id" => $request->get("user_id")
+        ]);
 
         return redirect()->back()->with('success', $rg->name);
     }
 
     public function rallyDetail(RallyGame $rallyGame) {
         // Ambil id penpos yg sudah punya Rally Game
+        $registerPenpos = RallyGame::where("user_id", '!=', $rallyGame->user_id)
+        ->get()->pluck("user_id");
 
         // Ambil id penpos dari Rally Game yang asli
-
+        $originalPenpos = $rallyGame->user_id;
 
         // Ambil penpos yg belum punya Rally Game
-
+        $availablePenpos = User::where("role", "=", "penpos")
+        ->whereNotIn("id", $registerPenpos)
+        ->get();
+        
         return response()->json(
-//            compact('originalPenpos', 'availablePenpos', 'rallyGame'),
+           compact('originalPenpos', 'availablePenpos', 'rallyGame'),
             200
         );
     }
@@ -54,7 +64,11 @@ class AcaraController extends Controller
         ]);
 
         // Update RG
-
+        $rallyGame->update([
+            "name" => $request->get("name"),
+            "type" => $request->get("type"),
+            "user_id" => $request->get("user_id")
+        ]);
 
         return redirect()->back()->with('editSuccess', $rallyGame->name);
     }
@@ -70,8 +84,9 @@ class AcaraController extends Controller
     public function destroy(RallyGame $rallyGame) {
         // Ambil Nama Rally
         $rgName = $rallyGame->name;
-
+        
         // Hapus Rally
+        $rallyGame->delete();
 
         return redirect()->back()->with('deleteSuccess', $rgName);
     }
