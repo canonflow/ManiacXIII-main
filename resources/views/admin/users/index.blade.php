@@ -83,6 +83,9 @@
                                     case 'acara':
                                         $name = $user->acara->name;
                                         break;
+                                    case 'penpos':
+                                        $name = $user->rallyGame->name;
+                                        break;
                                     default:
                                         $name = 'undefined';
                                         break;

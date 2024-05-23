@@ -46,6 +46,8 @@ class AuthenticatedSessionController extends Controller
                     return redirect()->intended('/acara');
                 case 'admin':
                     return redirect()->intended('/admin');
+                case 'penpos':
+                    return redirect()->intended('/penpos');
             }
 
             abort(404);

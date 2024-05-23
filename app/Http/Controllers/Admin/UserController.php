@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Acara;
 use App\Models\Admin;
+use App\Models\RallyGame;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -55,6 +56,11 @@ class UserController extends Controller
                     'user_id' => $user->id
                 ]);
                 break;
+            case 'penpos':
+                RallyGame::create([
+                    'name' => $request->get('name'),
+                    'user_id' => $user->id
+                ]);
         }
 
         return redirect()->back()->with('addSuccess', $user->username);

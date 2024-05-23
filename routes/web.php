@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pemain;
 use App\Http\Controllers\Acara;
+use App\Http\Controllers\Penpos;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -150,6 +151,17 @@ Route::group(
         // Pembayaran
         Route::post('/pembayaran/upload', [Pemain\PemainController::class, 'upload'])
             ->name('pembayaran.upload');
+    }
+);
+
+// ===== Penpos Route =====
+Route::group(
+    ['middleware' => 'penpos', 'prefix' => 'penpos', 'as' => 'penpos.'],
+    function () {
+        Route::get('/', [Penpos\PenposController::class, 'index'])
+            ->name('index');
+        Route::post('/store', [Penpos\PenposController::class, 'store'])
+            ->name('store');
     }
 );
 
