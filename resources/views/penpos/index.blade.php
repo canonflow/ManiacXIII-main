@@ -147,6 +147,29 @@
 
         // return;
         // ===== LANJUTIN AJAX =====
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("penpos.store") }}',
+            data: {
+                '_token':'{{ csrf_token() }}',
+                'tim':$('#tim').val(),
+                'point_id' : $('#point_id').val()
+            },
+            success: function(data) {
+                if(data.msg == "YES")
+                {
+                    return showNotifError("Gagal Submit! Team sudah pernah main di pos ini.", isError = true);
+                }
+                showNotifError("Berhasil menambahkan poin ke " + data.team)
+            },
+            error : function(xhr){
+                console.log(xhr)
+                showNotifError(
+                    "Error AJAX! Beberapa kesalahan seperti QR yang tidak terdaftar atau Player tidak terdaftar. Hubungi SI secepatnya!!!",
+                    isError=true
+                );
+            }
+        })
 
     }
 </script>

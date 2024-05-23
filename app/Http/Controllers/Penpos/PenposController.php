@@ -30,11 +30,30 @@ class PenposController extends Controller
         $msg = 'NO';
 
         // Cari Player dan Point (Cari tim dlu baru player)
-
+        $team = Team::where('name', $request ->get('tim'))->first();
+        $player = Player::where('team_id', $team -> id)->first();
+        $point = Point::find($request -> get('point_id'));
 
         // Cek Apakah Tim sudah pernah main (udah ada poin-nya), klo iya langsung return aja
+        $flag = Score::where('player_id', $player-> id)->where('rally_game_id', Auth::user()->rallyGame ->id) -> get();
+        if (count($flag) != 0)
+        {
+            $msg = "YES";
+            return response()->json(compact('msg'), 200);
+        }
 
         // Buat Score
+        $score = Score::create([
+            'rally_game_id' => Auth::user()->rallyGame->id,
+            'player_id' => $player -> id,
+            'point_id' => $point ->id
+        ]);
+
+        if ($point -> condition == 'full')
+        {
+            $player -> dragon_breath = $player -> dragon_breath + 1;
+        }
+
 
         return response()->json([
             'team' => $team->name,
@@ -47,6 +66,7 @@ class PenposController extends Controller
         $team = $score->player->team->name;
 
         // Hapus
+        $score -> delete();
 
         // Ambil semua score
         $scores = [];
