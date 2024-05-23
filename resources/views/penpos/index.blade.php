@@ -29,7 +29,6 @@
                    class="input w-full bg-base-200 text-primary rounded-md font-medium"
                    id="tim"
                    name="tim"
-                   value="Tim 1"  {{-- nanti ini dihapus aja klo testingnya udh berhasil --}}
                    readonly
             />
         </label>
