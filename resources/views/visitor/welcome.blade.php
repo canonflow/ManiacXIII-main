@@ -120,6 +120,13 @@
         .sosmedLink:hover {
             font-weight: bolder;
         }
+
+        .container-logo-kristin {
+            width: 170px;
+            height: auto;
+            background-color: rgba(210, 210, 210, 0.9);
+            border-radius: 20px;
+        }
     </style>
     @yield('styles')
 
@@ -400,9 +407,12 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-lg-3">
+                <div class="col-lg-6 pt-sm-2 mt-5">
                     <h5 class="text-white"><strong>SPONSORED BY</strong></h5>
-                </div> --}}
+                    <div class="container-logo-kristin d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('asset2024/footer/logo2_Kristin.png') }}" width="150px" height="auto" alt="logo-ubaya" class="pt-2 pb-2" alt="logo-kristin">
+                    </div>
+                </div>
                 <br>
                 <br>
                 {{--                <p class="text-white text-start pe-5 pb-2 pt-5">COPYRIGHT &#169; MANIAC XIII Committee, All Rights --}}
