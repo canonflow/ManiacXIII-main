@@ -40,7 +40,7 @@
                         @endforeach
                     @else
                         @if($header == 'student_photo')
-                        <td valign="center" align="center" style="border: 1px solid black;" height="115"><strong>{{ $headerParse[$header] }}</strong></td>
+                        <td valign="center" align="center" style="border: 1px solid black;" height="200"><strong>{{ $headerParse[$header] }}</strong></td>
                         @else
                                 <td valign="center" align="center" style="border: 1px solid black;"><strong>{{ $headerParse[$header] }}</strong></td>
                         @endif

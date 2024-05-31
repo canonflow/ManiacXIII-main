@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\ParticipantsExport;
+use App\Exports\ParticipantsExportAll;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Message;
@@ -144,7 +145,7 @@ class AdminController extends Controller
 
     public function export() {
         //return (new ParticipantsExport)->download('participants.xlsx');
-        return Excel::download(new ParticipantsExport(), 'participants.xlsx')
+        return Excel::download(new ParticipantsExportAll(), 'participants.xlsx')
                 ->deleteFileAfterSend(true);
     }
 }

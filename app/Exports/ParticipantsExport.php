@@ -9,10 +9,19 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithDrawings;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings
+define('ALLOWED', ['verified']);
+
+class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings, WithTitle
 {
+    private $status;
+    public function __construct($status = 'verified')
+    {
+        $this->status = $status;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -25,7 +34,7 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings
     {
         // Ambil Team yg udh terverifikasi
         $listTeamIdSandbox = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-        $teams = Team::where('status', 'verified')
+        $teams = Team::where('status', $this->status)
                     ->whereNotIn('id', $listTeamIdSandbox)
                     ->get();
         $payloads = [];
@@ -49,6 +58,11 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings
             $payloads += [$team->name => $temp];
         }
         return $payloads;
+    }
+
+    public function title(): string
+    {
+        return "{$this->status}";
     }
 
     public function view() : View
@@ -84,6 +98,8 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings
 
     public function drawings()
     {
+        // Kalo cuma waiting, gk perlu nampilin gambar
+        if (!in_array($this->status, ALLOWED)) return [];
         // TODO: Implement drawings() method.
         $payloads = $this->data();
         $drawings = [];
@@ -96,7 +112,7 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings
                     foreach ($items as $item) {
                         $drawing = new Drawing();
                         $drawing->setPath(storage_path('app/public/') . $item);
-                        $drawing->setHeight(50);
+                        $drawing->setHeight(60);
                         $drawing->setWidth(120);
                         $drawing->setCoordinates($coors[$currPos] . $row);
                         $drawings[] = $drawing;
