@@ -137,9 +137,9 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid" style="padding-inline: 2rem;">
                 <div class="logo">
-                    <img src="{{ asset('asset2024/logo-maniac.jpg') }}" width="50px" height="50px" alt="logo-maniac"
-                        style="border-radius: 50%;">
                     <img src="{{ asset('asset2024/logo-ubaya.png') }}" width="50px" height="50px" alt="logo-ubaya"
+                        style="border-radius: 50%;">
+                    <img src="{{ asset('asset2024/logo-maniac.jpg') }}" width="50px" height="50px" alt="logo-maniac"
                         style="border-radius: 50%;">
                 </div>
 
@@ -363,10 +363,10 @@
                         berbasis multimedia untuk anak SMA/K sederajat yang mencakup game concept design dan game asset
                         design, yang diselenggarakan oleh jurusan Teknik Informatika Program Digital Media Technology
                         Universitas Surabaya.</p>
-                    <img src="{{ asset('asset2024/footer/logo-maniac.png') }}" width="150px" height="auto"
-                        alt="logo-maniac" class="pt-3">
                     <img src="{{ asset('asset2024/footer/logo-ubaya.png') }}" width="150px" height="auto"
                         alt="logo-ubaya" class="pt-3">
+                    <img src="{{ asset('asset2024/footer/logo-maniac.png') }}" width="150px" height="auto"
+                        alt="logo-maniac" class="pt-3">
                 </div>
                 <div class="col-lg-6 ps-lg-5 pt-sm-2">
                     <h5 class="text-white"><strong>SOCIAL MEDIA</strong></h5>
