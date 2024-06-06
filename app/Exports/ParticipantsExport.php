@@ -13,6 +13,10 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 define('ALLOWED', ['verified']);
+define('TITLE', [
+   'verified' => 'sudah bayar',
+   'waiting' => 'belum bayar'
+]);
 
 class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings, WithTitle
 {
@@ -62,7 +66,7 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings, With
 
     public function title(): string
     {
-        return "{$this->status}";
+        return strtoupper(TITLE[$this->status]);
     }
 
     public function view() : View
