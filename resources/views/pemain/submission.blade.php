@@ -58,6 +58,15 @@
 
             {{--  Form  --}}
             <div class="card-body bg-base-200 rounded-b-lg">
+                @if($isSubmit)
+                    <div class="badge badge-lg font-medium bg-green-100 text-green-900 border-green-500">
+                        Sudah Mengumpulkan
+                    </div>
+                @else
+                    <div class="badge badge-lg font-medium bg-red-100 text-red-900 border-red-500">
+                        Belum Mengumpulkan
+                    </div>
+                @endif
                 <div role="alert" class="alert alert-info rounded-md py-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info-content shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Silahkan masukkan link gdrive berupa file PDF.</span>
@@ -81,7 +90,7 @@
                     <label class="form-control w-full lg:col-span-2">
                         <input type="text" placeholder="Link GDrive PDF" class="input input-bordered rounded-md w-full" name="link" />
                     </label>
-                    <button type="submit" class="btn btn-primary w-full rounded-md lg:col-span-1">Submit</button>
+                    <button type="submit" class="btn btn-primary w-full rounded-md lg:col-span-1">{{ $isSubmit ? "Resubmit" : "Submit" }}</button>
                 </form>
             </div>
         </div>

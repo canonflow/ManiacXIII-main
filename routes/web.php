@@ -120,6 +120,9 @@ Route::group(
         // Delete Specified Contest
         Route::post('contest/{contest:slug}/destroy', [Acara\ContestController::class, 'destroy'])->name('contest.destroy');
 
+        // Add Score
+        Route::post('contest/{submission}/add', [Acara\ContestController::class, 'addScore'])->name('addScore');
+
         // ==================================== Rally Games ====================================
         Route::post('/rallygames/add', [Acara\AcaraController::class, 'store'])
             ->name('rallygames.store');

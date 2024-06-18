@@ -144,6 +144,19 @@ class ContestController extends Controller
         return redirect()->back()->with('deleteSuccess', $team->name);
     }
 
+    public function addScore(Submission $submission, Request $request) {
+        $request->validate([
+            'score' => ['required', 'numeric']
+        ]);
+
+        $score = $request->get('score');
+        $submission->score = $score;
+        $submission->save();
+
+        return redirect()->back()->with('addScoreSuccess', 'Berhasil Menambahkan Score untuk Tim ' . $submission->team->name);
+
+    }
+
     /**
      * Send data for editing the specified Contest.
      *

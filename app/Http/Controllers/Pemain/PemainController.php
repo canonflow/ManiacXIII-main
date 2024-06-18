@@ -68,6 +68,9 @@ class PemainController extends Controller
         }
 
         $team = Auth::user()->team;
+        $isSubmit = Submission::where('contest_id', $contest->id)
+                            ->where('team_id', Auth::user()->team->id)
+                            ->first();
 
         if (!($team->contests()->where('contest_id', $contest->id)->first()->pivot->join_date)) {
             // Update Join Date
@@ -76,7 +79,7 @@ class PemainController extends Controller
             );
         }
 
-        return view('pemain.submission', compact('contest'));
+        return view('pemain.submission', compact('contest', 'isSubmit'));
     }
 
     public function submitLink(Contest $contest, Request $request)

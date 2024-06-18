@@ -90,7 +90,6 @@
                     Anda dapat menambahkan peserta dan melihat submission peserta pada Contest <strong class="text-base-100">{{ $contest->name }}</strong>.
                 </p>
                 <div role="alert" class="alert rounded-md py-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Mohon lakukan refresh page untuk update data contest.</span>
                 </div>
                 @if(session()->has('addSuccess'))
@@ -101,7 +100,7 @@
                         </div>
                     </div>
                 @elseif(session()->has('deleteSuccess'))
-                    <div role="alert" class="alert alert-error mb-3 rounded-md">
+                    <div role="alert" class="alert alert-success mb-3 rounded-md">
                         <div class="flex flex-row justify-start items-center gap-x-2 w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             <span class="text-white">Berhasil Menghapus Tim <strong>{{ session()->get('deleteSuccess') }}</strong></span>
@@ -114,7 +113,23 @@
                             <span><strong>{{ session()->get('unauthorized') }}</strong></span>
                         </div>
                     </div>
+                @elseif(session()->has('addScoreSuccess'))
+                    <div role="alert" class="alert alert-success mb-3 rounded-md">
+                        <div class="flex flex-row justify-start items-center gap-x-2 w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-white shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span class="text-white"><strong>{{ session()->get('addScoreSuccess') }}</strong></span>
+                        </div>
+                    </div>
                 @endif
+
+                @error("score")
+                    <div role="alert" class="alert alert-error mb-3 rounded-md">
+                        <div class="flex flex-row justify-start items-center gap-x-2 w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span><strong>{{ $message }}</strong></span>
+                        </div>
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -185,8 +200,9 @@
                         <thead>
                         <tr class="text-secondary">
                             <th width="10%" class="text-center">ID</th>
-                            <th width="40%" class="text-center">Tim</th>
-                            <th width="40%" class="text-center">Link Pengumpulan</th>
+                            <th width="30%" class="text-center">Tim</th>
+                            <th width="30%" class="text-center">Link Pengumpulan</th>
+                            <th width="30%" class="text-center">Score</th>
                         </tr>
                         </thead>
                         <tbody class="text-white">
@@ -194,9 +210,16 @@
                             @foreach($submissions as $submission)
                                 <tr>
                                     <td width="10%" class="text-center">{{ $submission->id }}</td>
-                                    <td width="40%" class="text-center font-bold">{{ $submission->team->name }}</td>
-                                    <td width="40%" class="text-center">
+                                    <td width="30%" class="text-center font-bold">{{ $submission->team->name }}</td>
+                                    <td width="30%" class="text-center">
                                         <a href="{{ $submission->link }}" target="_blank" class="btn btn-neutral btn-xs rounded-md action">Link Tugas</a>
+                                    </td>
+                                    <td width="30%" class="text-center">
+                                       @if($submission->score != null)
+                                            <div class="badge badge-lg font-bold">{{ $submission->score }}</div>
+                                        @else
+                                           <button class="btn btn-primary btn-sm" onclick="openPenilaianModal('{{ $submission->id }}')">Beri Penilaian</button>
+                                       @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -209,6 +232,7 @@
             </div>
         </div>
     </div>
+
     {{--  Modal Hapus  --}}
     <dialog id="modalHapus" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
@@ -216,6 +240,32 @@
             <form action="" method="POST" id="formDelete">
                 @csrf
                 <button type="submit" class="btn btn-success action rounded-lg w-full mt-8">Hapus</button>
+            </form>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-outline btn-error action rounded-lg px-8">Close</button>
+                </form>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    {{--  Modal Penilaian  --}}
+    <dialog id="modalPenilaian" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-2xl text-accent">Konfirmasi</h3>
+            <form action="" method="POST" id="formPenilaian">
+                @csrf
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Score:</span>
+                    </div>
+                    <input type="number" placeholder="score ..." name="score" class="input input-bordered w-full rounded" required />
+                </label>
+                <button type="submit" class="btn btn-success action rounded-lg w-full mt-8">Submit</button>
             </form>
             <div class="modal-action">
                 <form method="dialog">
@@ -263,10 +313,20 @@
         // ===== Delete Contestant =====
         const formDelete = document.getElementById('formDelete');
         const modalDelete = document.getElementById('modalHapus');
+        const modalPenilaian = document.getElementById('modalPenilaian');
+        const formPenilaian = document.getElementById('formPenilaian');
+
         const openDeleteModal = (slug, teamId) => {
             let action = `{{ route('acara.contest') }}/${slug}/contestants/${teamId}/destroy`;
             formDelete.setAttribute('action', action);
             modalDelete.showModal();
+        }
+
+        const openPenilaianModal = (id) => {
+            console.log(id);
+            let action = `{{ route('acara.contest') }}/${id}/add`;
+            formPenilaian.setAttribute('action', action);
+            modalPenilaian.showModal();
         }
     </script>
 @endsection
