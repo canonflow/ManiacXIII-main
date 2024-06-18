@@ -92,6 +92,11 @@
                     </label>
                     <button type="submit" class="btn btn-primary w-full rounded-md lg:col-span-1">{{ $isSubmit ? "Resubmit" : "Submit" }}</button>
                 </form>
+                @if($isSubmit)
+                    <div>
+                        <a class="btn btn-sm btn-accent px-12 rounded" target="_blank" href="{{ $link }}">Lihat Submission</a>
+                    </div>
+                @endif
             </div>
         </div>
         <img draggable="false" src="{{ asset('asset2024') }}/main/mount.png" alt="" class="absolute z-[1] w-64 bottom-[-2rem] left-[-5rem]">

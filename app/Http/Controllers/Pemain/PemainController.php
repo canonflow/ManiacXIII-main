@@ -72,6 +72,14 @@ class PemainController extends Controller
                             ->where('team_id', Auth::user()->team->id)
                             ->first();
 
+        $link = "#";
+        if ($isSubmit) {
+            $link = Submission::where('contest_id', $contest->id)
+                ->where('team_id', Auth::user()->team->id)
+                ->first()
+                ->link;
+        }
+
         if (!($team->contests()->where('contest_id', $contest->id)->first()->pivot->join_date)) {
             // Update Join Date
             $team->contests()->syncWithoutDetaching(
@@ -79,7 +87,7 @@ class PemainController extends Controller
             );
         }
 
-        return view('pemain.submission', compact('contest', 'isSubmit'));
+        return view('pemain.submission', compact('contest', 'isSubmit', 'link'));
     }
 
     public function submitLink(Contest $contest, Request $request)
