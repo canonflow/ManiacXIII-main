@@ -13,7 +13,8 @@ class Submission extends Model
     protected $fillable = [
         'contest_id',
         'team_id',
-        'link'
+        'link',
+        'score'
     ];
 
     public function team() : BelongsTo {

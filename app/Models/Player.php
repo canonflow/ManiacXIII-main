@@ -16,7 +16,8 @@ class Player extends Model
         'team_id',
         'cycle',
         'dragon_breath',
-        'restore'
+        'restore',
+        'ultimate'
     ];
 
     public function team() : BelongsTo {
