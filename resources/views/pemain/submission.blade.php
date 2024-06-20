@@ -45,6 +45,10 @@
 {{--        <img src="{{ asset('asset2024') }}/main/cloud.png" alt="" class="absolute z-[1] sm:z-10 w-72 right-5 sm:right-[-2.5rem] 2xl:right-[-8rem] top-[-0.1rem] select-none" id="cloud">--}}
         <img draggable="false" src="{{ asset('asset2024') }}/main/cloud.png" alt="" class="absolute left-1/6 z-[1] w-80 top-[-0.1rem] select-none" id="cloud">
         <h1 class="text-4xl text-center text-accent font-bold z-[9]">{{ $contest->name }}</h1>
+        <div class="bg-slate-100  p-2 rounded grid grid-cols-1">
+            <h2 class="text-xl text-center font-bold text-black z-[9]">Deadline</h2>
+            <h2 class="text-xl md:text-2xl text-center font-black text-red-600 z-[9] pt-2">{{ \Illuminate\Support\Carbon::parse($contest->close_date)->subMinute(30) }} WIB</h2>
+        </div>
         <div class="card rounded-lg shadow-md data z-[9]">
             {{--  Header  --}}
             <div class="flex items-center text-xl bg-base-300 p-5 font-medium rounded-t-lg gap-2">

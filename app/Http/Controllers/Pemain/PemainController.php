@@ -110,6 +110,7 @@ class PemainController extends Controller
             ]);
         } else {
             $submission[0]->link = $link;
+            $submission[0]->updated_at = Carbon::now();
             $submission[0]->save();
         }
 

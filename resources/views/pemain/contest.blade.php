@@ -33,8 +33,13 @@
                     Anda dapat melihat <strong>Available Contest</strong>, <strong>Upcoming Contest</strong>, and <strong>Finished Contest</strong> di sini.
                 </p>
                 <div role="alert" class="alert alert-success rounded-md py-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Mohon lakukan refresh page untuk update data contest.</span>
+                </div>
+                <div role="alert" class="alert alert-warning rounded-md py-2">
+                    <span><strong>Deadline</strong> pengumpulan tugas penyisihan adalah <strong>30 menit sebelum jadwal selesai!</strong></strong></span>
+                </div>
+                <div role="alert" class="alert alert-error rounded-md py-2">
+                    <span><strong>Jadwal Selesai</strong> adalah jadwal <strong>pengumpulan akhir</strong> untuk penyisihan!</span>
                 </div>
             </div>
         </div>
@@ -60,8 +65,8 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="30%" class="text-center">{{ $contest->open_date }} WIB</td>
+                                    <td width="30%" class="text-center">{{ $contest->close_date }} WIB</td>
                                     @php($action = ($contest->join_date) ? 'Rejoin' : 'Join')
                                     <td width="10%" class="text-center">
                                         <a

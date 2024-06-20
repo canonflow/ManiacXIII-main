@@ -200,9 +200,10 @@
                         <thead>
                         <tr class="text-secondary">
                             <th width="10%" class="text-center">ID</th>
-                            <th width="30%" class="text-center">Tim</th>
-                            <th width="30%" class="text-center">Link Pengumpulan</th>
-                            <th width="30%" class="text-center">Score</th>
+                            <th width="22.5%" class="text-center">Tim</th>
+                            <th width="22.5%" class="text-center">Link Pengumpulan</th>
+                            <th width="22.5%" class="text-center">Jam Pengumpulan (Terupdate)</th>
+                            <th width="22.5%" class="text-center">Score</th>
                         </tr>
                         </thead>
                         <tbody class="text-white">
@@ -210,21 +211,29 @@
                             @foreach($submissions as $submission)
                                 <tr>
                                     <td width="10%" class="text-center">{{ $submission->id }}</td>
-                                    <td width="30%" class="text-center font-bold">{{ $submission->team->name }}</td>
-                                    <td width="30%" class="text-center">
+                                    <td width="22.5%" class="text-center font-bold">{{ $submission->team->name }}</td>
+                                    <td width="22.5%" class="text-center">
                                         <a href="{{ $submission->link }}" target="_blank" class="btn btn-neutral btn-xs rounded-md action">Link Tugas</a>
                                     </td>
-                                    <td width="30%" class="text-center">
+                                    <td width="22.5%" class="text-center">
+                                        {{ $submission->updated_at }} WIB
+                                    </td>
+                                    <td width="22.5%" class="text-center">
                                        @if($submission->score != null)
-                                            <div class="badge badge-lg font-bold">{{ $submission->score }}</div>
-                                        @else
+                                           <div>
+                                                <div class="badge badge-lg font-bold">{{ $submission->score }}</div>
+                                                <button class="mt-2 xl:ml-2 xl:mt-0 btn btn-primary btn-sm rounded" onclick="openPenilaianModal('{{ $submission->id }}')">Update</button>
+                                           </div>
+                                       @elseif(\Illuminate\Support\Carbon::now() <= $submission->contest->close_date)
+                                           <div class="badge badge-lg badge-warning font-bold text-sm">Waiting</div>
+                                       @else
                                            <button class="btn btn-primary btn-sm" onclick="openPenilaianModal('{{ $submission->id }}')">Beri Penilaian</button>
                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="3"><p class="font-medium text-slate-200 text-center">No Submissions</p></td></tr>
+                            <tr><td colspan="4"><p class="font-medium text-slate-200 text-center">No Submissions</p></td></tr>
                         @endif
                         </tbody>
                     </table>
@@ -263,7 +272,7 @@
                     <div class="label">
                         <span class="label-text">Score:</span>
                     </div>
-                    <input type="number" placeholder="score ..." name="score" class="input input-bordered w-full rounded" required />
+                    <input type="number" min="0" placeholder="score ..." name="score" class="input input-bordered w-full rounded" required />
                 </label>
                 <button type="submit" class="btn btn-success action rounded-lg w-full mt-8">Submit</button>
             </form>
