@@ -54,8 +54,9 @@
                         <tr class="">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
-                            <th width="30%" class="text-center">Jadwal Mulai</th>
-                            <th width="30%" class="text-center">jadwal Selesai</th>
+                            <th width="20%" class="text-center">Jadwal Mulai</th>
+                            <th width="20%" class="text-center">jadwal Selesai</th>
+                            <th width="20%" class="text-center">Status Pengumpulan</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -65,8 +66,16 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }} WIB</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }} WIB</td>
+                                    <td width="20%" class="text-center">{{ $contest->open_date }} WIB</td>
+                                    <td width="20%" class="text-center">{{ $contest->close_date }} WIB</td>
+                                    <td width="20%" class="text-center">
+                                        @php
+                                        $isSubmitted = $contest->submission()->get()->where('team_id', auth()->user()->team->id)->isEmpty() ? "Unsubmitted" : "Submitted";
+                                        @endphp
+                                        <div class="badge badge-xl font-medium {{ ($isSubmitted == "Submitted") ? "bg-green-100 text-green-900 border-green-500" : "bg-red-100 text-red-900 border-red-500"}}">
+                                            {{ $isSubmitted }}
+                                        </div>
+                                    </td>
                                     @php($action = ($contest->join_date) ? 'Rejoin' : 'Join')
                                     <td width="10%" class="text-center">
                                         <a
@@ -79,7 +88,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="5"><p class="font-medium text-slate-200 text-center">No Active Contest</p></td></tr>
+                            <tr><td colspan="6"><p class="font-medium text-slate-200 text-center">No Active Contest</p></td></tr>
                         @endif
                         </tbody>
                     </table>

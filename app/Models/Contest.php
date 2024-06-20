@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Contest extends Model
 {
@@ -31,8 +32,9 @@ class Contest extends Model
                     ->withTimestamps();
     }
 
-    public function submitions() : HasMany {
+    public function submission() : HasMany {
         return $this->hasMany(Submission::class, 'contest_id');
+//        return $this->hasOne(Submission::class, 'contest_id');
     }
 
 }
