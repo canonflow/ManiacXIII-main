@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pemain;
 use App\Http\Controllers\Acara;
 use App\Http\Controllers\Penpos;
+use App\Http\Controllers\Si;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -167,6 +168,15 @@ Route::group(
             ->name('store');
         Route::delete('/{score}/destroy', [Penpos\PenposController::class, 'destroy'])
             ->name('destroy');
+    }
+);
+
+
+// ===== SI Route =====
+Route::group(
+    ['middleware'=> 'si', 'prefix' => 'si', 'as'=>'si'], 
+    function(){
+        Route::get('/', [Si\SiController::class, 'index'])->name('index');
     }
 );
 
