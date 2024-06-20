@@ -9,12 +9,181 @@ body {
     padding: 0;
 }
 
-.container {
-    width: 100vw;
-    height: 100vh;
+.display-none{
+    display: none;
+}
+
+.display-block {
+    display: block;
 }
 
 .bg {
     width: 100vw;
     height: 100vh;
 }
+
+.wrap-all{
+    position: relative;
+}
+
+.atas-kiri {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.atas-tengah {
+    position: absolute;
+    left: 50%; 
+    transform: translateX(-50%);
+    top: 2%;
+}
+
+.health-bar {
+    width: 50vw;
+    height: 1rem;
+    background-color: black;
+}
+
+.atas-kanan {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: white; /* Sementara */
+}
+
+.bawah-tengah {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    color: darkblue;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.bawah-tengah div:nth-child(1){
+    margin-right: 10%;
+}
+
+.bawah-tengah div:nth-child(2){
+    margin-right: 10%;
+}
+
+.bawah-tengah div:nth-child(3){
+    margin-right: 10%;
+}
+
+.bawah-tengah div:nth-child(4){
+    margin-right: 10%;
+}
+
+.bawah-tengah div:nth-child(5){
+    margin-right: 10%;
+}
+
+#addOns{
+    cursor: pointer;
+}
+
+/* /////////////////////// */
+/* Menu Pop Up Items Add On*/
+/* /////////////////////// */
+.pop-up-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 60vh;
+    background-color: black;
+    color: white;
+}
+
+.wrap-pop-up-item{
+    position: relative;
+}
+
+.pop-up-item
+.wrap-pop-up-item 
+.close-pop-up-item{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: white;
+}
+/* /////////////////////// */
+/* Menu Pop Up Items Add On*/
+/* /////////////////////// */
+
+
+#store{
+    cursor: pointer;
+}
+/* ///////////////// */
+/* Menu Pop Up Store */
+/* ///////////////// */
+.pop-up-store {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 60vh;
+    background-color: black;
+    color: white;
+}
+
+.wrap-pop-up-store{
+    position: relative;
+}
+
+.pop-up-store
+.wrap-pop-up-store 
+.close-pop-up-store{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: white;
+}
+/* //////////////// */
+/* Menu Pop Up Store*/
+/* //////////////// */
+
+/* ////////// */
+/* Naga Alpha */
+/* ////////// */
+.wrap-dragon-alpha{
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    transform: rotateY(180deg);
+}
+
+.dragon-alpha {
+    width: 34%; /* Sementara */
+}
+/* ////////// */
+/* Naga Alpha */
+/* ////////// */
+
+/* ////////// */
+/* Naga Alpha */
+/* ////////// */
+.wrap-dragon-viking{
+    position: absolute;
+    top: 60%;
+    left: 10%;
+}
+
+.dragon-viking {
+    width: 20%; /* Sementara */
+}
+/* ////////// */
+/* Naga Alpha */
+/* ////////// */
