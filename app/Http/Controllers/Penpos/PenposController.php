@@ -10,6 +10,7 @@ use App\Models\Score;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PenposController extends Controller
 {
@@ -24,66 +25,106 @@ class PenposController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-           'tim' => ['required'],
-           'point_id' => ['required']
+            'tim' => ['required'],
+            'point_id' => ['required']
         ]);
+        try {
+            DB::beginTransaction();
+            $msg = 'NO';
 
-        $msg = 'NO';
+            // Cari Player dan Point (Cari tim dlu baru player)
+            $team = Team::where('name', $request ->get('tim'))->first();
+            $player = Player::where('team_id', $team -> id)->first();
+            $point = Point::find($request -> get('point_id'));
 
-        // Cari Player dan Point (Cari tim dlu baru player)
-        $team = Team::where('name', $request ->get('tim'))->first();
-        $player = Player::where('team_id', $team -> id)->first();
-        $point = Point::find($request -> get('point_id'));
+            // Cek Apakah Tim sudah pernah main (udah ada poin-nya), klo iya langsung return aja
+            $flag = Score::where('player_id', $player-> id)->where('rally_game_id', Auth::user()->rallyGame ->id)->get();
+            if (count($flag) != 0)
+            {
+                $msg = "YES";
+                return response()->json(compact('msg'), 200);
+            }
 
-        // Cek Apakah Tim sudah pernah main (udah ada poin-nya), klo iya langsung return aja
-        $flag = Score::where('player_id', $player-> id)->where('rally_game_id', Auth::user()->rallyGame ->id) -> get();
-        if (count($flag) != 0)
-        {
-            $msg = "YES";
+            // Buat Score
+            $score = Score::create([
+                'rally_game_id' => Auth::user()->rallyGame->id,
+                'player_id' => $player->id,
+                'point_id' => $point->id
+            ]);
+
+//            if ($point->condition == 'full')
+//            {
+//                $player->dragon_breath = $player -> dragon_breath + 1;
+//            }
+
+            // Tambah Dragon Breath
+            $db = $player->dragon_breath + Score::getAddDragonBreath(Auth::user()->rallyGame->type, $point->condition);
+
+            // Tambah Cycle
+            $cycle = $player->cycle + $point->point;
+
+            // Update Player
+            $player->update([
+                'dragon_breath' => $db,
+                'cycle' => $cycle
+            ]);
+
+            $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
+
+            DB::commit();
+
+            return response()->json([
+                'team' => $team->name,
+                'point' => $point->point,
+                'msg' => $msg,
+                'scores' => $scores,
+            ], 200);
+        } catch (\Exception $x) {
+            DB::rollBack();
             return response()->json(compact('msg'), 200);
         }
-
-        // Buat Score
-        $score = Score::create([
-            'rally_game_id' => Auth::user()->rallyGame->id,
-            'player_id' => $player -> id,
-            'point_id' => $point ->id
-        ]);
-
-        if ($point -> condition == 'full')
-        {
-            $player -> dragon_breath = $player -> dragon_breath + 1;
-        }
-
-        $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
-
-        return response()->json([
-            'team' => $team->name,
-            'point' => $point->point,
-            'msg' => $msg,
-            'scores' => $scores,
-        ], 200);
     }
 
     public function destroy(Score $score) {
-        $team = $score->player->team->name;
+        DB::beginTransaction();
+        try {
+            $team = $score->player->team->name;
+            $player = $score->player;
 
-        // Hapus
-        $score -> delete();
+            $type = $score->rallyGame->type;
+            $state = $score->point->condition;
 
-        // Ambil semua score
-//        $scores = Score::where('rally_game_id', Auth::user()->rallyGame->id)
-//            // Kita ambil relasi score dengan player,
-//            // karena score yg punya relasi langsung dgn team, maka kita panggil relasi player setelah itu tim
-//            ->with('player.team')
-//            ->with('point')
-//            ->orderBy('scores.created_at', 'DESC')
-//            ->get();
-        $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
+            // Update Cycle
+            $cycle = $player->cycle - $score->point->point;
 
-        return response()->json([
-            'msg' => 'Berhasil Menghapus Score untuk Tim ' . $team,
-            'scores' => $scores
-        ], 200);
+            // Update Dragon Breath
+            $db = $player->dragon_breath - Score::getDeleteDragonBreath((string)$type, (string)$state);
+
+            // Update Player
+            $player->update([
+                'dragon_breath' => $db,
+                'cycle' => $cycle
+            ]);
+
+            // Hapus
+            $score->delete();
+
+            // Ambil semua score
+            $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
+
+            DB::commit();
+
+            return response()->json([
+                'msg' => 'Berhasil Menghapus Score untuk Tim ' . $team,
+                'scores' => $scores
+            ], 200);
+        } catch (\Exception $x) {
+            DB::rollBack();
+            $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
+            return response()->json([
+                'msg' => $x->getMessage(),
+                'scores' => $scores
+            ], 200);
+        }
     }
 }

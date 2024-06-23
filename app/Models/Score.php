@@ -28,6 +28,29 @@ class Score extends Model
         return $this->belongsTo(Point::class, 'point_id');
     }
 
+    public static function getAddDragonBreath($type, $state)
+    {
+        $res = [
+            'single' => [
+                'full' => 1,
+                'half' => 0,
+                'empty' => 0,
+            ],
+            'battle' => [
+                'full' => 2,
+                'half' => 1,
+                'empty' => 0,
+            ],
+            'dungeon' => [
+                'full' => 2,
+                'half' => 1,
+                'empty' => 0,
+            ]
+        ];
+
+        return $res[$type][$state];
+    }
+
     public static function getExchangeDragonBreath(string $type, string $prevState, string $newState)
     {
         // $type = Tipe Pos Rally
