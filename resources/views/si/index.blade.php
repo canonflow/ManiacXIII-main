@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.ico" type="image/x-icon">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css') }}/gamebes.css">
+
 </head>
 
 <body>
@@ -23,7 +24,8 @@
                 <div class="add-ons">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/backpack.png" alt="backpack">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-damage.png" alt="cycling-damage">
-                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-limited-potion.png" alt="cycling-limited-potion">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-limited-potion.png"
+                        alt="cycling-limited-potion">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/dragon-breath.png" alt="dragon-breath">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/restore.png" alt="restore">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/ultimate-cycle.png" alt="ultimate-cycle">
@@ -39,15 +41,20 @@
             </div>
         </div> --}}
         <!-- Informasi -->
-        <div class="atas-kiri">
+        <div class="atas-kiri ml-4 mt-2">
             <p>Debuff</p>
             <p>Buff</p>
+            <select class="js-example-basic-single " name="state">
+                <option value="AL">Alabama</option>
+                ...
+                <option value="WY">Wyoming</option>
+            </select>
         </div>
         <div class="atas-tengah">
             <div class="health-bar"></div>
             <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button>
         </div>
-        <div class="atas-kanan">
+        <div class="atas-kanan mr-4 mt-2">
             <p>Dragon Breath : 5</p>
             <p>Max Backpack : 1500</p>
             <p>Cycle : 600</p>
@@ -113,14 +120,14 @@
         /* Menu Pop Up Store */
         /* ///////////////// */
 
-        $("#btnPusher").click(function () {
+        $("#btnPusher").click(function() {
             $.ajax({
                 type: 'POST',
                 url: '{{ route('si.test.pusher') }}',
                 data: {
                     '_token': '{{ csrf_token() }}'
                 },
-                success: function (data) {
+                success: function(data) {
                     console.log(data);
                 }
             })
