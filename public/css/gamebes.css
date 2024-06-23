@@ -92,6 +92,10 @@ body {
 /* /////////////////////// */
 /* Menu Pop Up Items Add On*/
 /* /////////////////////// */
+
+#popUpStore{
+    z-index: 9999;
+}
 .pop-up-item {
     position: absolute;
     top: 50%;
@@ -99,8 +103,11 @@ body {
     transform: translate(-50%, -50%);
     width: 50vw;
     height: 60vh;
-    background-color: black;
+    background-color: red;
     color: white;
+    z-index: 999999;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .wrap-pop-up-item{
@@ -115,6 +122,21 @@ body {
     right: 0;
     top: 0;
     color: white;
+}
+
+.add-ons{
+    display: flex;
+    width: 40vw;
+    height: 50vh;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+.img-add-on{
+    width: 100px;
+    height: 100px;
 }
 /* /////////////////////// */
 /* Menu Pop Up Items Add On*/
@@ -134,7 +156,7 @@ body {
     transform: translate(-50%, -50%);
     width: 50vw;
     height: 60vh;
-    background-color: black;
+    background-color: ;
     color: white;
 }
 
@@ -158,16 +180,14 @@ body {
 /* ////////// */
 /* Naga Alpha */
 /* ////////// */
-.wrap-dragon-alpha{
+
+.dragon-alpha {
+    width: 350px; /* Sementara */
     position: absolute;
     top: 10%;
     right: 10%;
     transform: rotateY(180deg);
 }
-
-.dragon-alpha {
-    width: 34%; /* Sementara */
-}
 /* ////////// */
 /* Naga Alpha */
 /* ////////// */
@@ -175,14 +195,12 @@ body {
 /* ////////// */
 /* Naga Alpha */
 /* ////////// */
-.wrap-dragon-viking{
-    position: absolute;
-    top: 60%;
-    left: 10%;
-}
 
 .dragon-viking {
     width: 20%; /* Sementara */
+    position: absolute;
+    top: 60%;
+    left: 10%;
 }
 /* ////////// */
 /* Naga Alpha */

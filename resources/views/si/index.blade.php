@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <title>GAME BESAR MANIAC</title>
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.ico" type="image/x-icon">
     @vite('resources/css/app.css')
-    <link rel="stylesheet" href="{{asset('css')}}/gamebes.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/gamebes.css">
 </head>
+
 <body>
     <div class="wrap-all">
         <img src="{{ asset('asset2024/bg-gamebes-sementara.jpg') }}" alt="Background" class="bg">
@@ -18,19 +20,24 @@
             <div class="wrap-pop-up-item">
                 <div class="close-pop-up-item" id="closePopUpItemAddOns">Close</div>
                 <h1>Masuk Menu Pop Up Item Add Ons</h1>
+                <div class="add-ons">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/backpack.png" alt="backpack">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-damage.png" alt="cycling-damage">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-limited-potion.png" alt="cycling-limited-potion">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/dragon-breath.png" alt="dragon-breath">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/restore.png" alt="restore">
+                    <img class="img-add-on" src="{{ asset('asset2024') }}/game/ultimate-cycle.png" alt="ultimate-cycle">
+                </div>
             </div>
         </div>
         <!-- Menu Pop Up Items Add Ons -->
         <!-- Menu Pop Up Store -->
-        <div class="pop-up-store display-none" id="popUpStore">
+        {{-- <div class="pop-up-store display-none" id="popUpStore" style="z-index: 100">
             <div class="wrap-pop-up-store">
                 <div class="close-pop-up-store" id="closePopUpStore">Close</div>
                 <h1>Masuk Menu Pop Up Store Add Ons</h1>
             </div>
-        </div>
-        <!-- Menu Pop Up Store -->
-        <!-- Menu Pop Up -->
-        
+        </div> --}}
         <!-- Informasi -->
         <div class="atas-kiri">
             <p>Debuff</p>
@@ -45,11 +52,11 @@
             <p>Cycle : 600</p>
         </div>
         <div class="bawah-tengah">
-            <div><a href="">Basic</a></div>             <!-- Sementara nantinya ini gambar -->
-            <div><a href="">Cycling Drag</a></div>      <!-- Sementara nantinya ini gambar -->
-            <div><a href="">Ultimate</a></div>          <!-- Sementara nantinya ini gambar -->
-            <div id="store">Store</div>             <!-- Sementara nantinya ini gambar -->
-            <div id="addOns">Add Ons</div>           <!-- Sementara nantinya ini gambar -->
+            <div><a href="">Basic</a></div> <!-- Sementara nantinya ini gambar -->
+            <div><a href="">Cycling Drag</a></div> <!-- Sementara nantinya ini gambar -->
+            <div><a href="">Ultimate</a></div> <!-- Sementara nantinya ini gambar -->
+            <div id="store">Store</div> <!-- Sementara nantinya ini gambar -->
+            <div id="addOns">Add Ons</div> <!-- Sementara nantinya ini gambar -->
         </div>
         <!-- Informasi -->
 
@@ -64,44 +71,47 @@
             <img src="{{ asset('asset2024/Dragon.png') }}" alt="Dragon Viking" class="dragon-viking">
         </div>
         <!-- Naga Viking -->
+
+
     </div>
-    <script src="{{asset('js')}}/jquery.min.js"></script>
+    <script src="{{ asset('js') }}/jquery.min.js"></script>
     <script>
-    let nodeAddOns = document.getElementById("addOns");
-    let nodePopUpItemAddOns = document.getElementById("popUpItemAddOns");
-    let nodeClosePopUpItemAddOns = document.getElementById("closePopUpItemAddOns");
+        let nodeAddOns = document.getElementById("addOns");
+        let nodePopUpItemAddOns = document.getElementById("popUpItemAddOns");
+        let nodeClosePopUpItemAddOns = document.getElementById("closePopUpItemAddOns");
 
-    let nodeStore = document.getElementById("store");
-    let nodePopUpStore = document.getElementById("popUpStore");
-    let nodeClosePopUpStore = document.getElementById("closePopUpStore");
+        let nodeStore = document.getElementById("store");
+        let nodePopUpStore = document.getElementById("popUpStore");
+        let nodeClosePopUpStore = document.getElementById("closePopUpStore");
 
-    /* ///////////////////////// */
-    /* Menu Pop Up Items Add On */
-    /* //////////////////////// */
-    $('#addOns').click(function(){
-        nodePopUpItemAddOns.setAttribute("class", "pop-up-item display-block");
-    });
-    
-    $("#closePopUpItemAddOns").click(()=>{
-        nodePopUpItemAddOns.setAttribute("class", "pop-up-item display-none");
-    });
-    /* //////////////////////// */
-    /* Menu Pop Up Items Add On */
-    /* //////////////////////// */
+        /* ///////////////////////// */
+        /* Menu Pop Up Items Add On */
+        /* //////////////////////// */
+        $('#addOns').click(function() {
+            nodePopUpItemAddOns.setAttribute("class", "pop-up-item display-block");
+        });
 
-    /* ///////////////// */
-    /* Menu Pop Up Store */
-    /* ///////////////// */
-    $("#store").click(()=>{
-        nodePopUpStore.setAttribute("class", "pop-up-store display-block");
-    });
-    
-    $("#closePopUpStore").click(()=>{
-        nodePopUpStore.setAttribute("class", "pop-up-store display-none")
-    });
-    /* ///////////////// */
-    /* Menu Pop Up Store */
-    /* ///////////////// */
-</script>
+        $("#closePopUpItemAddOns").click(() => {
+            nodePopUpItemAddOns.setAttribute("class", "pop-up-item display-none");
+        });
+        /* //////////////////////// */
+        /* Menu Pop Up Items Add On */
+        /* //////////////////////// */
+
+        /* ///////////////// */
+        /* Menu Pop Up Store */
+        /* ///////////////// */
+        $("#store").click(() => {
+            nodePopUpStore.setAttribute("class", "pop-up-store display-block");
+        });
+
+        $("#closePopUpStore").click(() => {
+            nodePopUpStore.setAttribute("class", "pop-up-store display-none")
+        });
+        /* ///////////////// */
+        /* Menu Pop Up Store */
+        /* ///////////////// */
+    </script>
 </body>
+
 </html>
