@@ -174,11 +174,13 @@ Route::group(
 
 // ===== SI Route =====
 Route::group(
-    ['middleware'=> 'si', 'prefix' => 'si', 'as'=>'si'], 
+    ['middleware'=> 'si', 'prefix' => 'si', 'as'=>'si'],
     function(){
         Route::get('/', [Si\SiController::class, 'index'])->name('index');
     }
 );
+
+Route::get('/checksession', [Si\SiController::class, 'attack']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
