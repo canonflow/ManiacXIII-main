@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Si;
 
 use App\Http\Controllers\Controller;
 use App\Models\GameBesarSession;
+use App\Models\Player;
 use Illuminate\Http\Request;
 use App\Enums\BackpackEnum;
 use App\Enums\ExtraBreathEnum;
@@ -16,7 +17,7 @@ use Illuminate\Support\Carbon;
 
 class SiController extends Controller
 {
-    public function responseAjax($isError, $msg, $haystack = [], $status = 200) {
+    public function ajaxResponse($isError, $msg, $haystack = [], $status = 200) {
         // Default Response
         $response = [
             'isError' => $isError,
@@ -39,19 +40,65 @@ class SiController extends Controller
                                 ->first();
 
         return $session;
+//        return response()->json(compact('session'), 200);
     }
 
     public function index(){
         return view('si.index');
     }
 
-    public function attack() {
+    // Buat Pilih Player (Tim)
+    public function playerDetail(Player $player) {
+        return response()->json(compact('player'), 200);
+    }
+
+    // ========== Nathan ==========
+    public function attack(Player $player) {
         $session = $this->checkSession();
 
         // Kalo Belum Ada yang dibuka
-        if (!$session) return $this->responseAjax(true, "Game Besar Belum Dibuka!");
+        if (!$session) return $this->ajaxResponse(true, "Game Besar Belum Dibuka!");
 
-        dd($session);
+        return $this->ajaxResponse(
+            false,
+            "Berhasil Menyerang Alpha dengan damage 250!"
+        );
+
+    }
+
+    // Buat Beli dan Pakai Power Skill
+    // ========== Yosua ==========
+    public function powerSkillAttack(Player $player) {
+
+    }
+
+    // Buat Beli dan Pakai Ultimate (sekali aja)
+    // ========== MA PATRICK ==========
+    public function ultimateAttack(Player $player) {
+
+    }
+
+    // Buat Beli Potion (sekali aja)
+    // ========== Nathan ==========
+    public function buyPotion(Player $player) {
+
+    }
+
+    // Buat Beli Dragon Breath
+    // ========== Yosua ==========
+    public function buyDragonBreath(Player $player) {
+
+    }
+
+    // Buat Beli Backpack
+    // ========== Ma Patrick ==========
+    public function buyBackpack(Player $player) {
+
+    }
+
+    // Buat Beli dan Pakai Restore (Hapus debuff => ganti status ke 0 di table effects)
+    // ========== Nathan ==========
+    public function buyRestore(Player $player) {
 
     }
 }
