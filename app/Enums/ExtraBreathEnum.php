@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums;
+namespace App\Enums;
 
 enum ExtraBreathEnum : int {
     case PRICE = 100;
