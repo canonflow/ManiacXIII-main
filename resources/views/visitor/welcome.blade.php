@@ -203,7 +203,7 @@
                                                     $endpoint = '/si';
                                                     break;
                                                 case 'supersi':
-                                                    $endpoint = '/supersi';
+                                                    $endpoint = '/super-si';
                                                     break;
                                                 case 'admin':
                                                     $endpoint = '/admin';
@@ -298,7 +298,7 @@
                                                 $endpoint = '/si';
                                                 break;
                                             case 'supersi':
-                                                $endpoint = '/supersi';
+                                                $endpoint = '/super-si';
                                                 break;
                                             case 'admin':
                                                 $endpoint = '/admin';

@@ -8,6 +8,7 @@ use App\Http\Controllers\Pemain;
 use App\Http\Controllers\Acara;
 use App\Http\Controllers\Penpos;
 use App\Http\Controllers\Si;
+use App\Http\Controllers\SuperSI;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -171,7 +172,6 @@ Route::group(
     }
 );
 
-
 // ===== SI Route =====
 Route::group(
     ['middleware'=> 'si', 'prefix' => 'si', 'as'=>'si.'],
@@ -179,6 +179,14 @@ Route::group(
         Route::get('/', [Si\SiController::class, 'index'])->name('index');
         Route::post('/test-pusher', [Si\SiController::class, 'testPusher'])
             ->name('test.pusher');
+    }
+);
+
+// ===== Super SI Route =====
+Route::group(
+    ['middleware' => 'supersi', 'prefix' => 'super-si', 'as' => 'super-si.'],
+    function () {
+        Route::get('/', [SuperSI\SuperSIController::class, 'index'])->name('index');
     }
 );
 

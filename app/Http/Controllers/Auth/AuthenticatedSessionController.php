@@ -50,6 +50,8 @@ class AuthenticatedSessionController extends Controller
                     return redirect()->intended('/penpos');
                 case 'si':
                     return redirect()->intended('/si');
+                case 'supersi':
+                    return redirect()->intended('/super-si');
             }
 
             abort(404);
