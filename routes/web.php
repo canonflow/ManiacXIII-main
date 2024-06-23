@@ -187,10 +187,16 @@ Route::group(
     ['middleware' => 'supersi', 'prefix' => 'super-si', 'as' => 'super-si.'],
     function () {
         Route::get('/', [SuperSI\SuperSIController::class, 'index'])->name('index');
-        Route::get('/{rallyGame}', [SuperSI\SuperSIController::class, 'rallyDetail'])
+
+        // ===== RALLY GAMES =====
+        Route::get('/rallyGame/{rallyGame}', [SuperSI\SuperSIController::class, 'rallyDetail'])
             ->name('rally.detail');
-        Route::post('/{rallyGame}/{score}/score/update', [SuperSI\SuperSIController::class, 'updateScore']);
-        Route::post('/{rallyGame}/{score}/score/delete', [SuperSI\SuperSIController::class, 'deleteScore']);
+        Route::post('/rallyGame/{rallyGame}/{score}/score/update', [SuperSI\SuperSIController::class, 'updateScore']);
+        Route::post('/rallyGame/{rallyGame}/{score}/score/delete', [SuperSI\SuperSIController::class, 'deleteScore']);
+
+        // ===== GAME BESAR SESSION =====
+        Route::get('/gamebesar', [SuperSI\GameBesarController::class, 'index'])
+            ->name('gamebesar.index');
     }
 );
 

@@ -229,13 +229,13 @@
         const formDelete = $("#formDelete");
 
         const openUpdateModal = (id) => {
-            let url = `{{ route('super-si.index') }}/${rallyId}/${id}/score/update`;
+            let url = `{{ route('super-si.index') }}/rallyGame/${rallyId}/${id}/score/update`;
             formUpdate.attr('action', url);
             updateModal[0].showModal();
         }
 
         const openDeleteModal = (id) => {
-            let url = `{{ route('super-si.index') }}/${rallyId}/${id}/score/delete`;
+            let url = `{{ route('super-si.index') }}/rallyGame/${rallyId}/${id}/score/delete`;
             formDelete.attr("action", url);
             deleteModal[0].showModal();
         }

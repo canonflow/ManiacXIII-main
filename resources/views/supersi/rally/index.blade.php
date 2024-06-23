@@ -45,7 +45,7 @@
                             <td width="20%" class="text-center">
                                 <button
                                     class="bg-slate-900 text-slate-50 font-semibold py-2 px-3 rounded hover:bg-slate-700 active:scale-95 transition-all"
-                                    onclick="window.location = '{{ route('super-si.index') }}/{{ $rg->id }}'"
+                                    onclick="window.location = '{{ route('super-si.index') }}/rallyGame/{{ $rg->id }}'"
                                 >
                                     Show
                                 </button>
