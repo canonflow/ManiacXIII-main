@@ -177,6 +177,8 @@ Route::group(
     ['middleware'=> 'si', 'prefix' => 'si', 'as'=>'si.'],
     function(){
         Route::get('/', [Si\SiController::class, 'index'])->name('index');
+        Route::post('/test-pusher', [Si\SiController::class, 'testPusher'])
+            ->name('test.pusher');
     }
 );
 

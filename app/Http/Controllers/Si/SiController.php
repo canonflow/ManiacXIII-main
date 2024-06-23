@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Si;
 
+use App\Events\UpdateGameBesar;
 use App\Http\Controllers\Controller;
 use App\Models\GameBesarSession;
 use App\Models\Player;
@@ -41,6 +42,12 @@ class SiController extends Controller
 
         return $session;
 //        return response()->json(compact('session'), 200);
+    }
+
+    public function testPusher(Request $request) {
+        event(new UpdateGameBesar("PUSHER MESSAGE: TEST DARI CONTROLLER"));
+
+        return $this->ajaxResponse(false, "Ini Response AJAX");
     }
 
     public function index(){

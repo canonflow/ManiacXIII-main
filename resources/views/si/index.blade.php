@@ -45,6 +45,7 @@
         </div>
         <div class="atas-tengah">
             <div class="health-bar"></div>
+            <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button>
         </div>
         <div class="atas-kanan">
             <p>Dragon Breath : 5</p>
@@ -111,6 +112,27 @@
         /* ///////////////// */
         /* Menu Pop Up Store */
         /* ///////////////// */
+
+        $("#btnPusher").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('si.test.pusher') }}',
+                data: {
+                    '_token': '{{ csrf_token() }}'
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    </script>
+    {{--  PUSHER  --}}
+    @vite('resources/js/app.js')
+    <script type="module">
+        window.Echo.channel('update-gamebesar')
+            .listen('UpdateGameBesar', (event) => {
+                console.log(event);
+            });
     </script>
 </body>
 
