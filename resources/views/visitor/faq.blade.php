@@ -341,24 +341,6 @@
                         </div>
                     </div>
                     <br>
-                    <div class="accordion-item" data-aos="fade-up" data-aos-delay="800">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
-                                Batas pendaftaran MANIAC XIII hingga kapan?
-                            </button>
-                        </h2>
-                        <div id="collapse17" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <ul>
-                                    <li>7 Mei - 7 Juni 2024 (Open Registration Lomba <em>Early Bird</em>)</li>
-                                    <li>10 Juni - 6 Juli 2024 (Open Registration Lomba Normal)</li>
-                                    <li>24 Juni - 15 Juli 2024 (Open Registration Workshop)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
                     <div class="accordion-item" data-aos="fade-up" data-aos-delay="850">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
