@@ -11,7 +11,7 @@ class Debuff extends Model
 {
     use HasFactory;
 
-    protected $table = 'debuff';
+    protected $table = 'debuffs';
 
     protected $fillable = [
         'session_id'
