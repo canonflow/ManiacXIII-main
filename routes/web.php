@@ -179,6 +179,17 @@ Route::group(
         Route::get('/', [Si\SiController::class, 'index'])->name('index');
         Route::post('/test-pusher', [Si\SiController::class, 'testPusher'])
             ->name('test.pusher');
+
+        // ===== GAME BESAR =====
+        Route::post('/{player}/detail', [Si\SiController::class, 'playerDetail'])
+            ->name('player.detail');
+        Route::post('/{player}/attack', [Si\SiController::class, 'attack']);
+        Route::post('/{player}/power-skill', [Si\SiController::class, 'powerSkillAttack']);
+        Route::post('/{player}/ultimate', [Si\SiController::class, 'ultimateAttack']);
+        Route::post('/{player}/buy/potion', [Si\SiController::class, 'buyPotion']);
+        Route::post('/{player}/buy/dragon-breath', [Si\SiController::class, 'buyDragonBreath']);
+        Route::post('/{player}/buy/backpack', [Si\SiController::class, 'buyBackpack']);
+        Route::post('/{player}/buy/restore', [Si\SiController::class, 'buyRestore']);
     }
 );
 
@@ -218,15 +229,6 @@ Route::group(
 // ========== Buat Testing Internal API dlu ==========
 // TESTING DI API ROUTE
 //Route::get('/checksession', [Si\SiController::class, 'checkSession']);
-Route::post('/{player}/detail', [Si\SiController::class, 'playerDetail'])
-    ->name('player.detail');
-Route::post('/{player}/attack', [Si\SiController::class, 'attack']);
-Route::post('/{player}/power-skill', [Si\SiController::class, 'powerSkillAttack']);
-Route::post('/{player}/ultimate', [Si\SiController::class, 'ultimateAttack']);
-Route::post('/{player}/buy/potion', [Si\SiController::class, 'buyPotion']);
-Route::post('/{player}/buy/dragon-breath', [Si\SiController::class, 'buyDragonBreath']);
-Route::post('/{player}/buy/backpack', [Si\SiController::class, 'buyBackpack']);
-Route::post('/{player}/buy/restore', [Si\SiController::class, 'buyRestore']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
