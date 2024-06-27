@@ -11,6 +11,7 @@ class Alpha extends Model
     protected $table = 'alphas';
 
     protected $fillable = [
+        'id',
         'health',
         'img_url'
     ];

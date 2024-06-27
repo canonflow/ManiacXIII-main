@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\SuperSI;
 
 use App\Http\Controllers\Controller;
+use App\Models\Log;
 use App\Models\Point;
 use App\Models\RallyGame;
 use App\Models\Score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SuperSIController extends Controller
@@ -69,6 +71,12 @@ class SuperSIController extends Controller
                 'cycle' => $newCycle
             ]);
 
+            // Add Log
+            Log::create([
+                'player_id' => $player->id,
+                'desc' => "<strong>Super SI</strong> (" . $rally .") Mengupdate Score menjadi <strong>" . $newPoint . "</strong> milik Tim <strong>" . $player->team->name . "</strong>."
+            ]);
+
             DB::commit();
 
             return back()->with('updateSuccess', "Berhasil meng-update Score untuk Tim <strong>" . $player->team->name . "</strong> pada Pos <strong>" . $rally . "</strong>");
@@ -103,6 +111,12 @@ class SuperSIController extends Controller
                 'cycle' => $newCycle
             ]);
             $score->delete();
+
+            // Add Log
+            Log::create([
+                'player_id' => $player->id,
+                'desc' => "<strong>Super SI</strong> (" . $rally .") Menghapus Score milik Tim <strong>" . $player->team->name . "</strong>."
+            ]);
 
             DB::commit();
 

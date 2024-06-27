@@ -24,6 +24,7 @@
 
         *::-webkit-scrollbar {
             width: 0.5rem;
+            height: 0.5rem;
         }
 
         *::-webkit-scrollbar-track {
@@ -117,11 +118,23 @@
             </li>
             <div class="divider text-sm">Player</div>
             <li>
-                <a href="{{ route('super-si.index') }}" class="flex items-center p-2 rounded-lg {{ $pageActive == "admin.users" ? 'bg-slate-300 text-slate-800 ' : 'hover:bg-slate-100 group text-white hover:text-base-content' }} active:scale-95 transition-all">
+                <a href="{{ route('super-si.player.index') }}" class="flex items-center p-2 rounded-lg {{ $pageActive == "super-si.player" ? 'bg-slate-300 text-slate-800 ' : 'hover:bg-slate-100 group text-white hover:text-base-content' }} active:scale-95 transition-all">
                     <svg class="flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
                     </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Player</span>
+                </a>
+            </li>
+            <div class="divider text-sm">Leaderboard</div>
+            <li>
+                <a href="{{ route('super-si.index') }}" class="flex items-center p-2 rounded-lg {{ $pageActive == "admin.users" ? 'bg-slate-300 text-slate-800 ' : 'hover:bg-slate-100 group text-white hover:text-base-content' }} active:scale-95 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-800">
+                        <path fill-rule="evenodd" d="M10.5 3A1.501 1.501 0 0 0 9 4.5h6A1.5 1.5 0 0 0 13.5 3h-3Zm-2.693.178A3 3 0 0 1 10.5 1.5h3a3 3 0 0 1 2.694 1.678c.497.042.992.092 1.486.15 1.497.173 2.57 1.46 2.57 2.929V19.5a3 3 0 0 1-3 3H6.75a3 3 0 0 1-3-3V6.257c0-1.47 1.073-2.756 2.57-2.93.493-.057.989-.107 1.487-.15Z" clip-rule="evenodd" />
+                    </svg>
+{{--                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">--}}
+{{--                        <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>--}}
+{{--                    </svg>--}}
+                    <span class="flex-1 ms-3 whitespace-nowrap">Leaderboard</span>
                 </a>
             </li>
         </ul>

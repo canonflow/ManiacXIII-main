@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('alphas', function (Blueprint $table) {
             $table->id();
             $table->double('health');
-            $table->text('img-url');
+            $table->text('img_url');
             $table->timestamps();
         });
     }

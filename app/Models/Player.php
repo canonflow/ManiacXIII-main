@@ -25,6 +25,10 @@ class Player extends Model
         return $this->belongsTo(Team::class, 'team_id');
     }
 
+    public function logs() : HasMany {
+        return $this->hasMany(Log::class, 'player_id');
+    }
+
 //    public function rallyGames() : BelongsToMany {
 //        return $this->belongsToMany(RallyGame::class, 'rg_score', 'player_id', 'penpos_id')
 //            ->withPivot(['score'])

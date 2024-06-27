@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Penpos;
 
 use App\Http\Controllers\Controller;
+use App\Models\Log;
 use App\Models\Player;
 use App\Models\Point;
 use App\Models\RallyGame;
@@ -11,6 +12,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use const http\Client\Curl\AUTH_ANY;
 
 class PenposController extends Controller
 {
@@ -71,6 +73,12 @@ class PenposController extends Controller
 
             $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
 
+            // Add Log
+            Log::create([
+                'player_id' => $player->id,
+                'desc' => "<strong>" . Auth::user()->username . "</strong> (" . Auth::user()->rallyGame->name . ") Menambahkan Score sebanyak <strong>" . $point->point . "</strong> ke Tim <strong>" . $player->team->name . "</strong>."
+            ]);
+
             DB::commit();
 
             return response()->json([
@@ -111,6 +119,12 @@ class PenposController extends Controller
 
             // Ambil semua score
             $scores = RallyGame::getPenposScores(Auth::user()->rallyGame->id);
+
+            // Add Log
+            Log::create([
+                'player_id' => $player->id,
+                'desc' => "<strong>" . Auth::user()->username . "</strong> (" . Auth::user()->rallyGame->name . ") Mengurangi Score sebanyak <strong>" . $point->point . "</strong> ke Tim <strong>" . $player->team->name . "</strong>."
+            ]);
 
             DB::commit();
 

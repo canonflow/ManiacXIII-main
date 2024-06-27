@@ -197,6 +197,21 @@ Route::group(
         // ===== GAME BESAR SESSION =====
         Route::get('/gamebesar', [SuperSI\GameBesarController::class, 'index'])
             ->name('gamebesar.index');
+        Route::get('/gamebesar/session/{session}', [SuperSI\GameBesarController::class, 'sessionDetail']);
+        Route::post('/gamebesar/session/add', [SuperSI\GameBesarController::class, 'addSession'])
+            ->name('gamebesar.session.add');
+        Route::post('/gamebesar/session/{session}/update', [SuperSI\GameBesarController::class, 'updateSession'])
+            ->name('gamebesar.session.update');
+
+        // ===== GAME BESAR ALPHA =====
+        Route::post('/gamebesar/alpha/update', [SuperSI\GameBesarController::class, 'updateAlpha'])
+            ->name('gamebesar.alpha.update');
+
+        // ===== PLAYER =====
+        Route::get('/player', [SuperSI\PlayerController::class, 'index'])
+            ->name('player.index');
+        Route::get('/player/log/{player}', [SuperSI\PlayerController::class, 'log']);
+        Route::get('/player/score/{player}', [SuperSI\PlayerController::class, 'score']);
     }
 );
 
