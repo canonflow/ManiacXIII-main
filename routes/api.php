@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/checksession', [Si\SiController::class, 'checkSession']);
 Route::post('/{player}/detail', [Si\SiController::class, 'playerDetail'])
     ->name('player.detail');
 Route::post('/{player}/attack', [Si\SiController::class, 'attack']);
