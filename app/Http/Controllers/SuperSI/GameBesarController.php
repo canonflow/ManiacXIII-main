@@ -103,7 +103,7 @@ class GameBesarController extends Controller
 
             if ($alpha) $alpha->update(['health' => $request->get('health')]);
             else Alpha::create([
-                'health' => $request->get('alpha_id'),
+                'health' => $request->get('health'),
                 'img_url' => "SDSD"
             ]);
 
