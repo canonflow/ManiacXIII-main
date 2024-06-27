@@ -129,6 +129,9 @@
                 },
                 success: function(data) {
                     console.log(data);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
                 }
             })
         })
@@ -138,6 +141,10 @@
     <script type="module">
         window.Echo.channel('update-gamebesar')
             .listen('UpdateGameBesar', (event) => {
+                console.log(event);
+            });
+        window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')
+            .listen('UpdateDebuff', (event) => {
                 console.log(event);
             });
     </script>

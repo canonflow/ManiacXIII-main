@@ -19,10 +19,12 @@ class UpdateDebuff implements ShouldBroadcast
      * Create a new event instance.
      */
 
-    public $user;
-    public function __construct(User $user)
+    public $userId;
+    public $msg;
+    public function __construct($userId, $msg)
     {
-        $this->user = $user;  // User harus SI
+        $this->userId = $userId;  // User harus SI
+        $this->msg = $msg;
     }
 
     /**
@@ -33,7 +35,7 @@ class UpdateDebuff implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('private-debuff.' . $this->user->id),
+            new PrivateChannel('private-update-debuff.' . $this->userId),
         ];
     }
 }

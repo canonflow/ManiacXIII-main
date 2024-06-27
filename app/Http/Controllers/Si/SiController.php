@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Si;
 
+use App\Events\UpdateDebuff;
 use App\Events\UpdateGameBesar;
 use App\Http\Controllers\Controller;
 use App\Models\GameBesarSession;
@@ -23,6 +24,7 @@ use App\Models\MarketLog;
 use App\Models\Potions;
 use Exception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 // Uncomment ini waktu Hari H
@@ -62,7 +64,8 @@ class SiController extends Controller
     }
 
     public function testPusher(Request $request) {
-        event(new UpdateGameBesar("PUSHER MESSAGE: TEST DARI CONTROLLER"));
+//        event(new UpdateGameBesar("PUSHER MESSAGE: TEST DARI CONTROLLER"));
+        event(new UpdateDebuff(Auth::user()->id, "PUSHER PRIVAET MESSAGE: Message buat " . auth()->user()->username));
 
         return $this->ajaxResponse(false, "Ini Response AJAX");
     }
@@ -88,11 +91,11 @@ class SiController extends Controller
             if($player->cycle < 100) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk melakukan attack!");
             if($player->dragon_breath < 1) return $this->ajaxResponse(true, "Dragon Breath anda tidak cukup untuk melakukan serangan terhadap Alpha!");
             if (!($alpha->health > 0)) return $this->ajaxResponse(true, "Tidak dapat menyerang Alpha! Alpha sudah dikalahkan!");
-            
+
             $player->update([
                 'dragon_breath' => $player->dragon_breath-1
             ]);
-            
+
             MarketLog::create([
                 'player_id' => $player->id,
                 'desc' => $player->team->name . " melakukan serangan",
@@ -106,7 +109,7 @@ class SiController extends Controller
                 $damageAwal *= $session->multiplier;
                 $session->players()->attach($player->id);
             }
-                                            
+
 
             //Debuff
             $debuffActiveCount = $player->debuffs()->wherePivot('status', 1)->get()->count();
@@ -129,7 +132,7 @@ class SiController extends Controller
             ]);
 
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $isAttacked = History::all()->count() % 15 == 0 ? false:true;
 
@@ -149,11 +152,11 @@ class SiController extends Controller
                     $debuff->players()->attach($attr);
                 }
             }
-            
+
             DB::commit();
-            
+
             return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
-            
+
         } catch (Exception $x){
                 DB::rollBack();
                 return $this->ajaxResponse(true, $x->getMessage());
@@ -177,12 +180,12 @@ class SiController extends Controller
             if($player->cycle - $cost < 100) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Power Skill! atau Sisa cycle anda harus lebih dari 100!");
             if($player->dragon_breath < 1) return $this->ajaxResponse(true, "Dragon Breath anda tidak cukup untuk melakukan serangan terhadap Alpha!");
             if (!($alpha->health > 0)) return $this->ajaxResponse(true, "Tidak dapat menyerang Alpha! Alpha sudah dikalahkan!");
-            
+
             $player->update([
                 'cycle' => $player->cycle - $cost,
                 'dragon_breath' => $player->dragon_breath-1
             ]);
-            
+
             MarketLog::create([
                 'player_id' => $player->id,
                 'desc' => $player->team->name . " membeli dan menggunakan power skill",
@@ -196,7 +199,7 @@ class SiController extends Controller
                 $damageAwal *= $session->multiplier;
                 $session->players()->attach($player->id);
             }
-                                            
+
 
             //Debuff
             $debuffActiveCount = $player->debuffs()->wherePivot('status', 1)->get()->count();
@@ -218,7 +221,7 @@ class SiController extends Controller
                 'damage' => $damageAwal
             ]);
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $isAttacked = History::all()->count() % 15 == 0 ? false:true;
 
@@ -238,11 +241,11 @@ class SiController extends Controller
                     $debuff->players()->attach($attr);
                 }
             }
-            
+
             DB::commit();
-            
+
             return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Power Skill! dengan damage ' . $damage, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
-            
+
         } catch (Exception $x){
                 DB::rollBack();
                 return $this->ajaxResponse(true, $x->getMessage());
@@ -271,7 +274,7 @@ class SiController extends Controller
                 'dragon_breath' => $player->dragon_breath-1,
                 'ultimate' => 1
             ]);
-            
+
             MarketLog::create([
                 'player_id' => $player->id,
                 'desc' => $player->team->name . " membeli dan menggunakan ultimate skill",
@@ -285,7 +288,7 @@ class SiController extends Controller
                 $damageAwal *= $session->multiplier;
                 $session->players()->attach($player->id);
             }
-                                            
+
 
             //Debuff
             $debuffActiveCount = $player->debuffs()->wherePivot('status', 1)->get()->count();
@@ -307,7 +310,7 @@ class SiController extends Controller
                 'damage' => $damageAwal
             ]);
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $isAttacked = History::all()->count() % 15 == 0 ? false:true;
 
@@ -327,11 +330,11 @@ class SiController extends Controller
                     $debuff->players()->attach($attr);
                 }
             }
-            
+
             DB::commit();
-            
+
             return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Ultimate Skill! dengan damage ' . $damage, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
-            
+
         } catch (Exception $x){
                 DB::rollBack();
                 return $this->ajaxResponse(true, $x->getMessage());
@@ -353,7 +356,7 @@ class SiController extends Controller
             $player->update([
                 'cycle' => $player->cycle - $cost
             ]);
-    
+
             Potions::create([
                 'player_id' => $player->id,
                 'end' => Carbon::now()->addMinutes(PotionEnum::DURATION_IN_MINUTE->value)
@@ -364,15 +367,15 @@ class SiController extends Controller
                 'desc' => $player->team->name . " membeli 1 Cycling Limited Potion",
                 'cycle' => $cost
             ]);
-            
+
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
-    
+
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Cycling Limited Potion ', compact('dragon', 'cycle', 'backpack', 'type'));
 
         } catch (Exception $x){
@@ -397,21 +400,21 @@ class SiController extends Controller
                 'dragon_breath' => $player->dragon_breath +1,
                 'cycle' => $player->cycle - $cost
             ]);
-    
+
             MarketLog::create([
                 'player_id' => $player->id,
                 'desc' => $player->team->name . " membeli 1 Dragon Breath",
                 'cycle' => $cost
             ]);
-            
+
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
-    
+
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Dragon Breath', compact('dragon', 'cycle', 'backpack', 'type'));
 
         } catch (Exception $x){
@@ -452,15 +455,15 @@ class SiController extends Controller
             } else {
                 $player->backpack()->update(['count' => $player->backpack->count + 1]);
             }
-            
+
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
-    
+
             return $this -> ajaxResponse(false, 'Anda berhasil mengupgrade Backpack 1 Level ', compact('dragon', 'cycle', 'backpack', 'type'));
 
         } catch (Exception $x){
@@ -497,11 +500,11 @@ class SiController extends Controller
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;  
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
-    
+
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Restore Potion ', compact('dragon', 'cycle', 'backpack', 'type'));
 
         } catch (Exception $x){
