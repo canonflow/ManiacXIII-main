@@ -16,6 +16,14 @@ use App\Enums\SemifinalEnum;
 use App\Enums\UltimateEnum;
 use Illuminate\Support\Carbon;
 
+// Uncomment ini waktu Hari H
+//define('UNAUTHORIZED', [
+//    1, 2, 3, 4, 5,
+//    6, 7, 8, 9, 10,
+//    11, 12, 13, 14, 15,
+//    16, 17, 28, 19, 20
+//]);
+
 class SiController extends Controller
 {
     public function ajaxResponse($isError, $msg, $haystack = [], $status = 200) {
