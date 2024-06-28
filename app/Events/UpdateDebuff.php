@@ -20,11 +20,11 @@ class UpdateDebuff implements ShouldBroadcast
      */
 
     public $userId;
-    public $msg;
-    public function __construct($userId, $msg)
+    public $debuff;
+    public function __construct($userId)
     {
         $this->userId = $userId;  // User harus SI
-        $this->msg = $msg;
+        $this->debuff = true;  // PASTI TRUE
     }
 
     /**

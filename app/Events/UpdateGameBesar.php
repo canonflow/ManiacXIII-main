@@ -17,10 +17,14 @@ class UpdateGameBesar implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public $message;
-    public function __construct($message)
+    public $numOfAttack, $health, $willAttack, $buff;
+    public function __construct($numOfAttack, $health, $willAttack, $buff)
     {
-        $this->message = $message;
+//        $this->message = $message;
+        $this->numOfAttack = $numOfAttack;
+        $this->health = $health;
+        $this->willAttack = $willAttack;
+        $this->buff = $buff;
     }
 
     /**

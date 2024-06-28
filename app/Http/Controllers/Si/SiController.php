@@ -65,7 +65,7 @@ class SiController extends Controller
 
     public function testPusher(Request $request) {
 //        event(new UpdateGameBesar("PUSHER MESSAGE: TEST DARI CONTROLLER"));
-        event(new UpdateDebuff(Auth::user()->id, "PUSHER PRIVAET MESSAGE: Message buat " . auth()->user()->username));
+//        event(new UpdateDebuff(Auth::user()->id, "PUSHER PRIVAET MESSAGE: Message buat " . auth()->user()->username));
 
         return $this->ajaxResponse(false, "Ini Response AJAX");
     }
@@ -104,23 +104,24 @@ class SiController extends Controller
             $damageAwal = $player->cycle;
 
             // Buff  Session
+            $flag = "";
             $playerCount = $session->players()->get()->count();
             if ($playerCount < $session->max_team && $session->players()->wherePivot('player_id', $player->id)-> get()->isEmpty()) {
                 $damageAwal *= $session->multiplier;
                 $session->players()->attach($player->id);
+                $flag =  " (Power Up)";
             }
-
 
             //Debuff
             $debuffActiveCount = $player->debuffs()->wherePivot('status', 1)->get()->count();
             $damage = $damageAwal * pow(0.75, $debuffActiveCount);
 
             $alpha -> update([
-                'health'=>$alpha->health - $damage
+                'health' => $alpha->health - $damage
             ]);
 
             $dragonModel = Dragon::where('threshold' , '<=', $player->cycle)
-            ->orderBy('id', 'DESC')->first();
+                                ->orderBy('id', 'DESC')->first();
             $dragon = $dragonModel ->name;
 
             History::create([
@@ -132,9 +133,11 @@ class SiController extends Controller
             ]);
 
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
-            $isAttacked = History::all()->count() % 15 == 0 ? false:true;
+            $numOfAttack =History::all()->count();
+            $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
+            $buff = $session->players()->get()->count() < $session->max_team;
 
             if (!$isAttacked)
             {
@@ -153,9 +156,11 @@ class SiController extends Controller
                 }
             }
 
+            // Call Pusher
+            event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
+            return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
 
         } catch (Exception $x){
                 DB::rollBack();
@@ -194,10 +199,12 @@ class SiController extends Controller
             $damageAwal = $player->cycle * 1.5;
 
             // Buff  Session
+            $flag = "";
             $playerCount = $session->players()->get()->count();
             if ($playerCount < $session->max_team && $session->players()->wherePivot('player_id', $player->id)-> get()->isEmpty()) {
                 $damageAwal *= $session->multiplier;
                 $session->players()->attach($player->id);
+                $flag = " (Power Up)";
             }
 
 
@@ -206,11 +213,11 @@ class SiController extends Controller
             $damage = $damageAwal * pow(0.75, $debuffActiveCount);
 
             $alpha -> update([
-                'health'=>$alpha->health - $damage
+                'health' => $alpha->health - $damage
             ]);
 
             $dragonModel = Dragon::where('threshold' , '<=', $player->cycle)
-            ->orderBy('id', 'DESC')->first();
+                                ->orderBy('id', 'DESC')->first();
             $dragon = $dragonModel ->name;
 
             History::create([
@@ -223,7 +230,9 @@ class SiController extends Controller
             $cycle = $player->cycle;
             $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
-            $isAttacked = History::all()->count() % 15 == 0 ? false:true;
+            $numOfAttack =History::all()->count();
+            $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
+            $buff = $session->players()->get()->count() < $session->max_team;
 
             if (!$isAttacked)
             {
@@ -242,9 +251,12 @@ class SiController extends Controller
                 }
             }
 
+            // Call Pusher
+            event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
+
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Power Skill! dengan damage ' . $damage, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
+            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Power Skill! dengan damage ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
 
         } catch (Exception $x){
                 DB::rollBack();
@@ -283,12 +295,13 @@ class SiController extends Controller
             $damageAwal = $player->cycle * 2;
 
             // Buff  Session
+            $flag = "";
             $playerCount = $session->players()->get()->count();
             if ($playerCount < $session->max_team && $session->players()->wherePivot('player_id', $player->id)-> get()->isEmpty()) {
                 $damageAwal *= $session->multiplier;
                 $session->players()->attach($player->id);
+                $flag = " (Power Up)";
             }
-
 
             //Debuff
             $debuffActiveCount = $player->debuffs()->wherePivot('status', 1)->get()->count();
@@ -312,7 +325,9 @@ class SiController extends Controller
             $cycle = $player->cycle;
             $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
-            $isAttacked = History::all()->count() % 15 == 0 ? false:true;
+            $numOfAttack =History::all()->count();
+            $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
+            $buff = $session->players()->get()->count() < $session->max_team;
 
             if (!$isAttacked)
             {
@@ -331,9 +346,12 @@ class SiController extends Controller
                 }
             }
 
+            // Call Pusher
+            event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
+
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Ultimate Skill! dengan damage ' . $damage, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
+            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Ultimate Skill! dengan damage ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
 
         } catch (Exception $x){
                 DB::rollBack();
@@ -504,6 +522,9 @@ class SiController extends Controller
             $type = 'buy';
 
             DB::commit();
+
+            // Call Pusher
+            event(new UpdateDebuff(auth()->user()->id));
 
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Restore Potion ', compact('dragon', 'cycle', 'backpack', 'type'));
 
