@@ -17,23 +17,37 @@ body {
     display: block;
 }
 
-.bg {
+.bg-belakang {
+    z-index: -10;
+    width: 100vw;
+    height: 100vh;
+}
+
+.bg-depan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
     width: 100vw;
     height: 100vh;
 }
 
 .wrap-all{
     position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .atas-kiri {
+    color: white;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 300;
 }
 
 .atas-tengah {
+    z-index: 300;
     position: absolute;
     left: 50%; 
     transform: translateX(-50%);
@@ -47,6 +61,7 @@ body {
 }
 
 .atas-kanan {
+    z-index: 300;
     position: absolute;
     right: 0;
     top: 0;
@@ -55,6 +70,7 @@ body {
 
 .bawah-tengah {
     position: absolute;
+    z-index: 300;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
@@ -110,6 +126,10 @@ body {
     padding: 10px;
 }
 
+.pop-up-item  h1 {
+    font-family: "Cinzel";
+}
+
 .wrap-pop-up-item{
     position: relative;
 }
@@ -125,18 +145,19 @@ body {
 }
 
 .add-ons{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 40vw;
     height: 50vh;
+    text-align: center;
     margin-right: auto;
     margin-left: auto;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
 }
+
 .img-add-on{
     width: 100px;
     height: 100px;
+    justify-self: center;
 }
 /* /////////////////////// */
 /* Menu Pop Up Items Add On*/
@@ -181,11 +202,11 @@ body {
 /* ////////// */
 
 .dragon-alpha {
-    width: 350px; /* Sementara */
+    z-index: 1;
+    width: 90%; /* Sementara */
     position: absolute;
-    top: 10%;
+    top: 0;
     right: 10%;
-    transform: rotateY(180deg);
 }
 /* ////////// */
 /* Naga Alpha */
@@ -196,10 +217,10 @@ body {
 /* ////////// */
 
 .dragon-viking {
-    width: 20%; /* Sementara */
+    width: 85%; /* Sementara */
     position: absolute;
-    top: 60%;
-    left: 10%;
+    bottom: 0;
+    right: 0;
 }
 /* ////////// */
 /* Naga Alpha */

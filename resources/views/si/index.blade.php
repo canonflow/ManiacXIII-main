@@ -9,19 +9,18 @@
     <link rel="icon" href="{{ asset('asset2024') }}/maniac13-pp-rounded.ico" type="image/x-icon">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css') }}/gamebes.css">
-
+    <link rel="stylesheet" href="{{ asset('css') }}/bootstrap.min.css">
 </head>
 
 <body>
     <div class="wrap-all">
-        <img src="{{ asset('asset2024/bg-gamebes-sementara.jpg') }}" alt="Background" class="bg">
-        <!-- Menu Pop Up -->
+         <!-- Menu Pop Up -->
         <!-- Menu Pop Up Items Add Ons -->
         <div class="pop-up-item display-none" id="popUpItemAddOns">
-            <div class="wrap-pop-up-item">
+            <div class="wrap-pop-up-item grid-container text-center">
                 <div class="close-pop-up-item" id="closePopUpItemAddOns">Close</div>
-                <h1>Masuk Menu Pop Up Item Add Ons</h1>
-                <div class="add-ons">
+                <h1>Store</h1>
+                <div class="add-ons pt-2">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/backpack.png" alt="backpack">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-damage.png" alt="cycling-damage">
                     <img class="img-add-on" src="{{ asset('asset2024') }}/game/cycling-limited-potion.png"
@@ -41,10 +40,10 @@
             </div>
         </div> --}}
         <!-- Informasi -->
-        <div class="atas-kiri ml-4 mt-2">
+        <div class="atas-kiri ml-4 mt-2 ">
             <p>Debuff</p>
             <p>Buff</p>
-            <select class="js-example-basic-single " name="state">
+            <select class="js-example-basic-single text-black" name="state">
                 <option value="AL">Alabama</option>
                 ...
                 <option value="WY">Wyoming</option>
@@ -68,19 +67,23 @@
         </div>
         <!-- Informasi -->
 
-        <!-- Naga Alpha -->
-        <div class="wrap-dragon-alpha">
-            <img src="{{ asset('asset2024/Dragon.png') }}" alt="Dragon Alpha" class="dragon-alpha">
+        <div class="position-relative">
+            <img src="{{ asset('asset2024/game/bg-belakang.png') }}" alt="Background" class="bg-belakang">
+            
+            <!-- Naga Alpha -->
+            <div class="wrap-dragon-alpha">
+                <img src="{{ asset('asset2024/game/dragon-alpha.png') }}" alt="Dragon Alpha" class="dragon-alpha">
+            </div>
+            <!-- Naga Alpha -->
+
+            <!-- Naga Viking -->
+            <div class="wrap-dragon-viking">
+                <img src="{{ asset('asset2024/game/dragon-viking.png') }}" alt="Dragon Viking" class="dragon-viking">
+            </div>
+            <!-- Naga Viking -->
+            
+            <img src="{{ asset('asset2024/game/bg-depan.png') }}" class="bg-depan">
         </div>
-        <!-- Naga Alpha -->
-
-        <!-- Naga Viking -->
-        <div class="wrap-dragon-viking">
-            <img src="{{ asset('asset2024/Dragon.png') }}" alt="Dragon Viking" class="dragon-viking">
-        </div>
-        <!-- Naga Viking -->
-
-
     </div>
     <script src="{{ asset('js') }}/jquery.min.js"></script>
     <script>
