@@ -43,10 +43,10 @@
         <div class="atas-kiri ml-4 mt-2 ">
             <p>Debuff</p>
             <p>Buff</p>
-            <select class="js-example-basic-single text-black" name="state">
-                <option value="AL">Alabama</option>
-                ...
-                <option value="WY">Wyoming</option>
+            <select id="pID" class="js-example-basic-single text-black" name="state">
+                @foreach ($team as $t)
+                    <option name="{{ $t->id }}" value="{{ $t->id }}"> {{ $t->name }} </option>
+                @endforeach
             </select>
         </div>
         <div class="atas-tengah">
@@ -54,9 +54,9 @@
             <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button>
         </div>
         <div class="atas-kanan mr-4 mt-2">
-            <p>Dragon Breath : 5</p>
+            <p>Dragon Breath : <span id="dragonBreath"></span></p>
             <p>Max Backpack : 1500</p>
-            <p>Cycle : 600</p>
+            <p>Cycle : <span id="cycle"></span></p>
         </div>
         <div class="bawah-tengah">
             <div><a href="">Basic</a></div> <!-- Sementara nantinya ini gambar -->
@@ -136,8 +136,33 @@
                 error: function (xhr) {
                     console.log(xhr);
                 }
+            });
+        });
+
+
+
+        $("#pID").change(function(){
+            let selectedTim = $(this).val();
+            console.log(selectedTim);
+            $.ajax ({
+                type: 'POST',
+                url: '{{ route('si.detail.team') }}',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'player': selectedTim
+                },
+                success: function(data) {
+                    $('#dragonBreath').text(data.player.dragon_breath);
+                    $('#cycle').text(data.player.cycle);
+                    console.log(data.player.dragon_breath);
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
             })
         })
+
     </script>
     {{--  PUSHER  --}}
     @vite('resources/js/app.js')

@@ -22,6 +22,7 @@ use App\Models\Debuff;
 use App\Models\History;
 use App\Models\MarketLog;
 use App\Models\Potions;
+use App\Models\Team;
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -71,11 +72,25 @@ class SiController extends Controller
     }
 
     public function index(){
-        return view('si.index');
+        $team = Team::all();
+        return view('si.index', compact('team'));
     }
 
     // Buat Pilih Player (Tim)
-    public function playerDetail(Player $player) {
+    public function playerDetail(Request $request) {
+        $teamId = $request->input('player');
+        $player = Player::with('team')
+                ->where('id', $teamId )
+                ->first();
+        return response()->json(compact('player'), 200);
+    }
+
+    //coba baru
+    public function detailTeam(Request $request){
+        $teamId = $request->input('player');
+        $player = Player::with('team')
+                ->where('id', $teamId )
+                ->first();
         return response()->json(compact('player'), 200);
     }
 
