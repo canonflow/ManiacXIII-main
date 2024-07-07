@@ -72,17 +72,22 @@ class SiController extends Controller
     }
 
     public function index(){
-        $team = Team::all();
-        return view('si.index', compact('team'));
+        $players = Player::select('teams.name as team_name', 'players.*')
+        ->join('teams', 'teams.id', '=', 'players.team_id')
+        ->get();
+    
+        return view('si.index', compact('players'));
     }
 
     // Buat Pilih Player (Tim)
     public function playerDetail(Request $request) {
-        $teamId = $request->input('player');
-        $player = Player::with('team')
-                ->where('id', $teamId )
-                ->first();
-        return response()->json(compact('player'), 200);
+        $playerId = $request->player;
+        $player = Player::find($playerId);
+        if ($player) {
+            return response()->json(compact('player'), 200);
+        }else{
+            return response()->json(['error' => 'Player not found'], 404);
+        }
     }
 
     //coba baru

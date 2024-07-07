@@ -14,7 +14,7 @@
 
 <body>
     <div class="wrap-all">
-         <!-- Menu Pop Up -->
+        <!-- Menu Pop Up -->
         <!-- Menu Pop Up Items Add Ons -->
         <div class="pop-up-item display-none" id="popUpItemAddOns">
             <div class="wrap-pop-up-item grid-container text-center">
@@ -44,8 +44,8 @@
             <p>Debuff</p>
             <p>Buff</p>
             <select id="pID" class="js-example-basic-single text-black" name="state">
-                @foreach ($team as $t)
-                    <option name="{{ $t->id }}" value="{{ $t->id }}"> {{ $t->name }} </option>
+                @foreach ($players as $p)
+                    <option name="{{ $p->id }}" value="{{ $p->id }}">{{ $p->team_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -69,7 +69,7 @@
 
         <div class="position-relative">
             <img src="{{ asset('asset2024/game/bg-belakang.png') }}" alt="Background" class="bg-belakang">
-            
+
             <!-- Naga Alpha -->
             <div class="wrap-dragon-alpha">
                 <img src="{{ asset('asset2024/game/dragon-alpha.png') }}" alt="Dragon Alpha" class="dragon-alpha">
@@ -81,7 +81,7 @@
                 <img src="{{ asset('asset2024/game/dragon-viking.png') }}" alt="Dragon Viking" class="dragon-viking">
             </div>
             <!-- Naga Viking -->
-            
+
             <img src="{{ asset('asset2024/game/bg-depan.png') }}" class="bg-depan">
         </div>
     </div>
@@ -133,7 +133,7 @@
                 success: function(data) {
                     console.log(data);
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     console.log(xhr);
                 }
             });
@@ -141,28 +141,26 @@
 
 
 
-        $("#pID").change(function(){
-            let selectedTim = $(this).val();
-            console.log(selectedTim);
-            $.ajax ({
+        $("#pID").change(function() {
+            let selectedPlayerId = $(this).val(); // Assuming $(this).val() gives you the player ID
+            let selectedPlayerName = $('#pID').find("option:selected").text();;
+            $.ajax({
                 type: 'POST',
-                url: '{{ route('si.detail.team') }}',
+                url: '{{ route('si.player.detail', ['player' => ':player_id']) }}'.replace(':player_id',
+                    selectedPlayerName),
                 data: {
                     '_token': '{{ csrf_token() }}',
-                    'player': selectedTim
+                    'player': selectedPlayerId
                 },
                 success: function(data) {
-                    $('#dragonBreath').text(data.player.dragon_breath);
                     $('#cycle').text(data.player.cycle);
-                    console.log(data.player.dragon_breath);
-
+                    $('#dragonBreath').text(data.player.dragon_breath);
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     console.log(xhr);
                 }
-            })
-        })
-
+            });
+        });
     </script>
     {{--  PUSHER  --}}
     @vite('resources/js/app.js')
