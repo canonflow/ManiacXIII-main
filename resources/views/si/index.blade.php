@@ -143,7 +143,7 @@
 
         $("#pID").change(function() {
             let selectedPlayerId = $(this).val(); // Assuming $(this).val() gives you the player ID
-            let selectedPlayerName = $('#pID').find("option:selected").text();;
+            let selectedPlayerName = $('#pID').find("option:selected").text();
             $.ajax({
                 type: 'POST',
                 url: '{{ route('si.player.detail', ['player' => ':player_id']) }}'.replace(':player_id',
@@ -165,14 +165,23 @@
     {{--  PUSHER  --}}
     @vite('resources/js/app.js')
     <script type="module">
+        // Buat Update Alpha
         window.Echo.channel('update-gamebesar')
             .listen('UpdateGameBesar', (event) => {
                 console.log(event);
             });
+
+        // Buat Update Debuff (debuff langsung hilang)
         window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')
             .listen('UpdateDebuff', (event) => {
                 console.log(event);
             });
+
+        // Buat Update Harga yg kumulatif
+        window.Echo.private('private-update-price.{{ auth()->user()->id }}')
+            .listen('UpdateCumulativePrice', (event) => {
+                console.log(event);
+            })
     </script>
 </body>
 

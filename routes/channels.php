@@ -22,3 +22,9 @@ Broadcast::channel('private-update-debuff.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 //    return true;
 });
+
+Broadcast::channel('private-update-price.{id}', function ($user, $id) {
+    // ID nya Akun SI
+//   return (int)$user->id === (int)$id;
+    return true;
+});

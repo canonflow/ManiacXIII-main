@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Si;
 
+use App\Events\UpdateCumulativePrice;
 use App\Events\UpdateDebuff;
 use App\Events\UpdateGameBesar;
 use App\Http\Controllers\Controller;
@@ -67,7 +68,8 @@ class SiController extends Controller
     public function testPusher(Request $request) {
 //        event(new UpdateGameBesar("PUSHER MESSAGE: TEST DARI CONTROLLER"));
 //        event(new UpdateDebuff(Auth::user()->id, "PUSHER PRIVAET MESSAGE: Message buat " . auth()->user()->username));
-
+        $player = Player::find(1);
+        event(new UpdateCumulativePrice($player, auth()->user()->id));
         return $this->ajaxResponse(false, "Ini Response AJAX");
     }
 
@@ -75,7 +77,7 @@ class SiController extends Controller
         $players = Player::select('teams.name as team_name', 'players.*')
         ->join('teams', 'teams.id', '=', 'players.team_id')
         ->get();
-    
+
         return view('si.index', compact('players'));
     }
 
@@ -84,6 +86,7 @@ class SiController extends Controller
         $playerId = $request->player;
         $player = Player::find($playerId);
         if ($player) {
+            event(new UpdateCumulativePrice($player, auth()->user()->id));
             return response()->json(compact('player'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
@@ -501,6 +504,7 @@ class SiController extends Controller
             $type = 'buy';
 
             DB::commit();
+            event(new UpdateCumulativePrice($player, auth()->user()->id));
 
             return $this -> ajaxResponse(false, 'Anda berhasil mengupgrade Backpack 1 Level ', compact('dragon', 'cycle', 'backpack', 'type'));
 
@@ -545,6 +549,7 @@ class SiController extends Controller
 
             // Call Pusher
             event(new UpdateDebuff(auth()->user()->id));
+            event(new UpdateCumulativePrice($player, auth()->user()->id));
 
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Restore Potion ', compact('dragon', 'cycle', 'backpack', 'type'));
 
