@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "air-datepicker": "^3.4.0",
-        "laravel-echo": "^1.15.3",
+        "laravel-echo": "^1.16.1",
         "pusher-js": "^8.4.0-rc2"
     }
 }

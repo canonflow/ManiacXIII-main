@@ -55,9 +55,11 @@ body {
 }
 
 .health-bar {
+    border-radius: 10px;
+    background-color: rgb(128, 0, 0);
     width: 50vw;
     height: 1rem;
-    background-color: black;
+    box-shadow: 0.1px 0.05px 8px rgba(255, 255, 255, 0.5);
 }
 
 .atas-kanan {
@@ -119,7 +121,7 @@ body {
     transform: translate(-50%, -50%);
     width: 50vw;
     height: 60vh;
-    background-color: red;
+    background-color: rgb(1, 106, 71);
     color: white;
     z-index: 999999;
     border-radius: 10px;
@@ -147,7 +149,7 @@ body {
 .add-ons{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    width: 40vw;
+    width: 10vw;
     height: 50vh;
     text-align: center;
     margin-right: auto;
@@ -208,20 +210,3 @@ body {
     top: 0;
     right: 10%;
 }
-/* ////////// */
-/* Naga Alpha */
-/* ////////// */
-
-/* ////////// */
-/* Naga Alpha */
-/* ////////// */
-
-.dragon-viking {
-    width: 85%; /* Sementara */
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-/* ////////// */
-/* Naga Alpha */
-/* ////////// */

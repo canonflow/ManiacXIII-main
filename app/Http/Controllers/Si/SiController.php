@@ -83,11 +83,28 @@ class SiController extends Controller
 
     // Buat Pilih Player (Tim)
     public function playerDetail(Request $request) {
+        $session = $this->checkSession();
+        if (!$session) return $this->ajaxResponse(true, "Game Besar Belum Dibuka!");
         $playerId = $request->player;
         $player = Player::find($playerId);
+        $dragon = DB::table('dragons as d')
+                ->select('d.*')
+                ->distinct()
+                ->join('histories as h', 'h.dragon_id', '=', 'd.id')
+                ->join('players as p', 'p.id', '=', 'h.player_id')
+                ->where('p.id', '=', $playerId)
+                ->orderBy('h.id', 'desc')
+                ->get();
+        $egg = DB::table('dragons')->first();
         if ($player) {
+            $numOfAttack =History::all()->count();
+            $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
+            $alpha = Alpha::get()[0];
+            $buff = $session->players()->get()->count() < $session->max_team;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
-            return response()->json(compact('player'), 200);
+            event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
+            $dragonRes = $dragon->isEmpty() ? $egg : $dragon;
+            return response()->json(compact('player', 'dragonRes'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
         }
