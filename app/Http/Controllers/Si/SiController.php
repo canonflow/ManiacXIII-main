@@ -86,7 +86,7 @@ class SiController extends Controller
         $playerId = $request->player;
         $player = Player::find($playerId);
         if ($player) {
-            event(new UpdateCumulativePrice($player, auth()->user()->id));
+            // event(new UpdateCumulativePrice($player, auth()->user()->id));
             return response()->json(compact('player'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
