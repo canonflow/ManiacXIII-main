@@ -186,6 +186,16 @@
                     }
                 },
                 success: function(response) {
+                    console.log(response);
+                    if (response.isError) {
+                        Swal.fire({
+                            title: "Game Besar hasn't opened yet",
+                            text: response.msg,
+                            icon: 'info',
+                            confirmButtonText: 'Cool'
+                        });
+                        return;
+                    } 
                     $('#cycle').text(response.player.cycle);
                     $('#dragonBreath').text(response.player.dragon_breath);
                     let dragon = response.dragon;
@@ -212,12 +222,23 @@
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(response) {
+                    console.log(response);
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                        });
+                        return;
+                    } 
+
                     Swal.fire({
                         title: 'SUCCESS!',
                         text: response.msg,
                         icon: 'success',
                         confirmButtonText: 'Cool'
-                    })
+                    });
 
                     switch (response.dragon) {
                         case "baby":
@@ -245,7 +266,7 @@
                     setTimeout(() => {
                         $("#alpha").attr("src",
                             "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                    }, 3000);
+                    }, 4000);
                 },
                 error: function(response) {
                     Swal.fire({
