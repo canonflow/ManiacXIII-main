@@ -179,12 +179,16 @@
                     @php($rank = 1)
                     @foreach($leaderboard as $l)
                         @php($bg = ($rank <= 10) ? "bg-green-100" : "bg-red-100")
-                        <tr class="text-slate-900 font-medium {{ $bg }}">
+                        <tr class="text-slate-900 font-medium {{ $bg }} select-none">
                             <td width="20%" class="text-center py-5">{{ $rank }}</td>
                             <td width="20%" class="text-center">{{ $l->name }}</td>
                             <td width="20%" class="text-center">{{ $l->rally }}</td>
                             <td width="20%" class="text-center">{{ $l->gamebesar }}</td>
-                            <td width="20%" class="text-center" style="font-size: 1rem;">{{ $l->total_score }}</td>
+                            <td width="20%" class="text-center" style="font-size: 1rem;">
+                                <span class="bg-slate-700 py-2 px-3 rounded-md font-bold text-slate-50">
+                                    {{ $l->total_score }}
+                                </span>
+                            </td>
                         </tr>
                         @php($rank++)
                     @endforeach
