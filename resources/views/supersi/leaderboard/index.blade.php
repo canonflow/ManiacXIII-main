@@ -142,7 +142,7 @@
             >
                 Summarize Semifinal Score For Final
             </h1>
-            <div class="flex justify-between items-center">
+            <div class="grid grid-cols-1 gap-y-4 md:gap-y-2 xl:grid-cols-3">
                 <div class="select2-container flex justify-center">
                     <label for="" class="mr-5 font-medium">Choose Contest: </label>
                     <select class="js-example-basic-single" name="contest" id="contest-select" required>
@@ -153,7 +153,7 @@
                     </select>
                 </div>
                 <button
-                    class="bg-slate-900 text-slate-50 font-semibold py-2 px-5 rounded hover:bg-slate-700 active:scale-95 transition-all"
+                    class="bg-slate-900 text-slate-50 font-semibold py-2 px-5 rounded hover:bg-slate-700 active:scale-95 transition-all xl:col-start-3 xl:col-end-4"
                     id="btnSummarize"
                 >
                     Summarize
