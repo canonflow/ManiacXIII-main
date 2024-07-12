@@ -12,7 +12,10 @@
     @vite('resources/js/app.js')
     <link rel="stylesheet" href="{{ asset('css') }}/gamebes.css">
     {{-- <link rel="stylesheet" href="{{ asset('css') }}/bootstrap.min.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css') }}/css/font.css">
+    {{-- <link rel="stylesheet" href="{{ asset('css') }}/css/font.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: "Cinzel";
@@ -23,23 +26,16 @@
 
 <body>
     <div class="wrap-all">
-        <!-- Menu Pop Up -->
-        <!-- Menu Pop Up Items Add Ons -->
-        <div class="pop-up-item display-none" id="popUpItemAddOns">
-            <div class="wrap-pop-up-item grid-container text-center">
-                <div class="close-pop-up-item" id="closePopUpItemAddOns"></div>
-
-            </div>
-        </div>
         <div class="absolute w-1/2 inset-y-80 z-20">
             <dialog id="my_modal_3" class="modal z-20">
-                <div class="modal-box">
+                <div class="modal-box store">
                     <form method="dialog">
                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white">✕</button>
                     </form>
                     <h1 class="text-2xl text-center py-2.5">STORE</h1>
                     <div class="grid grid-cols-3">
-                        <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/backpack.png" alt="backpack">
+                        <img onclick="buyBackPack()" class="img-add-on"
+                            src="{{ asset('asset2024') }}/game/item/backpack.png" alt="backpack">
                         <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/cycling-damage.png"
                             alt="cycling-damage">
                         <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/cycling-limited-potion.png"
@@ -54,9 +50,8 @@
             </dialog>
         </div>
         <!-- Informasi -->
-        <div class="atas-kiri ml-4 mt-2 ">
-            <p>Debuff</p>
-            <p>Buff</p>
+        <div class="atas-kiri ml-12 mt-2 ">
+            <h2 id="status-buff" class="text-3xl py-3 text-amber-400">Status</h2>
             <h4>Nama Tim : </h4>
             <select id="pID" class="js-example-basic-single text-black w-100" name="state">
                 <option selected disabled value="">Select Player</option>
@@ -67,25 +62,29 @@
         </div>
         <div class="atas-tengah">
             <div class="health-bar"></div>
-            {{-- <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button> --}}
+            <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button>
         </div>
-        <div class="atas-kanan mr-4 mt-2">
+        <div class="atas-kanan mr-12 mt-6">
             <h6>Dragon Breath : <span id="dragonBreath"></span></h6>
             <h6>Max Backpack : 1500</h6>
             <h6>Cycle : <span id="cycle"></span></h6>
         </div>
         <div class="absolute inset-y-80 right-3 z-20">
-            <h5 class="text-white">Number of Attack</h5>
-            <p class="text-5xl text-white text-right" id="numOfAttack"></p>
+            <h5 class="text-white mr-10">Number of Attack</h5>
+            <p class="text-5xl text-white text-right mr-10" id="numOfAttack"></p>
         </div>
-        <div class="bawah-tengah">
-            <button id="basic-attack" class="btn text-white text-2xl">Basic</button>
+        <div
+            class="bawah-tengah flex absolute w-1/4 bottom-0 start-1/2 p-5 font-medium rounded-t-lg z-20 justify-center">
+            <button id="basic-attack" class="btn w-1/2 border-none bg-emerald-900 text-white text-xl"><i
+                    class="fas fa-dragon"></i> Basic</button>
             {{-- <div id="cycling-drag"><a href="">Cycling Drag</a></div> <!-- Sementara nantinya ini gambar --> --}}
             {{-- <div id="ultimate"><a href="">Ultimate</a></div> <!-- Sementara nantinya ini gambar --> --}}
-            <button class="btn text-white text-2xl" onclick="my_modal_3.showModal()">Store</button>
+            <button id="btnStore" class="btn bg-emerald-900 w-1/2 border-none text-white text-xl"><i
+                    class="fas fa-store"></i>
+                Store</button>
         </div>
         <div style="width: 15%; height: 20%;" class="px-2 py-4 absolute left-0 bottom-0 z-20 rounded-r-lg">
-            <img id="viking" class="w-32 h-auto mb-1 ml-auto mr-auto" id="dragon-cycle"
+            <img id="viking" class="w-32 h-auto mx-auto" id="dragon-cycle"
                 src="{{ asset('asset2024/game/dragon/teens.png') }}" alt="dragon-cycle">
             <h6 id="text-cycle" class="text-center text-white m-0 p-0 mt-2">Teens</h6>
         </div>
@@ -96,7 +95,8 @@
 
             <!-- Naga Alpha -->
             <div class="wrap-dragon-alpha">
-                <img src="{{ asset('asset2024/game/alpha/idle.gif') }}" alt="Dragon Alpha" class="dragon-alpha">
+                <img id="alpha" class="dragon-alpha top-8 left-8 w-11/12"
+                    src="{{ asset('asset2024/game/alpha/idle.gif') }}" alt="Dragon Alpha">
             </div>
             <!-- Naga Alpha -->
 
@@ -113,6 +113,46 @@
     <script src="{{ asset('js') }}/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        $("#btnStore").click(function(e) {
+            e.preventDefault();
+            let playerId = $("#pID").val();
+            if (playerId != null) {
+                my_modal_3.showModal()
+            } else {
+                Swal.fire({
+                    title: 'Player not found!',
+                    text: "Please select a player",
+                    icon: 'info',
+                    confirmButtonText: 'Cool'
+                })
+            }
+        });
+
+
+        //***** Store Item *****//
+        const buyBackPack = () => {
+            // Function body
+            let playerId = $("#pID").val();
+            console.log(playerId);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('si.buyBackpack', ['player' => ':player_id']) }}".replace(
+                    ':player_id',
+                    playerId),
+                data: {
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'SUCCESS!',
+                        text: response.msg,
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        };
+
         $("#btnPusher").click(function() {
             $.ajax({
                 type: 'POST',
@@ -133,9 +173,6 @@
             e.preventDefault();
             var playerId = $(this).val(); // Replace with the actual player ID
             console.log(playerId);
-            if (playerId === null) {
-
-            }
             $.ajax({
                 url: "{{ route('si.player.detail', ['player' => ':player_id']) }}".replace(
                     ':player_id',
@@ -151,19 +188,14 @@
                 success: function(response) {
                     $('#cycle').text(response.player.cycle);
                     $('#dragonBreath').text(response.player.dragon_breath);
-                    let dragon = response.dragonRes[0];
+                    let dragon = response.dragon;
                     $("#viking").attr("src", "{{ asset('asset2024/game/dragon/image') }}"
                         .replace('image', dragon.img_url));
                     $('#text-cycle').text(dragon.name);
 
                 },
                 error: function(xhr) {
-                    Swal.fire({
-                        title: 'SUCCESS!',
-                        text: response.msg,
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                    })
+
 
                 }
             });
@@ -209,10 +241,19 @@
                                 "{{ asset('asset2024/game/dragon/egg.png') }}");
                             break;
                     }
+                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
+                    setTimeout(() => {
+                        $("#alpha").attr("src",
+                            "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                    }, 3000);
                 },
                 error: function(response) {
-                    console.log(response.isError);
-                    console.log(response.msg);
+                    Swal.fire({
+                        title: 'Player is not found!',
+                        text: 'Please select the player',
+                        icon: 'info',
+                        confirmButtonText: 'Cool'
+                    })
 
                 }
             });
@@ -226,6 +267,18 @@
             .listen('UpdateGameBesar', (event) => {
                 console.log(event);
                 $('#numOfAttack').text(event.numOfAttack);
+                if (event.buff == true) {
+                    $('#status-buff').text("Buff");
+
+                } else if (event.willAttack == true) {
+                    $('#status-buff').text("Debuff");
+                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
+                    setTimeout(() => {
+                        $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                    }, 3000);
+
+                }
+
             });
         window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')
             .listen('UpdateDebuff', (event) => {

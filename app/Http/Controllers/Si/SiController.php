@@ -87,14 +87,7 @@ class SiController extends Controller
         if (!$session) return $this->ajaxResponse(true, "Game Besar Belum Dibuka!");
         $playerId = $request->player;
         $player = Player::find($playerId);
-        $dragon = DB::table('dragons as d')
-                ->select('d.*')
-                ->distinct()
-                ->join('histories as h', 'h.dragon_id', '=', 'd.id')
-                ->join('players as p', 'p.id', '=', 'h.player_id')
-                ->where('p.id', '=', $playerId)
-                ->orderBy('h.id', 'desc')
-                ->get();
+        $dragon = Dragon::where('threshold', '<=', $player->cycle)->orderby('threshold', 'desc')->first();
         $egg = DB::table('dragons')->first();
         if ($player) {
             $numOfAttack =History::all()->count();
@@ -103,8 +96,7 @@ class SiController extends Controller
             $buff = $session->players()->get()->count() < $session->max_team;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
             event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
-            $dragonRes = $dragon->isEmpty() ? $egg : $dragon;
-            return response()->json(compact('player', 'dragonRes'), 200);
+            return response()->json(compact('player', 'dragon'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
         }
