@@ -275,9 +275,74 @@
                 class="tab tab bg-slate-500 font-medium text-slate-50"
                 aria-label="Debuff"
                 {{ ($currTab == 'debuff') ? 'checked' : '' }}
+                checked
             />
-            <div role="tabpanel" class="tab-content bg-slate-500 rounded p-6">
-                Tab content 3
+            <div role="tabpanel" class="tab-content bg-slate-500 rounded p-6 overflow-auto">
+                <div class="overflow-auto rounded" style="max-height: 450px">
+                    <table class="table table-xs table-pin-cols table-pin-rows">
+                        <thead>
+                        <tr class="text-slate-900 font-medium" style="font-size: 1.1rem;">
+                            <th width="20%" class="text-center text-sm xl:text-lg py-3 bg-slate-100">Debuff ID</th>
+                            <th width="40%" class="text-center text-sm xl:text-lg bg-slate-100">Affected Count</th>
+                            <th width="40%" class="text-center text-sm xl:text-lg bg-slate-100">Detail</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tBody">
+                        @php($rank = 1)
+                        @foreach($listDebuff as $id => $debuff)
+                            <tr class="text-slate-900 font-medium select-none">
+                                <td width="20%" class="text-center py-5 font-bold text-white text-lg">
+                                    {{ $id }}
+                                </td>
+                                <td width="20%" class="text-center">
+                                    <span class="rounded-full bg-slate-900 px-5 py-2 text-white font-semibold border border-1 border-white">
+                                        {{ $debuff->count() }}
+                                    </span>
+                                </td>
+                                <td width="20%" class="text-center">
+                                    <button
+                                        class="bg-green-200 text-green-800 font-semibold py-2 px-5 rounded hover:bg-green-100 active:scale-95 transition-all xl:col-start-3 xl:col-end-4"
+                                        id="btnSummarize"
+                                        onclick="modalDebuff_{{ $id }}.showModal()"
+                                    >
+                                        Show
+                                    </button>
+                                </td>
+                            </tr>
+
+                            {{-- Modal Each Debuff --}}
+                            <dialog id="modalDebuff_{{ $id }}" class="modal modal-bottom sm:modal-middle">
+                                <div class="modal-box text-slate-900">
+                                    <h3 class="text-xl font-bold">Debuff {{ $id }}</h3>
+                                    <div class="overflow-auto rounded mt-2" style="max-height: 450px">
+                                        <div class="grid grid-cols-2">
+                                            @php($row = 0)
+                                            @php($i = 0)
+                                            @foreach($debuff as $player)
+                                                @php($bg = ($row % 2 == 0) ? 'bg-slate-300' : 'bg-slate-200')
+                                                <div class="{{ $bg }} p-1 text-center font-medium">{{ $player->team->name }}</div>
+                                                @php($i++)
+                                                <?php
+                                                    if ($i == 2) {
+                                                        $row++;
+                                                        $i = 0;
+                                                    }
+                                                ?>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="modal-action">
+                                        <form method="dialog">
+                                            <!-- if there is a button in form, it will close the modal -->
+                                            <button class="btn">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </dialog>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

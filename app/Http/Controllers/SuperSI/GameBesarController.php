@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperSI;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alpha;
+use App\Models\Debuff;
 use App\Models\GameBesarSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,14 @@ class GameBesarController extends Controller
     {
         $sessions = GameBesarSession::all();
         $alpha = Alpha::first();
-        return view('supersi.gamebesar.index', compact('sessions', 'alpha'));
+        $debuffs = Debuff::all();
+        $listDebuff = [];
+
+        foreach ($debuffs as $debuff) {
+            $effected = $debuff->players()->wherePivot('status', 1)->get();
+            $listDebuff += [$debuff->id => $effected];
+        }
+        return view('supersi.gamebesar.index', compact('sessions', 'alpha', 'listDebuff'));
 //        return view('visitor.welcome');
     }
 

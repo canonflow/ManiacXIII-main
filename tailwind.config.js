@@ -67,5 +67,6 @@ export default {
     safelist: [
         'bg-green-100',
         'bg-red-100',
+        'bg-slate-100'
     ],
 };
