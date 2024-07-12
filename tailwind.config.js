@@ -63,5 +63,9 @@ export default {
             // }
         ],
         darkTheme: 'dark'
-    }
+    },
+    safelist: [
+        'bg-green-100',
+        'bg-red-100',
+    ],
 };

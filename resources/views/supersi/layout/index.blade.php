@@ -127,7 +127,7 @@
             </li>
             <div class="divider text-sm">Leaderboard</div>
             <li>
-                <a href="{{ route('super-si.index') }}" class="flex items-center p-2 rounded-lg {{ $pageActive == "admin.users" ? 'bg-slate-300 text-slate-800 ' : 'hover:bg-slate-100 group text-white hover:text-base-content' }} active:scale-95 transition-all">
+                <a href="{{ route('super-si.leaderboard.index') }}" class="flex items-center p-2 rounded-lg {{ $pageActive == "super-si.leaderboard" ? 'bg-slate-300 text-slate-800 ' : 'hover:bg-slate-100 group text-white hover:text-base-content' }} active:scale-95 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-800">
                         <path fill-rule="evenodd" d="M10.5 3A1.501 1.501 0 0 0 9 4.5h6A1.5 1.5 0 0 0 13.5 3h-3Zm-2.693.178A3 3 0 0 1 10.5 1.5h3a3 3 0 0 1 2.694 1.678c.497.042.992.092 1.486.15 1.497.173 2.57 1.46 2.57 2.929V19.5a3 3 0 0 1-3 3H6.75a3 3 0 0 1-3-3V6.257c0-1.47 1.073-2.756 2.57-2.93.493-.057.989-.107 1.487-.15Z" clip-rule="evenodd" />
                     </svg>
@@ -154,7 +154,7 @@
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                 </svg>
             </button>
-            <div class="flex-1 text-2xl text-primary-content font-medium">
+            <div class="flex-1 text-2xl text-primary-content font-medium text-white">
                 {{ $pageTitle ?? "Dashboard" }}
             </div>
         </div>

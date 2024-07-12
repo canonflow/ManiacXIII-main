@@ -224,6 +224,14 @@ Route::group(
             ->name('player.index');
         Route::get('/player/log/{player}', [SuperSI\PlayerController::class, 'log']);
         Route::get('/player/score/{player}', [SuperSI\PlayerController::class, 'score']);
+
+        // ===== Leaderboard =====
+        Route::get('/leaderboard', [SuperSI\SuperSIController::class, 'leaderboard'])
+            ->name('leaderboard.index');
+
+        // ===== SUMMERIZE =====
+        Route::post('/summarize', [SuperSI\SuperSIController::class, 'summarize'])
+            ->name('summarize');
     }
 );
 
