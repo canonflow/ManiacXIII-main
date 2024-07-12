@@ -94,9 +94,12 @@ class SiController extends Controller
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
             $alpha = Alpha::get()[0];
             $buff = $session->players()->get()->count() < $session->max_team;
+            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
             event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
-            return response()->json(compact('player', 'dragon'), 200);
+            event(new UpdateCumulativePrice($player, auth()->user()->id));
+
+            return response()->json(compact('player', 'dragon', 'backpack'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
         }
@@ -170,6 +173,7 @@ class SiController extends Controller
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
             $buff = $session->players()->get()->count() < $session->max_team;
+            $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
             {
@@ -192,7 +196,7 @@ class SiController extends Controller
             event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
+            return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage', 'dragon_breath'));
 
         } catch (Exception $x){
                 DB::rollBack();
@@ -265,6 +269,7 @@ class SiController extends Controller
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
             $buff = $session->players()->get()->count() < $session->max_team;
+            $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
             {
@@ -288,7 +293,7 @@ class SiController extends Controller
 
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Power Skill! dengan damage ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
+            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Power Skill! dengan damage ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage', 'dragon_breath'));
 
         } catch (Exception $x){
                 DB::rollBack();
@@ -360,6 +365,7 @@ class SiController extends Controller
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
             $buff = $session->players()->get()->count() < $session->max_team;
+            $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
             {
@@ -383,7 +389,7 @@ class SiController extends Controller
 
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Ultimate Skill! dengan damage ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage'));
+            return $this -> ajaxResponse(false, 'Anda berhasil menyerang menggunakan Ultimate Skill! dengan damage ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage', 'dragon_breath'));
 
         } catch (Exception $x){
                 DB::rollBack();

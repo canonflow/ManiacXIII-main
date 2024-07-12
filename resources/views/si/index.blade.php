@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="wrap-all">
+    <div class="wrap-all" id="wrap-all">
         <div class="absolute w-1/2 inset-y-80 z-20">
             <dialog id="my_modal_3" class="modal z-20">
                 <div class="modal-box store">
@@ -34,17 +34,51 @@
                     </form>
                     <h1 class="text-2xl text-center py-2.5">STORE</h1>
                     <div class="grid grid-cols-3">
-                        <img onclick="buyBackPack()" class="img-add-on"
-                            src="{{ asset('asset2024') }}/game/item/backpack.png" alt="backpack">
-                        <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/cycling-damage.png"
-                            alt="cycling-damage">
-                        <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/cycling-limited-potion.png"
-                            alt="cycling-limited-potion">
-                        <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/dragon-breath.png"
-                            alt="dragon-breath">
-                        <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/restore.png" alt="restore">
-                        <img class="img-add-on" src="{{ asset('asset2024') }}/game/item/ultimate-cycle.png"
-                            alt="ultimate-cycle">
+                        {{-- Backpack --}}
+                        <div class="animat-item-store flex items-center justify-center flex-col">
+                            <img onclick="buyBackPack()" class="img-add-on"
+                                src="{{ asset('asset2024') }}/game/item/backpack.png" alt="backpack">
+                            <p class="flex justify-center items-center"><span id="hargaBackpack">50</span>
+                                <i class="fa-solid fa-arrows-spin ml-1"></i>
+                            </p>
+                        </div>
+
+                        {{-- Power Skill --}}
+                        <div class="animat-item-store flex items-center justify-center flex-col">
+                            <img onclick="buyPowerSkill()" class="img-add-on"
+                                src="{{ asset('asset2024') }}/game/item/power-skill.png" alt="power-skill">
+                            <p>250 <i class="fa-solid fa-arrows-spin ml-1"></i></p>
+                        </div>
+
+                        {{-- Potion --}}
+                        <div class="animat-item-store flex items-center justify-center flex-col">
+                            <img onclick="buyPotion()" class="img-add-on"
+                                src="{{ asset('asset2024') }}/game/item/potion.png" alt="potion">
+                            <p>200 <i class="fa-solid fa-arrows-spin ml-1"></i></p>
+                        </div>
+
+                        {{-- Dragon Breath --}}
+                        <div class="animat-item-store flex items-center justify-center flex-col">
+                            <img onclick="buyDragonBreath()" class="img-add-on"
+                                src="{{ asset('asset2024') }}/game/item/dragon-breath.png" alt="dragon-breath">
+                            <p>100 <i class="fa-solid fa-arrows-spin ml-1"></i></p>
+                        </div>
+
+                        {{-- Restore --}}
+                        <div class="animat-item-store flex items-center justify-center flex-col">
+                            <img onclick="buyRestore()" class="img-add-on"
+                                src="{{ asset('asset2024') }}/game/item/restore.png" alt="restore">
+                            <p class="flex justify-center items-center"><span id="hargaRestore">150</span>
+                                <i class="fa-solid fa-arrows-spin ml-1"></i>
+                            </p>
+                        </div>
+
+                        {{-- Ultimate Cycle --}}
+                        <div class="animat-item-store flex items-center justify-center flex-col">
+                            <img onclick="buyUltimate()" class="img-add-on"
+                                src="{{ asset('asset2024') }}/game/item/ultimate-cycle.png" alt="ultimate-cycle">
+                            <p>350 <i class="fa-solid fa-arrows-spin ml-1"></i></p>
+                        </div>
                     </div>
                 </div>
             </dialog>
@@ -60,13 +94,16 @@
                 @endforeach
             </select>
         </div>
+        {{-- Health Bar --}}
         <div class="atas-tengah">
-            <div class="health-bar"></div>
-            <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button>
+            <div class="relative health-bar-container">
+                <div class="absolute health-bar health-bar-width" id="health-bar"></div>
+            </div>
+            {{-- <button class="btn btn-primary mt-3" id="btnPusher">Test Pusher (Buka Console)</button> --}}
         </div>
         <div class="atas-kanan mr-12 mt-6">
             <h6>Dragon Breath : <span id="dragonBreath"></span></h6>
-            <h6>Max Backpack : 1500</h6>
+            <h6>Max Backpack : <span id="backpack"></span> </h6>
             <h6>Cycle : <span id="cycle"></span></h6>
         </div>
         <div class="absolute inset-y-80 right-3 z-20">
@@ -113,6 +150,25 @@
     <script src="{{ asset('js') }}/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
+        // const borderMerah = () => {
+//             $("#wrap-all").addClass("class", "border-merah");
+//         }
+
+//         const borderNormal = () => {
+//             $("#wrap-all").removeClass("border-merah");
+//         }
+
+        const borderMerah = () => {
+            $("#wrap-all").css("border", "1px 1px 0 1px solid red");
+            $("#wrap-all").css("box-shadow", "inset -10px -10px 10px 1px red");
+        }
+
+        const borderNormal = () => {
+            $("#wrap-all").css("border", "0px solid red");
+            $("#wrap-all").css("box-shadow", "none");
+        }
+
         $("#btnStore").click(function(e) {
             e.preventDefault();
             let playerId = $("#pID").val();
@@ -143,12 +199,188 @@
                     '_token': "{{ csrf_token() }}"
                 },
                 success: function(response) {
+                    $("#my_modal_3")[0].close();
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                        });
+                        return;
+                    }
+                    $("#cycle").text(response.cycle);
+                    $('#backpack').text(response.backpack);
                     Swal.fire({
                         title: 'SUCCESS!',
                         text: response.msg,
                         icon: 'success',
-                        confirmButtonText: 'Cool'
-                    })
+                    });
+
+                }
+            });
+
+        };
+
+        const buyPowerSkill = () => {
+            // Function body
+            let playerId = $("#pID").val();
+            console.log(playerId);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('si.powerSkill', ['player' => ':player_id']) }}".replace(
+                    ':player_id',
+                    playerId),
+                data: {
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $("#my_modal_3")[0].close();
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                        });
+                        return;
+                    }
+                    Swal.fire({
+                        title: 'SUCCESS!',
+                        text: response.msg,
+                        icon: 'success',
+                    });
+                    $("#cycle").text(response.cycle);
+                    $('#dragonBreath').text(response.dragon_breath);
+                    borderMerah();
+                }
+            });
+        };
+
+        const buyPotion = () => {
+            // Function body
+            let playerId = $("#pID").val();
+            console.log(playerId);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('si.buyPotion', ['player' => ':player_id']) }}".replace(
+                    ':player_id',
+                    playerId),
+                data: {
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $("#my_modal_3")[0].close();
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                        });
+                        return;
+                    }
+                    Swal.fire({
+                        title: 'SUCCESS!',
+                        text: response.msg,
+                        icon: 'success',
+                    });
+                    $("#cycle").text(response.cycle);
+                }
+            });
+        };
+
+        const buyDragonBreath = () => {
+            // Function body
+            let playerId = $("#pID").val();
+            console.log(playerId);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('si.buyDragonBreath', ['player' => ':player_id']) }}".replace(
+                    ':player_id',
+                    playerId),
+                data: {
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $("#my_modal_3")[0].close();
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                        });
+                        return;
+                    }
+                    Swal.fire({
+                        title: 'SUCCESS!',
+                        text: response.msg,
+                        icon: 'success',
+                    });
+                    $("#cycle").text(response.cycle);
+                    $('#dragonBreath').text(response.dragon_breath);
+                }
+            });
+        };
+
+        const buyRestore = () => {
+            // Function body
+            let playerId = $("#pID").val();
+            console.log(playerId);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('si.buyRestore', ['player' => ':player_id']) }}".replace(
+                    ':player_id',
+                    playerId),
+                data: {
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $("#my_modal_3")[0].close();
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                        });
+                        return;
+                    }
+                    Swal.fire({
+                        title: 'SUCCESS!',
+                        text: response.msg,
+                        icon: 'success',
+                    });
+                    $("#cycle").text(response.cycle);
+                }
+            });
+        };
+
+        const buyUltimate = () => {
+            // Function body
+            let playerId = $("#pID").val();
+            console.log(playerId);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('si.ultimateAttack', ['player' => ':player_id']) }}".replace(
+                    ':player_id',
+                    playerId),
+                data: {
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    $("#my_modal_3")[0].close();
+                    if (response.isError) {
+                        Swal.fire({
+                            title: 'ERROR!',
+                            text: response.msg,
+                            icon: 'error',
+                        });
+                        return;
+                    }
+                    Swal.fire({
+                        title: 'SUCCESS!',
+                        text: response.msg,
+                        icon: 'success',
+                    });
+                    $("#cycle").text(response.cycle);
+                    $('#dragonBreath').text(response.dragon_breath);
                 }
             });
         };
@@ -192,16 +424,16 @@
                             title: "Game Besar hasn't opened yet",
                             text: response.msg,
                             icon: 'info',
-                            confirmButtonText: 'Cool'
                         });
                         return;
-                    } 
+                    }
                     $('#cycle').text(response.player.cycle);
                     $('#dragonBreath').text(response.player.dragon_breath);
                     let dragon = response.dragon;
                     $("#viking").attr("src", "{{ asset('asset2024/game/dragon/image') }}"
                         .replace('image', dragon.img_url));
                     $('#text-cycle').text(dragon.name);
+                    $('#backpack').text(response.backpack);
 
                 },
                 error: function(xhr) {
@@ -228,17 +460,23 @@
                             title: 'ERROR!',
                             text: response.msg,
                             icon: 'error',
-                            confirmButtonText: 'Cool'
+                            // confirmButtonText: 'Cool'
                         });
                         return;
-                    } 
+                    }
+
+                    setTimeout(borderMerah, 0);
+                    setTimeout(borderNormal, 3000);
 
                     Swal.fire({
                         title: 'SUCCESS!',
-                        text: response.msg,
+                        text: response.msg + " damage",
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        // confirmButtonText: 'Cool'
                     });
+
+
+                    $('#dragonBreath').text(response.dragon_breath);
 
                     switch (response.dragon) {
                         case "baby":
@@ -262,11 +500,11 @@
                                 "{{ asset('asset2024/game/dragon/egg.png') }}");
                             break;
                     }
-                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
-                    setTimeout(() => {
-                        $("#alpha").attr("src",
-                            "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                    }, 4000);
+                    // $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
+                    // setTimeout(() => {
+                    //     $("#alpha").attr("src",
+                    //         "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                    // }, 4000);
                 },
                 error: function(response) {
                     Swal.fire({
@@ -290,16 +528,22 @@
                 $('#numOfAttack').text(event.numOfAttack);
                 if (event.buff == true) {
                     $('#status-buff').text("Buff");
+                }
 
-                } else if (event.willAttack == true) {
+                if (event.numOfAttack % 15 == 0) {
+                    console.log("NYERANG");
                     $('#status-buff').text("Debuff");
                     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
                     setTimeout(() => {
                         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
                     }, 3000);
-
+                } else {
+                    console.log("GK NYERANG");
                 }
 
+                let darah = (event.health / 1500000 * 100);
+                // console.log(darah);
+                $("#health-bar").css("width", darah + "%");
             });
         window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')
             .listen('UpdateDebuff', (event) => {
@@ -309,6 +553,8 @@
         window.Echo.private('private-update-price.{{ auth()->user()->id }}')
             .listen('UpdateCumulativePrice', (event) => {
                 console.log(event);
+                $("#hargaBackpack").text(event.backpackPrice);
+                $("#hargaRestore").text(event.restorePrice);
             });
     </script>
 </body>
