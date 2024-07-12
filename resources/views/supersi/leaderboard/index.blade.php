@@ -163,7 +163,7 @@
 
         {{--    Table    --}}
         <div class="overflow-auto rounded">
-            <h1 class="text-center font-bold text-xl py-2">Leaderboard Semifinal</h1>
+            <h1 class="text-center font-bold text-xl py-2">Leaderboard Rally and Game Besar</h1>
             <div class="overflow-auto rounded" style="max-height: 450px">
                 <table class="table table-xs table-pin-cols table-pin-rows">
                     <thead>
