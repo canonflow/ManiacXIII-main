@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     /* box-sizing: border-box; */
@@ -9,11 +9,11 @@ body {
     padding: 0;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: rgb(54, 102, 89);
 }
 
-.display-none{
+.display-none {
     display: none;
 }
 
@@ -36,7 +36,7 @@ body {
     height: 100vh;
 }
 
-.wrap-all{
+.wrap-all {
     position: relative;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -53,7 +53,7 @@ body {
 .atas-tengah {
     z-index: 300;
     position: absolute;
-    left: 50%; 
+    left: 50%;
     transform: translateX(-50%);
     top: 2%;
 }
@@ -75,7 +75,6 @@ body {
     transition: all 0.4s linear;
 }
 
-
 .atas-kanan {
     z-index: 300;
     position: absolute;
@@ -86,46 +85,46 @@ body {
 
 .bawah-tengah {
     transform: translateX(-50%);
-    gap: 40px;  
+    gap: 40px;
 }
 
-.bawah-tengah div:nth-child(1){
+.bawah-tengah div:nth-child(1) {
     margin-right: 10%;
 }
 
-.bawah-tengah div:nth-child(2){
+.bawah-tengah div:nth-child(2) {
     margin-right: 10%;
 }
 
-.bawah-tengah div:nth-child(3){
+.bawah-tengah div:nth-child(3) {
     margin-right: 10%;
 }
 
-.bawah-tengah div:nth-child(4){
+.bawah-tengah div:nth-child(4) {
     margin-right: 10%;
 }
 
-.bawah-tengah div:nth-child(5){
+.bawah-tengah div:nth-child(5) {
     margin-right: 10%;
 }
 
-#addOns{
+#addOns {
     cursor: pointer;
 }
 
-.border-merah{
+.border-merah {
     /* box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box; */
-    border: 1px solid red;
-    box-shadow: inset -10px -10px 10px 1px red;
+    box-shadow: 20px 20px 50px 50px red inset;
+    z-index: 99999999;
 }
 
 /* /////////////////////// */
 /* Menu Pop Up Items Add On*/
 /* /////////////////////// */
 
-#popUpStore{
+#popUpStore {
     z-index: 9999;
 }
 .pop-up-item {
@@ -142,17 +141,15 @@ body {
     padding: 10px;
 }
 
-.pop-up-item  h1 {
+.pop-up-item h1 {
     font-family: "Cinzel";
 }
 
-.wrap-pop-up-item{
+.wrap-pop-up-item {
     position: relative;
 }
 
-.pop-up-item
-.wrap-pop-up-item 
-.close-pop-up-item{
+.pop-up-item .wrap-pop-up-item .close-pop-up-item {
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -160,7 +157,7 @@ body {
     color: white;
 }
 
-.add-ons{
+.add-ons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 10vw;
@@ -170,14 +167,14 @@ body {
     margin-left: auto;
 }
 
-.img-add-on{
+.img-add-on {
     width: 100px;
     height: 100px;
     justify-self: center;
-    margin-top: 1rem ;
+    margin-top: 1rem;
 }
 
-.animat-item-store:hover{
+.animat-item-store:hover {
     transform: scale(1.2);
     transition: transform 0.2s;
 }
@@ -185,8 +182,7 @@ body {
 /* Menu Pop Up Items Add On*/
 /* /////////////////////// */
 
-
-#store{
+#store {
     cursor: pointer;
 }
 /* ///////////////// */
@@ -202,13 +198,11 @@ body {
     color: white;
 }
 
-.wrap-pop-up-store{
+.wrap-pop-up-store {
     position: relative;
 }
 
-.pop-up-store
-.wrap-pop-up-store 
-.close-pop-up-store{
+.pop-up-store .wrap-pop-up-store .close-pop-up-store {
     cursor: pointer;
     position: absolute;
     right: 0;

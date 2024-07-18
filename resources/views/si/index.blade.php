@@ -127,15 +127,17 @@
         </div>
         <!-- Informasi -->
 
-        <div class="position-relative">
+        <div class="position-relative" id="bg">
             <img src="{{ asset('asset2024/game/bg-belakang.png') }}" alt="Background" class="bg-belakang">
 
             <!-- Naga Alpha -->
             <div class="wrap-dragon-alpha">
-                <img id="alpha" class="dragon-alpha top-8 left-8 w-11/12"
-                    src="{{ asset('asset2024/game/alpha/idle.gif') }}" alt="Dragon Alpha">
+                <img id="alpha" class="dragon-alpha top-8 left-8 "
+                    src="{{ asset('asset2024/game/alpha/idle.gif') }}" alt="Dragon Alpha"
+                    style="height: 1080px; width: 1920px">
             </div>
             <!-- Naga Alpha -->
+            
 
             <!-- Naga Viking -->
             <div class="wrap-dragon-viking">
@@ -152,16 +154,15 @@
     <script>
 
         // const borderMerah = () => {
-//             $("#wrap-all").addClass("class", "border-merah");
-//         }
+        //     $("#wrap-all").addClass("class", "border-merah");
+        // }
 
-//         const borderNormal = () => {
-//             $("#wrap-all").removeClass("border-merah");
-//         }
+        // const borderNormal = () => {
+        //     $("#wrap-all").removeClass("border-merah");
+        // }
 
         const borderMerah = () => {
-            $("#wrap-all").css("border", "1px 1px 0 1px solid red");
-            $("#wrap-all").css("box-shadow", "inset -10px -10px 10px 1px red");
+            $("#wrap-all").css("box-shadow", "inset 20px 200px 50px 50px red");
         }
 
         const borderNormal = () => {
@@ -535,7 +536,14 @@
                     $('#status-buff').text("Debuff");
                     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
                     setTimeout(() => {
+                        $("#wrap-all").addClass("border-merah");
+                        borderMerah();
                         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
+
+                        setTimeout(() => {
+                            //borderMerah();
+                            $("#wrap-all").removeClass("border-merah");
+                        }, 3000); 
                     }, 3000);
                 } else {
                     console.log("GK NYERANG");
@@ -560,3 +568,5 @@
 </body>
 
 </html>
+
+
