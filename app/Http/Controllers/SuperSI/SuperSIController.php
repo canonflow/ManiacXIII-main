@@ -248,7 +248,7 @@ FROM
 JOIN
     players AS p ON p.team_id = t.id
 LEFT JOIN
-	submissions AS S ON t.id = s.team_id
+	submissions AS s ON t.id = s.team_id
 LEFT JOIN (
     -- Total Point
     SELECT
