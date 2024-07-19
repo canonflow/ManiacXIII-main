@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
     <style>
         body {
             font-family: "Cinzel";
@@ -85,7 +86,8 @@
         </div>
         <!-- Informasi -->
         <div class="atas-kiri ml-12 mt-2 ">
-            <h2 id="status-buff" class="text-3xl py-3 text-amber-400">Status</h2>
+            <h2 id="status-buff" class="text-3xl py-3 text-amber-400" style="opacity: 0;">Buff</h2>
+            <h2 id="status-debuff" class="text-3xl py-3 text-amber-400" style="opacity: 0;">Debuff</h2>
             <h4>Nama Tim : </h4>
             <select id="pID" class="js-example-basic-single text-black w-100" name="state">
                 <option selected disabled value="">Select Player</option>
@@ -137,7 +139,7 @@
                     style="height: 1080px; width: 1920px">
             </div>
             <!-- Naga Alpha -->
-            
+
 
             <!-- Naga Viking -->
             <div class="wrap-dragon-viking">
@@ -150,9 +152,9 @@
         </div>
     </div>
     <script src="{{ asset('js') }}/jquery.min.js"></script>
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-
         // const borderMerah = () => {
         //     $("#wrap-all").addClass("class", "border-merah");
         // }
@@ -206,6 +208,7 @@
                             title: 'ERROR!',
                             text: response.msg,
                             icon: 'error',
+                            dangerMode: true
                         });
                         return;
                     }
@@ -349,6 +352,7 @@
                         icon: 'success',
                     });
                     $("#cycle").text(response.cycle);
+
                 }
             });
         };
@@ -466,9 +470,6 @@
                         return;
                     }
 
-                    setTimeout(borderMerah, 0);
-                    setTimeout(borderNormal, 3000);
-
                     Swal.fire({
                         title: 'SUCCESS!',
                         text: response.msg + " damage",
@@ -501,11 +502,6 @@
                                 "{{ asset('asset2024/game/dragon/egg.png') }}");
                             break;
                     }
-                    // $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
-                    // setTimeout(() => {
-                    //     $("#alpha").attr("src",
-                    //         "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                    // }, 4000);
                 },
                 error: function(response) {
                     Swal.fire({
@@ -528,25 +524,35 @@
                 console.log(event);
                 $('#numOfAttack').text(event.numOfAttack);
                 if (event.buff == true) {
-                    $('#status-buff').text("Buff");
+                    $("#status-buff").css("opacity", "1");
+                } else {
+                    $("#status-buff").css("opacity", "0");
                 }
 
                 if (event.numOfAttack % 15 == 0) {
-                    console.log("NYERANG");
-                    $('#status-buff').text("Debuff");
+                    // console.log("NYERANG");
+                    // $('#status-buff').text("Debuff");
                     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
                     setTimeout(() => {
-                        $("#wrap-all").addClass("border-merah");
-                        borderMerah();
                         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
-
-                        setTimeout(() => {
-                            //borderMerah();
-                            $("#wrap-all").removeClass("border-merah");
-                        }, 3000); 
                     }, 3000);
+                    // setTimeout(() => {
+                    //     $("#wrap-all").addClass("border-merah");
+                    //     borderMerah();
+                    //     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
+
+                    //     setTimeout(() => {
+                    //         //borderMerah();
+                    //         $("#wrap-all").removeClass("border-merah");
+                    //     }, 3000);
+                    // }, 6000);
                 } else {
                     console.log("GK NYERANG");
+                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
+                    setTimeout(() => {
+                        $("#alpha").attr("src",
+                            "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                    }, 2500);
                 }
 
                 let darah = (event.health / 1500000 * 100);
@@ -556,6 +562,8 @@
         window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')
             .listen('UpdateDebuff', (event) => {
                 console.log(event);
+                if (event.debuff < 1) $('#status-debuff').css("opacity", "0");
+                else $('#status-debuff').css("opacity", "1  ");
             });
         // Buat Update Harga yg kumulatif
         window.Echo.private('private-update-price.{{ auth()->user()->id }}')
@@ -568,5 +576,3 @@
 </body>
 
 </html>
-
-

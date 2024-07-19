@@ -93,16 +93,32 @@ class SiController extends Controller
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
             $alpha = Alpha::get()[0];
-            $buff = $session->players()->get()->count() < $session->max_team;
+            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
             $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
             event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
             event(new UpdateCumulativePrice($player, auth()->user()->id));
+            
+            // Debuff Count
+            $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
+            event(new UpdateDebuff(auth()->user()->id, $debuffCount));
 
             return response()->json(compact('player', 'dragon', 'backpack'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
         }
+    }
+
+    public function test()
+    {
+        $session = $this->checkSession();
+        $player = Player::find(1);
+
+        if ($session) {
+            // if ($session->players()->get()->count() < $session->max_team)
+            $buff = $session->players()->wherePivot('player_id', $player->id)->get()->isEmpty();
+            dd($buff);
+        }        
     }
 
     //coba baru
@@ -172,7 +188,7 @@ class SiController extends Controller
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
-            $buff = $session->players()->get()->count() < $session->max_team;
+            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
             $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
@@ -190,6 +206,10 @@ class SiController extends Controller
 
                     $debuff->players()->attach($attr);
                 }
+
+                // Debuff Count
+                $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
+                event(new UpdateDebuff(auth()->user()->id, $debuffCount));
             }
 
             // Call Pusher
@@ -268,7 +288,7 @@ class SiController extends Controller
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
-            $buff = $session->players()->get()->count() < $session->max_team;
+            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
             $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
@@ -286,6 +306,10 @@ class SiController extends Controller
 
                     $debuff->players()->attach($attr);
                 }
+
+                // Debuff Count
+                $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
+                event(new UpdateDebuff(auth()->user()->id, $debuffCount));
             }
 
             // Call Pusher
@@ -364,7 +388,7 @@ class SiController extends Controller
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
-            $buff = $session->players()->get()->count() < $session->max_team;
+            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
             $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
@@ -382,6 +406,10 @@ class SiController extends Controller
 
                     $debuff->players()->attach($attr);
                 }
+
+                // Debuff Count
+                $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
+                event(new UpdateDebuff(auth()->user()->id, $debuffCount));
             }
 
             // Call Pusher
@@ -563,7 +591,9 @@ class SiController extends Controller
             DB::commit();
 
             // Call Pusher
-            event(new UpdateDebuff(auth()->user()->id));
+            // Debuff Count
+            $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
+            event(new UpdateDebuff(auth()->user()->id, $debuffCount));
             event(new UpdateCumulativePrice($player, auth()->user()->id));
 
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Restore Potion ', compact('dragon', 'cycle', 'backpack', 'type'));

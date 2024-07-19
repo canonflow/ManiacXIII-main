@@ -21,10 +21,11 @@ class UpdateDebuff implements ShouldBroadcast
 
     public $userId;
     public $debuff;
-    public function __construct($userId)
+    public function __construct($userId, $debuffCount)
     {
         $this->userId = $userId;  // User harus SI
-        $this->debuff = true;  // PASTI TRUE
+        // $this->debuff = true;  // PASTI TRUE
+        $this->debuff = $debuffCount;  // PASTI TRUE
     }
 
     /**
