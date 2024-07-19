@@ -222,6 +222,8 @@
                 });
                 return;
             }
+            console.log(contest_id);
+            console.log("{{ route('super-si.summarize') }}");
 
             $.ajax({
                 url: "{{ route('super-si.summarize') }}",
