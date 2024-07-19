@@ -255,7 +255,7 @@
 
                     let csv_string = csv.join("\n");
                     let filename = `export_rekap_semifinal_${new Date().toLocaleDateString()}.csv`;
-
+                    console.log(csv_string)
                     // Create Link Download
                     let link = document.createElement('a');
                     link.style.display = 'none';
