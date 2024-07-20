@@ -504,6 +504,12 @@
                                 "{{ asset('asset2024/game/dragon/egg.png') }}");
                             break;
                     }
+
+                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
+                    setTimeout(() => {
+                        $("#alpha").attr("src",
+                            "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                    }, 2500);
                 },
                 error: function(response) {
                     Swal.fire({
@@ -532,35 +538,16 @@
                 }
 
                 if (event.numOfAttack % 15 == 0) {
-                    // console.log("NYERANG");
-                    // $('#status-buff').text("Debuff");
                     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
                     setTimeout(() => {
                         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
                     }, 3000);
-                    // setTimeout(() => {
-                    //     $("#wrap-all").addClass("border-merah");
-                    //     borderMerah();
-                    //     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
 
-                    //     setTimeout(() => {
-                    //         //borderMerah();
-                    //         $("#wrap-all").removeClass("border-merah");
-                    //     }, 3000);
-                    // }, 6000);
-                } else {
-                    console.log("GK NYERANG");
-                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
-                    setTimeout(() => {
-                        $("#alpha").attr("src",
-                            "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                    }, 2500);
+                    let darah = (event.health / 1500000 * 100);
+                    $("#health-bar").css("width", darah + "%");
                 }
-
-                let darah = (event.health / 1500000 * 100);
-                // console.log(darah);
-                $("#health-bar").css("width", darah + "%");
             });
+
         window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')
             .listen('UpdateDebuff', (event) => {
                 console.log(event);
