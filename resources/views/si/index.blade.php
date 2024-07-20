@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
     <style>
         body {
             font-family: "Cinzel";
@@ -114,17 +113,18 @@
         </div>
         <div
             class="bawah-tengah flex absolute w-1/4 bottom-0 start-1/2 p-5 font-medium rounded-t-lg z-20 justify-center">
-            <button id="basic-attack" class="btn w-1/2 border-none bg-emerald-900 text-white text-xl"><i
-                    class="fas fa-dragon"></i> Basic</button>
+            <button id="basic-attack" style="background-color: #7e0100;"
+                class="btn w-1/2 border-none text-white text-xl"><i class="fas fa-dragon"></i>
+                Basic</button>
             {{-- <div id="cycling-drag"><a href="">Cycling Drag</a></div> <!-- Sementara nantinya ini gambar --> --}}
             {{-- <div id="ultimate"><a href="">Ultimate</a></div> <!-- Sementara nantinya ini gambar --> --}}
-            <button id="btnStore" class="btn bg-emerald-900 w-1/2 border-none text-white text-xl"><i
-                    class="fas fa-store"></i>
+            <button id="btnStore" style="background-color: #7e0100;"
+                class="btn w-1/2 border-none text-white text-xl"><i class="fas fa-store"></i>
                 Store</button>
         </div>
         <div style="width: 15%; height: 20%;" class="px-2 py-4 absolute left-0 bottom-0 z-20 rounded-r-lg">
             <img id="viking" class="w-32 h-auto mx-auto" id="dragon-cycle"
-                src="{{ asset('asset2024/game/dragon/teens.png') }}" alt="dragon-cycle">
+                src="{{ asset('asset2024/game/dragon/egg.png') }}" alt="dragon-cycle">
             <h6 id="text-cycle" class="text-center text-white m-0 p-0 mt-2">Teens</h6>
         </div>
         <!-- Informasi -->
@@ -439,9 +439,6 @@
                         .replace('image', dragon.img_url));
                     $('#text-cycle').text(dragon.name);
                     $('#backpack').text(response.backpack);
-                    $("#numOfAttack").text(response.numOfAttack);
-
-
                 },
                 error: function(xhr) {
 
@@ -505,18 +502,28 @@
                             break;
                     }
 
-                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/diserang.gif') }}");
-                    setTimeout(() => {
+                    if (response.isAttacked) {
                         $("#alpha").attr("src",
-                            "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                    }, 2500);
+                            "{{ asset('asset2024/game/alpha/diserang.gif') }}");
+                        setTimeout(() => {
+                            $("#alpha").attr("src",
+                                "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                        }, 2500);
+                    } else {
+                        console.log("saatnya nyerang!");
+                        $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
+                        setTimeout(() => {
+                            $("#alpha").attr("src",
+                                "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                        }, 3000);
+                    }
+
                 },
                 error: function(response) {
                     Swal.fire({
                         title: 'Player is not found!',
                         text: 'Please select the player',
                         icon: 'info',
-                        confirmButtonText: 'Cool'
                     })
 
                 }
@@ -537,15 +544,17 @@
                     $("#status-buff").css("opacity", "0");
                 }
 
-                if (event.numOfAttack % 15 == 0) {
-                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
-                    setTimeout(() => {
-                        $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                    }, 3000);
+                // if (event.willAttack) {
+                //     console.log("saatnya nyerang!");
+                //     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
+                //     setTimeout(() => {
+                //         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                //     }, 3000);
 
-                    let darah = (event.health / 1500000 * 100);
-                    $("#health-bar").css("width", darah + "%");
-                }
+
+                // }
+                let darah = (event.health / 1500000 * 100);
+                $("#health-bar").css("width", darah + "%");
             });
 
         window.Echo.private('private-update-debuff.{{ auth()->user()->id }}')

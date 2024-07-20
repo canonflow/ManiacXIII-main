@@ -217,7 +217,7 @@ class SiController extends Controller
             event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage', 'dragon_breath'));
+            return $this -> ajaxResponse(false, 'Anda berhasil melakukan Attack ' . $damage . $flag, compact('dragon', 'cycle', 'backpack', 'type', 'isAttacked', 'damage', 'dragon_breath', 'numOfAttack'));
 
         } catch (Exception $x){
                 DB::rollBack();
