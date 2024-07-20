@@ -509,15 +509,7 @@
                             $("#alpha").attr("src",
                                 "{{ asset('asset2024/game/alpha/idle.gif') }}");
                         }, 2500);
-                    } else {
-                        console.log("saatnya nyerang!");
-                        $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
-                        setTimeout(() => {
-                            $("#alpha").attr("src",
-                                "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                        }, 3000);
                     }
-
                 },
                 error: function(response) {
                     Swal.fire({
@@ -544,15 +536,13 @@
                     $("#status-buff").css("opacity", "0");
                 }
 
-                // if (event.willAttack) {
-                //     console.log("saatnya nyerang!");
-                //     $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
-                //     setTimeout(() => {
-                //         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
-                //     }, 3000);
-
-
-                // }
+                if (event.willAttack) {
+                    console.log("saatnya nyerang!");
+                    $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/attack.gif') }}");
+                    setTimeout(() => {
+                        $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
+                    }, 3000);
+                }
                 let darah = (event.health / 1500000 * 100);
                 $("#health-bar").css("width", darah + "%");
             });
