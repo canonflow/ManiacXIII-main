@@ -87,7 +87,7 @@
         <!-- Informasi -->
         <div class="atas-kiri ml-12 mt-2 ">
             <h2 id="status-buff" class="text-3xl py-3 text-amber-400" style="opacity: 0;">Buff</h2>
-            <h2 id="status-debuff" class="text-3xl py-3 text-amber-400" style="opacity: 0;">Debuff</h2>
+            <h2 id="status-debuff" class="text-3xl py-3 text-zinc-300" style="opacity: 0;">Debuff</h2>
             <h4>Nama Tim : </h4>
             <select id="pID" class="js-example-basic-single text-black w-100" name="state">
                 <option selected disabled value="">Select Player</option>
@@ -439,6 +439,8 @@
                         .replace('image', dragon.img_url));
                     $('#text-cycle').text(dragon.name);
                     $('#backpack').text(response.backpack);
+                    $("#numOfAttack").text(response.numOfAttack);
+
 
                 },
                 error: function(xhr) {

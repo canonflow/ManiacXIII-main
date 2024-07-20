@@ -96,14 +96,15 @@ class SiController extends Controller
             $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
             $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
-            event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
+            // event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
+
             event(new UpdateCumulativePrice($player, auth()->user()->id));
             
             // Debuff Count
             $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
             event(new UpdateDebuff(auth()->user()->id, $debuffCount));
 
-            return response()->json(compact('player', 'dragon', 'backpack'), 200);
+            return response()->json(compact('player', 'dragon', 'backpack', 'numOfAttack'), 200);
         }else{
             return response()->json(['error' => 'Player not found'], 404);
         }
