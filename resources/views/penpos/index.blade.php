@@ -178,7 +178,7 @@
                 {
                     return showNotifError("Gagal Submit! Team sudah pernah main di pos ini.", isError = true);
                 }
-                showNotifError("Berhasil menambahkan poin ke " + data.team)
+                showNotifError(data.desc);
                 updateTableScore(data.scores);
             },
             error : function(xhr){

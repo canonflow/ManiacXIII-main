@@ -99,7 +99,7 @@ class SiController extends Controller
             event(new UpdateGameBesar($numOfAttack, $alpha->health, !$isAttacked, $buff));
 
             event(new UpdateCumulativePrice($player, auth()->user()->id));
-            
+
             // Debuff Count
             $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
             event(new UpdateDebuff(auth()->user()->id, $debuffCount));
@@ -119,7 +119,7 @@ class SiController extends Controller
             // if ($session->players()->get()->count() < $session->max_team)
             $buff = $session->players()->wherePivot('player_id', $player->id)->get()->isEmpty();
             dd($buff);
-        }        
+        }
     }
 
     //coba baru
@@ -385,7 +385,7 @@ class SiController extends Controller
                 'damage' => $damageAwal
             ]);
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 + (($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;

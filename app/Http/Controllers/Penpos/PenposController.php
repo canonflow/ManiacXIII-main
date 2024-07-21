@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Penpos;
 
+use App\Enums\BackpackEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Log;
 use App\Models\Player;
@@ -39,6 +40,8 @@ class PenposController extends Controller
             $player = Player::where('team_id', $team -> id)->first();
             $point = Point::find($request -> get('point_id'));
 
+            $desc = "Berhasil menambahkan poin ke Tim " . $team->name;
+
             // Cek Apakah Tim sudah pernah main (udah ada poin-nya), klo iya langsung return aja
             $flag = Score::where('player_id', $player-> id)->where('rally_game_id', Auth::user()->rallyGame ->id)->get();
             if (count($flag) != 0)
@@ -59,11 +62,24 @@ class PenposController extends Controller
 //                $player->dragon_breath = $player -> dragon_breath + 1;
 //            }
 
+            $logDesc = "<strong>" . Auth::user()->username . "</strong> (" . Auth::user()->rallyGame->name . ") Menambahkan Score sebanyak <strong>" . $point->point . "</strong> ke Tim <strong>" . $player->team->name . "</strong>.";
+
             // Tambah Dragon Breath
             $db = $player->dragon_breath + Score::getAddDragonBreath(Auth::user()->rallyGame->type, $point->condition);
 
             // Tambah Cycle
             $cycle = $player->cycle + $point->point;
+
+            // Cek apakah punya potion
+            if (!$player->potion()->get()->isEmpty()) {
+                $cycle += $point->point * 0.5;
+                $desc .= " (POTION ACTIVATED)";
+                $logDesc .= " (POTION ACTIVATED)";
+            }
+
+            // Cek apakah melebih batas backpak
+            $max = 1000 + (($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            if ($cycle > $max) $cycle = $max;
 
             // Update Player
             $player->update([
@@ -76,7 +92,7 @@ class PenposController extends Controller
             // Add Log
             Log::create([
                 'player_id' => $player->id,
-                'desc' => "<strong>" . Auth::user()->username . "</strong> (" . Auth::user()->rallyGame->name . ") Menambahkan Score sebanyak <strong>" . $point->point . "</strong> ke Tim <strong>" . $player->team->name . "</strong>."
+                'desc' => $logDesc
             ]);
 
             DB::commit();
@@ -86,9 +102,11 @@ class PenposController extends Controller
                 'point' => $point->point,
                 'msg' => $msg,
                 'scores' => $scores,
+                'desc' => $desc
             ], 200);
         } catch (\Exception $x) {
             DB::rollBack();
+//            $desc = $x->getMessage();
             return response()->json(compact('msg'), 200);
         }
     }
@@ -101,9 +119,20 @@ class PenposController extends Controller
 
             $type = $score->rallyGame->type;
             $state = $score->point->condition;
+            $desc = 'Berhasil Menghapus Score untuk Tim ' . $team;
+            $logDesc = "<strong>" . Auth::user()->username . "</strong> (" . Auth::user()->rallyGame->name . ") Mengurangi Score sebanyak <strong>" . $score->point->point . "</strong> ke Tim <strong>" . $player->team->name . "</strong>.";
 
             // Update Cycle
             $cycle = $player->cycle - $score->point->point;
+
+            // Kalo ada Potion
+            if (!$player->potion()->get()->isEmpty()) {
+                $cycle -= $score->point->point * 0.5;
+                $desc .= " (POTION ACTIVATED)";
+                $logDesc .= " (POTION ACTIVATED)";
+            }
+
+            if ($cycle < 0) $cycle = 0;
 
             // Update Dragon Breath
             $db = $player->dragon_breath - Score::getDeleteDragonBreath((string)$type, (string)$state);
@@ -123,14 +152,14 @@ class PenposController extends Controller
             // Add Log
             Log::create([
                 'player_id' => $player->id,
-                'desc' => "<strong>" . Auth::user()->username . "</strong> (" . Auth::user()->rallyGame->name . ") Mengurangi Score sebanyak <strong>" . $point->point . "</strong> ke Tim <strong>" . $player->team->name . "</strong>."
+                'desc' => $logDesc
             ]);
 
             DB::commit();
 
             return response()->json([
-                'msg' => 'Berhasil Menghapus Score untuk Tim ' . $team,
-                'scores' => $scores
+                'msg' => $desc,
+                'scores' => $scores,
             ], 200);
         } catch (\Exception $x) {
             DB::rollBack();
