@@ -14,12 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(UserSeeder::class);
-        $this->call(AdminSeeder::class);
-        $this->call(TeamSeader::class);
-        $this->call(ParticipantSeeder::class);
-        $this->call(AcaraSeeder::class);
+//        $this->call(UserSeeder::class);
+//        $this->call(AdminSeeder::class);
+//        $this->call(TeamSeader::class);
+//        $this->call(ParticipantSeeder::class);
+//        $this->call(AcaraSeeder::class);
 //        $this->call(MessageSeeder::class);
+
+        // FINAL PLAYER SEEDER
+        $this->call(FinalPlayerSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 
