@@ -407,11 +407,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 pt-sm-2 mt-5">
+                <div class="col-lg-10 pt-sm-2 mt-5">
                     <h5 class="text-white"><strong>SPONSORED BY</strong></h5>
-                    <div class="container-logo-kristin d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('asset2024/footer/logo2_Kristin.png') }}" width="150px" height="auto"
+                    <div class="d-flex flex-wrap">
+                        <div class="container-logo-kristin d-flex justify-content-center align-items-center me-2 mb-2">
+                            <img src="{{ asset('asset2024/footer/logo2_Kristin.png') }}" width="150px" height="auto"
                             alt="logo-ubaya" class="pt-2 pb-2" alt="logo-kristin">
+                        </div>
+                        <div class="container-logo-kristin d-flex justify-content-center align-items-center me-2 mb-2">
+                            <img src="{{ asset('asset2024/footer/LogoSPRent.png') }}" width="100px" height="auto"
+                            alt="logo-ubaya" class="" alt="logo-kristin">
+                        </div>
                     </div>
                 </div>
                 <br>
