@@ -45,7 +45,7 @@
 {{--                    <span><strong>Jadwal Selesai</strong> adalah jadwal <strong>pengumpulan akhir</strong> untuk penyisihan!</span>--}}
 {{--                </div>--}}
                 <div role="alert" class="alert alert-error rounded-md py-2">
-                    <span><strong>Waktu Toleransi</strong> adalah batas waktu maksimal pengumpulan tugas dengan <strong>pengurangan</strong> poin!</span>
+                    <span><strong>Waktu Toleransi</strong> adalah batas waktu penerimaan akhir tugas namun akan juga mendapatkan <strong>pengurangan</strong> poin!</span>
                 </div>
             </div>
         </div>

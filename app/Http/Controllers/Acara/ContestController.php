@@ -246,7 +246,7 @@ class ContestController extends Controller
         $submissions = Contest::query()
                             ->join('submissions', 'contests.id', '=', 'submissions.contest_id')
                             ->join('teams', 'submissions.team_id', '=', 'teams.id')
-                            ->selectRaw("teams.name as Tim, submissions.link as Link, submissions.waktu_submit as 'Waktu Kumpul', ifnull(submissions.score, 0) as Score")
+                            ->selectRaw("teams.name as Tim, submissions.link as Link, submissions.waktu_submit as 'Waktu Kumpul', ifnull(submissions.score, -1) as Score")
                             ->where('contests.id', $contest->id)
                             ->get();
         return response()->json(compact('submissions'), 200);
