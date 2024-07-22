@@ -151,6 +151,7 @@ class SiController extends Controller
             $player->update([
                 'dragon_breath' => $player->dragon_breath-1
             ]);
+            $player = Player::find($player->id);
 
             MarketLog::create([
                 'player_id' => $player->id,
@@ -178,7 +179,7 @@ class SiController extends Controller
 
             $dragonModel = Dragon::where('threshold' , '<=', $player->cycle)
                                 ->orderBy('id', 'DESC')->first();
-            $dragon = $dragonModel ->name;
+            $dragon = $dragonModel->name;
 
             History::create([
                 'dragon_id' => $dragonModel->id,
@@ -190,7 +191,7 @@ class SiController extends Controller
 
             $cycle = $player->cycle;
 //            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
@@ -252,6 +253,7 @@ class SiController extends Controller
                 'cycle' => $player->cycle - $cost,
                 'dragon_breath' => $player->dragon_breath-1
             ]);
+            $player = Player::find($player->id);
 
             MarketLog::create([
                 'player_id' => $player->id,
@@ -354,6 +356,7 @@ class SiController extends Controller
                 'dragon_breath' => $player->dragon_breath-1,
                 'ultimate' => 1
             ]);
+            $player = Player::find($player->id);
 
             MarketLog::create([
                 'player_id' => $player->id,
@@ -459,7 +462,7 @@ class SiController extends Controller
                 'desc' => $player->team->name . " membeli 1 Cycling Limited Potion",
                 'cycle' => $cost
             ]);
-
+            $player = Player::find($player->id);
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
@@ -499,7 +502,7 @@ class SiController extends Controller
                 'desc' => $player->team->name . " membeli 1 Dragon Breath",
                 'cycle' => $cost
             ]);
-
+            $player = Player::find($player->id);
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
@@ -551,7 +554,7 @@ class SiController extends Controller
             }
 
 //            $player->refresh('backpack');
-
+            $player = Player::find($player->id);
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
@@ -595,6 +598,8 @@ class SiController extends Controller
             $player->debuffs()->wherePivot('status', 1) -> update([
                 'status' => 0
             ]);
+
+            $player = Player::find($player->id);
 
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
