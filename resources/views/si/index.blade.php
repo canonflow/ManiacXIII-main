@@ -221,6 +221,29 @@
                         icon: 'success',
                     });
 
+                    // Switch Dragon
+                    switch (response.dragon) {
+                        case "baby":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/baby.png') }}");
+                            break;
+                        case "teenager":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/teens.png') }}");
+                            break;
+                        case "adult":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/adult.png') }}");
+                            break;
+                        case "elder":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/elder.png') }}");
+                            break;
+                        default:
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/egg.png') }}");
+                            break;
+                    }
                 }
             });
 
@@ -256,6 +279,30 @@
                     $("#cycle").text(response.cycle);
                     $('#dragonBreath').text(response.dragon_breath);
                     borderMerah();
+
+                    // Switch Dragon
+                    switch (response.dragon) {
+                        case "baby":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/baby.png') }}");
+                            break;
+                        case "teenager":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/teens.png') }}");
+                            break;
+                        case "adult":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/adult.png') }}");
+                            break;
+                        case "elder":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/elder.png') }}");
+                            break;
+                        default:
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/egg.png') }}");
+                            break;
+                    }
                 }
             });
         };
@@ -288,6 +335,30 @@
                         icon: 'success',
                     });
                     $("#cycle").text(response.cycle);
+
+                    // Switch Dragon
+                    switch (response.dragon) {
+                        case "baby":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/baby.png') }}");
+                            break;
+                        case "teenager":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/teens.png') }}");
+                            break;
+                        case "adult":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/adult.png') }}");
+                            break;
+                        case "elder":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/elder.png') }}");
+                            break;
+                        default:
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/egg.png') }}");
+                            break;
+                    }
                 }
             });
         };
@@ -322,6 +393,30 @@
                     });
                     $("#cycle").text(response.cycle);
                     $('#dragonBreath').text(response.dragon_breath);
+
+                    // Switch Dragon
+                    switch (response.dragon) {
+                        case "baby":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/baby.png') }}");
+                            break;
+                        case "teenager":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/teens.png') }}");
+                            break;
+                        case "adult":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/adult.png') }}");
+                            break;
+                        case "elder":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/elder.png') }}");
+                            break;
+                        default:
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/egg.png') }}");
+                            break;
+                    }
                 }
             });
         };
@@ -355,6 +450,29 @@
                     });
                     $("#cycle").text(response.cycle);
 
+                    // Switch Dragon
+                    switch (response.dragon) {
+                        case "baby":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/baby.png') }}");
+                            break;
+                        case "teenager":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/teens.png') }}");
+                            break;
+                        case "adult":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/adult.png') }}");
+                            break;
+                        case "elder":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/elder.png') }}");
+                            break;
+                        default:
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/egg.png') }}");
+                            break;
+                    }
                 }
             });
         };
@@ -388,6 +506,30 @@
                     });
                     $("#cycle").text(response.cycle);
                     $('#dragonBreath').text(response.dragon_breath);
+
+                    // Switch Dragon
+                    switch (response.dragon) {
+                        case "baby":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/baby.png') }}");
+                            break;
+                        case "teenager":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/teens.png') }}");
+                            break;
+                        case "adult":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/adult.png') }}");
+                            break;
+                        case "elder":
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/elder.png') }}");
+                            break;
+                        default:
+                            $("#viking").attr("src",
+                                "{{ asset('asset2024/game/dragon/egg.png') }}");
+                            break;
+                    }
                 }
             });
         };
