@@ -544,10 +544,13 @@ class SiController extends Controller
                 $player->backpack()->update(['count' => $player->backpack->count + 1]);
             }
 
+//            $player->refresh('backpack');
+
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
