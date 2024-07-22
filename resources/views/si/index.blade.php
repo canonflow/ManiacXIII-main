@@ -222,6 +222,7 @@
                     });
 
                     // Switch Dragon
+                    $('#text-cycle').text(response.dragon);
                     switch (response.dragon) {
                         case "baby":
                             $("#viking").attr("src",
@@ -281,6 +282,7 @@
                     borderMerah();
 
                     // Switch Dragon
+                    $('#text-cycle').text(response.dragon);
                     switch (response.dragon) {
                         case "baby":
                             $("#viking").attr("src",
@@ -337,6 +339,7 @@
                     $("#cycle").text(response.cycle);
 
                     // Switch Dragon
+                    $('#text-cycle').text(response.dragon);
                     switch (response.dragon) {
                         case "baby":
                             $("#viking").attr("src",
@@ -395,6 +398,7 @@
                     $('#dragonBreath').text(response.dragon_breath);
 
                     // Switch Dragon
+                    $('#text-cycle').text(response.dragon);
                     switch (response.dragon) {
                         case "baby":
                             $("#viking").attr("src",
@@ -451,6 +455,7 @@
                     $("#cycle").text(response.cycle);
 
                     // Switch Dragon
+                    $('#text-cycle').text(response.dragon);
                     switch (response.dragon) {
                         case "baby":
                             $("#viking").attr("src",
@@ -508,6 +513,7 @@
                     $('#dragonBreath').text(response.dragon_breath);
 
                     // Switch Dragon
+                    $('#text-cycle').text(response.dragon);
                     switch (response.dragon) {
                         case "baby":
                             $("#viking").attr("src",
@@ -645,6 +651,8 @@
                                 "{{ asset('asset2024/game/dragon/egg.png') }}");
                             break;
                     }
+
+                    $('#text-cycle').text(response.dragon);
 
                     if (response.isAttacked) {
                         $("#alpha").attr("src",
