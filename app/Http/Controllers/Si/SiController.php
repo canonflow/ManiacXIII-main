@@ -69,7 +69,8 @@ class SiController extends Controller
 //        event(new UpdateGameBesar("PUSHER MESSAGE: TEST DARI CONTROLLER"));
 //        event(new UpdateDebuff(Auth::user()->id, "PUSHER PRIVAET MESSAGE: Message buat " . auth()->user()->username));
         $player = Player::find(1);
-        event(new UpdateCumulativePrice($player, auth()->user()->id));
+//        event(new UpdateCumulativePrice($player, auth()->user()->id));
+        event(new UpdateCumulativePrice($player->id, auth()->user()->id));
         return $this->ajaxResponse(false, "Ini Response AJAX");
     }
 
@@ -99,7 +100,8 @@ class SiController extends Controller
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
             event(new UpdateGameBesar($numOfAttack, $alpha->health, $willAttack, $buff));
 
-            event(new UpdateCumulativePrice($player, auth()->user()->id));
+//            event(new UpdateCumulativePrice($player, auth()->user()->id));
+            event(new UpdateCumulativePrice($player->id, auth()->user()->id));
 
             // Debuff Count
             $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
@@ -597,7 +599,8 @@ class SiController extends Controller
             // Debuff Count
             $debuffCount = $player->debuffs()->wherePivot('status', 1)->count();
             event(new UpdateDebuff(auth()->user()->id, $debuffCount));
-            event(new UpdateCumulativePrice($player, auth()->user()->id));
+//            event(new UpdateCumulativePrice($player, auth()->user()->id));
+            event(new UpdateCumulativePrice($player->id, auth()->user()->id));
 
             return $this -> ajaxResponse(false, 'Anda berhasil membeli Restore Potion ', compact('dragon', 'cycle', 'backpack', 'type'));
 
