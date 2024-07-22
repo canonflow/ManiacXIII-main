@@ -35,11 +35,17 @@
                 <div role="alert" class="alert alert-success rounded-md py-2">
                     <span>Mohon lakukan refresh page untuk update data contest.</span>
                 </div>
+{{--                <div role="alert" class="alert alert-warning rounded-md py-2">--}}
+{{--                    <span><strong>Deadline</strong> pengumpulan tugas penyisihan adalah <strong>30 menit sebelum jadwal selesai!</strong></strong></span>--}}
+{{--                </div>--}}
                 <div role="alert" class="alert alert-warning rounded-md py-2">
-                    <span><strong>Deadline</strong> pengumpulan tugas penyisihan adalah <strong>30 menit sebelum jadwal selesai!</strong></strong></span>
+                    <span><strong>Waktu Kumpul</strong> adalah waktu yang telah ditentukan oleh panitia untuk pengumpulan tugas.</span>
                 </div>
+{{--                <div role="alert" class="alert alert-error rounded-md py-2">--}}
+{{--                    <span><strong>Jadwal Selesai</strong> adalah jadwal <strong>pengumpulan akhir</strong> untuk penyisihan!</span>--}}
+{{--                </div>--}}
                 <div role="alert" class="alert alert-error rounded-md py-2">
-                    <span><strong>Jadwal Selesai</strong> adalah jadwal <strong>pengumpulan akhir</strong> untuk penyisihan!</span>
+                    <span><strong>Waktu Toleransi</strong> adalah batas waktu maksimal pengumpulan tugas dengan <strong>pengurangan</strong> poin!</span>
                 </div>
             </div>
         </div>
@@ -53,9 +59,12 @@
                         <thead>
                         <tr class="">
                             <th width="15%" class="text-center">Nama</th>
-                            <th width="15%" class="text-center">Tipe</th>
-                            <th width="20%" class="text-center">Jadwal Mulai</th>
-                            <th width="20%" class="text-center">jadwal Selesai</th>
+                            <th width="10%" class="text-center">Tipe</th>
+{{--                            <th width="20%" class="text-center">Jadwal Mulai</th>--}}
+{{--                            <th width="20%" class="text-center">jadwal Selesai</th>--}}
+                            <th width="15%" class="text-center">Waktu Mulai</th>
+                            <th width="15%" class="text-center">Waktu Kumpul</th>
+                            <th width="15%" class="text-center">Waktu Toleransi</th>
                             <th width="20%" class="text-center">Status Pengumpulan</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
@@ -65,9 +74,10 @@
                             @foreach($available_contests as $contest)
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
-                                    <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="20%" class="text-center">{{ $contest->open_date }} WIB</td>
-                                    <td width="20%" class="text-center">{{ $contest->close_date }} WIB</td>
+                                    <td width="10%" class="text-center">{{ $contest->type }}</td>
+                                    <td width="15%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $contest->open_date, 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
+                                    <td width="15%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', \Illuminate\Support\Carbon::parse($contest->close_date)->subMinute(30), 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
+                                    <td width="15%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $contest->close_date, 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
                                     <td width="20%" class="text-center">
                                         @php
                                         $isSubmitted = $contest->submission()->get()->where('team_id', auth()->user()->team->id)->isEmpty() ? "Unsubmitted" : "Submitted";
@@ -88,7 +98,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="6"><p class="font-medium text-slate-200 text-center">No Active Contest</p></td></tr>
+                            <tr><td colspan="7"><p class="font-medium text-slate-200 text-center">No Active Contest</p></td></tr>
                         @endif
                         </tbody>
                     </table>
@@ -106,8 +116,9 @@
                         <tr class="">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
-                            <th width="30%" class="text-center">Jadwal Mulai</th>
-                            <th width="30%" class="text-center">jadwal Selesai</th>
+                            <th width="25%" class="text-center">Waktu Mulai</th>
+                            <th width="25%" class="text-center">Waktu Kumpul</th>
+                            <th width="25%" class="text-center">Waktu Toleransi</th>
                         </tr>
                         </thead>
                         <tbody class="bg-accent text-white">
@@ -116,8 +127,9 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="25%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $contest->open_date, 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
+                                    <td width="25%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', \Illuminate\Support\Carbon::parse($contest->close_date)->subMinute(30), 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
+                                    <td width="25%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $contest->close_date, 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -139,8 +151,9 @@
                         <tr class="">
                             <th width="15%" class="text-center">Nama</th>
                             <th width="15%" class="text-center">Tipe</th>
-                            <th width="30%" class="text-center">Jadwal Mulai</th>
-                            <th width="30%" class="text-center">jadwal Selesai</th>
+                            <th width="25%" class="text-center">Waktu Mulai</th>
+                            <th width="25%" class="text-center">Waktu Kumpul</th>
+                            <th width="25%" class="text-center">Waktu Toleransi</th>
                         </tr>
                         </thead>
                         <tbody class="text-white bg-accent">
@@ -149,8 +162,9 @@
                                 <tr>
                                     <td width="15%" class="text-center">{{ $contest->name }}</td>
                                     <td width="15%" class="text-center">{{ $contest->type }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->open_date }}</td>
-                                    <td width="30%" class="text-center">{{ $contest->close_date }}</td>
+                                    <td width="25%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $contest->open_date, 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
+                                    <td width="25%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', \Illuminate\Support\Carbon::parse($contest->close_date)->subMinute(30), 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
+                                    <td width="25%" class="text-center">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $contest->close_date, 'Asia/Jakarta')->format('d F Y g:i A') }}</td>
                                 </tr>
                             @endforeach
                         @else

@@ -215,8 +215,11 @@
                                     <td width="22.5%" class="text-center">
                                         <a href="{{ $submission->link }}" target="_blank" class="btn btn-neutral btn-xs rounded-md action">Link Tugas</a>
                                     </td>
+{{--                                    <td width="22.5%" class="text-center">--}}
+{{--                                        {{ $submission->updated_at }} WIB--}}
+{{--                                    </td>--}}
                                     <td width="22.5%" class="text-center">
-                                        {{ $submission->updated_at }} WIB
+                                        {{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $submission->updated_at, 'Asia/Jakarta')->format('d F Y g:i:s A') }}
                                     </td>
                                     <td width="22.5%" class="text-center">
                                        @if($submission->score != null)

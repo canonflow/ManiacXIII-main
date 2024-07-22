@@ -46,8 +46,8 @@
         <img draggable="false" src="{{ asset('asset2024') }}/main/cloud.png" alt="" class="absolute left-1/6 z-[1] w-80 top-[-0.1rem] select-none" id="cloud">
         <h1 class="text-4xl text-center text-accent font-bold z-[9]">{{ $contest->name }}</h1>
         <div class="bg-slate-100  p-2 rounded grid grid-cols-1">
-            <h2 class="text-xl text-center font-bold text-black z-[9]">Deadline</h2>
-            <h2 class="text-xl md:text-2xl text-center font-black text-red-600 z-[9] pt-2">{{ \Illuminate\Support\Carbon::parse($contest->close_date)->subMinute(30) }} WIB</h2>
+            <h2 class="text-xl text-center font-bold text-black z-[9]">Waktu Kumpul</h2>
+            <h2 class="text-xl md:text-2xl text-center font-black text-red-600 z-[9] pt-2">{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', \Illuminate\Support\Carbon::parse($contest->close_date)->subMinute(30), 'Asia/Jakarta')->format('d F Y g:i A') }}</h2>
         </div>
         <div class="card rounded-lg shadow-md data z-[9]">
             {{--  Header  --}}
@@ -64,11 +64,11 @@
             <div class="card-body bg-base-200 rounded-b-lg">
                 @if($isSubmit)
                     <div class="badge badge-lg font-medium bg-green-100 text-green-900 border-green-500">
-                        Sudah Mengumpulkan
+                        Submitted
                     </div>
                 @else
                     <div class="badge badge-lg font-medium bg-red-100 text-red-900 border-red-500">
-                        Belum Mengumpulkan
+                        Unsubmitted
                     </div>
                 @endif
                 <div role="alert" class="alert alert-info rounded-md py-2">
