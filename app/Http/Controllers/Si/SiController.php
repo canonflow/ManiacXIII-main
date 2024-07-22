@@ -446,7 +446,7 @@ class SiController extends Controller
 
         DB::beginTransaction();
         try {
-            if($player->cycle < $cost) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Cycling Limited Potion!");
+            if(($player->cycle - $cost) < 100) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Cycling Limited Potion!");
             if($player->potion()->get()->count()) return $this->ajaxResponse(true, "Player sudah pernah membeli Cycling Limited Potion!");
             $player->update([
                 'cycle' => $player->cycle - $cost
@@ -491,7 +491,7 @@ class SiController extends Controller
 
         DB::beginTransaction();
         try {
-            if($player->cycle < $cost) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Dragon Breath!");
+            if(($player->cycle - $cost) < 100) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Dragon Breath!");
             $player->update([
                 'dragon_breath' => $player->dragon_breath +1,
                 'cycle' => $player->cycle - $cost
