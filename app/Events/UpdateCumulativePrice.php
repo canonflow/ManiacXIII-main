@@ -24,8 +24,9 @@ class UpdateCumulativePrice implements ShouldBroadcast
     public $backpackPrice;  // int
     public $backpackAvailable;  // boolean
     public $restorePrice;  //  int
-    public function __construct(Player $player, $userId)
+    public function __construct($playerId, $userId)
     {
+        $player = Player::find($playerId);
         $this->userId = $userId;
         $backpackAvailable = $player->backpack()->get()->isEmpty() ? 0 : $player->backpack->count;
         $this->backpackPrice = BackpackEnum::PRICE->value + ($backpackAvailable * BackpackEnum::PRICE->value);

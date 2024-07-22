@@ -549,7 +549,7 @@ class SiController extends Controller
             $type = 'buy';
 
             DB::commit();
-            event(new UpdateCumulativePrice($player, auth()->user()->id));
+            event(new UpdateCumulativePrice($player->id, auth()->user()->id));
 
             return $this -> ajaxResponse(false, 'Anda berhasil mengupgrade Backpack 1 Level ', compact('dragon', 'cycle', 'backpack', 'type'));
 
