@@ -26,6 +26,8 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->text('link')->unique();
+            $table->double('score');
+            $table->timestamp('waktu_submit')->nullable();
             $table->timestamps();
         });
     }

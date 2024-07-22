@@ -125,6 +125,10 @@ Route::group(
         // Add Score
         Route::post('contest/{submission}/add', [Acara\ContestController::class, 'addScore'])->name('addScore');
 
+        // Unduh Rekap
+        Route::post('contest/{contest}/rekap/download', [Acara\ContestController::class, 'unduhRekap'])
+            ->name('contest.download');
+
         // ==================================== Rally Games ====================================
         Route::post('/rallygames/add', [Acara\AcaraController::class, 'store'])
             ->name('rallygames.store');

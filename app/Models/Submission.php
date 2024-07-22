@@ -14,7 +14,8 @@ class Submission extends Model
         'contest_id',
         'team_id',
         'link',
-        'score'
+        'score',
+        'waktu_submit'
     ];
 
     public function team() : BelongsTo {

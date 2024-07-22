@@ -194,6 +194,8 @@
         <div class="card rounded-lg shadow-md data">
             <h1 class="text-xl bg-primary p-5 font-medium rounded-t-lg text-primary-content">List of Submissions</h1>
             <div class="card-body bg-accent rounded-b-lg">
+{{--                <h1>{{ $contest->id }}</h1>--}}
+                <button class="btn rounded font-bold" id="btnUnduh">Unduh Rekap</button>
                 {{--  Table  --}}
                 <div class="overflow-x-auto">
                     <table class="table table-pin-cols">
@@ -219,7 +221,7 @@
 {{--                                        {{ $submission->updated_at }} WIB--}}
 {{--                                    </td>--}}
                                     <td width="22.5%" class="text-center">
-                                        {{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $submission->updated_at, 'Asia/Jakarta')->format('d F Y g:i:s A') }}
+                                        {{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $submission->waktu_submit, 'Asia/Jakarta')->format('d F Y g:i:s A') }}
                                     </td>
                                     <td width="22.5%" class="text-center">
                                        @if($submission->score != null)
@@ -340,5 +342,85 @@
             formPenilaian.setAttribute('action', action);
             modalPenilaian.showModal();
         }
+
+        function formatDate(dateString) {
+            // Parse the date string to a Date object
+            const date = new Date(dateString);
+
+            // Define the parts of the date
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'long' });
+            const year = date.getFullYear();
+            const hours = date.getHours();
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const seconds = date.getSeconds().toString().padStart(2, '0');
+            const period = hours >= 12 ? 'PM' : 'AM';
+
+            // Format the hours to 12-hour format
+            const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
+
+            // Combine the parts into the desired format
+            return `${day} ${month} ${year} ${formattedHours}:${minutes}:${seconds}${period}`;
+        }
+
+        $("#btnUnduh").click(function () {
+            {{--console.log('{{ $contest->id }}')--}}
+            let id = {{ $contest->id }};
+            $.ajax({
+                url: '{{ route('acara.contest.download', ['contest' => ':contest']) }}'.replace(':contest', id),
+                type: 'POST',
+                data: {
+                    '_token': '{{ csrf_token() }}'
+                },
+                success: function (data) {
+                    // console.log(data);
+                    // return;
+                    let submissions = data.submissions;
+                    let csv = [];
+
+                    for (let i = 0; i < submissions.length; i++) {
+                        let row = [];
+                        // console.log(submissions[i]);
+                        // console.log(Object.entries(submissions[i]))
+                        // For Header
+                        if (i === 0) {
+                            for (const [header] of Object.entries(submissions[i])) {
+                                row.push(`"${header}"`);
+                            }
+                            csv.push(row.join(","));
+                            row = [];
+                        }
+
+                        // For Items
+                        for (const [key, val] of Object.entries(submissions[i])) {
+                            if (key == 'Waktu Kumpul') {
+                                let val_ = formatDate(val);
+                                row.push(`"${val_}"`);
+                            } else {
+                                row.push(`"${val}"`);
+                            }
+                        }
+                        csv.push(row.join(","));
+                    }
+
+                    let csv_string = csv.join("\n");
+                    let filename = `export_rekap_pengumpulan_tugas_${new Date().toLocaleDateString()}.csv`;
+                    // console.log(csv_string);return;
+
+                    // Create Link
+                    let link = document.createElement('a');
+                    link.style.display = 'none';
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+                    link.setAttribute('download', filename);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            })
+        })
     </script>
 @endsection

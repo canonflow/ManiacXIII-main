@@ -106,11 +106,13 @@ class PemainController extends Controller
             Submission::create([
                 'contest_id' => $contest->id,
                 'team_id' => $team->id,
-                'link' => $link
+                'link' => $link,
+                'waktu_submit' => Carbon::now()
             ]);
         } else {
             $submission[0]->link = $link;
             $submission[0]->updated_at = Carbon::now();
+            $submission[0]->waktu_submit = Carbon::now();
             $submission[0]->save();
         }
 
