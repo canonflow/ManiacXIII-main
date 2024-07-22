@@ -214,6 +214,7 @@
                     }
                     $("#cycle").text(response.cycle);
                     $('#backpack').text(response.backpack);
+                    console.log(response);
                     Swal.fire({
                         title: 'SUCCESS!',
                         text: response.msg,
@@ -320,7 +321,6 @@
                     });
                     $("#cycle").text(response.cycle);
                     $('#dragonBreath').text(response.dragon_breath);
-                    $("#backpack").text(response.backpack);
                 }
             });
         };
