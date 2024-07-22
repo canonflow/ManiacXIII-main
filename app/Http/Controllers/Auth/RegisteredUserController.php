@@ -24,7 +24,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        $closeDate = "23 July 2024";
+        $closeDate = "25 July 2024";
         if (time() >= strtotime($closeDate)) {
             return redirect()->route('login')->with('gagal', 'Pendaftaran telah ditutup. Sampai jumpa di Maniac XIV');
         }
@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $closeDate = "23 July 2024";
+        $closeDate = "25 July 2024";
         if (time() >= strtotime($closeDate)) {
             return redirect()->route('login')->with('gagal', 'Pendaftaran telah ditutup. Sampai jumpa di Maniac XIV');
         }
