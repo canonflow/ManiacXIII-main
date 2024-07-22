@@ -522,7 +522,7 @@ class SiController extends Controller
             $backpackAvailable = $player->backpack()->get()->isEmpty() ? 0 : $player->backpack->count;
             // return $this->ajaxResponse(true, $backpackAvailable);
             if($backpackAvailable >= 5) return $this->ajaxResponse(true, "Backpack player sudah level maksimal!");
-            if($player->cycle < $cost + $backpackAvailable * BackpackEnum::PRICE->value) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk mengupgrade Backpack!");
+            if(($player->cycle - ($cost + $backpackAvailable * BackpackEnum::PRICE->value)) < 100) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk mengupgrade Backpack!");
             $player->update([
                 'cycle' => $player->cycle - ($cost + $backpackAvailable * BackpackEnum::PRICE->value)
             ]);
