@@ -125,7 +125,7 @@
         <div style="width: 15%; height: 20%;" class="px-2 py-4 absolute left-0 bottom-0 z-20 rounded-r-lg">
             <img id="viking" class="w-32 h-auto mx-auto" id="dragon-cycle"
                 src="{{ asset('asset2024/game/dragon/egg.png') }}" alt="dragon-cycle">
-            <h6 id="text-cycle" class="text-center text-white m-0 p-0 mt-2">Teens</h6>
+            <h6 id="text-cycle" class="text-center text-white m-0 p-0 mt-2"></h6>
         </div>
         <!-- Informasi -->
 
