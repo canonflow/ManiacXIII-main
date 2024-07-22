@@ -306,6 +306,7 @@
                 },
                 success: function(response) {
                     $("#my_modal_3")[0].close();
+                    console.log(response);
                     if (response.isError) {
                         Swal.fire({
                             title: 'ERROR!',
