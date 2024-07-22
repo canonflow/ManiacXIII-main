@@ -568,7 +568,8 @@ class SiController extends Controller
 
         DB::beginTransaction();
         try {
-            if($player->cycle < $cost + $player->restore * RestoreEnum::CUMULATIVE_PRICE->value) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Restore Potion!");
+//            if($player->cycle < $cost + $player->restore * RestoreEnum::CUMULATIVE_PRICE->value) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Restore Potion!");
+            if(($player->cycle - ( $cost + $player->restore * RestoreEnum::CUMULATIVE_PRICE->value)) < 100) return $this->ajaxResponse(true, "Cycle anda tidak mencukupi untuk membeli Restore Potion!");
             $player->update([
                 'cycle' => $player->cycle - ( $cost + $player->restore * RestoreEnum::CUMULATIVE_PRICE->value),
                 'restore' => $player->restore +1
