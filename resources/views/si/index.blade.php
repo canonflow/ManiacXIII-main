@@ -320,6 +320,7 @@
                     });
                     $("#cycle").text(response.cycle);
                     $('#dragonBreath').text(response.dragon_breath);
+                    $("#backpack").text(response.backpack);
                 }
             });
         };
