@@ -96,7 +96,8 @@ class SiController extends Controller
             $willAttack = ($numOfAttack == 0) ? false : !$isAttacked;
             $alpha = Alpha::get()[0];
             $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
-            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
             event(new UpdateGameBesar($numOfAttack, $alpha->health, $willAttack, $buff));
 
@@ -188,7 +189,8 @@ class SiController extends Controller
             ]);
 
             $cycle = $player->cycle;
-            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
@@ -288,7 +290,8 @@ class SiController extends Controller
                 'damage' => $damageAwal
             ]);
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
@@ -388,7 +391,8 @@ class SiController extends Controller
                 'damage' => $damageAwal
             ]);
             $cycle = $player->cycle;
-            $backpack = 1000 + (($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 + (($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
@@ -459,7 +463,8 @@ class SiController extends Controller
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
@@ -498,7 +503,8 @@ class SiController extends Controller
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
@@ -593,7 +599,8 @@ class SiController extends Controller
             $dragon = Dragon::where('threshold' , '<=', $player->cycle)
                                                 ->orderBy('id', 'DESC')->first()->name;
             $cycle = $player->cycle;
-            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+//            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
+            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
 
             DB::commit();
