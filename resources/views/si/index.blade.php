@@ -695,7 +695,7 @@
                         $("#alpha").attr("src", "{{ asset('asset2024/game/alpha/idle.gif') }}");
                     }, 3000);
                 }
-                let darah = (event.health / 1500000 * 100);
+                let darah = (event.health / 1000000 * 100);
                 $("#health-bar").css("width", darah + "%");
             });
 
