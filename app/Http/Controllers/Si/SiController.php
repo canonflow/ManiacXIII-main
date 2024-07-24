@@ -512,10 +512,11 @@ class SiController extends Controller
 //            $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $type = 'buy';
+            $dragon_breath = $player->dragon_breath;
 
             DB::commit();
 
-            return $this -> ajaxResponse(false, 'Anda berhasil membeli Dragon Breath', compact('dragon', 'cycle', 'backpack', 'type'));
+            return $this -> ajaxResponse(false, 'Anda berhasil membeli Dragon Breath', compact('dragon', 'cycle', 'backpack', 'dragon_breath','type'));
 
         } catch (Exception $x){
                 DB::rollBack();
