@@ -95,7 +95,7 @@ class SiController extends Controller
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
             $willAttack = ($numOfAttack == 0) ? false : !$isAttacked;
             $alpha = Alpha::get()[0];
-            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+            $buff = ($session->players()->get()->count() < $session->max_team);
 //            $backpack = 1000 +(($player->backpack()->get()->isEmpty()) ?  0 : $player->backpack->count  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             $backpack = 1000 +(  ($player -> backpack()->get()->isEmpty()) ?  0 : $player->backpack()->get()->pluck('count')[0]  ) *  BackpackEnum::BUFF_IN_CYCLE->value;
             // event(new UpdateCumulativePrice($player, auth()->user()->id));
@@ -195,7 +195,8 @@ class SiController extends Controller
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
-            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+//            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+            $buff = ($session->players()->get()->count() < $session->max_team);
             $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
@@ -297,7 +298,8 @@ class SiController extends Controller
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
-            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+//            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+            $buff = ($session->players()->get()->count() < $session->max_team);
             $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
@@ -399,7 +401,8 @@ class SiController extends Controller
             $type = 'attack';
             $numOfAttack =History::all()->count();
             $isAttacked =  $numOfAttack % 15 == 0 ? false : true;
-            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+//            $buff = ($session->players()->get()->count() < $session->max_team) && ($session->players()->wherePivot('player_id', $player->id)->get()->isEmpty());
+            $buff = ($session->players()->get()->count() < $session->max_team);
             $dragon_breath = $player->dragon_breath;
 
             if (!$isAttacked)
