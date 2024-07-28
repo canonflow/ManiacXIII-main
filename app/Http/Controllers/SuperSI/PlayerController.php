@@ -25,6 +25,13 @@ class PlayerController extends Controller
         return view('supersi.player.log', compact('player', 'logs'));
     }
 
+    public function marketLog(Player $player)
+    {
+        $logs = $player->marketLogs()->orderBy("created_at", "DESC")->paginate(10);
+
+        return view('supersi.player.marketlog', compact('player', 'logs'));
+    }
+
     public function score(Player $player)
     {
         $scores = Score::where('player_id', $player->id)

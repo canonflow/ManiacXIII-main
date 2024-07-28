@@ -62,6 +62,7 @@
                         <td width="20%" class="text-center">
                             <button
                                 class="bg-indigo-900 text-slate-50 font-semibold py-2 px-5 rounded-md hover:bg-indigo-700 active:scale-95 transition-all"
+                                onclick="window.location = '{{ route('super-si.player.index') }}/marketlog/{{ $player->id }}'"
                             >
                                 Game Besar
                             </button>

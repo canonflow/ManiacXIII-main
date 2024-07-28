@@ -229,7 +229,9 @@ Route::group(
         Route::get('/player', [SuperSI\PlayerController::class, 'index'])
             ->name('player.index');
         Route::get('/player/log/{player}', [SuperSI\PlayerController::class, 'log']);
+        Route::get('player/marketlog/{player}', [SuperSI\PlayerController::class, 'marketLog']);
         Route::get('/player/score/{player}', [SuperSI\PlayerController::class, 'score']);
+
 
         // ===== Leaderboard =====
         Route::get('/leaderboard', [SuperSI\SuperSIController::class, 'leaderboard'])
