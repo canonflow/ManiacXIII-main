@@ -277,7 +277,7 @@
                     <div class="label">
                         <span class="label-text">Score:</span>
                     </div>
-                    <input type="number" min="0" placeholder="score ..." name="score" class="input input-bordered w-full rounded" required />
+                    <input type="number" min="0" step="0.001" placeholder="score ..." name="score" class="input input-bordered w-full rounded" required />
                 </label>
                 <button type="submit" class="btn btn-success action rounded-lg w-full mt-8">Submit</button>
             </form>
