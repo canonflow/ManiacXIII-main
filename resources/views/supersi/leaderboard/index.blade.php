@@ -236,6 +236,20 @@
                     let scores = data.scores;
                     let csv = [];
 
+                    // Sort
+                    scores.sort((a, b) => {
+                       if (b['Final Score'] !== a['Final Score']) {
+                           return b['Final Score'] - a ['Final Score'];
+                       } else if (b['Nilai Penyisihan'] !== a['Nilai Penyisihan']) {
+                           return b['Nilai Penyisihan'] - a['Nilai Penyisihan'];
+                       } else {
+                           return b['Nilai Semifinal'] - a['Nilai Semifinal'];
+                       }
+                    });
+
+                    console.log(scores);
+
+
                     for (let i = 0; i < scores.length; i++) {
                         let row =[];
 
