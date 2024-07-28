@@ -703,7 +703,11 @@
             .listen('UpdateDebuff', (event) => {
                 console.log(event);
                 if (event.debuff < 1) $('#status-debuff').css("opacity", "0");
-                else $('#status-debuff').css("opacity", "1  ");
+                else {
+                    $('#status-debuff').css("opacity", "1");
+                    if (event.debuff == 1) $("#status-debuff").html("Debuff");
+                    else $("#status-debuff").html("Debuff &times; " + event.debuff);
+                }
             });
         // Buat Update Harga yg kumulatif
         window.Echo.private('private-update-price.{{ auth()->user()->id }}')
