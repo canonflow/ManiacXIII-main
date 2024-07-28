@@ -595,7 +595,7 @@ class SiController extends Controller
 
             MarketLog::create([
                 'player_id' => $player->id,
-                'desc' => $player->team->name . "membeli 1 Restore Potion",
+                'desc' => $player->team->name . " membeli 1 Restore Potion",
                 'cycle' =>  $cost + $player->restore * RestoreEnum::CUMULATIVE_PRICE->value,
             ]);
 
