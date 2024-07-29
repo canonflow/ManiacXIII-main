@@ -37,6 +37,8 @@ class ParticipantsExport implements FromView, ShouldAutoSize, WithDrawings, With
     public function data()
     {
         // Ambil Team yg udh terverifikasi
+        // ID di bawah merupakan ID tim sementara (untuk simul dan gladi) yg dibuat oleh panitia (BUKAN PESERTA ASLI)
+        // Utk ID tim sementara bisa disesuaikan dengan ID yg asli
         $listTeamIdSandbox = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
         $teams = Team::where('status', $this->status)
                     ->whereNotIn('id', $listTeamIdSandbox)
