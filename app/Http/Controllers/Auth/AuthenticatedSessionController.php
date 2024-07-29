@@ -36,7 +36,8 @@ class AuthenticatedSessionController extends Controller
 
             $request->session()->regenerate();
 
-//            $this->authenticated($request, Auth::user());
+            // Uncomment ini buat login 1 device aja
+            $this->authenticated($request, Auth::user());
 
             switch (Auth::user()->role) {
                 case 'participant':
