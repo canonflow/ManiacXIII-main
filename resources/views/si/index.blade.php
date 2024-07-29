@@ -566,11 +566,12 @@
                         '_token': '{{ csrf_token() }}'
                     },
                     success: function(data) {
+                        console.log(data);
                         if (data.count < 1) $('#status-debuff').css("opacity", "0");
                         else {
                             $('#status-debuff').css("opacity", "1");
                             if (data.count == 1) $("#status-debuff").html("Debuff");
-                            else $("#status-debuff").html("Debuff &times; " + event.debuff);
+                            else $("#status-debuff").html("Debuff &times; " + data.count);
                         }
                     },
                     error: function(xhr) {
