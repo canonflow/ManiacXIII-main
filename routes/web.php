@@ -26,9 +26,11 @@ Route::get('/', function () {
     return view('visitor.home');
 })->name('index');
 
+/*
 Route::get('/test', function () {
     return view('test');
 });
+*/
 
 Route::view('/about', 'visitor.about')->name('visitor.about');
 
@@ -37,8 +39,8 @@ Route::view('/faq', 'visitor.faq')->name('visitor.faq');
 
 Route::view('/competition', 'visitor.competition')->name('visitor.competition');
 
-Route::view('/pembayaran/upload', 'pemain.pembayaran.upload');
-Route::view('/pembayaran/unverified', 'pemain.pembayaran.unverified');
+//Route::view('/pembayaran/upload', 'pemain.pembayaran.upload');
+//Route::view('/pembayaran/unverified', 'pemain.pembayaran.unverified');
 
 
 
