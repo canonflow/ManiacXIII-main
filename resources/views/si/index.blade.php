@@ -558,6 +558,7 @@
 
         setInterval(() => {
             if ($("#pID").val()) {
+                console.log("INTERVAL MASUK");
                 $.ajax({
                     type: 'POST',
                     url: '{{ route('si.realtime', ['player' => ':player']) }}'.replace(':player', $("#pID").val()),
@@ -576,6 +577,8 @@
                         console.log(xhr)
                     }
                 })
+            } else {
+                console.log("INTERVAL GK MASUK");
             }
         }, 5000)
 
