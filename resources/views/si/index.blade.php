@@ -556,6 +556,29 @@
             });
         });
 
+        setInterval(() => {
+            if ($("#pID").val()) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('si.realtime', ['player' => ':player']) }}'.replace(':player', $("#pID").val()),
+                    data: {
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        if (data.count < 1) $('#status-debuff').css("opacity", "0");
+                        else {
+                            $('#status-debuff').css("opacity", "1");
+                            if (data.count == 1) $("#status-debuff").html("Debuff");
+                            else $("#status-debuff").html("Debuff &times; " + event.debuff);
+                        }
+                    },
+                    error: function(xhr) {
+                        console.log(xhr)
+                    }
+                })
+            }
+        }, 5000)
+
         $('#pID').change(function(e) {
             e.preventDefault();
             var playerId = $(this).val(); // Replace with the actual player ID
@@ -674,6 +697,8 @@
             });
 
         });
+
+
     </script>
     {{--  PUSHER  --}}
     @vite('resources/js/app.js')

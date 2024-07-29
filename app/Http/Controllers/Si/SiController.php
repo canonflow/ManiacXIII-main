@@ -628,4 +628,12 @@ class SiController extends Controller
                 return $this->ajaxResponse(true, $x->getMessage());
         }
     }
+
+    public function debuffUpdateRealtime(Player $player)
+    {
+        $dbCount = $player->debuffs()->wherePivot('status', 1)->count();
+        return response()->json([
+            'count' => $dbCount
+        ]);
+    }
 }

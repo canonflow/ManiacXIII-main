@@ -195,6 +195,8 @@ Route::group(
         Route::post('/{player}/buy/backpack', [Si\SiController::class, 'buyBackpack']) ->name('buyBackpack');
         Route::post('/{player}/buy/restore', [Si\SiController::class, 'buyRestore']) ->name('buyRestore');
         Route::post('/player/detail', [Si\SiController::class, 'detailTeam']) ->name('detail.team');
+        Route::post('/{player}/realtime', [Si\SiController::class, 'debuffUpdateRealtime'])
+            ->name('realtime');
 
         Route::get('/test', [Si\SiController::class, 'test']);
     }
