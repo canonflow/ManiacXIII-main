@@ -13,6 +13,9 @@ class TeamController extends Controller
 
         $status = $request->get('status');
         $listStatus = ['verified', 'unverified', 'waiting'];
+        // ID di bawah merupaka ID Tim Sementara (buat simul dan gladi) yang dibuat oleh panitia (BKN TIM ASLI)
+        // Utk ID Tim Sementara bisa disesuaikan lagi dengan ID tim sementara yg asli pada database
+        // Tim Sementara = Tim 1, Tim 2, ..., Tim 20
         $listTeamIdSandbox = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
         // Kalo parameter status tidak termasuk yg diminta -> abort
