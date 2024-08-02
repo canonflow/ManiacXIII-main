@@ -21,8 +21,8 @@ return new class extends Migration
                     ->onDelete('cascade');
             $table->double('cycle')->default(0.0);
             $table->integer('dragon_breath')->default(0);
-            $table->integer('restore');
-            $table->tinyInteger('ultimate');
+            $table->integer('restore')->default(0);
+            $table->tinyInteger('ultimate')->default(0);
             $table->timestamps();
         });
     }

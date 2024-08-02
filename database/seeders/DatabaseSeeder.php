@@ -21,8 +21,11 @@ class DatabaseSeeder extends Seeder
 //        $this->call(AcaraSeeder::class);
 //        $this->call(MessageSeeder::class);
 
+        // SIMUL & GLADI PLAYER SEEDER
+//        $this->call(PlayerSimulSeeder::class);
+
         // FINAL PLAYER SEEDER
-        $this->call(FinalPlayerSeeder::class);
+//        $this->call(FinalPlayerSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 
